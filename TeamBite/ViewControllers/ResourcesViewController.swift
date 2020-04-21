@@ -28,7 +28,6 @@ class ResourcesViewController: UIViewController {
     func loadResources(){
         resources = Resources.allResources
     }
-
 }
 
 extension ResourcesViewController: UITableViewDataSource{
