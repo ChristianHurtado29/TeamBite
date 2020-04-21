@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */; };
+		13F39634244F6F34004BD488 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39633244F6F34004BD488 /* Resources.swift */; };
 		13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */; };
 		13F4BA8B244E54DC00C0DC23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */; };
 		13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA8C244E54DC00C0DC23 /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13F39633244F6F34004BD488 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		13F4BA85244E54DC00C0DC23 /* TeamBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				13F4BAA3244E599000C0DC23 /* Offerings.swift */,
 				13F4BAA6244E5A0300C0DC23 /* Venue.swift */,
+				13F39633244F6F34004BD488 /* Resources.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				13F4BAA4244E599000C0DC23 /* Offerings.swift in Sources */,
 				13F4BAB2244E5AC100C0DC23 /* OfferingsCell.swift in Sources */,
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
+				13F39634244F6F34004BD488 /* Resources.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
 				13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
