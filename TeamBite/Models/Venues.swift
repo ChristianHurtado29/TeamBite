@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-struct Venue {
+struct Venue: Codable {
     let name: String
     let venueId: Int
     let longitude: String?

@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Offers {
+struct Offers: Codable {
     let nameOfOffer: String
-    let TotalMeals: Int
-    let RemainingMeals: Int
+    let totalMeals: Int
+    let remainingMeals: Int
     let createdDate: Date
     let startTime: Date  // date picker?
     let endTime: Date // date picker?

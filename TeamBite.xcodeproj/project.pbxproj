@@ -22,7 +22,7 @@
 		13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */; };
 		13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */; };
 		13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */; };
-		13F4BAB2244E5AC100C0DC23 /* OfferingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB1244E5AC100C0DC23 /* OfferingsCell.swift */; };
+		13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */; };
 		13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */; };
 		13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB6244E5AF000C0DC23 /* CoreLocationManager.swift */; };
 		13F4BAB9244E5B0D00C0DC23 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */; };
@@ -54,7 +54,7 @@
 		13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueInfoController.swift; sourceTree = "<group>"; };
 		13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCustomCell.swift; sourceTree = "<group>"; };
-		13F4BAB1244E5AC100C0DC23 /* OfferingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferingsCell.swift; sourceTree = "<group>"; };
+		13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
 		13F4BAB6244E5AF000C0DC23 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
 		13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */,
-				13F4BAB1244E5AC100C0DC23 /* OfferingsCell.swift */,
+				13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */,
 				13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */,
 			);
 			path = Cells;
@@ -327,7 +327,7 @@
 				13F4BAA7244E5A0300C0DC23 /* Venues.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offers.swift in Sources */,
 				634E16C1244F643D002C954A /* VenueViewController.swift in Sources */,
-				13F4BAB2244E5AC100C0DC23 /* OfferingsCell.swift in Sources */,
+				13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */,
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
 				634E16C5244F6DEF002C954A /* CreateOffersViewController.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
