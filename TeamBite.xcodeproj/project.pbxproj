@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */; };
+		13F39634244F6F34004BD488 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39633244F6F34004BD488 /* Resources.swift */; };
+		13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39635244F7B26004BD488 /* ResourcesCell.swift */; };
 		13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */; };
 		13F4BA8B244E54DC00C0DC23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */; };
 		13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA8C244E54DC00C0DC23 /* ViewController.swift */; };
@@ -28,11 +30,14 @@
 		13F4BAB9244E5B0D00C0DC23 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */; };
 		13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABA244E5B2500C0DC23 /* EmptyView.swift */; };
 		13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */; };
+		634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BC244F3B77002C954A /* Wireframe.storyboard */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13F39633244F6F34004BD488 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		13F39635244F7B26004BD488 /* ResourcesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesCell.swift; sourceTree = "<group>"; };
 		13F4BA85244E54DC00C0DC23 /* TeamBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 		13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		13F4BABA244E5B2500C0DC23 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Alerts.swift"; sourceTree = "<group>"; };
+		634E16BC244F3B77002C954A /* Wireframe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wireframe.storyboard; sourceTree = "<group>"; };
 		968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.release.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.release.xcconfig"; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 				13F4BAAA244E5A3400C0DC23 /* ViewControllers */,
 				13F4BAA2244E596900C0DC23 /* FirebaseManager */,
 				13F4BA8E244E54DC00C0DC23 /* Main.storyboard */,
+				634E16BC244F3B77002C954A /* Wireframe.storyboard */,
 				13F4BA9C244E582500C0DC23 /* Login.storyboard */,
 				13F4BA91244E54E000C0DC23 /* Assets.xcassets */,
 				13F4BA93244E54E000C0DC23 /* LaunchScreen.storyboard */,
@@ -134,6 +141,7 @@
 			children = (
 				13F4BAA3244E599000C0DC23 /* Offerings.swift */,
 				13F4BAA6244E5A0300C0DC23 /* Venue.swift */,
+				13F39633244F6F34004BD488 /* Resources.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -154,6 +162,7 @@
 				13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */,
 				13F4BAB1244E5AC100C0DC23 /* OfferingsCell.swift */,
 				13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */,
+				13F39635244F7B26004BD488 /* ResourcesCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -245,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13F4BA9D244E582500C0DC23 /* Login.storyboard in Resources */,
+				634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */,
 				13F4BA95244E54E000C0DC23 /* LaunchScreen.storyboard in Resources */,
 				13F4BA92244E54E000C0DC23 /* Assets.xcassets in Resources */,
 				139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */,
@@ -310,11 +320,13 @@
 				13F4BAA4244E599000C0DC23 /* Offerings.swift in Sources */,
 				13F4BAB2244E5AC100C0DC23 /* OfferingsCell.swift in Sources */,
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
+				13F39634244F6F34004BD488 /* Resources.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
 				13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
 				13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */,
 				13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */,
+				13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */,
 				13F4BA8B244E54DC00C0DC23 /* SceneDelegate.swift in Sources */,
 				13F4BAB9244E5B0D00C0DC23 /* HeaderView.swift in Sources */,
 			);
