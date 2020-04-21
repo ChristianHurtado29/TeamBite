@@ -41,7 +41,6 @@ extension ResourcesViewController: UITableViewDataSource{
         }
         let selResource = resources[indexPath.row]
         cell.configureCell(for: selResource)
-        
         return cell
     }
     
