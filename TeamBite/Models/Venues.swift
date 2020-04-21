@@ -11,11 +11,11 @@ import Foundation
 
 struct Venue {
     let name: String
+    let venueId: Int
     let longitude: String?
     let latitude: String?
     let phoneNumber: String?
     let address: String?
-    let id: Int
     let startTime: String?
     let endTime: String?
 }
