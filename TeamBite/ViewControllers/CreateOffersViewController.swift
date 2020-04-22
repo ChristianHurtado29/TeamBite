@@ -89,7 +89,7 @@ class CreateOffersViewController: UIViewController {
                 sender?.isEnabled = true
               }
             case .success(let offerData):
-                self?.upload
+               // self?.upload
               sender?.isEnabled = true
                 
             }
