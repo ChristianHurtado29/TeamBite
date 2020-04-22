@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
-    static let offeringsCollection = "offerings"
+    static let offeringsCollection = "offers"
     static let usersCollection = "users"
     private let db = Firestore.firestore()
     
