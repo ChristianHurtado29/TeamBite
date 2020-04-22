@@ -9,11 +9,28 @@
 import UIKit
 
 class CreateOffersViewController: UIViewController {
-
+    @IBOutlet weak var offerNameTextField: UITextField!
+    @IBOutlet weak var numberOfMealsTextField: UITextField!
+    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
+    @IBOutlet weak var endTimeDatePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
+    
+    @IBAction func createOfferButtonPressed(_ sender: UIButton) {
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
     
 
 }

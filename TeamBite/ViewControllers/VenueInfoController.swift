@@ -32,8 +32,8 @@ class VenueInfoController: UIViewController {
         venueName.text = venue.name
         venuePhone.text = venue.phoneNumber
         venueHours.text = """
-        pickup begins at: \(venue.startTime ?? "no start time yet")
-        pickup ends at: \(venue.endTime ?? "no end time yet")
+        pickup begins at: \(venue.startTime!)
+        pickup ends at: \(venue.endTime!)
         """
     }
     
