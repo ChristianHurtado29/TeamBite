@@ -12,7 +12,7 @@ class VenueSignUpView: UIView {
 
     public lazy var biteLogoImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "BiteLogo")
+        imageView.image = UIImage(named: "BiteLogoUpdated")
         return imageView
     }()
     

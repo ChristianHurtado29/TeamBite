@@ -10,7 +10,7 @@ import Foundation
 
 struct Venue: Codable {
     let name: String
-    let venueId: Int
+    let venueId: String
     let longitude: String?
     let latitude: String?
     let phoneNumber: String?

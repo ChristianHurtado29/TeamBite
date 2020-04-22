@@ -1,0 +1,68 @@
+//
+//  AverageUserSignInView.swift
+//  TeamBite
+//
+//  Created by Cameron Rivera on 4/22/20.
+//  Copyright © 2020 Christian Hurtado. All rights reserved.
+//
+
+import UIKit
+
+class AverageUserSignInView: UIView {
+
+    public lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "BiteLogoUpdated")
+        return imageView
+    }()
+    
+    public lazy var signInButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("Sign In", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        return button
+    }()
+    
+//    public lazy var createAccountButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Create Account", for: .normal)
+//        button.setTitleColor(UIColor.blue, for: .normal)
+//        return button
+//    }()
+    
+//    public lazy var buttonStackView: UIStackView = {
+//       let stackView = UIStackView()
+//        stackView.axis = .vertical
+//        stackView.distribution = .fillProportionally
+//        return stackView
+//    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder){
+        super.init(coder: coder)
+        commonInit()
+    }
+
+    private func commonInit(){
+        setUpLogoImageViewConstraints()
+        setUpSignInButtonConstraints()
+    }
+    
+    private func setUpLogoImageViewConstraints(){
+        addSubview(logoImageView)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([logoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20), logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.31), logoImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4), logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor) ])
+    }
+    
+    private func setUpSignInButtonConstraints(){
+        addSubview(signInButton)
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([signInButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30), signInButton.centerXAnchor.constraint(equalTo: centerXAnchor)])
+    }
+}

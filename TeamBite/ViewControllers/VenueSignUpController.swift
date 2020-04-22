@@ -47,7 +47,7 @@ class VenueSignUpController: UIViewController {
     
     private func unwrapTextFieldText(_ state: AccountState){
         guard let emailText = signUpView.emailTextField.text, !emailText.isEmpty, let passwordText = signUpView.passwordTextField.text, !passwordText.isEmpty else {
-            // TODO: Show an alert indicating that one or more fields is missing, or incorrect.
+            showAlert(title: "Missing Fields", message: "One or more fields is missing or incorrect.")
             return
         }
         continueLoginFlow(emailText, passwordText, state)
@@ -55,12 +55,12 @@ class VenueSignUpController: UIViewController {
     
     private func continueLoginFlow(_ email: String, _ password: String, _ state: AccountState) {
         if state == AccountState.existingUser{
-            FirebaseAuthManager.shared.signInWithEmail(email, password) { result in
+            FirebaseAuthManager.shared.signInWithEmail(email, password) { [weak self] result in
                 switch result{
-                case .failure://(let error):
-                    print("Authentication Error")
-                    // TODO: Show an alert indicating an authentication Error
-                    break
+                case .failure(let error):
+                    DispatchQueue.main.async{
+                        self?.showAlert(title: "Authentication Error", message: "\(error)")
+                    }
                 case .success://(let dataResult):
                     //TODO: Fetch user data using data Result
                     //TODO: Change scenes passing in user data.
@@ -68,18 +68,8 @@ class VenueSignUpController: UIViewController {
                 }
             }
         } else if state == AccountState.newUser{
-            FirebaseAuthManager.shared.createNewAccountWithEmail(email, password) { result in
-                switch result {
-                case .failure://(let error):
-                    print("Creation Error")
-                    // TODO: Display an alert that shows this error
-                    break
-                case .success://(let authData):
-                    print("Successfully created user")
-                    // TODO: Prompt the user for more information. Segue to new view controller.
-                    break
-                }
-            }
+            let collectionVC = CollectVenueInfoController(email, password)
+            self.navigationController?.pushViewController(collectionVC, animated: true)
         }
     }
 
