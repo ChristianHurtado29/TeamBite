@@ -325,8 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puk-7U-ICg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-
-            <point key="canvasLocation" x="3896" y="523"/>
+            <point key="canvasLocation" x="4658" y="502"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0il-yl-Ezm">
@@ -354,7 +353,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkW-D5-WPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1331.8840579710145" y="-220.3125"/>
-
         </scene>
         <!--View Controller-->
         <scene sceneID="9ma-AW-dey">
@@ -627,10 +625,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-
                         <segue destination="7Vh-po-VJT" kind="relationship" relationship="viewControllers" id="F5e-su-DpS"/>
                         <segue destination="agR-O4-fcw" kind="relationship" relationship="viewControllers" id="qah-37-CcW"/>
-
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIp-ZN-lNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -673,12 +669,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLr-ey-qiX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4256.521739130435" y="486.83035714285711"/>
+            <point key="canvasLocation" x="3916" y="502"/>
         </scene>
     </scenes>
     <resources>
-
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
     </resources>
-
+    <inferredMetricsTieBreakers>
+        <segue reference="wXe-ob-jHg"/>
+    </inferredMetricsTieBreakers>
 </document>

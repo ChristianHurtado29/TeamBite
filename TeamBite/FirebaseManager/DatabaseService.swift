@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
+    
     static let offersCollection = "offers"
     static let venuesOwnerCollection = "venues"
     static let usersCollection = "users"
@@ -22,24 +23,39 @@ class DatabaseService {
     static let shared = DatabaseService()
     
     // creates venueOwner
-    public func createVenueOwner(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
+    public func createVenue(venue: Venue, authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let email = authDataResult.user.email else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email,
-                                                                                                  "userId": authDataResult.user.uid]){ (error) in
-                                                                                                    if let error = error {
-                                                                                                        completion(.failure(error))
-                                                                                                    } else {
-                                                                                                        completion(.success(true))
-                                                                                                    }
+        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber!, "address": venue.address,"startTime": venue.startTime! , "endTime": venue.endTime!, "lat": venue.lat, "long": venue.long]){ (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
     }
+    
+    
+    
+    func updateVenue(address: String, phoneNumber: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).updateData(["address": address, "phoneNumber": phoneNumber]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     
     
     // create user
     public func createUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let phone = authDataResult.user.phoneNumber else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["phone":phone,
-                                                                                                  "userId": authDataResult.user.uid]){ (error) in
+        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["phoneNumber":phone,
+                                                                                                  "userId": authDataResult.user.uid, ]){ (error) in
                                                                                                     if let error = error {
                                                                                                         completion(.failure(error))
                                                                                                     } else {
@@ -91,7 +107,7 @@ class DatabaseService {
     
     
     public func fetchVenueOffers(venueId: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
-    
+        
         db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
@@ -101,6 +117,6 @@ class DatabaseService {
             }
         }
     }
-
+    
     
 }

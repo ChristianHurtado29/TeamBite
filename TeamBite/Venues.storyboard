@@ -114,15 +114,44 @@
                                 <state key="normal" title="    Save    ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="Aof-g9-xqt" eventType="touchUpInside" id="JNz-U4-SXD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Edit Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xp2-pc-tfE">
+                                <rect key="frame" x="20" y="103" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Edit Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Bv-fs-kYJ">
+                                <rect key="frame" x="20" y="142" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ap9-td-FpZ">
+                                <rect key="frame" x="328" y="189" width="66" height="30"/>
+                                <color key="backgroundColor" red="0.73740142580000001" green="0.2404037118" blue="0.18818846340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="RDC-Qc-S2F"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="Aof-g9-xqt" eventType="touchUpInside" id="NaX-vY-oKM"/>
+                                    <action selector="saveButtonPressed:" destination="Aof-g9-xqt" eventType="touchUpInside" id="nDt-b0-C2G"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="1Iw-Ml-6c1" firstAttribute="top" secondItem="01g-Qt-yAm" secondAttribute="bottom" constant="20" id="0hM-96-wKD"/>
+                            <constraint firstItem="0Bv-fs-kYJ" firstAttribute="top" secondItem="xp2-pc-tfE" secondAttribute="bottom" constant="5" id="6Yd-fX-rxb"/>
                             <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="VPj-12-2T7" secondAttribute="trailing" constant="20" id="7VY-iI-7GB"/>
                             <constraint firstItem="01g-Qt-yAm" firstAttribute="top" secondItem="VPj-12-2T7" secondAttribute="bottom" constant="20" id="7Vd-1a-9xs"/>
                             <constraint firstItem="ArT-Mo-Kfu" firstAttribute="trailing" secondItem="DyY-ly-D6o" secondAttribute="trailing" id="9QL-ul-Xwl"/>
                             <constraint firstItem="VPj-12-2T7" firstAttribute="top" secondItem="ArT-Mo-Kfu" secondAttribute="bottom" constant="20" id="BYf-Sx-L2e"/>
+                            <constraint firstItem="0Bv-fs-kYJ" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="Evy-mJ-8mr"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="top" secondItem="1Iw-Ml-6c1" secondAttribute="bottom" constant="30" id="FiM-90-hdN"/>
                             <constraint firstItem="LfC-Ny-g7d" firstAttribute="leading" secondItem="1Iw-Ml-6c1" secondAttribute="trailing" constant="20" id="HQB-AU-98y"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="bottom" secondItem="DyY-ly-D6o" secondAttribute="bottom" id="I5j-Aj-ik9"/>
@@ -130,17 +159,30 @@
                             <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="01g-Qt-yAm" secondAttribute="trailing" constant="20" id="UsC-ne-SNW"/>
                             <constraint firstItem="LfC-Ny-g7d" firstAttribute="centerY" secondItem="1Iw-Ml-6c1" secondAttribute="centerY" id="XX9-y0-tm7"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" id="Xeu-sb-s0p"/>
+                            <constraint firstItem="xp2-pc-tfE" firstAttribute="top" secondItem="ArT-Mo-Kfu" secondAttribute="bottom" constant="15" id="aYu-Pc-Suf"/>
                             <constraint firstItem="01g-Qt-yAm" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="bwD-vk-GCj"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="trailing" secondItem="DyY-ly-D6o" secondAttribute="trailing" id="dKM-Qk-GdF"/>
                             <constraint firstItem="ArT-Mo-Kfu" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" id="eIT-Eb-Gm4"/>
+                            <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="0Bv-fs-kYJ" secondAttribute="trailing" constant="20" id="hqb-BF-MD9"/>
+                            <constraint firstItem="ap9-td-FpZ" firstAttribute="top" secondItem="0Bv-fs-kYJ" secondAttribute="bottom" constant="13" id="kTx-f7-lUG"/>
+                            <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="ap9-td-FpZ" secondAttribute="trailing" constant="20" id="lVK-bt-8UZ"/>
                             <constraint firstItem="ArT-Mo-Kfu" firstAttribute="top" secondItem="DyY-ly-D6o" secondAttribute="top" id="qEA-D0-n3x"/>
                             <constraint firstItem="1Iw-Ml-6c1" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="uec-2r-d3A"/>
+                            <constraint firstItem="xp2-pc-tfE" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="vGM-fZ-TvZ"/>
+                            <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="xp2-pc-tfE" secondAttribute="trailing" constant="20" id="zyV-DM-6X3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DyY-ly-D6o"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="4YB-lp-251"/>
                     <connections>
+                        <outlet property="cancelButton" destination="ap9-td-FpZ" id="DEm-EX-9qg"/>
+                        <outlet property="editAddressTextField" destination="xp2-pc-tfE" id="Ksm-Be-2fE"/>
+                        <outlet property="editButton" destination="1Iw-Ml-6c1" id="qUw-1k-Qt3"/>
+                        <outlet property="editPhoneNumberTextField" destination="0Bv-fs-kYJ" id="KPn-qJ-1wd"/>
                         <outlet property="offersTableView" destination="lTw-dD-DpN" id="ddx-Dc-LXt"/>
+                        <outlet property="saveButton" destination="LfC-Ny-g7d" id="1f2-0A-ngG"/>
+                        <outlet property="venueAddressLabel" destination="VPj-12-2T7" id="tp3-iB-XQ9"/>
+                        <outlet property="venueContactLabel" destination="01g-Qt-yAm" id="Q47-aJ-0m2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sK0-dx-kj6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -150,7 +192,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="XPS-Vm-0bo">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="byi-lK-xbn" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="VenueStoryboard" automaticallyAdjustsScrollViewInsets="NO" id="byi-lK-xbn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RIQ-lD-v3w">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -185,7 +227,7 @@
         <!--Create Offers View Controller-->
         <scene sceneID="NdD-lQ-PH7">
             <objects>
-                <viewController id="zhx-9A-osz" customClass="CreateOffersViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateOffersViewController" id="zhx-9A-osz" customClass="CreateOffersViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jeo-sn-q5n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -251,14 +293,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Tb-JXs">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Tb-JXs" userLabel="Nut Free Switch">
                                 <rect key="frame" x="315" y="522.5" width="51" height="31"/>
+                                <connections>
+                                    <action selector="nutFreeSwitchPressed:" destination="zhx-9A-osz" eventType="valueChanged" id="e26-j3-8FK"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iue-su-uj3">
+                            <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iue-su-uj3" userLabel="Gluten Free Switch">
                                 <rect key="frame" x="315" y="566.5" width="51" height="31"/>
+                                <connections>
+                                    <action selector="glutenFreeSwitchPressed:" destination="zhx-9A-osz" eventType="valueChanged" id="4Ua-zz-FZh"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptj-kR-JZp">
+                            <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptj-kR-JZp" userLabel="Vegetarian Switch">
                                 <rect key="frame" x="315" y="610.5" width="51" height="31"/>
+                                <connections>
+                                    <action selector="vegetarainSwitchPressed:" destination="zhx-9A-osz" eventType="valueChanged" id="JBg-en-Ioq"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nut-Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-5I-c9l">
                                 <rect key="frame" x="20" y="526" width="275" height="24"/>
@@ -339,10 +390,14 @@
                         <viewLayoutGuide key="safeArea" id="y7v-bz-wXR"/>
                     </view>
                     <connections>
+                        <outlet property="createButton" destination="mNf-p5-0Se" id="eJA-XR-rSw"/>
                         <outlet property="endTimeDatePicker" destination="UQG-sH-jgG" id="Kai-P7-ufd"/>
+                        <outlet property="glutenFreeSwitch" destination="iue-su-uj3" id="TGD-PS-h2n"/>
                         <outlet property="numberOfMealsTextField" destination="jIQ-d8-HhY" id="gfm-qr-Lq0"/>
+                        <outlet property="nutFreeSwitch" destination="6jR-Tb-JXs" id="v5Y-Ur-gOx"/>
                         <outlet property="offerNameTextField" destination="J4A-o5-xNM" id="GWS-RB-8pw"/>
                         <outlet property="startTimeDatePicker" destination="zNq-7v-ldx" id="LCW-z4-lqi"/>
+                        <outlet property="vegetarianSwitch" destination="ptj-kR-JZp" id="MsD-mr-rXC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y27-em-b5g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
