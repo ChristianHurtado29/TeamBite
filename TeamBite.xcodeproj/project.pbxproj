@@ -19,8 +19,8 @@
 		13F4BA9D244E582500C0DC23 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F4BA9C244E582500C0DC23 /* Login.storyboard */; };
 		13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA9E244E595B00C0DC23 /* AuthenticationSessions.swift */; };
 		13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA0244E596400C0DC23 /* DatabaseService.swift */; };
-		13F4BAA4244E599000C0DC23 /* Offers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA3244E599000C0DC23 /* Offers.swift */; };
-		13F4BAA7244E5A0300C0DC23 /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA6244E5A0300C0DC23 /* Venues.swift */; };
+		13F4BAA4244E599000C0DC23 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA3244E599000C0DC23 /* Offer.swift */; };
+		13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA6244E5A0300C0DC23 /* Venue.swift */; };
 		13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */; };
 		13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */; };
 		13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */; };
@@ -42,7 +42,9 @@
 		634E16BF244F6381002C954A /* Venues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BE244F6381002C954A /* Venues.storyboard */; };
 		634E16C1244F643D002C954A /* VenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C0244F643D002C954A /* VenueViewController.swift */; };
 		634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C2244F68F3002C954A /* PastOffersViewController.swift */; };
-		634E16C5244F6DEF002C954A /* CreateOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C4244F6DEF002C954A /* CreateOffersViewController.swift */; };
+
+		634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C6244FBC80002C954A /* CreateOffersViewController.swift */; };
+		634E16C9244FC4A5002C954A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C8244FC4A5002C954A /* User.swift */; };
 
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
@@ -62,8 +64,8 @@
 		13F4BA9C244E582500C0DC23 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		13F4BA9E244E595B00C0DC23 /* AuthenticationSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSessions.swift; sourceTree = "<group>"; };
 		13F4BAA0244E596400C0DC23 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
-		13F4BAA3244E599000C0DC23 /* Offers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offers.swift; sourceTree = "<group>"; };
-		13F4BAA6244E5A0300C0DC23 /* Venues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
+		13F4BAA3244E599000C0DC23 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		13F4BAA6244E5A0300C0DC23 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueInfoController.swift; sourceTree = "<group>"; };
 		13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCustomCell.swift; sourceTree = "<group>"; };
@@ -77,7 +79,8 @@
 		634E16BE244F6381002C954A /* Venues.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Venues.storyboard; sourceTree = "<group>"; };
 		634E16C0244F643D002C954A /* VenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueViewController.swift; sourceTree = "<group>"; };
 		634E16C2244F68F3002C954A /* PastOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOffersViewController.swift; sourceTree = "<group>"; };
-		634E16C4244F6DEF002C954A /* CreateOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOffersViewController.swift; sourceTree = "<group>"; };
+		634E16C6244FBC80002C954A /* CreateOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOffersViewController.swift; sourceTree = "<group>"; };
+		634E16C8244FC4A5002C954A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.release.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.release.xcconfig"; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4604AA5244F613E008E2857 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -163,11 +166,10 @@
 		13F4BAA5244E599600C0DC23 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-
-				13F4BAA3244E599000C0DC23 /* Offers.swift */,
-				13F4BAA6244E5A0300C0DC23 /* Venues.swift */,
+				13F4BAA3244E599000C0DC23 /* Offer.swift */,
+				13F4BAA6244E5A0300C0DC23 /* Venue.swift */,
+				634E16C8244FC4A5002C954A /* User.swift */,
 				13F39633244F6F34004BD488 /* Resources.swift */,
-
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,8 +185,9 @@
 				C4604AAF244FDF0C008E2857 /* CollectRestaurantInfoController.swift */,
 
 				634E16C0244F643D002C954A /* VenueViewController.swift */,
-				634E16C4244F6DEF002C954A /* CreateOffersViewController.swift */,
 				634E16C2244F68F3002C954A /* PastOffersViewController.swift */,
+        
+				634E16C6244FBC80002C954A /* CreateOffersViewController.swift */,
 
 			);
 			path = ViewControllers;
@@ -352,15 +355,19 @@
 				C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */,
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
+				634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
 				13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */,
+
+				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
+				13F4BAA4244E599000C0DC23 /* Offer.swift in Sources */,
         
 				C4604AAA244F7D9B008E2857 /* VenueSignUpController.swift in Sources */,
-				13F4BAA7244E5A0300C0DC23 /* Venues.swift in Sources */,
-				13F4BAA4244E599000C0DC23 /* Offers.swift in Sources */,
+
 				634E16C1244F643D002C954A /* VenueViewController.swift in Sources */,
+				634E16C9244FC4A5002C954A /* User.swift in Sources */,
 				13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */,
 
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
