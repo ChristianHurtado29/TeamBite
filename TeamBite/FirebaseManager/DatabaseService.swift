@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
+
     static let offersCollection = "offers"
     static let venuesOwnerCollection = "venues"
     static let usersCollection = "users"

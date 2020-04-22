@@ -32,6 +32,13 @@
 		13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */; };
 		634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BC244F3B77002C954A /* Wireframe.storyboard */; };
 
+		9F01126424501360006B2DE8 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01126324501360006B2DE8 /* UserDetailViewController.swift */; };
+		9F37802C244F7941007C174E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802B244F7941007C174E /* MainView.swift */; };
+		9F37802E244F873C007C174E /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802D244F873C007C174E /* MainViewCell.swift */; };
+		9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2C244FEA2800294978 /* UserDetailView.swift */; };
+		9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2E24500A0F00294978 /* MainViewController.swift */; };
+
+
 		C4604AA6244F613E008E2857 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA5244F613E008E2857 /* LoginView.swift */; };
 		C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA7244F6165008E2857 /* LoginViewController.swift */; };
 		C4604AAA244F7D9B008E2857 /* VenueSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */; };
@@ -45,6 +52,7 @@
 
 		634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C6244FBC80002C954A /* CreateOffersViewController.swift */; };
 		634E16C9244FC4A5002C954A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C8244FC4A5002C954A /* User.swift */; };
+
 
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
@@ -82,6 +90,11 @@
 		634E16C6244FBC80002C954A /* CreateOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOffersViewController.swift; sourceTree = "<group>"; };
 		634E16C8244FC4A5002C954A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.release.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.release.xcconfig"; sourceTree = "<group>"; };
+		9F01126324501360006B2DE8 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		9F37802B244F7941007C174E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9F37802D244F873C007C174E /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		9F504D2C244FEA2800294978 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		9F504D2E24500A0F00294978 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4604AA5244F613E008E2857 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C4604AA7244F6165008E2857 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +193,9 @@
 				13F4BA8C244E54DC00C0DC23 /* ViewController.swift */,
 				13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */,
 				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
+				9F504D2E24500A0F00294978 /* MainViewController.swift */,
+				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
+
 				C4604AA7244F6165008E2857 /* LoginViewController.swift */,
 				C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */,
 				C4604AAF244FDF0C008E2857 /* CollectRestaurantInfoController.swift */,
@@ -217,6 +233,9 @@
 			children = (
 				13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */,
 				13F4BABA244E5B2500C0DC23 /* EmptyView.swift */,
+				9F37802B244F7941007C174E /* MainView.swift */,
+				9F37802D244F873C007C174E /* MainViewCell.swift */,
+				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
 				C4604AA5244F613E008E2857 /* LoginView.swift */,
 				C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */,
 				C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */,
@@ -352,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */,
 				C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */,
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
@@ -359,6 +379,8 @@
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
+				9F37802E244F873C007C174E /* MainViewCell.swift in Sources */,
+				9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */,
 				13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */,
 
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
@@ -376,6 +398,8 @@
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,
 				C4604AB0244FDF0C008E2857 /* CollectRestaurantInfoController.swift in Sources */,
 				13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */,
+				9F01126424501360006B2DE8 /* UserDetailViewController.swift in Sources */,
+				9F37802C244F7941007C174E /* MainView.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
 				13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */,
 				C4604AAC244F7DB4008E2857 /* VenueSignUpView.swift in Sources */,
