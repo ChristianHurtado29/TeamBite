@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class UserDetailView: UIView {
 
@@ -55,12 +56,111 @@ class UserDetailView: UIView {
         return button
     }()
     
-    public lazy var venueMap: MKMapView = {
-           let map = MKMapView()
-           return map
-       }()
+    public lazy var locationMap: MKMapView = {
+    let map = MKMapView()
+        return map
+    }()
     
+    public lazy var getDirectionButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Get Direction", for: .normal)
+        button.tintColor = #colorLiteral(red: 0.9442620873, green: 0, blue: 0, alpha: 1)
+        return button
+    }()
     
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func commonInit() {
+        setupRestaurant()
+        setupRestaurantInfo()
+        setupHours()
+        setupNumberOfMeals()
+        setupButton()
+        setupMap()
+        setupGetDirection()
+    }
+    
+    private func setupRestaurant() { // This is a image
+        addSubview(restaurantPhoto)
+        restaurantPhoto.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            restaurantPhoto.centerXAnchor.constraint(equalTo: centerXAnchor),
+            restaurantPhoto.centerYAnchor.constraint(equalTo: centerYAnchor),
+            restaurantPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.12),
+            restaurantPhoto.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.12)
+        ])
+    }
      
+    private func setupRestaurantInfo() { // this is a label
+        addSubview(restaurantInfo)
+        restaurantInfo.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            restaurantInfo.topAnchor.constraint(equalTo: restaurantPhoto.bottomAnchor, constant: 8),
+            restaurantInfo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            restaurantInfo.trailingAnchor.constraint(equalTo: trailingAnchor, constant:  -8),
+        ])
+    }
+    
+    private func setupHours() { // This is a Label
+        addSubview(hoursOFOperation)
+        hoursOFOperation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hoursOFOperation.topAnchor.constraint(equalTo: restaurantInfo.bottomAnchor, constant: 8),
+            hoursOFOperation.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            hoursOFOperation.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+    }
+    
+    private func setupNumberOfMeals() { // This is a Label
+        addSubview(numberOfMeals)
+        numberOfMeals.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            numberOfMeals.topAnchor.constraint(equalTo: hoursOFOperation.bottomAnchor, constant: 8),
+            numberOfMeals.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            numberOfMeals.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+    
+        ])
+        
+    }
+    
+    private func setupButton() {
+        addSubview(claimButton)
+        claimButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            claimButton.topAnchor.constraint(equalTo: numberOfMeals.bottomAnchor, constant: 8),
+            claimButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            claimButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+        
+        ])
+    }
+    
+    private func setupMap() {
+        addSubview(locationMap)
+        locationMap.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationMap.topAnchor.constraint(equalTo: claimButton.bottomAnchor, constant: 10),
+            locationMap.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            locationMap.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
+            
+        ])
+    }
+    
+    private func setupGetDirection() {
+        addSubview(getDirectionButton)
+        getDirectionButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            getDirectionButton.topAnchor.constraint(equalTo: locationMap.bottomAnchor, constant: 8),
+            getDirectionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            getDirectionButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+        
+        ])
+    }
 
 }

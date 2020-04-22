@@ -32,6 +32,7 @@
 		9F37802C244F7941007C174E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802B244F7941007C174E /* MainView.swift */; };
 		9F37802E244F873C007C174E /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802D244F873C007C174E /* MainViewCell.swift */; };
 		9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2C244FEA2800294978 /* UserDetailView.swift */; };
+		9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2E24500A0F00294978 /* MainViewController.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		9F37802B244F7941007C174E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9F37802D244F873C007C174E /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		9F504D2C244FEA2800294978 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		9F504D2E24500A0F00294978 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 				13F4BA8C244E54DC00C0DC23 /* ViewController.swift */,
 				13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */,
 				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
+				9F504D2E24500A0F00294978 /* MainViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
 				9F37802E244F873C007C174E /* MainViewCell.swift in Sources */,
+				9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */,
 				13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */,
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offerings.swift in Sources */,
