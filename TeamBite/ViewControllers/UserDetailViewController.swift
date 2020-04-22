@@ -11,7 +11,7 @@ import MapKit
 
 class UserDetailViewController: UIViewController {
     
-    var selectedVenue: Venue?
+    var selectedVenue: Venue!
     let detailView = UserDetailView()
     private var annotation = MKPointAnnotation()
     private var isShowingNewAnnotation = false
@@ -43,7 +43,7 @@ class UserDetailViewController: UIViewController {
         selectedVenue = venue
         let annotation = MKPointAnnotation()
         
-        let coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
+        let coordinate = CLLocationCoordinate2D(latitude: venue.lat, longitude: venue.long)
         annotation.title = venue.name
         annotation.coordinate = coordinate
         
@@ -74,16 +74,16 @@ extension UserDetailViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKPolygonRenderer {
-        let renderer = MKPolygonRenderer(polygon: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.systemBlue
-        renderer.lineWideth = 3.0
-        
-        return renderer
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKPolygonRenderer {
+//        let renderer = MKPolygonRenderer(polygon: overlay as! MKPolyline)
+//        renderer.strokeColor = UIColor.systemBlue
+//        renderer.lineWideth = 3.0
+//
+//        return renderer
+//    }
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        if isShowingNewAnnotations {
+        if isShowingNewAnnotation {
             detailView.locationMap.showAnnotations([annotation], animated: false)
         }
         isShowingNewAnnotation = false

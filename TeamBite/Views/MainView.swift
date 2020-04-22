@@ -19,15 +19,15 @@ class MainView: UIView {
 
 
     
-    publoc lazy var collectionView: UICollectionView = {
+    public lazy var collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let cv = UICollectionView(frame: CGRect, collectionViewLayout: layout)
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.backgroundColor = .white
         return cv
-        
     }()
+    
        public lazy var filterButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(systemName: "into.circle"), for: .normal)

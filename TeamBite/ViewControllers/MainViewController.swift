@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
         view.backgroundColor = .white
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
-        mainView.collectionView.register(MainViewCell.self forCellWithReuseIdentifier: "mainViewCell")
+        mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
         navigationItem.title = "BITE"
         loadData()
 
@@ -54,7 +54,7 @@ extension MainViewController: UICollectionViewDataSource {
             fatalError("Could not downcast to MainViewCell")
         }
         let savedActivities = savedVenues[indexPath.row]
-        cell.configureCell(for: savedVenues)
+//        cell.configureCell(for: savedVenues)
         return cell
     }
 }
