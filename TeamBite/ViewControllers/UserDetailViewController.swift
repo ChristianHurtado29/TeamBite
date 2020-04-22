@@ -30,6 +30,9 @@ class UserDetailViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         navigationItem.title = selectedVenue.name
         detailView.locationMap.delegate = self
+        detailView.locationMap.showsUserLocation = true
+        detailView.locationMap.showsPointsOfInterest = true
+        detailView.locationMap.showsScale = true
         updateUI()
         loadMap()
         getDirections()
