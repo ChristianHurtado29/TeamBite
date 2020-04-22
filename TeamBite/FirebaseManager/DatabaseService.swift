@@ -11,45 +11,97 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
-    
-    static let offeringsCollection = "offerings"
+
+    static let offersCollection = "offers"
+    static let venuesOwnerCollection = "venues"
     static let usersCollection = "users"
+    
+    // reference to firebase firestore database
     private let db = Firestore.firestore()
     
-    private init() {}
+    // private init() {}
     static let shared = DatabaseService()
     
+    // creates venueOwner
+    public func createVenueOwner(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
+        guard let email = authDataResult.user.email else {return}
+        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email,
+                                                                                                  "userId": authDataResult.user.uid]){ (error) in
+                                                                                                    if let error = error {
+                                                                                                        completion(.failure(error))
+                                                                                                    } else {
+                                                                                                        completion(.success(true))
+                                                                                                    }
+        }
+    }
     
+    
+    // create user
     public func createUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
-        guard let phone = authDataResult.user.phoneNumber else {
-            return
-        }
-        db.collection(DatabaseService.usersCollection)
-            .document(authDataResult.user.uid)
-            .setData(["phone":phone,
-                      "experience": ""]){ (error) in
-                        if let error = error {
-                            completion(.failure(error))
-                        } else {
-                            completion(.success(true))
-                        }
+        guard let phone = authDataResult.user.phoneNumber else {return}
+        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["phone":phone,
+                                                                                                  "userId": authDataResult.user.uid]){ (error) in
+                                                                                                    if let error = error {
+                                                                                                        completion(.failure(error))
+                                                                                                    } else {
+                                                                                                        completion(.success(true))
+                                                                                                    }
         }
     }
     
     
-    // may not be necessary depending on how initial window will work ---------------------
     
-    public func createExperience(experience: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        guard let user = Auth.auth().currentUser else { return }
-        db.collection(DatabaseService.usersCollection)
-            .document(user.uid).updateData(["experience": experience]) { (error) in
-                if let error = error {
-                    completion(.failure(error))
-                } else {
-                    completion(.success(true))
-                }
-                
+    // Create offers
+    public func addToOffers(offer: Offer, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let venueOwner = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.venuesOwnerCollection).document(venueOwner.uid).collection(DatabaseService.offersCollection).document(offer.offerId).setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none"]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
     }
+    
+    
+    
+    public func fetchVenues(completion: @escaping (Result<[Venue], Error>) -> ()) {
+        db.collection(DatabaseService.venuesOwnerCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let venues = snapshot.documents.compactMap { Venue($0.data()) }
+                completion(.success(venues))
+            }
+        }
+    }
+    
+    
+    
+    public func fetchAllOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
+        
+        db.collection(DatabaseService.venuesOwnerCollection).document().collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let offers = snapshot.documents.compactMap { Offer($0.data()) }
+                completion(.success(offers))
+            }
+        }
+    }
+    
+    
+    public func fetchVenueOffers(venueId: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
+    
+        db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let offers = snapshot.documents.compactMap { Offer($0.data()) }
+                completion(.success(offers))
+            }
+        }
+    }
+
     
 }
