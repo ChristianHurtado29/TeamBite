@@ -10,15 +10,15 @@ import UIKit
 
 class VenueCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var venueName: UILabel!
+    @IBOutlet weak var venueAddress: UILabel!
+    @IBOutlet weak var phoneNumber: UILabel!
+    
+    
+    func configureCell(for venue: Venue){
+        venueName.text = venue.name
+        venueAddress.text = venue.address
+        phoneNumber.text = venue.phoneNumber
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
