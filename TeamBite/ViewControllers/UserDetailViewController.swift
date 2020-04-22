@@ -28,6 +28,8 @@ class UserDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        navigationItem.title = selectedVenue.name
+        detailView.locationMap.delegate = self
         updateUI()
         loadMap()
         getDirections()
