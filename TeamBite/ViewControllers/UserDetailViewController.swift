@@ -14,6 +14,8 @@ class UserDetailViewController: UIViewController {
     var selectedVenue: Venue!
     var selectedOffer: Offer!
     let detailView = UserDetailView()
+    locationManger = CLLocationManager()
+    
     private var annotation = MKPointAnnotation()
     private var isShowingNewAnnotation = false
     
@@ -33,6 +35,16 @@ class UserDetailViewController: UIViewController {
         detailView.locationMap.showsUserLocation = true
         detailView.locationMap.showsPointsOfInterest = true
         detailView.locationMap.showsScale = true
+        locationManger.requestAlwaysAuthorization()
+        locationManger.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManger.delegate = self
+
+            locationManger.desiredAccuracy = kCLLocationAccuracyBest
+            locationManger.startUpdatingLocation()
+        }
+        
         updateUI()
         loadMap()
         getDirections()
