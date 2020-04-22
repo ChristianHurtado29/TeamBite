@@ -29,6 +29,8 @@
 		13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABA244E5B2500C0DC23 /* EmptyView.swift */; };
 		13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */; };
 		634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BC244F3B77002C954A /* Wireframe.storyboard */; };
+		9F37802C244F7941007C174E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802B244F7941007C174E /* MainView.swift */; };
+		9F37802E244F873C007C174E /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802D244F873C007C174E /* MainViewCell.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Alerts.swift"; sourceTree = "<group>"; };
 		634E16BC244F3B77002C954A /* Wireframe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wireframe.storyboard; sourceTree = "<group>"; };
 		968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.release.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.release.xcconfig"; sourceTree = "<group>"; };
+		9F37802B244F7941007C174E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9F37802D244F873C007C174E /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +178,8 @@
 			children = (
 				13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */,
 				13F4BABA244E5B2500C0DC23 /* EmptyView.swift */,
+				9F37802B244F7941007C174E /* MainView.swift */,
+				9F37802D244F873C007C174E /* MainViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
+				9F37802E244F873C007C174E /* MainViewCell.swift in Sources */,
 				13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */,
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offerings.swift in Sources */,
@@ -316,6 +323,7 @@
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
 				13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */,
+				9F37802C244F7941007C174E /* MainView.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
 				13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */,
 				13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */,
