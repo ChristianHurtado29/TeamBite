@@ -28,7 +28,7 @@ class MainView: UIView {
         return cv
         
     }()
-       public lazy var dropDownButton: UIButton = {
+       public lazy var filterButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(systemName: "into.circle"), for: .normal)
         button.tintColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
@@ -46,6 +46,7 @@ class MainView: UIView {
     private func commonInit() {
         setupLogo()
         setupCollectionVC()
+        setupButtonVC()
     }
     
     private func setupLogo() {
@@ -72,7 +73,14 @@ class MainView: UIView {
         ])
     }
     
-    
+    private func setupButtonVC() {
+        addSubview(filterButton)
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            filterButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            filterButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
+        ])
+    }
     
     
     

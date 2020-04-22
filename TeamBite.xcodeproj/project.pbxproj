@@ -31,6 +31,7 @@
 		634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BC244F3B77002C954A /* Wireframe.storyboard */; };
 		9F37802C244F7941007C174E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802B244F7941007C174E /* MainView.swift */; };
 		9F37802E244F873C007C174E /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802D244F873C007C174E /* MainViewCell.swift */; };
+		9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2C244FEA2800294978 /* UserDetailView.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.release.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.release.xcconfig"; sourceTree = "<group>"; };
 		9F37802B244F7941007C174E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9F37802D244F873C007C174E /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		9F504D2C244FEA2800294978 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 				13F4BABA244E5B2500C0DC23 /* EmptyView.swift */,
 				9F37802B244F7941007C174E /* MainView.swift */,
 				9F37802D244F873C007C174E /* MainViewCell.swift */,
+				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */,
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
