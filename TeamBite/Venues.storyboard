@@ -29,6 +29,7 @@
                                                 </state>
                                             </button>
                                             <connections>
+                                                <action selector="createOfferButtonPressed:" destination="Aof-g9-xqt" id="5DO-gG-GiM"/>
                                                 <segue destination="zhx-9A-osz" kind="presentation" id="5Hc-xb-khZ"/>
                                             </connections>
                                         </barButtonItem>
@@ -48,14 +49,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Iw-Ml-6c1">
-                                <rect key="frame" x="20" y="189.5" width="44" height="30"/>
+                                <rect key="frame" x="20" y="189.5" width="60" height="30"/>
                                 <color key="backgroundColor" red="0.73740142580000001" green="0.2404037118" blue="0.18818846340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="hpX-oP-uTM"/>
+                                    <constraint firstAttribute="width" constant="60" id="hpX-oP-uTM"/>
                                 </constraints>
-                                <state key="normal" title="Edit">
+                                <state key="normal" title="    Edit     ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="editButtonPressed:" destination="Aof-g9-xqt" eventType="touchUpInside" id="Slr-wc-CXW"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lTw-dD-DpN">
                                 <rect key="frame" x="0.0" y="249.5" width="414" height="563.5"/>
@@ -104,6 +108,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfC-Ny-g7d">
+                                <rect key="frame" x="100" y="189.5" width="66" height="30"/>
+                                <color key="backgroundColor" red="0.73740142580000001" green="0.2404037118" blue="0.18818846340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="    Save    ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -113,9 +124,11 @@
                             <constraint firstItem="ArT-Mo-Kfu" firstAttribute="trailing" secondItem="DyY-ly-D6o" secondAttribute="trailing" id="9QL-ul-Xwl"/>
                             <constraint firstItem="VPj-12-2T7" firstAttribute="top" secondItem="ArT-Mo-Kfu" secondAttribute="bottom" constant="20" id="BYf-Sx-L2e"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="top" secondItem="1Iw-Ml-6c1" secondAttribute="bottom" constant="30" id="FiM-90-hdN"/>
+                            <constraint firstItem="LfC-Ny-g7d" firstAttribute="leading" secondItem="1Iw-Ml-6c1" secondAttribute="trailing" constant="20" id="HQB-AU-98y"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="bottom" secondItem="DyY-ly-D6o" secondAttribute="bottom" id="I5j-Aj-ik9"/>
                             <constraint firstItem="VPj-12-2T7" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="NKx-8V-bLk"/>
                             <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="01g-Qt-yAm" secondAttribute="trailing" constant="20" id="UsC-ne-SNW"/>
+                            <constraint firstItem="LfC-Ny-g7d" firstAttribute="centerY" secondItem="1Iw-Ml-6c1" secondAttribute="centerY" id="XX9-y0-tm7"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" id="Xeu-sb-s0p"/>
                             <constraint firstItem="01g-Qt-yAm" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="bwD-vk-GCj"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="trailing" secondItem="DyY-ly-D6o" secondAttribute="trailing" id="dKM-Qk-GdF"/>
@@ -126,6 +139,9 @@
                         <viewLayoutGuide key="safeArea" id="DyY-ly-D6o"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="4YB-lp-251"/>
+                    <connections>
+                        <outlet property="offersTableView" destination="lTw-dD-DpN" id="ddx-Dc-LXt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sK0-dx-kj6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="866" y="771"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Offers View Controller-->
         <scene sceneID="NdD-lQ-PH7">
             <objects>
-                <viewController id="zhx-9A-osz" sceneMemberID="viewController">
+                <viewController id="zhx-9A-osz" customClass="CreateOffersViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jeo-sn-q5n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,10 +254,10 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Tb-JXs">
                                 <rect key="frame" x="315" y="522.5" width="51" height="31"/>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iue-su-uj3">
+                            <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iue-su-uj3">
                                 <rect key="frame" x="315" y="566.5" width="51" height="31"/>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptj-kR-JZp">
+                            <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptj-kR-JZp">
                                 <rect key="frame" x="315" y="610.5" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nut-Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-5I-c9l">
@@ -268,6 +284,9 @@
                                 <state key="normal" title="     Create     ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="createOfferButtonPressed:" destination="zhx-9A-osz" eventType="touchUpInside" id="sHT-UG-RCw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -319,6 +338,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y7v-bz-wXR"/>
                     </view>
+                    <connections>
+                        <outlet property="endTimeDatePicker" destination="UQG-sH-jgG" id="Kai-P7-ufd"/>
+                        <outlet property="numberOfMealsTextField" destination="jIQ-d8-HhY" id="gfm-qr-Lq0"/>
+                        <outlet property="offerNameTextField" destination="J4A-o5-xNM" id="GWS-RB-8pw"/>
+                        <outlet property="startTimeDatePicker" destination="zNq-7v-ldx" id="LCW-z4-lqi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y27-em-b5g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

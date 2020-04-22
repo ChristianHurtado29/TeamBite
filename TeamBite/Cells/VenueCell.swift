@@ -8,17 +8,18 @@
 
 import UIKit
 
-class VenueCell: UITableViewCell {
+class VenueCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var venueName: UILabel!
+    @IBOutlet weak var venueAddress: UILabel!
+    @IBOutlet weak var phoneNumber: UILabel!
+    @IBOutlet weak var venuePic: UIImageView!
+    
+    func configureCell(for venue: Venue){
+        venueName.text = venue.name
+        venueAddress.text = venue.address
+        phoneNumber.text = venue.phoneNumber
+        venuePic.image = UIImage(named: venue.name)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
