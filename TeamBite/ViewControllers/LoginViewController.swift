@@ -59,7 +59,8 @@ extension LoginViewController: UITableViewDelegate {
         
         switch indexPath.row{
         case 0:
-            print("User")
+            let averageUserSignInVC = AverageUserSignInController()
+            navigationController?.pushViewController(averageUserSignInVC, animated: true)
         case 1:
             let venueSignUpVC = VenueSignUpController()
             navigationController?.pushViewController(venueSignUpVC, animated: true)

@@ -10,9 +10,7 @@ import UIKit
 
 class ClaimMealsView: UIView {
 
-    lazy var contentViewSize = CGSize(width: centerView.frame.width, height: centerView.frame.height + 400)
-   
-
+//    lazy var contentViewSize = CGSize(width: centerView.frame.width, height: centerView.frame.height + 400)
     
     public lazy var scrollView: UIScrollView = {
         let sv = UIScrollView(frame: .zero)
@@ -21,7 +19,7 @@ class ClaimMealsView: UIView {
         sv.backgroundColor = .systemBackground
         return sv 
         
-    }
+    }()
 
 
 }
