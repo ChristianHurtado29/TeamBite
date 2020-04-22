@@ -10,10 +10,10 @@ import UIKit
 
 class UserFoodPreferencesController: UIViewController {
 
-    private let allergiesView = UserFoodPreferencesView()
+    private let preferencesView = UserFoodPreferencesView()
     
     override func loadView(){
-        view = allergiesView
+        view = preferencesView
     }
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class UserFoodPreferencesController: UIViewController {
     }
     
     private func setUp(){
-        allergiesView.backgroundColor = UIColor.systemBackground
+        preferencesView.backgroundColor = UIColor.systemBackground
     }
 
 }

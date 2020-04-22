@@ -45,6 +45,8 @@
 		C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D992450BCED008193BA /* AverageUserSignInController.swift */; };
 		C4789D9C2450E742008193BA /* LoginWithPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9B2450E742008193BA /* LoginWithPhoneView.swift */; };
 		C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */; };
+		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
+		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +94,8 @@
 		C4789D992450BCED008193BA /* AverageUserSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageUserSignInController.swift; sourceTree = "<group>"; };
 		C4789D9B2450E742008193BA /* LoginWithPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneView.swift; sourceTree = "<group>"; };
 		C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneController.swift; sourceTree = "<group>"; };
+		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
+		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +193,7 @@
 				634E16C4244F6DEF002C954A /* CreateOffersViewController.swift */,
 				634E16C2244F68F3002C954A /* PastOffersViewController.swift */,
 				C4789D992450BCED008193BA /* AverageUserSignInController.swift */,
+				C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */,
 				C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */,
 			);
 			path = ViewControllers;
@@ -223,6 +228,7 @@
 				C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */,
 				C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */,
 				C4789D972450BCD4008193BA /* AverageUserSignInView.swift */,
+				C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */,
 				C4789D9B2450E742008193BA /* LoginWithPhoneView.swift */,
 			);
 			path = Views;
@@ -360,11 +366,13 @@
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
 				C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
+				C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
 				13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */,
 				C4604AAA244F7D9B008E2857 /* VenueSignUpController.swift in Sources */,
+				C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */,
 				13F4BAA7244E5A0300C0DC23 /* Venues.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offers.swift in Sources */,
 				634E16C1244F643D002C954A /* VenueViewController.swift in Sources */,

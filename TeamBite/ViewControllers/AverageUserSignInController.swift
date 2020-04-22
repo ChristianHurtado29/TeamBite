@@ -24,8 +24,20 @@ class AverageUserSignInController: UIViewController {
     private func setUp(){
         userLoginView.backgroundColor = UIColor.systemBackground
         navigationItem.title = "Login"
+        userLoginView.signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
+        userLoginView.createAccountButton.addTarget(self, action: #selector(createNewAccountButtonPressed), for: .touchUpInside)
     }
     
+    @objc
+    private func signInButtonPressed(_ sender: UIButton){
+        let loginWithPhoneVC = LoginWithPhoneController()
+        navigationController?.pushViewController(loginWithPhoneVC, animated: true)
+    }
     
+    @objc
+    private func createNewAccountButtonPressed(_ sender: UIButton){
+        let allergiesVC = UserFoodPreferencesController()
+        navigationController?.pushViewController(allergiesVC, animated: true)
+    }
 
 }

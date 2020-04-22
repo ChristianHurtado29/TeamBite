@@ -23,19 +23,20 @@ class AverageUserSignInView: UIView {
         return button
     }()
     
-//    public lazy var createAccountButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Create Account", for: .normal)
-//        button.setTitleColor(UIColor.blue, for: .normal)
-//        return button
-//    }()
+    public lazy var createAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Create Account", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        return button
+    }()
     
-//    public lazy var buttonStackView: UIStackView = {
-//       let stackView = UIStackView()
-//        stackView.axis = .vertical
-//        stackView.distribution = .fillProportionally
-//        return stackView
-//    }()
+    public lazy var buttonStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 20
+        return stackView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -49,7 +50,7 @@ class AverageUserSignInView: UIView {
 
     private func commonInit(){
         setUpLogoImageViewConstraints()
-        setUpSignInButtonConstraints()
+        setUpButtonStackConstraints()
     }
     
     private func setUpLogoImageViewConstraints(){
@@ -59,9 +60,11 @@ class AverageUserSignInView: UIView {
         NSLayoutConstraint.activate([logoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20), logoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.31), logoImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4), logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor) ])
     }
     
-    private func setUpSignInButtonConstraints(){
-        addSubview(signInButton)
-        signInButton.translatesAutoresizingMaskIntoConstraints = false
+    private func setUpButtonStackConstraints(){
+        addSubview(buttonStackView)
+        buttonStackView.addArrangedSubview(signInButton)
+        buttonStackView.addArrangedSubview(createAccountButton)
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([signInButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30), signInButton.centerXAnchor.constraint(equalTo: centerXAnchor)])
     }
