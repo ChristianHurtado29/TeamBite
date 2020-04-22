@@ -49,10 +49,12 @@ class UserDetailView: UIView {
     
     public lazy var claimButton: UIButton = {
         let button = UIButton()
-       // button.title("Claim Meal") // find out if this is correct
-       // button.currentTitle = "Claim Meal"
+       
         button.setTitle("Claim Meal", for: .normal)
-        button.tintColor = #colorLiteral(red: 0.9442620873, green: 0, blue: 0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        button.layer.cornerRadius = 5.0
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
         return button
     }()
     
@@ -64,7 +66,10 @@ class UserDetailView: UIView {
     public lazy var getDirectionButton: UIButton = {
         let button = UIButton()
         button.setTitle("Get Direction", for: .normal)
-        button.tintColor = #colorLiteral(red: 0.9442620873, green: 0, blue: 0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        button.layer.cornerRadius = 5.0
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     
