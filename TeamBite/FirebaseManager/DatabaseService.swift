@@ -25,7 +25,7 @@ class DatabaseService {
     // creates venueOwner
     public func createVenue(venue: Venue, authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let email = authDataResult.user.email else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber!, "address": venue.address,"startTime": venue.startTime! , "endTime": venue.endTime!, "lat": venue.lat, "long": venue.long]){ (error) in
+        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address,"startTime": venue.startTime ?? "" , "endTime": venue.endTime ?? "", "lat": venue.lat, "long": venue.long]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

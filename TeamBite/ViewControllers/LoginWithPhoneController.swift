@@ -90,11 +90,12 @@ class LoginWithPhoneController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Authentication Error", message: "Could not sign into firebase with provided credential: \(error) ")
             case .success:
-                let storyborder = UIStoryboard(name: "Wireframe", bundle: nil)
-                guard let userTabBarController = storyborder.instantiateViewController(identifier: "UserTabBarController") as? UITabBarController else {
-                    fatalError("Could not instantiate view controller")
-                }
-                UIViewController.resetWindow(userTabBarController)
+//                let storyborder = UIStoryboard(name: "Wireframe", bundle: nil)
+//                guard let userTabBarController = storyborder.instantiateViewController(identifier: "UserTabBarController") as? UITabBarController else {
+//                    fatalError("Could not instantiate view controller")
+//                }
+//                UIViewController.resetWindow(userTabBarController)
+                UIViewController.showTabController(storyboardName: "Wireframe", viewControllerId: "UserTabBarController", viewController: nil)
             }
         }
     }

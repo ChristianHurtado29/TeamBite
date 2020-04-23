@@ -62,11 +62,12 @@ class VenueSignUpController: UIViewController {
                         self?.showAlert(title: "Authentication Error", message: "\(error)")
                     }
                 case .success:
-                    let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
-                    guard let venueTabController = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
-                        fatalError("Could not create instance of UITabBarController")
-                    }
-                    UIViewController.resetWindow(venueTabController)
+//                    let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
+//                    guard let venueTabController = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
+//                        fatalError("Could not create instance of UITabBarController")
+//                    }
+//                    UIViewController.resetWindow(venueTabController)
+                    UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
                 }
             }
         } else if state == AccountState.newUser{
