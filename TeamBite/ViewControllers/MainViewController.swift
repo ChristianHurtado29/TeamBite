@@ -12,8 +12,7 @@ import FirebaseFirestore
 
 
 class MainViewController: UIViewController {
-    
-    private let db = DatabaseService()
+
     
     private var savedVenues = [Venue]() {
         didSet {
@@ -40,7 +39,7 @@ class MainViewController: UIViewController {
     
 
     private func fetchVenues() {
-        db.fetchVenues() { [weak self] (result) in
+        DatabaseService.shared.fetchVenues() { [weak self] (result) in
             switch result {
             case.failure(let error):
                 DispatchQueue.main.async {
@@ -48,6 +47,7 @@ class MainViewController: UIViewController {
                 }
             case .success(let item):
                 self?.savedVenues = item
+                dump(item)
             }
         }
     }
@@ -67,8 +67,8 @@ extension MainViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainViewCell", for: indexPath) as? MainViewCell else {
             fatalError("Could not downcast to MainViewCell")
         }
-        let savedActivities = savedVenues[indexPath.row]
-      //  cell.configureCell(for: savedVenues)
+        let venue = savedVenues[indexPath.row]
+        cell.configureCell(savedVenue: venue)
         return cell
     }
 }
