@@ -206,6 +206,7 @@
 				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
 				9F504D2E24500A0F00294978 /* MainViewController.swift */,
 				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
+				9F0020B52451340100AC7CBE /* ClaimButtonVC.swift */,
 				C4604AA7244F6165008E2857 /* LoginViewController.swift */,
 				C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */,
 				C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */,
@@ -215,7 +216,6 @@
 				C4789D992450BCED008193BA /* AverageUserSignInController.swift */,
 				C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */,
 				C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */,
-				9F0020B52451340100AC7CBE /* ClaimButtonVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
