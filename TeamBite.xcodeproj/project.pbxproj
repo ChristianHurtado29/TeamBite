@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1353936D2451774200CB9622 /* Bite2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936C2451774200CB9622 /* Bite2.mp3 */; };
 		1353936F245179C200CB9622 /* FoodReady.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936E245179C100CB9622 /* FoodReady.mp3 */; };
+		136E9DDD2451DEE100F96FB2 /* Venues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 136E9DDF2451DEE100F96FB2 /* Venues.storyboard */; };
 		139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */; };
 		13F39634244F6F34004BD488 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39633244F6F34004BD488 /* Resources.swift */; };
 		13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39635244F7B26004BD488 /* ResourcesCell.swift */; };
@@ -33,7 +34,6 @@
 		13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABA244E5B2500C0DC23 /* EmptyView.swift */; };
 		13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */; };
 		634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BC244F3B77002C954A /* Wireframe.storyboard */; };
-		634E16BF244F6381002C954A /* Venues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E16BE244F6381002C954A /* Venues.storyboard */; };
 		634E16C1244F643D002C954A /* VenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C0244F643D002C954A /* VenueViewController.swift */; };
 		634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C2244F68F3002C954A /* PastOffersViewController.swift */; };
 		634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C6244FBC80002C954A /* CreateOffersViewController.swift */; };
@@ -65,6 +65,10 @@
 /* Begin PBXFileReference section */
 		1353936C2451774200CB9622 /* Bite2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bite2.mp3; sourceTree = "<group>"; };
 		1353936E245179C100CB9622 /* FoodReady.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FoodReady.mp3; sourceTree = "<group>"; };
+		136E9DDB2451DECA00F96FB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		136E9DDC2451DECB00F96FB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		136E9DDE2451DEE100F96FB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/Venues.storyboard; sourceTree = "<group>"; };
+		136E9DE02451DF1000F96FB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Venues.storyboard; sourceTree = "<group>"; };
 		139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F39633244F6F34004BD488 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		13F39635244F7B26004BD488 /* ResourcesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesCell.swift; sourceTree = "<group>"; };
@@ -91,7 +95,6 @@
 		13F4BABA244E5B2500C0DC23 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Alerts.swift"; sourceTree = "<group>"; };
 		634E16BC244F3B77002C954A /* Wireframe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wireframe.storyboard; sourceTree = "<group>"; };
-		634E16BE244F6381002C954A /* Venues.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Venues.storyboard; sourceTree = "<group>"; };
 		634E16C0244F643D002C954A /* VenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueViewController.swift; sourceTree = "<group>"; };
 		634E16C2244F68F3002C954A /* PastOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOffersViewController.swift; sourceTree = "<group>"; };
 		634E16C6244FBC80002C954A /* CreateOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOffersViewController.swift; sourceTree = "<group>"; };
@@ -176,7 +179,7 @@
 				13F4BAA2244E596900C0DC23 /* FirebaseManager */,
 				13F4BA9C244E582500C0DC23 /* Login.storyboard */,
 				13F4BA8E244E54DC00C0DC23 /* Main.storyboard */,
-				634E16BE244F6381002C954A /* Venues.storyboard */,
+				136E9DDF2451DEE100F96FB2 /* Venues.storyboard */,
 				634E16BC244F3B77002C954A /* Wireframe.storyboard */,
 				13F4BA91244E54E000C0DC23 /* Assets.xcassets */,
 				13F4BA93244E54E000C0DC23 /* LaunchScreen.storyboard */,
@@ -321,6 +324,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 13F4BA7C244E54DC00C0DC23;
 			productRefGroup = 13F4BA86244E54DC00C0DC23 /* Products */;
@@ -342,7 +346,7 @@
 				1353936F245179C200CB9622 /* FoodReady.mp3 in Resources */,
 				13F4BA95244E54E000C0DC23 /* LaunchScreen.storyboard in Resources */,
 				13F4BA92244E54E000C0DC23 /* Assets.xcassets in Resources */,
-				634E16BF244F6381002C954A /* Venues.storyboard in Resources */,
+				136E9DDD2451DEE100F96FB2 /* Venues.storyboard in Resources */,
 				139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */,
 				1353936D2451774200CB9622 /* Bite2.mp3 in Resources */,
 				13F4BA90244E54DC00C0DC23 /* Main.storyboard in Resources */,
@@ -449,10 +453,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		136E9DDF2451DEE100F96FB2 /* Venues.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				136E9DDE2451DEE100F96FB2 /* es */,
+				136E9DE02451DF1000F96FB2 /* Base */,
+			);
+			name = Venues.storyboard;
+			sourceTree = "<group>";
+		};
 		13F4BA8E244E54DC00C0DC23 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				13F4BA8F244E54DC00C0DC23 /* Base */,
+				136E9DDB2451DECA00F96FB2 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -461,6 +475,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				13F4BA94244E54E000C0DC23 /* Base */,
+				136E9DDC2451DECB00F96FB2 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -472,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -532,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
