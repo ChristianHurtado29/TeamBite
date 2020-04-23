@@ -21,7 +21,7 @@ struct Venue: Codable {
 
 extension Venue {
     init(_ dictionary: [String: Any]) {
-        self.name = dictionary["name"] as? String ?? "No Name"
+        self.name = dictionary["name"] as? String ?? "No  Venue Name"
         self.venueId = dictionary["venueId"] as? String ?? UUID().uuidString
         self.long = dictionary["long"] as? Double ?? 0.00
         self.lat = dictionary["lat"] as? Double ?? 0.00

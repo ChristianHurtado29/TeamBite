@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class CreateOffersViewController: UIViewController {
     @IBOutlet weak var offerNameTextField: UITextField!
@@ -51,6 +52,20 @@ class CreateOffersViewController: UIViewController {
         
     }
     
+    var audioPlayer = AVAudioPlayer()
+    
+        func playSound(file:String, ext:String) -> Void {
+            do {
+                let sound = Bundle.main.path(forResource: "FoodReady", ofType: "mp3")
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                audioPlayer.prepareToPlay()
+                audioPlayer.currentTime = 0
+                audioPlayer.play()
+            } catch {
+                fatalError()
+    }
+    }
+    
     
     @IBAction func createOfferButtonPressed(_ sender: UIButton) {
         print("create button clicked")
@@ -93,7 +108,7 @@ class CreateOffersViewController: UIViewController {
             let finalAllergies = Array(setAllergies)
             
             
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals!, remainingMeals: numberOfMeals!, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies)
+            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies)
             
             
             DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in
@@ -124,7 +139,10 @@ class CreateOffersViewController: UIViewController {
                 }
                 
             }
+            
+            playSound(file: "FoodReady", ext: "mp3")
         }
+        sleep(1)
         dismiss(animated: true)
     }
     

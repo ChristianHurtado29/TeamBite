@@ -26,7 +26,7 @@ class DatabaseService {
     // creates venueOwner
     public func createVenue(venue: Venue, authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let email = authDataResult.user.email else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address,"startTime": venue.startTime ?? "" , "endTime": venue.endTime ?? "", "lat": venue.lat, "long": venue.long]){ (error) in
+        db.collection(DatabaseService.venuesOwnerCollection).document(authDataResult.user.uid).setData(["name": venue.name, "email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address,"startTime": venue.startTime ?? "" , "endTime": venue.endTime ?? "", "lat": venue.lat, "long": venue.long]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -97,6 +97,21 @@ class DatabaseService {
             } else if let snapshot = snapshot {
                 let venues = snapshot.documents.compactMap { Venue($0.data()) }
                 completion(.success(venues))
+            }
+        }
+    }
+    
+    
+    public func fetchVenue(completion: @escaping (Result< Venue, Error>) -> ()) {
+       guard let currentUser = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.venuesOwnerCollection).whereField("userId", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let venue = snapshot.documents.compactMap { Venue($0.data()) }
+                guard let firstVenue = venue.first else { return }
+                completion(.success(firstVenue))
             }
         }
     }
