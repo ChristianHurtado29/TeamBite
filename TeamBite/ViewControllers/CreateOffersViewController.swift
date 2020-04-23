@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class CreateOffersViewController: UIViewController {
     @IBOutlet weak var offerNameTextField: UITextField!
@@ -49,6 +50,20 @@ class CreateOffersViewController: UIViewController {
     
     @IBAction func vegetarainSwitchPressed(_ sender: UISwitch) {
         
+    }
+    
+    var audioPlayer = AVAudioPlayer()
+    
+        func playSound(file:String, ext:String) -> Void {
+            do {
+                let sound = Bundle.main.path(forResource: "FoodReady", ofType: "mp3")
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                audioPlayer.prepareToPlay()
+                audioPlayer.currentTime = 0
+                audioPlayer.play()
+            } catch {
+                fatalError()
+    }
     }
     
     
@@ -124,7 +139,10 @@ class CreateOffersViewController: UIViewController {
                 }
                 
             }
+            
+            playSound(file: "FoodReady", ext: "mp3")
         }
+        sleep(1)
         dismiss(animated: true)
     }
     
