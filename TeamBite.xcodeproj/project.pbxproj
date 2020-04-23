@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1353936D2451774200CB9622 /* Bite2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936C2451774200CB9622 /* Bite2.mp3 */; };
+		1353936F245179C200CB9622 /* FoodReady.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936E245179C100CB9622 /* FoodReady.mp3 */; };
 		139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */; };
 		13F39634244F6F34004BD488 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39633244F6F34004BD488 /* Resources.swift */; };
 		13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39635244F7B26004BD488 /* ResourcesCell.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1353936C2451774200CB9622 /* Bite2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bite2.mp3; sourceTree = "<group>"; };
+		1353936E245179C100CB9622 /* FoodReady.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FoodReady.mp3; sourceTree = "<group>"; };
 		139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F39633244F6F34004BD488 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		13F39635244F7B26004BD488 /* ResourcesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesCell.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 				13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */,
 				13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */,
 				13F4BAB6244E5AF000C0DC23 /* CoreLocationManager.swift */,
+				1353936C2451774200CB9622 /* Bite2.mp3 */,
+				1353936E245179C100CB9622 /* FoodReady.mp3 */,
 				13F4BABF244E5B9E00C0DC23 /* Views */,
 				13F4BABE244E5B9200C0DC23 /* Extensions */,
 				13F4BAA5244E599600C0DC23 /* Models */,
@@ -327,10 +333,12 @@
 			files = (
 				13F4BA9D244E582500C0DC23 /* Login.storyboard in Resources */,
 				634E16BD244F3B77002C954A /* Wireframe.storyboard in Resources */,
+				1353936F245179C200CB9622 /* FoodReady.mp3 in Resources */,
 				13F4BA95244E54E000C0DC23 /* LaunchScreen.storyboard in Resources */,
 				13F4BA92244E54E000C0DC23 /* Assets.xcassets in Resources */,
 				634E16BF244F6381002C954A /* Venues.storyboard in Resources */,
 				139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */,
+				1353936D2451774200CB9622 /* Bite2.mp3 in Resources */,
 				13F4BA90244E54DC00C0DC23 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
