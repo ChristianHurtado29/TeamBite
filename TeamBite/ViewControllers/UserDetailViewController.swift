@@ -105,8 +105,8 @@ class UserDetailViewController: UIViewController {
     }
     //MARK: Claim Button
     @objc private func claimButton(_ sender: UIButton) {
-        let claimVC = ClaimButton
-        navigationController?.pushViewController(claimVC, animated: true)
+        //let claimVC = ClaimButton
+        //navigationController?.pushViewController(claimVC, animated: true)
         
     }
     

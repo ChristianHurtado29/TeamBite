@@ -34,6 +34,7 @@ class LoginWithPhoneController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        loginWithPhoneView.tapGesture.addTarget(self, action: #selector(dismissKeyboard))
     }
     
     private func setUp(){
@@ -121,5 +122,10 @@ class LoginWithPhoneController: UIViewController {
         }
         
         return true
+    }
+    
+    @objc
+    private func dismissKeyboard(_ gesture: UITapGestureRecognizer){
+        loginWithPhoneView.phoneNumberTextField.resignFirstResponder()
     }
 }

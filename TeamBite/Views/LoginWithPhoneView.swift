@@ -35,6 +35,11 @@ class LoginWithPhoneView: UIView {
         return button
     }()
     
+    public lazy var tapGesture: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer()
+        return tap
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -50,6 +55,7 @@ class LoginWithPhoneView: UIView {
         setUpPhoneLabelConstraints()
         setUpPhoneTextFieldConstraints()
         setUpSubmitButtonConstraints()
+        addGestureRecognizer(tapGesture)
     }
 
     private func setUpPhoneLabelConstraints(){

@@ -66,6 +66,6 @@ class AverageUserSignInView: UIView {
         buttonStackView.addArrangedSubview(createAccountButton)
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([signInButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30), signInButton.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        NSLayoutConstraint.activate([buttonStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30), buttonStackView.centerXAnchor.constraint(equalTo: centerXAnchor), buttonStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.35)])
     }
 }
