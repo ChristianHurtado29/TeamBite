@@ -23,6 +23,28 @@ class UserFoodPreferencesController: UIViewController {
     
     private func setUp(){
         preferencesView.backgroundColor = UIColor.systemBackground
+        navigationItem.title = "Food Preferences"
+        preferencesView.submitButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc
+    private func submitButtonPressed(_ sender: UIButton){
+        var dietaryPrefs = [String]()
+        
+        if preferencesView.nutAllergySwitch.isOn{
+            dietaryPrefs.append("Nut-Free")
+        }
+        
+        if preferencesView.glutenFreeSwitch.isOn{
+            dietaryPrefs.append("Gluten Free")
+        }
+        
+        if preferencesView.vegetarianSwitch.isOn{
+            dietaryPrefs.append("Vegetarian")
+        }
+        
+        let phoneLoginVC = LoginWithPhoneController(dietaryPrefs)
+        navigationController?.pushViewController(phoneLoginVC, animated: true)
     }
 
 }

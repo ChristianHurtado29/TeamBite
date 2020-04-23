@@ -102,7 +102,7 @@ class CollectVenueInfoController: UIViewController {
                 DispatchQueue.main.async{
                     self?.showAlert(title: "Account Creation Error", message: error.localizedDescription)
                 }
-            case .success(let dataResult):
+            case .success:
                 let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
                 guard let venueVC = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
                     fatalError("Could not create instance of TabBarController.")

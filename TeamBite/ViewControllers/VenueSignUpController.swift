@@ -61,10 +61,12 @@ class VenueSignUpController: UIViewController {
                     DispatchQueue.main.async{
                         self?.showAlert(title: "Authentication Error", message: "\(error)")
                     }
-                case .success://(let dataResult):
-                    //TODO: Fetch user data using data Result
-                    //TODO: Change scenes passing in user data.
-                    break
+                case .success:
+                    let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
+                    guard let venueTabController = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
+                        fatalError("Could not create instance of UITabBarController")
+                    }
+                    UIViewController.resetWindow(venueTabController)
                 }
             }
         } else if state == AccountState.newUser{
