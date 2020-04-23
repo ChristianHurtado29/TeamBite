@@ -36,7 +36,21 @@ class MainViewController: UIViewController {
     }
     
     private func loadData() {
-        
+        fetchVenues() 
+    }
+    
+    @objc
+    private func fetchVenues() {
+        db.fetchVenues(completion: Venue.self) { [weak self] (result) in
+            switch result {
+            case.failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Unable to load Venues", message: error.localizedDescription)
+                }
+            case .success(let item):
+                self?.savedVenues = item
+            }
+        }
     }
     
 

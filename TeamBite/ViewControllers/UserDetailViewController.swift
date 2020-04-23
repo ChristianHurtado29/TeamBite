@@ -19,7 +19,7 @@ class UserDetailViewController: UIViewController {
     private var annotation = MKPointAnnotation()
     private var isShowingNewAnnotation = false
     
-    
+    private var db = DatabaseService()
     private var detailVenues = [Venue]()
     
     override func loadView() {
@@ -37,14 +37,6 @@ class UserDetailViewController: UIViewController {
         detailView.locationMap.showsScale = true
         locationManger.requestAlwaysAuthorization()
         locationManger.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManger.delegate = self
-
-            locationManger.desiredAccuracy = kCLLocationAccuracyBest
-            locationManger.startUpdatingLocation()
-        }
-        
         updateUI()
         loadMap()
         getDirections()
@@ -68,8 +60,20 @@ class UserDetailViewController: UIViewController {
     }
     
     private func loadVenue(){
-        
+        db.fetchVenues(completion: Venue.self) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Loading Error", message: error.localizedDescription)
+                }
+            case .success(let item):
+                self?.detailVenues = item
+            }
+            
+        }
     }
+    
+  
     
     private func makeAnnotation(for venue: Venue) -> MKPointAnnotation {
         selectedVenue = venue
@@ -92,18 +96,23 @@ class UserDetailViewController: UIViewController {
         request.transportType = .any
         let directions = MKDirections(request: request)
         directions.calculate { (response, error) in
-            guard let unwrappedResponse = response else {
-                //                request
-                return
-            }
+            guard let unwrappedResponse = response else { return }
             for route in unwrappedResponse.routes {
                 self.detailView.locationMap.addOverlay(route.polyline)
                 self.detailView.locationMap.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
     }
+    //MARK: Claim Button
+    @objc private func claimButton(_ sender: UIButton) {
+        
+    }
     
-
+    
+    //MARK: Get Direction Button
+    @objc private func GetDirection(_ sender: UIButton) {
+        
+    }
 
 }
 
@@ -143,6 +152,4 @@ extension UserDetailViewController: MKMapViewDelegate {
     
 }
 
-extension UserDetailViewController: CLLocationManagerDelegate {
-    
-}
+

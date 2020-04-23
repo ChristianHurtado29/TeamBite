@@ -49,7 +49,6 @@ class UserDetailView: UIView {
     
     public lazy var claimButton: UIButton = {
         let button = UIButton()
-       
         button.setTitle("Claim Meal", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         button.layer.cornerRadius = 5.0
