@@ -16,6 +16,7 @@ class CollectVenueInfoController: UIViewController {
     private let collectVenueInfoView = CollectVenueInfoView()
     private let userEmail: String
     private let userPassword: String
+    private let coreLocation = CoreLocationManager()
     
     init(_ email: String, _ password: String){
         self.userEmail = email
@@ -90,9 +91,20 @@ class CollectVenueInfoController: UIViewController {
                 endTime = end + " P.M."
             }
         }
-        // TODO: Add reverse Geolocation to get lat and long
-        let newVenue = Venue(name: venueName, venueId: "", long: 0, lat: 0, phoneNumber: phoneNumber, address: combineAddress(streetName, city, state, zip), startTime: startTime, endTime: endTime)
-        createNewVenue(newVenue)
+        
+        let combinedAddress = combineAddress(streetName, city, state, zip)
+        
+        coreLocation.convertPlacenameIntoCoordinates(combinedAddress) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async{
+                    self?.showAlert(title: "Placename Error", message: "Could not convert a placename into coordinate: \(error.localizedDescription)")
+                }
+            case.success(let coordinate):
+                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, startTime: startTime, endTime: endTime)
+                self?.createNewVenue(newVenue)
+            }
+        }
     }
     
     private func createNewVenue(_ venue: Venue){
@@ -102,13 +114,19 @@ class CollectVenueInfoController: UIViewController {
                 DispatchQueue.main.async{
                     self?.showAlert(title: "Account Creation Error", message: error.localizedDescription)
                 }
-            case .success(let dataResult):
-                let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
-                guard let venueVC = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
-                    fatalError("Could not create instance of TabBarController.")
+            case .success(let authData):
+                DatabaseService.shared.createVenue(venue: venue, authDataResult: authData) { [weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        DispatchQueue.main.async{
+                            self?.showAlert(title: "Venue Creation Error", message: "Could not create venue: \(error)")
+                        }
+                    case .success:
+                        break
+                    }
                 }
-                UIViewController.resetWindow(venueVC)
-                break
+                
+                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
             }
         }
     }
