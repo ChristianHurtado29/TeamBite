@@ -36,7 +36,7 @@ class VenueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchOffers()
         // Edit State
         if editState == 0 {
             editButton.isHidden = false
@@ -58,16 +58,35 @@ class VenueViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        listener = Firestore.firestore().collection(DatabaseService.offersCollection).addSnapshotListener({ [weak self] (snapshot, error) in
-            if let error = error {
+        guard let user = Auth.auth().currentUser else { return }
+//        listener = Firestore.firestore().collection(DatabaseService.venuesOwnerCollection).document(user.uid).addSnapshotListener({ [weak self] (snapshot, error) in
+//            if let error = error {
+//                DispatchQueue.main.async {
+//                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
+//                }
+//            } else if let snapshot = snapshot {
+//                let offers = snapshot
+//                self?.offers = offers.data()
+//            }
+//        })
+    }
+    
+    func fetchOffers(){
+        guard let user = Auth.auth().currentUser else { return }
+        DatabaseService.shared.fetchVenueOffers() { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
+                    self?.showAlert(title: "Failed to get offers", message: "oops! \(error)")
                 }
-            } else if let snapshot = snapshot {
-                let offers = snapshot.documents.map { Offer($0.data()) }
-                self?.offers = offers
+            case .success(let offers):
+                DispatchQueue.main.async {
+                    self?.offers = offers
+                    print(offers)
+                }
             }
-        })
+            
+        }
     }
     
     
