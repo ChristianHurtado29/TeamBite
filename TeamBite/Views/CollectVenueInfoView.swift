@@ -10,6 +10,8 @@ import UIKit
 
 class CollectVenueInfoView: UIView {
     
+    public var yAnchor = NSLayoutConstraint()
+    
     public lazy var directionsLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 2
@@ -184,6 +186,11 @@ class CollectVenueInfoView: UIView {
         return sc
     }()
     
+    public lazy var tapGesture: UITapGestureRecognizer = {
+       let tap = UITapGestureRecognizer()
+        return tap
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -215,13 +222,16 @@ class CollectVenueInfoView: UIView {
         setUpEndTimeTextFieldConstraints()
         setUpEndTimeSegmentedControl()
         setUpSubmitButtonConstraints()
+        addGestureRecognizer(tapGesture)
     }
     
     private func setUpDirectionsLabelConstraints(){
         addSubview(directionsLabel)
         directionsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([directionsLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20), directionsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), directionsLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+        NSLayoutConstraint.activate([ directionsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), directionsLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+        yAnchor = directionsLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20)
+        yAnchor.isActive = true
     }
     
     private func setUpVenueNameLabelConstraints(){

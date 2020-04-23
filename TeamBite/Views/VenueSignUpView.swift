@@ -10,6 +10,8 @@ import UIKit
 
 class VenueSignUpView: UIView {
 
+    public var yAnchor = NSLayoutConstraint()
+    
     public lazy var biteLogoImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "BiteLogoUpdated")
@@ -74,6 +76,11 @@ class VenueSignUpView: UIView {
         return stackView
     }()
     
+    public lazy var tapGesture: UITapGestureRecognizer = {
+       let tap = UITapGestureRecognizer()
+        return tap
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -91,12 +98,15 @@ class VenueSignUpView: UIView {
         setUpPasswordLabelConstraints()
         setUpPasswordTextFieldConstraints()
         setUpButtonStackViewConstraints()
+        addGestureRecognizer(tapGesture)
     }
     
     private func setUpBiteLogoConstraints(){
         addSubview(biteLogoImageView)
         biteLogoImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([biteLogoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8), biteLogoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.31), biteLogoImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4), biteLogoImageView.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        NSLayoutConstraint.activate([ biteLogoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.31), biteLogoImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4), biteLogoImageView.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        yAnchor = biteLogoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8)
+        yAnchor.isActive = true
     }
     
     private func setUpEmailLabelConstraints() {
