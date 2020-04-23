@@ -105,12 +105,36 @@ class UserDetailViewController: UIViewController {
     }
     //MARK: Claim Button
     @objc private func claimButton(_ sender: UIButton) {
+        let claimVC = ClaimButtonVC
+        navigationController?.pushViewController(claimVC, animated: true)
         
     }
     
     
     //MARK: Get Direction Button
     @objc private func GetDirection(_ sender: UIButton) {
+        openMapForPlace()
+    }
+    
+    func openMapForPlace(){
+        let lat1: NSString = self.selectedVenue.lat.description as NSString
+        let long1: NSString = self.selectedVenue.long.description as NSString
+        
+        let latitude: CLLocationDegrees = lat1.doubleValue
+        let longitude: CLLocationDegrees = long1.doubleValue
+        
+        let regionDistance: CLLocationDistance = 3000
+        let coordinates = CLLocationCoordinate2D(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "\(self.selectedVenue.name)"
+        mapItem.openInMaps(launchOptions: options)
         
     }
 

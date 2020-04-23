@@ -63,7 +63,9 @@ class ClaimMealsView: UIView {
     
     private func commonInit() {
         
-        
+        setupInstructionLabel()
+        setupQtyLabel()
+        setupOneMealButton()
     }
     
     private func setupInstructionLabel() {
@@ -92,6 +94,17 @@ class ClaimMealsView: UIView {
         NSLayoutConstraint.activate([
             oneMeal.topAnchor.constraint(equalTo: questionHowMany.bottomAnchor, constant: 10),
             oneMeal.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
+        
+        ])
+    }
+    
+    private func setupTwoMealsButton(){
+        addSubview(twoMeals)
+        twoMeals.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            twoMeals.topAnchor.constraint(equalTo: questionHowMany.bottomAnchor, constant: 10),
+            twoMeals.leadingAnchor.constraint(equalTo: oneMeal.trailingAnchor, constant: 8),
+            twoMeals.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
         
         ])
     }

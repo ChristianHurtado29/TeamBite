@@ -36,6 +36,7 @@
 		634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C2244F68F3002C954A /* PastOffersViewController.swift */; };
 		634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C6244FBC80002C954A /* CreateOffersViewController.swift */; };
 		634E16C9244FC4A5002C954A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C8244FC4A5002C954A /* User.swift */; };
+		9F0020B62451340100AC7CBE /* ClaimButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0020B52451340100AC7CBE /* ClaimButtonVC.swift */; };
 		9F01126424501360006B2DE8 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01126324501360006B2DE8 /* UserDetailViewController.swift */; };
 		9F0112662450DB08006B2DE8 /* ClaimMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */; };
 		9F37802C244F7941007C174E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802B244F7941007C174E /* MainView.swift */; };
@@ -91,6 +92,7 @@
 		634E16C6244FBC80002C954A /* CreateOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOffersViewController.swift; sourceTree = "<group>"; };
 		634E16C8244FC4A5002C954A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.release.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.release.xcconfig"; sourceTree = "<group>"; };
+		9F0020B52451340100AC7CBE /* ClaimButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimButtonVC.swift; sourceTree = "<group>"; };
 		9F01126324501360006B2DE8 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimMealsView.swift; sourceTree = "<group>"; };
 		9F37802B244F7941007C174E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				C4789D992450BCED008193BA /* AverageUserSignInController.swift */,
 				C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */,
 				C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */,
+				9F0020B52451340100AC7CBE /* ClaimButtonVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
+				9F0020B62451340100AC7CBE /* ClaimButtonVC.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
 				9F37802E244F873C007C174E /* MainViewCell.swift in Sources */,
 				9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */,
