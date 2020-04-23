@@ -7,15 +7,30 @@
 //
 
 import UIKit
+import AVKit
 import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var audioPlayer = AVAudioPlayer()
+    
+        func playSound(file:String, ext:String) -> Void {
+            do {
+                let sound = Bundle.main.path(forResource: "Bite2", ofType: "mp3")
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                audioPlayer.prepareToPlay()
+                audioPlayer.currentTime = 0
+                audioPlayer.play()
+            } catch {
+                fatalError()
+    }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        playSound(file: "Bite2", ext: "mp3")
         FirebaseApp.configure()
         return true
     }
