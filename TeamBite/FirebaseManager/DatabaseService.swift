@@ -15,6 +15,7 @@ class DatabaseService {
     static let offersCollection = "offers"
     static let venuesOwnerCollection = "venues"
     static let usersCollection = "users"
+    static let allOffersCollection = "allOffers"
     
     // reference to firebase firestore database
     private let db = Firestore.firestore()
@@ -25,7 +26,7 @@ class DatabaseService {
     // creates venueOwner
     public func createVenue(venue: Venue, authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let email = authDataResult.user.email else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber!, "address": venue.address,"startTime": venue.startTime! , "endTime": venue.endTime!, "lat": venue.lat, "long": venue.long]){ (error) in
+        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address,"startTime": venue.startTime ?? "" , "endTime": venue.endTime ?? "", "lat": venue.lat, "long": venue.long]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -64,6 +65,15 @@ class DatabaseService {
         }
     }
     
+    public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
+        db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none"]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     
     
     // Create offers
@@ -105,15 +115,17 @@ class DatabaseService {
         }
     }
     
-    
-    public func fetchVenueOffers(venueId: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
+    // just removed venueId from completion
+    public func fetchVenueOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
         
-        db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else if let snapshot = snapshot {
-                let offers = snapshot.documents.compactMap { Offer($0.data()) }
+                let offers = snapshot.documents.compactMap {Offer($0.data()) }
                 completion(.success(offers))
+                dump(offers)
             }
         }
     }

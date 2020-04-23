@@ -14,7 +14,7 @@ class UserDetailViewController: UIViewController {
     var selectedVenue: Venue!
     var selectedOffer: Offer!
     let detailView = UserDetailView()
-    locationManger = CLLocationManager()
+    var locationManger = CLLocationManager()
     
     private var annotation = MKPointAnnotation()
     private var isShowingNewAnnotation = false
@@ -92,7 +92,10 @@ class UserDetailViewController: UIViewController {
         request.transportType = .any
         let directions = MKDirections(request: request)
         directions.calculate { (response, error) in
-            guard let unwrappedResponse = response else { request }
+            guard let unwrappedResponse = response else {
+                //                request
+                return
+            }
             for route in unwrappedResponse.routes {
                 self.detailView.locationMap.addOverlay(route.polyline)
                 self.detailView.locationMap.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
@@ -124,9 +127,9 @@ extension UserDetailViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKPolygonRenderer {
-        let renderer = MKPolygonRenderer(polygon: overlay as! MKPolyline)
+        let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
         renderer.strokeColor = UIColor.systemBlue
-        renderer.lineWideth = 3.0
+        renderer.lineWidth = 3.0
 
         return renderer
     }
@@ -137,5 +140,9 @@ extension UserDetailViewController: MKMapViewDelegate {
         }
         isShowingNewAnnotation = false
     }
+    
+}
+
+extension UserDetailViewController: CLLocationManagerDelegate {
     
 }

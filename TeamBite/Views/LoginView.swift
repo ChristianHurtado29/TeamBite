@@ -12,8 +12,6 @@ class LoginView: UIView {
     
     public lazy var loginTableView: UITableView = {
        let tableView = UITableView()
-//        tableView.layer.borderColor = UIColor.black.cgColor
-//        tableView.layer.borderWidth = 1.0
         return tableView
     }()
     

@@ -38,11 +38,13 @@ class FirebaseAuthManager{
         }
     }
     
-    public func signInWithPhoneNumber() {
-        
-    }
-    
-    public func createNewAccountWithPhoneNumber () {
-        
+    public func signInWith(credential: PhoneAuthCredential, completion: @escaping (Result<AuthDataResult,Error>) -> ()){
+        authRef.signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let authResult = authResult {
+                completion(.success(authResult))
+            }
+        }
     }
 }
