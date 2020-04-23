@@ -66,12 +66,32 @@ class CollectVenueInfoController: UIViewController {
         }
         
         var phoneNumber: String? = nil
+        var startTime: String? = nil
+        var endTime: String? =  nil
         
         if let userPhone = collectVenueInfoView.venuePhoneTextField.text, !userPhone.isEmpty {
             phoneNumber = userPhone
         }
+        
+        if let begin = collectVenueInfoView.startTimeTextField.text, !begin.isEmpty {
+            switch collectVenueInfoView.startTimeSegmentedControl.selectedSegmentIndex {
+            case 0:
+                startTime = begin + " A.M."
+            default:
+                startTime = begin + " P.M."
+            }
+        }
+        
+        if let end = collectVenueInfoView.startTimeTextField.text, !end.isEmpty {
+            switch collectVenueInfoView.endTimeSegmentedControl.selectedSegmentIndex {
+            case 0:
+                endTime = end + " A.M."
+            default:
+                endTime = end + " P.M."
+            }
+        }
         // TODO: Add reverse Geolocation to get lat and long
-        let newVenue = Venue(name: venueName, venueId: "", long: 0, lat: 0, phoneNumber: phoneNumber, address: combineAddress(streetName, city, state, zip), startTime: nil, endTime: nil)
+        let newVenue = Venue(name: venueName, venueId: "", long: 0, lat: 0, phoneNumber: phoneNumber, address: combineAddress(streetName, city, state, zip), startTime: startTime, endTime: endTime)
         createNewVenue(newVenue)
     }
     
@@ -83,7 +103,11 @@ class CollectVenueInfoController: UIViewController {
                     self?.showAlert(title: "Account Creation Error", message: error.localizedDescription)
                 }
             case .success(let dataResult):
-                // TODO: Change scene to restaurant view.
+                let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
+                guard let venueVC = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
+                    fatalError("Could not create instance of TabBarController.")
+                }
+                UIViewController.resetWindow(venueVC)
                 break
             }
         }
