@@ -130,5 +130,13 @@ class DatabaseService {
         }
     }
     
+//    public func updateNumberOfClaimedMeals(claimedMeal: Int, completion: @escaping (Result<Bool, Error>) -> ()) {
+//        guard let offer = 
+//    }
+    
+    
+    
+    
+    
     
 }
