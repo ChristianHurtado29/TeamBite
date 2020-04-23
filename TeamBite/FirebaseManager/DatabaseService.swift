@@ -15,6 +15,7 @@ class DatabaseService {
     static let offersCollection = "offers"
     static let venuesOwnerCollection = "venues"
     static let usersCollection = "users"
+    static let allOffersCollection = "allOffers"
     
     // reference to firebase firestore database
     private let db = Firestore.firestore()
@@ -64,6 +65,15 @@ class DatabaseService {
         }
     }
     
+    public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
+        db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none"]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     
     
     // Create offers
