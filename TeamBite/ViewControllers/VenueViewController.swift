@@ -11,11 +11,11 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class VenueViewController: UIViewController {
-    private var editState = 0
+    var editState = 0
     
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-
+    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var venueAddressLabel: UILabel!
     @IBOutlet weak var venueContactLabel: UILabel!
@@ -36,7 +36,7 @@ class VenueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchOffers()
         // Edit State
         if editState == 0 {
             editButton.isHidden = false
@@ -44,14 +44,6 @@ class VenueViewController: UIViewController {
             saveButton.isHidden = true
             editAddressTextField.isHidden = true
             editPhoneNumberTextField.isHidden = true
-        } else if editState == 1 {
-            saveButton.isHidden = false
-            cancelButton.isHidden = false
-            editPhoneNumberTextField.isHidden = false
-            editAddressTextField.isHidden = false
-            venueAddressLabel.alpha = 0.0
-            venueContactLabel.alpha = 0.0
-            editButton.isHidden = true
         }
         
         offersTableView.delegate = self
@@ -59,24 +51,54 @@ class VenueViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
     
-     override func viewDidAppear(_ animated: Bool) {
-      super.viewDidAppear(true)
-      listener = Firestore.firestore().collection(DatabaseService.offersCollection).addSnapshotListener({ [weak self] (snapshot, error) in
-        if let error = error {
-          DispatchQueue.main.async {
-            self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
-          }
-        } else if let snapshot = snapshot {
-          let offers = snapshot.documents.map { Offer($0.data()) }
-            self?.offers = offers
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        guard let user = Auth.auth().currentUser else { return }
+//        listener = Firestore.firestore().collection(DatabaseService.venuesOwnerCollection).document(user.uid).addSnapshotListener({ [weak self] (snapshot, error) in
+//            if let error = error {
+//                DispatchQueue.main.async {
+//                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
+//                }
+//            } else if let snapshot = snapshot {
+//                let offers = snapshot
+//                self?.offers = offers.data()
+//            }
+//        })
+    }
+    
+    func fetchOffers(){
+        guard let user = Auth.auth().currentUser else { return }
+        DatabaseService.shared.fetchVenueOffers() { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Failed to get offers", message: "oops! \(error)")
+                }
+            case .success(let offers):
+                DispatchQueue.main.async {
+                    self?.offers = offers
+                    print(offers)
+                }
+            }
+            
         }
-      })
     }
     
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
         editState = 1
+        saveButton.isHidden = false
+        cancelButton.isHidden = false
+        editPhoneNumberTextField.isHidden = false
+        editAddressTextField.isHidden = false
+        venueAddressLabel.alpha = 0.0
+        venueContactLabel.alpha = 0.0
+        editButton.isHidden = true
     }
     
     
@@ -86,35 +108,49 @@ class VenueViewController: UIViewController {
             !address.isEmpty else { return }
         
         guard let phone = editPhoneNumberTextField.text, !phone.isEmpty else { return }
-
+        
         self.updateDatabaseUser(address: address, phoneNumber: phone)
+        venueAddressLabel.isHidden = false
+        venueContactLabel.isHidden = false
     }
     
     
     private func updateDatabaseUser(address: String, phoneNumber: String) {
-
+        
         DatabaseService.shared.updateVenue(address: address, phoneNumber: phoneNumber) { (result) in
             switch result {
             case .failure(let error):
-              print("failed to update db user: \(error.localizedDescription)")
+                print("failed to update db user: \(error.localizedDescription)")
             case .success:
-              print("successfully updated db user")
+                print("successfully updated db user")
             }
-          }
         }
+    }
     
     
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         editState = 0
+        editButton.isHidden = false
+        cancelButton.isHidden = true
+        saveButton.isHidden = true
+        editAddressTextField.isHidden = true
+        editPhoneNumberTextField.isHidden = true
+        venueAddressLabel.alpha = 1.0
+        venueContactLabel.alpha = 1.0
     }
     
     
-    
     @IBAction func createOfferButtonPressed(_ sender: UIBarButtonItem) {
-        let storyboard =  UIStoryboard(name: "VenueStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "StringCreateOffersViewController") as UIViewController
+        let storyboard =  UIStoryboard(name: "Venues", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
+        
+        
+        
+//        guard let vc = storyboard.instantiateViewController(Identifier: "CreateOffersViewController") as? CreateOffersViewController else {fatalError("\()")}
+        
         self.present(vc, animated: true, completion: nil)
+        
     }
     
     

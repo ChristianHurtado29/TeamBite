@@ -105,15 +105,17 @@ class DatabaseService {
         }
     }
     
-    
-    public func fetchVenueOffers(venueId: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
+    // just removed venueId from completion
+    public func fetchVenueOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
         
-        db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else if let snapshot = snapshot {
-                let offers = snapshot.documents.compactMap { Offer($0.data()) }
+                let offers = snapshot.documents.compactMap {Offer($0.data()) }
                 completion(.success(offers))
+                dump(offers)
             }
         }
     }

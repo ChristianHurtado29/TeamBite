@@ -14,7 +14,7 @@ enum AccountState {
 }
 
 class VenueSignUpController: UIViewController {
-
+    
     private let signUpView = VenueSignUpView()
     
     override func loadView(){
@@ -61,6 +61,7 @@ class VenueSignUpController: UIViewController {
                     DispatchQueue.main.async{
                         self?.showAlert(title: "Authentication Error", message: "\(error)")
                     }
+
                 case .success:
 //                    let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
 //                    guard let venueTabController = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
@@ -68,6 +69,7 @@ class VenueSignUpController: UIViewController {
 //                    }
 //                    UIViewController.resetWindow(venueTabController)
                     UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+
                 }
             }
         } else if state == AccountState.newUser{
@@ -76,6 +78,7 @@ class VenueSignUpController: UIViewController {
         }
     }
 
+    
 }
 
 extension VenueSignUpController: UITextFieldDelegate{
