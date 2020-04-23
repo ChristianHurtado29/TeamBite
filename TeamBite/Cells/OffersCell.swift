@@ -18,6 +18,14 @@ class OffersCell: UITableViewCell {
         offerName.text = offer.nameOfOffer
         totalNumOfMeals.text = offer.totalMeals.description
         totalNumMealsLeft.text = offer.remainingMeals.description
+        
+//        if offer.allergyType?.count == 0{
+//            backgroundColor = .green
+//        }
+//        if offer.allergyType!.count > 1{
+//            backgroundColor = .yellow
+//        }
+        
     }
 
     

@@ -57,66 +57,80 @@ class CreateOffersViewController: UIViewController {
         if offerNameTextField.text?.isEmpty == true {
             showAlert(title: "name is empty", message: "")
         } else {
-        
-        if nutFreeSwitch.isOn == true {
-            if !allergies.contains("Nut-Free"){
-            allergies.append("Nut-Free")
-            }
-            }
-            print("allergies: \(allergies)")
-        if nutFreeSwitch.isOn == false {
-            if allergies.contains("Nut-Free"){
-            }
-            }
-        if glutenFreeSwitch.isOn == true {
-            if !allergies.contains("Gluten Free"){
-            allergies.append("Gluten Free")
+            
+            if nutFreeSwitch.isOn == true {
+                if !allergies.contains("Nut-Free"){
+                    allergies.append("Nut-Free")
+                }
             }
             print("allergies: \(allergies)")
-        }
-        if vegetarianSwitch.isOn == true {
-            if !allergies.contains("Vegetarian"){
-            allergies.append("Vegetarian")
+            if nutFreeSwitch.isOn == false {
+                if allergies.contains("Nut-Free"){
+                }
             }
-            print("allergies: \(allergies)")
-        }
-        
-        if startTimeDatePicker.date < currentDateTime || endTimeDatePicker.date < startTimeDatePicker.date {
-            showAlert(title: "", message: "Please provide a valid start time")
-        }
-        
-        let offerName = offerNameTextField.text ?? "Meals"
-        let numberOfMeals = Int(numberOfMealsTextField.text ?? "0")
-        let startTime = startTimeDatePicker.date
-        let endTime = endTimeDatePicker.date
-        let setAllergies = Set(allergies)
-        let finalAllergies = Array(setAllergies)
-        
-        
-        let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals!, remainingMeals: numberOfMeals!, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies)
-        
-        
-        DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in
-            print("create button pressed")
-            switch result {
-            case.failure(let error):
-              DispatchQueue.main.async {
-                self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
-                sender?.isEnabled = true
-              }
-            case .success:
-              sender?.isEnabled = true
+            if glutenFreeSwitch.isOn == true {
+                if !allergies.contains("Gluten Free"){
+                    allergies.append("Gluten Free")
+                }
+                print("allergies: \(allergies)")
+            }
+            if vegetarianSwitch.isOn == true {
+                if !allergies.contains("Vegetarian"){
+                    allergies.append("Vegetarian")
+                }
+                print("allergies: \(allergies)")
+            }
+            
+            if startTimeDatePicker.date < currentDateTime || endTimeDatePicker.date < startTimeDatePicker.date {
+                showAlert(title: "", message: "Please provide a valid start time")
+            }
+            
+            let offerName = offerNameTextField.text ?? "Meals"
+            let numberOfMeals = Int(numberOfMealsTextField.text ?? "0")
+            let startTime = startTimeDatePicker.date
+            let endTime = endTimeDatePicker.date
+            let setAllergies = Set(allergies)
+            let finalAllergies = Array(setAllergies)
+            
+            
+            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals!, remainingMeals: numberOfMeals!, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies)
+            
+            
+            DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in
+                print("create button pressed")
+                switch result {
+                case.failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
+                        sender?.isEnabled = true
+                    }
+                case .success:
+                    sender?.isEnabled = true
+                    
+                }
+            }
+            DatabaseService.shared.createAllOffers(offer: newOffer) { [weak self, weak sender] (result) in
+                print("create button pressed")
+                switch result {
+                case.failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
+                        sender?.isEnabled = true
+                    }
+                case .success:
+                    sender?.isEnabled = true
+                    
+                    
+                }
                 
             }
-        
         }
-    }
         dismiss(animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesBegan(touches, with: event)
-            view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     
@@ -126,7 +140,7 @@ class CreateOffersViewController: UIViewController {
 extension CreateOffersViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
- 
+        
         return true
     }
 }

@@ -58,21 +58,9 @@ class VenueViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        guard let user = Auth.auth().currentUser else { return }
-//        listener = Firestore.firestore().collection(DatabaseService.venuesOwnerCollection).document(user.uid).addSnapshotListener({ [weak self] (snapshot, error) in
-//            if let error = error {
-//                DispatchQueue.main.async {
-//                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
-//                }
-//            } else if let snapshot = snapshot {
-//                let offers = snapshot
-//                self?.offers = offers.data()
-//            }
-//        })
     }
     
     func fetchOffers(){
-        guard let user = Auth.auth().currentUser else { return }
         DatabaseService.shared.fetchVenueOffers() { [weak self] (result) in
             switch result {
             case .failure(let error):

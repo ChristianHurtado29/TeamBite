@@ -631,7 +631,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIp-ZN-lNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3077" y="523"/>
+            <point key="canvasLocation" x="3077" y="502"/>
         </scene>
         <!--Venues-->
         <scene sceneID="ZFN-Tn-Jq4">
@@ -676,6 +676,6 @@
         <image name="pencil" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wXe-ob-jHg"/>
+        <segue reference="F5e-su-DpS"/>
     </inferredMetricsTieBreakers>
 </document>
