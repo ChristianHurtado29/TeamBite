@@ -19,7 +19,7 @@ class UserDetailViewController: UIViewController {
     private var annotation = MKPointAnnotation()
     private var isShowingNewAnnotation = false
     
-    
+    private var db = DatabaseService()
     private var detailVenues = [Venue]()
     
     override func loadView() {
@@ -37,14 +37,6 @@ class UserDetailViewController: UIViewController {
         detailView.locationMap.showsScale = true
         locationManger.requestAlwaysAuthorization()
         locationManger.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManger.delegate = self
-
-            locationManger.desiredAccuracy = kCLLocationAccuracyBest
-            locationManger.startUpdatingLocation()
-        }
-        
         updateUI()
         loadMap()
         getDirections()
@@ -53,7 +45,7 @@ class UserDetailViewController: UIViewController {
      
     }
     private func updateUI() {
-        detailView.restaurantInfo.text = ("\(selectedVenue.name.capitalized), Phone Number: \(selectedVenue.phoneNumber), Address: \(selectedVenue.address)")
+        detailView.restaurantInfo.text = (" ")
         detailView.hoursOFOperation.text = ("Start Time: \(selectedVenue.startTime), End Time: \(selectedVenue.endTime)")
         detailView.numberOfMeals.text = ("Total of Meals: \(selectedOffer.totalMeals.description), Meals Remaining \(selectedOffer.remainingMeals)")
         
@@ -68,8 +60,20 @@ class UserDetailViewController: UIViewController {
     }
     
     private func loadVenue(){
-        
+        db.fetchVenues() { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Loading Error", message: error.localizedDescription)
+                }
+            case .success(let item):
+                self?.detailVenues = item
+            }
+            
+        }
     }
+    
+  
     
     private func makeAnnotation(for venue: Venue) -> MKPointAnnotation {
         selectedVenue = venue
@@ -92,18 +96,47 @@ class UserDetailViewController: UIViewController {
         request.transportType = .any
         let directions = MKDirections(request: request)
         directions.calculate { (response, error) in
-            guard let unwrappedResponse = response else {
-                //                request
-                return
-            }
+            guard let unwrappedResponse = response else { return }
             for route in unwrappedResponse.routes {
                 self.detailView.locationMap.addOverlay(route.polyline)
                 self.detailView.locationMap.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
         }
     }
+    //MARK: Claim Button
+    @objc private func claimButton(_ sender: UIButton) {
+        let claimVC = ClaimButton
+        navigationController?.pushViewController(claimVC, animated: true)
+        
+    }
     
-
+    
+    //MARK: Get Direction Button
+    @objc private func GetDirection(_ sender: UIButton) {
+        openMapForPlace()
+    }
+    
+    func openMapForPlace(){
+        let lat1: NSString = self.selectedVenue.lat.description as NSString
+        let long1: NSString = self.selectedVenue.long.description as NSString
+        
+        let latitude: CLLocationDegrees = lat1.doubleValue
+        let longitude: CLLocationDegrees = long1.doubleValue
+        
+        let regionDistance: CLLocationDistance = 3000
+        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "\(self.selectedVenue.name)"
+        mapItem.openInMaps(launchOptions: options)
+        
+    }
 
 }
 
@@ -140,9 +173,5 @@ extension UserDetailViewController: MKMapViewDelegate {
         }
         isShowingNewAnnotation = false
     }
-    
-}
-
-extension UserDetailViewController: CLLocationManagerDelegate {
     
 }

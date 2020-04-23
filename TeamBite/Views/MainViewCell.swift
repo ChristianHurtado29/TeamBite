@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewCell: UICollectionViewCell {
     
+    private var currentVenues: Venue!
+    
     public lazy var view: UIView = {
         let layout = UIView()
         layout.backgroundColor = .white
@@ -22,30 +24,29 @@ class MainViewCell: UICollectionViewCell {
         return layout
     }()
     
-    public lazy var addressLabel: UILabel = {
+    public lazy var venueName: UILabel = {
         let layout = UILabel()
-        layout.numberOfLines = 2
-        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
+        layout.numberOfLines = 0
+        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 18)
         layout.textColor = .black
         layout.textAlignment = .left
         return layout
         
     }()
     
-    public lazy var status: UILabel = {
+    public lazy var addressLabel: UILabel = {
         let layout = UILabel()
-        layout.numberOfLines = 2
+        layout.numberOfLines = 0
         layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
-        layout.textColor = .black
+        layout.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         layout.textAlignment = .left
         return layout
     }()
     
-    public lazy var hoursOfPickUpLayout: UILabel = {
+    public lazy var phoneNumber: UILabel = {
         let layout = UILabel()
-        layout.numberOfLines = 2
         layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
-        layout.textColor = .black
+        layout.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         layout.textAlignment = .left
         return layout
     }()
@@ -75,6 +76,16 @@ class MainViewCell: UICollectionViewCell {
         
     }
     
+    public func configureCell(savedVenues: Venue) {
+           currentVenues = savedVenues
+        venueName.text = ("\(savedVenues.name)")
+        addressLabel.text = ("\(savedVenues.address)")
+        phoneNumber.text = ("\(savedVenues.phoneNumber ?? "")")
+           
+        // keep in mind venue images match stock photo names
+        restaurantImage.image = UIImage(named: savedVenues.name)
+       }
+    
     private func setupView(){
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -97,34 +108,34 @@ class MainViewCell: UICollectionViewCell {
         }
     
     private func setupAddressLabel() {
-        addSubview(addressLabel)
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(venueName)
+        venueName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addressLabel.topAnchor.constraint(equalTo: restaurantImage.bottomAnchor, constant: 8),
-            addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            venueName.topAnchor.constraint(equalTo: restaurantImage.bottomAnchor, constant: 8),
+            venueName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            venueName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         
         ])
     }
     
     private func setupHoursOfPickUp() {
-        addSubview(hoursOfPickUpLayout)
-        hoursOfPickUpLayout.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(phoneNumber)
+        phoneNumber.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            hoursOfPickUpLayout.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 8),
-            hoursOfPickUpLayout.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            hoursOfPickUpLayout.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            phoneNumber.topAnchor.constraint(equalTo: venueName.bottomAnchor, constant: 8),
+            phoneNumber.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            phoneNumber.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         
         ])
     }
     
     private func setupStatusLabel() {
-        addSubview(status)
-        status.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(addressLabel)
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        status.topAnchor.constraint(equalTo: hoursOfPickUpLayout.bottomAnchor, constant: 8),
-        status.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-        status.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        addressLabel.topAnchor.constraint(equalTo: phoneNumber.bottomAnchor, constant: 8),
+        addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+        addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
     
     }

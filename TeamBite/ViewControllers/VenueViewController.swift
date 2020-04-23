@@ -45,10 +45,8 @@ class VenueViewController: UIViewController {
             editAddressTextField.isHidden = true
             editPhoneNumberTextField.isHidden = true
         }
-        
         offersTableView.delegate = self
         offersTableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
