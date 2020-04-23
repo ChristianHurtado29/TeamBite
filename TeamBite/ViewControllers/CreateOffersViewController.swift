@@ -82,6 +82,7 @@ class CreateOffersViewController: UIViewController {
         
         
         DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in
+            print("create button pressed")
             switch result {
             case.failure(let error):
               DispatchQueue.main.async {
@@ -92,18 +93,25 @@ class CreateOffersViewController: UIViewController {
                // self?.upload
               sender?.isEnabled = true
                 
+                
             }
         
         }
-        
-        
-        
+    
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            super.touchesBegan(touches, with: event)
+            view.endEditing(true)
     }
     
     
-    
-    
-    
-    
-    
+}
+
+
+extension CreateOffersViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

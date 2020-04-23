@@ -14,7 +14,7 @@ enum AccountState {
 }
 
 class VenueSignUpController: UIViewController {
-
+    
     private let signUpView = VenueSignUpView()
     
     override func loadView(){
@@ -62,8 +62,11 @@ class VenueSignUpController: UIViewController {
                         self?.showAlert(title: "Authentication Error", message: "\(error)")
                     }
                 case .success://(let dataResult):
-                    //TODO: Fetch user data using data Result
-                    //TODO: Change scenes passing in user data.
+                    let storyboarder = UIStoryboard(name: "Venues", bundle: nil)
+                    guard let venueVC = storyboarder.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
+                        fatalError("Could not create instance of TabBarController.")
+                    }
+                    UIViewController.resetWindow(venueVC)
                     break
                 }
             }
@@ -73,6 +76,7 @@ class VenueSignUpController: UIViewController {
         }
     }
 
+    
 }
 
 extension VenueSignUpController: UITextFieldDelegate{
