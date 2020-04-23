@@ -38,6 +38,11 @@ class MainViewController: UIViewController {
     private func loadData() {
         
     }
+    @objc
+    private func fetchOffers() {
+        
+        
+    }
     
 
 
@@ -54,7 +59,7 @@ extension MainViewController: UICollectionViewDataSource {
             fatalError("Could not downcast to MainViewCell")
         }
         let savedActivities = savedVenues[indexPath.row]
-//        cell.configureCell(for: savedVenues)
+        cell.configureCell(for: Offer, savedVenues: savedActivities)
         return cell
     }
 }

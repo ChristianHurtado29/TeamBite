@@ -91,8 +91,6 @@ class DatabaseService {
         }
     }
     
-    
-    
     public func fetchAllOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
         
         db.collection(DatabaseService.venuesOwnerCollection).document().collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in

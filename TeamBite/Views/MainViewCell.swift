@@ -129,6 +129,15 @@ class MainViewCell: UICollectionViewCell {
     
     }
     
+    public func configureCell(for savedOffer: Offer, savedVenues: Venue) {
+        currentVenue = savedVenues
+        addressLabel.text = ("\(savedVenues.name), Address: \(savedVenues.address),")
+        status.text = ("Meals Of the Day: \(savedOffer.nameOfOffer), Total Meals:: \(savedOffer.totalMeals)")
+        hoursOfPickUpLayout.text = ("Starting Time: \(savedVenues.startTime), Ending Time: \(savedVenues.endTime) ")
+        
+        // need to add picture !
+    }
+    
     
  
     

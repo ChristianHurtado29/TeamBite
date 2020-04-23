@@ -38,12 +38,6 @@ class UserDetailViewController: UIViewController {
         locationManger.requestAlwaysAuthorization()
         locationManger.requestWhenInUseAuthorization()
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManger.delegate = self
-
-            locationManger.desiredAccuracy = kCLLocationAccuracyBest
-            locationManger.startUpdatingLocation()
-        }
         
         updateUI()
         loadMap()
@@ -92,10 +86,7 @@ class UserDetailViewController: UIViewController {
         request.transportType = .any
         let directions = MKDirections(request: request)
         directions.calculate { (response, error) in
-            guard let unwrappedResponse = response else {
-                //                request
-                return
-            }
+            guard let unwrappedResponse = response else { return }
             for route in unwrappedResponse.routes {
                 self.detailView.locationMap.addOverlay(route.polyline)
                 self.detailView.locationMap.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
@@ -143,6 +134,4 @@ extension UserDetailViewController: MKMapViewDelegate {
     
 }
 
-extension UserDetailViewController: CLLocationManagerDelegate {
-    
-}
+

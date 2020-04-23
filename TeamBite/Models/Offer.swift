@@ -9,6 +9,7 @@
 import Foundation
 
 struct Offer {
+    
     let offerId: String
     let nameOfOffer: String
     let totalMeals: Int
@@ -21,6 +22,7 @@ struct Offer {
 
     extension Offer {
         init(_ dictionary: [String: Any]) {
+            self.name = dictionary["name"] as? String ?? "No Name"
             self.offerId = dictionary["offerId"] as? String ?? UUID().uuidString
             self.nameOfOffer = dictionary["nameOfOffer"] as? String ?? "no name"
             self.totalMeals = dictionary["totalMeals"] as? Int ?? 0

@@ -46,7 +46,7 @@ class MainView: UIView {
     private func commonInit() {
         setupLogo()
         setupCollectionVC()
-        setupButtonVC()
+        //setupButtonVC()
     }
     
     private func setupLogo() {
