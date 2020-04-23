@@ -12,17 +12,18 @@ class MainViewCell: UICollectionViewCell {
     
     private var currentVenue: Venue!
     
-    public lazy var view: UIView = {
-        let layout = UIView()
-        layout.backgroundColor = .white
-        layout.layer.masksToBounds = false
-        layout.clipsToBounds = false
-        layout.layer.shadowColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        layout.layer.shadowOffset = CGSize.zero
-        layout.layer.shadowRadius = 5
-        layout.layer.cornerRadius = 8
-        return layout
-    }()
+     public lazy var view: UIView = {
+           let layout = UIView()
+           layout.backgroundColor = .white
+           layout.layer.masksToBounds = false
+           layout.clipsToBounds = false
+           layout.layer.shadowColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+           layout.layer.shadowOpacity = 0.5
+           layout.layer.shadowOffset = CGSize.zero
+           layout.layer.shadowRadius = 5
+           layout.layer.cornerRadius = 8
+           return layout
+       }()
     
     public lazy var venueName: UILabel = {
         let layout = UILabel()
@@ -70,78 +71,78 @@ class MainViewCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        setupView()
-        setRestImage()
-        setupAddressLabel()
-        setupHoursOfPickUp()
+        configView()
+        configImage()
+        configVenueName()
+        configPhoneNumber()
+//        setupStatusLabel()
         
     }
     
     public func configureCell(savedVenue: Venue) {
-           currentVenue = savedVenue
+        currentVenue = savedVenue
         venueName.text = ("\(savedVenue.name)")
         addressLabel.text = ("\(savedVenue.address)")
         phoneNumber.text = ("\(savedVenue.phoneNumber ?? "")")
-           
+        
         // keep in mind venue images match stock photo names
         restaurantImage.image = UIImage(named: savedVenue.name)
-       }
+    }
     
-    private func setupView(){
+    private func configView(){
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            view.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,constant: 8)
-        
+            view.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            view.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            view.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            
         ])
     }
-        private func setRestImage() {
-            addSubview(restaurantImage)
-            restaurantImage.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                restaurantImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-                restaurantImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-                restaurantImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
-                restaurantImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6)
-            ])
-        }
     
-    private func setupAddressLabel() {
+    private func configImage() {
+        addSubview(restaurantImage)
+        restaurantImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            restaurantImage.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            restaurantImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            restaurantImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            restaurantImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4)
+           
+           
+        ])
+    }
+    
+    private func configVenueName() {
         addSubview(venueName)
         venueName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            venueName.topAnchor.constraint(equalTo: restaurantImage.bottomAnchor, constant: 8),
+            venueName.topAnchor.constraint(equalTo: restaurantImage.bottomAnchor, constant: 12),
             venueName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             venueName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        
         ])
     }
     
-    private func setupHoursOfPickUp() {
+    private func configPhoneNumber() {
         addSubview(phoneNumber)
         phoneNumber.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             phoneNumber.topAnchor.constraint(equalTo: venueName.bottomAnchor, constant: 8),
             phoneNumber.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             phoneNumber.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        
         ])
     }
     
-    private func setupStatusLabel() {
+    private func configAddress() {
         addSubview(addressLabel)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        addressLabel.topAnchor.constraint(equalTo: phoneNumber.bottomAnchor, constant: 8),
-        addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-        addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            addressLabel.topAnchor.constraint(equalTo: phoneNumber.bottomAnchor, constant: 8),
+            addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
-    
     }
     
-    
- 
     
 }
