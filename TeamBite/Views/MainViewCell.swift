@@ -29,7 +29,7 @@ class MainViewCell: UICollectionViewCell {
         let layout = UILabel()
         layout.text = "Name Appears Here"
         layout.numberOfLines = 0
-        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 18)
+        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 17)
         layout.textColor = .black
         layout.textAlignment = .left
         return layout
@@ -118,7 +118,7 @@ class MainViewCell: UICollectionViewCell {
         addSubview(venueName)
         venueName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            venueName.topAnchor.constraint(equalTo: restaurantImage.bottomAnchor, constant: 12),
+            venueName.topAnchor.constraint(equalTo: restaurantImage.bottomAnchor, constant: 15),
             venueName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             venueName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
@@ -128,7 +128,7 @@ class MainViewCell: UICollectionViewCell {
         addSubview(phoneNumber)
         phoneNumber.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            phoneNumber.topAnchor.constraint(equalTo: venueName.bottomAnchor, constant: 8),
+            phoneNumber.topAnchor.constraint(equalTo: venueName.bottomAnchor, constant: 10),
             phoneNumber.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             phoneNumber.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])

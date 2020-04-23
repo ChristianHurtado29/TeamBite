@@ -25,6 +25,10 @@ class CreateOffersViewController: UIViewController {
     
     var allergies = [String]()
     
+    override func viewWillLayoutSubviews() {
+        createButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        createButton.layer.cornerRadius = 5.0
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

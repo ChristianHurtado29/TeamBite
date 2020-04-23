@@ -9,22 +9,17 @@
 import UIKit
 
 class OffersCell: UITableViewCell {
-    @IBOutlet weak var offerName: UILabel!
-    @IBOutlet weak var totalNumOfMeals: UILabel!
-    @IBOutlet weak var totalNumMealsLeft: UILabel!
+    @IBOutlet weak var venueCell: UILabel!
+    @IBOutlet weak var numOfMeals: UILabel!
+    @IBOutlet weak var mealsLeft: UILabel!
+    
     
     
     public func configureCell(for offer: Offer) {
-        offerName.text = offer.nameOfOffer
-        totalNumOfMeals.text = offer.totalMeals.description
-        totalNumMealsLeft.text = offer.remainingMeals.description
+        venueCell.text = offer.nameOfOffer
+        numOfMeals.text = "Total Meals: \(offer.totalMeals.description)"
+        mealsLeft.text = "Meals Left: \(offer.remainingMeals.description)"
         
-//        if offer.allergyType?.count == 0{
-//            backgroundColor = .green
-//        }
-//        if offer.allergyType!.count > 1{
-//            backgroundColor = .yellow
-//        }
         
     }
 
