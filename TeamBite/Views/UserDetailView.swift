@@ -21,7 +21,7 @@ class UserDetailView: UIView {
     
    public lazy var restaurantInfo: UILabel = {
          let layout = UILabel()
-         layout.numberOfLines = 2
+         layout.numberOfLines = 0
          layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
          layout.textColor = .black
          layout.textAlignment = .left
@@ -40,7 +40,7 @@ class UserDetailView: UIView {
      
      public lazy var numberOfMeals: UILabel = {
          let layout = UILabel()
-         layout.numberOfLines = 2
+         layout.numberOfLines = 0
          layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
          layout.textColor = .black
          layout.textAlignment = .left
@@ -50,7 +50,7 @@ class UserDetailView: UIView {
     public lazy var claimButton: UIButton = {
         let button = UIButton()
        
-        button.setTitle("Claim Meal", for: .normal)
+        button.setTitle("   Claim Meal   ", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         button.layer.cornerRadius = 5.0
         button.setTitleColor(.white, for: .normal)
@@ -65,7 +65,7 @@ class UserDetailView: UIView {
     
     public lazy var getDirectionButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Get Direction", for: .normal)
+        button.setTitle(" Get Direction ", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         button.layer.cornerRadius = 5.0
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)

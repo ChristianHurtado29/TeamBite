@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseFirestore
+
+
 
 class MainViewController: UIViewController {
     
@@ -31,21 +34,32 @@ class MainViewController: UIViewController {
         mainView.collectionView.delegate = self
         mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
         navigationItem.title = "BITE"
-        loadData()
-
+        fetchVenues()
     }
     
-    private func loadData() {
-        
+    
+
+    private func fetchVenues() {
+        db.fetchVenues() { [weak self] (result) in
+            switch result {
+            case.failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Unable to load Venues", message: error.localizedDescription)
+                }
+            case .success(let item):
+                self?.savedVenues = item
+            }
+        }
     }
     
 
 
 }
 
-//MARK: UICollection Delegate Extension 
+//MARK: UICollection Delegate Extension
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("main vc # of venues:\(savedVenues.count)")
         return savedVenues.count
     }
     
@@ -54,7 +68,7 @@ extension MainViewController: UICollectionViewDataSource {
             fatalError("Could not downcast to MainViewCell")
         }
         let savedActivities = savedVenues[indexPath.row]
-//        cell.configureCell(for: savedVenues)
+      //  cell.configureCell(for: savedVenues)
         return cell
     }
 }
