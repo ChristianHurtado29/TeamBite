@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewCell: UICollectionViewCell {
     
-    private var currentVenues: Venue!
+    private var currentVenue: Venue!
     
     public lazy var view: UIView = {
         let layout = UIView()
@@ -26,6 +26,7 @@ class MainViewCell: UICollectionViewCell {
     
     public lazy var venueName: UILabel = {
         let layout = UILabel()
+        layout.text = "Name Appears Here"
         layout.numberOfLines = 0
         layout.font = UIFont(name: "Hiragino Mincho ProN", size: 18)
         layout.textColor = .black
@@ -76,14 +77,14 @@ class MainViewCell: UICollectionViewCell {
         
     }
     
-    public func configureCell(savedVenues: Venue) {
-           currentVenues = savedVenues
-        venueName.text = ("\(savedVenues.name)")
-        addressLabel.text = ("\(savedVenues.address)")
-        phoneNumber.text = ("\(savedVenues.phoneNumber ?? "")")
+    public func configureCell(savedVenue: Venue) {
+           currentVenue = savedVenue
+        venueName.text = ("\(savedVenue.name)")
+        addressLabel.text = ("\(savedVenue.address)")
+        phoneNumber.text = ("\(savedVenue.phoneNumber ?? "")")
            
         // keep in mind venue images match stock photo names
-        restaurantImage.image = UIImage(named: savedVenues.name)
+        restaurantImage.image = UIImage(named: savedVenue.name)
        }
     
     private func setupView(){
