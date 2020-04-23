@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="byi-lK-xbn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="byi-lK-xbn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,19 +63,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="122"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-lM-nVe">
-                                                    <rect key="frame" x="154.5" y="31" width="105.5" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offer Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-lM-nVe">
+                                                    <rect key="frame" x="30" y="31" width="354" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Meals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apM-S2-zNh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total Meals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apM-S2-zNh">
                                                     <rect key="frame" x="40" y="75" width="87" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Meals Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCF-0r-bHT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Number of Meals Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCF-0r-bHT">
                                                     <rect key="frame" x="228" y="75" width="166" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -83,12 +83,12 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="apM-S2-zNh" firstAttribute="top" secondItem="wGO-lM-nVe" secondAttribute="bottom" constant="20" id="BQN-Ld-pIK"/>
                                                 <constraint firstItem="apM-S2-zNh" firstAttribute="leading" secondItem="9Eb-Ro-JVg" secondAttribute="leadingMargin" constant="20" id="Ber-7k-cMZ"/>
-                                                <constraint firstItem="wGO-lM-nVe" firstAttribute="centerX" secondItem="9Eb-Ro-JVg" secondAttribute="centerX" id="Sym-DU-zhY"/>
                                                 <constraint firstItem="ZCF-0r-bHT" firstAttribute="centerY" secondItem="apM-S2-zNh" secondAttribute="centerY" id="VoS-Ve-fzc"/>
-                                                <constraint firstItem="wGO-lM-nVe" firstAttribute="top" secondItem="9Eb-Ro-JVg" secondAttribute="topMargin" constant="20" id="cAq-CU-Cn0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wGO-lM-nVe" secondAttribute="trailing" constant="10" id="ZON-io-NPo"/>
+                                                <constraint firstItem="wGO-lM-nVe" firstAttribute="top" secondItem="9Eb-Ro-JVg" secondAttribute="topMargin" constant="20" id="h0R-k6-Cbp"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZCF-0r-bHT" secondAttribute="trailing" constant="20" id="kFI-3x-FXQ"/>
+                                                <constraint firstItem="wGO-lM-nVe" firstAttribute="leading" secondItem="9Eb-Ro-JVg" secondAttribute="leadingMargin" constant="10" id="v3Y-Fg-meU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -399,7 +399,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folder" catalog="system" width="64" height="46"/>
-        <image name="house" catalog="system" width="64" height="54"/>
+        <image name="folder" catalog="system" width="128" height="95"/>
+        <image name="house" catalog="system" width="128" height="110"/>
     </resources>
 </document>

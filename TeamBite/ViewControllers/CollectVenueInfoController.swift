@@ -122,11 +122,11 @@ class CollectVenueInfoController: UIViewController {
                             self?.showAlert(title: "Venue Creation Error", message: "Could not create venue: \(error)")
                         }
                     case .success:
-                        break
+                        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
                     }
                 }
                 
-                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+//                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
             }
         }
     }

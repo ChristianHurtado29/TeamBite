@@ -13,6 +13,16 @@ import FirebaseFirestore
 class VenueViewController: UIViewController {
     var editState = 0
     
+    var venue: Venue?
+    
+    var arrayOffers = [Offer]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.offersTableView.reloadData()
+            }
+        }
+    }
+    
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
@@ -25,18 +35,11 @@ class VenueViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    private var offers = [Offer]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.offersTableView.reloadData()
-            }
-        }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchOffers()
+       // fetchOffers()
+        venueData()
         // Edit State
         if editState == 0 {
             editButton.isHidden = false
@@ -44,6 +47,7 @@ class VenueViewController: UIViewController {
             saveButton.isHidden = true
             editAddressTextField.isHidden = true
             editPhoneNumberTextField.isHidden = true
+            
         }
         
         offersTableView.delegate = self
@@ -53,12 +57,27 @@ class VenueViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        listener = db.collection(DatabaseService.venuesOwnerCollection).document(Auth.auth().currentUser?.uid ?? "").collection(DatabaseService.offersCollection).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                print("\(error)")
+            } else if let snapshot = snapshot {
+                let ss = snapshot.documents.compactMap{Offer($0.data())}
+                self?.arrayOffers = ss
+            }
+        })
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        listener?.remove()
+    }
+    
     
     func fetchOffers(){
         DatabaseService.shared.fetchVenueOffers() { [weak self] (result) in
@@ -69,11 +88,29 @@ class VenueViewController: UIViewController {
                 }
             case .success(let offers):
                 DispatchQueue.main.async {
-                    self?.offers = offers
+                    self?.arrayOffers = offers
                     print(offers)
                 }
             }
             
+        }
+    }
+    
+    func venueData() {
+        DatabaseService.shared.fetchVenue() { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Failed to get offers", message: "oops! \(error)")
+                }
+            case .success(let venue):
+                DispatchQueue.main.async {
+                    self?.venue = venue
+                    self?.navigationItem.title = venue.name
+                    self?.venueAddressLabel.text = venue.address
+                    self?.venueContactLabel.text = venue.phoneNumber
+                }
+            }
         }
     }
     
@@ -135,7 +172,7 @@ class VenueViewController: UIViewController {
         
         
         
-//        guard let vc = storyboard.instantiateViewController(Identifier: "CreateOffersViewController") as? CreateOffersViewController else {fatalError("\()")}
+        //        guard let vc = storyboard.instantiateViewController(Identifier: "CreateOffersViewController") as? CreateOffersViewController else {fatalError("\()")}
         
         self.present(vc, animated: true, completion: nil)
         
@@ -153,14 +190,14 @@ extension VenueViewController: UITableViewDelegate {
 
 extension VenueViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return offers.count
+        return arrayOffers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell  = tableView.dequeueReusableCell(withIdentifier: "offersCell", for: indexPath) as? OffersCell else {
             fatalError( "could not downcast to OfferCell")
         }
-        let offer =  offers[indexPath.row]
+        let offer =  arrayOffers[indexPath.row]
         cell.configureCell(for: offer)
         return cell
     }
