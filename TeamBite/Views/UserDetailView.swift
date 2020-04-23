@@ -42,10 +42,12 @@ class UserDetailView: UIView {
         return imageView
     }()
     
+    // ADDRESS LABEL
     public lazy var thisNeedsTobeRefactor: UILabel = {
         let layout = UILabel()
+        layout.text = "FILLER ADDRESS"
         layout.numberOfLines = 2
-        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 18)
+        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
         layout.textColor = .black
         layout.textAlignment = .left
         return layout
@@ -53,8 +55,9 @@ class UserDetailView: UIView {
     
     public lazy var refactor: UILabel = {
         let layout = UILabel()
+        layout.text = "FILLER Phone"
         layout.numberOfLines = 2
-        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 18)
+        layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
         layout.textColor = .black
         layout.textAlignment = .left
         return layout
@@ -63,7 +66,8 @@ class UserDetailView: UIView {
     
     public lazy var restaurantInfo: UILabel = {
         let layout = UILabel()
-        layout.numberOfLines = 2
+    //    layout.text = "FILLER ADDRESS"
+        layout.numberOfLines = 0
         layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
         layout.textColor = .black
         layout.textAlignment = .left
@@ -73,7 +77,8 @@ class UserDetailView: UIView {
     
     public lazy var hoursOFOperation: UILabel = {
         let layout = UILabel()
-        layout.numberOfLines = 2
+        layout.text = "FILLER Hours"
+        layout.numberOfLines = 0
         layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
         layout.textColor = .black
         layout.textAlignment = .left
@@ -82,7 +87,7 @@ class UserDetailView: UIView {
     
     public lazy var numberOfMeals: UILabel = {
         let layout = UILabel()
-        layout.numberOfLines = 2
+        layout.numberOfLines = 0
         layout.font = UIFont(name: "Hiragino Mincho ProN", size: 15)
         layout.textColor = .black
         layout.textAlignment = .left
@@ -101,6 +106,8 @@ class UserDetailView: UIView {
     
     public lazy var locationMap: MKMapView = {
         let map = MKMapView()
+        map.layer.borderColor = UIColor.black.cgColor
+        map.layer.borderWidth = 1
         return map
     }()
     
@@ -124,17 +131,25 @@ class UserDetailView: UIView {
     }
     
     private func commonInit() {
-        setupScrollView()
-        setupCenterView()
-        setupRestaurant()
-        setupRestaurantInfo()
-        setupHours()
-        setupNumberOfMeals()
+//        setupScrollView()
+//        setupCenterView()
+   //     configImage()
         setupVenueAddress()
         setupPhoneNumber()
-        setupButton()
+        setupHours()
         setupMap()
         setupGetDirection()
+        setupButton()
+        
+        
+//        setupRestaurantInfo()
+//        setupHours()
+//        setupNumberOfMeals()
+//
+//
+        
+        
+        
     }
     
     private func setupCenterView() {
@@ -162,7 +177,7 @@ class UserDetailView: UIView {
         ])
         
     }
-    private func setupRestaurant() { // This is a image
+    private func configImage() { // This is a image
         centerView.addSubview(restaurantPhoto)
         restaurantPhoto.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -183,15 +198,7 @@ class UserDetailView: UIView {
         ])
     }
     
-    private func setupHours() { // This is a Label
-        centerView.addSubview(hoursOFOperation)
-        hoursOFOperation.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            hoursOFOperation.topAnchor.constraint(equalTo: restaurantInfo.bottomAnchor, constant: 8),
-            hoursOFOperation.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            hoursOFOperation.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        ])
-    }
+ 
     
     private func setupNumberOfMeals() { // This is a Label
         centerView.addSubview(numberOfMeals)
@@ -206,10 +213,10 @@ class UserDetailView: UIView {
     }
     
     private func setupVenueAddress() {
-        centerView.addSubview(thisNeedsTobeRefactor)
+        addSubview(thisNeedsTobeRefactor)
         thisNeedsTobeRefactor.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            thisNeedsTobeRefactor.topAnchor.constraint(equalTo: numberOfMeals.bottomAnchor, constant: 8),
+            thisNeedsTobeRefactor.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             thisNeedsTobeRefactor.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             thisNeedsTobeRefactor.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
             
@@ -218,10 +225,10 @@ class UserDetailView: UIView {
     
     
     private func setupPhoneNumber() {
-        centerView.addSubview(refactor)
+        addSubview(refactor)
         refactor.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            refactor.topAnchor.constraint(equalTo: thisNeedsTobeRefactor.bottomAnchor, constant:  8),
+            refactor.topAnchor.constraint(equalTo: thisNeedsTobeRefactor.bottomAnchor, constant:  10),
             refactor.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             refactor.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
             
@@ -229,11 +236,38 @@ class UserDetailView: UIView {
     }
     
     
+    private func setupHours() { // This is a Label
+        addSubview(hoursOFOperation)
+        hoursOFOperation.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hoursOFOperation.topAnchor.constraint(equalTo: refactor.bottomAnchor, constant: 10),
+            hoursOFOperation.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            hoursOFOperation.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+    }
+    
+    
+    private func setupMap() {
+        addSubview(locationMap)
+        locationMap.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationMap.topAnchor.constraint(equalTo: hoursOFOperation.bottomAnchor, constant: 15),
+            locationMap.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            locationMap.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            locationMap.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
+            
+        ])
+    }
+    
+    
+    
+    
+    
     private func setupButton() {
-        centerView.addSubview(claimButton)
+        addSubview(claimButton)
         claimButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            claimButton.topAnchor.constraint(equalTo: refactor.bottomAnchor, constant: 8),
+            claimButton.topAnchor.constraint(equalTo: getDirectionButton.bottomAnchor, constant: 15),
             claimButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             claimButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             //                claimButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -242,22 +276,12 @@ class UserDetailView: UIView {
         ])
     }
     
-    private func setupMap() {
-        centerView.addSubview(locationMap)
-        locationMap.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            locationMap.topAnchor.constraint(equalTo: claimButton.bottomAnchor, constant: 10),
-            locationMap.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            locationMap.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
-            
-        ])
-    }
-    
+
     private func setupGetDirection() {
-        centerView.addSubview(getDirectionButton)
+        addSubview(getDirectionButton)
         getDirectionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            getDirectionButton.topAnchor.constraint(equalTo: locationMap.bottomAnchor, constant: 8),
+            getDirectionButton.topAnchor.constraint(equalTo: locationMap.bottomAnchor, constant: 30),
             getDirectionButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             getDirectionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             //                getDirectionButton.centerXAnchor.constraint(equalTo: centerXAnchor),

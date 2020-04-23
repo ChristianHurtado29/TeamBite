@@ -29,7 +29,7 @@ class UserDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         navigationItem.title = selectedVenue?.name
         detailView.locationMap.delegate = self
         detailView.locationMap.showsUserLocation = true
@@ -41,13 +41,34 @@ class UserDetailViewController: UIViewController {
         loadMap()
         getDirections()
         loadVenue()
-        
+        detailView.getDirectionButton.addTarget(self, action: #selector(getDirectionButtonPressed), for: .touchUpInside)
      
     }
+    
+    @objc private func getDirectionButtonPressed(_ sender: UIButton) {
+        getDirections()
+        print("get directions")
+    }
+    
+    
+    
+    
     private func updateUI() {
-        detailView.restaurantInfo.text = (" ")
-        detailView.hoursOFOperation.text = ("Start Time: \(selectedVenue?.startTime), End Time: \(selectedVenue?.endTime)")
+        
+        if let start = selectedVenue?.startTime, let end = selectedVenue?.endTime {
+        detailView.hoursOFOperation.text = """
+Start Time: \(start)
+            
+End Time: \(end)
+"""
+        }
         detailView.numberOfMeals.text = ("Total of Meals: \(selectedOffer?.totalMeals ?? 0), Meals Remaining \(selectedOffer?.remainingMeals ?? 0)")
+        
+        detailView.thisNeedsTobeRefactor.text = """
+        Address:
+        \(selectedVenue?.address ?? "No Address")
+        """
+        detailView.refactor.text = "Phone: \(selectedVenue?.phoneNumber ?? "No Phone")"
         
         // Have to add resturant picture !!
         
@@ -104,6 +125,8 @@ class UserDetailViewController: UIViewController {
             }
         }
     }
+    
+    
     //MARK: Claim Button
     @objc private func claimButton(_ sender: UIButton) {
         //let claimVC = ClaimButton
@@ -176,4 +199,7 @@ extension UserDetailViewController: MKMapViewDelegate {
         isShowingNewAnnotation = false
     }
     
+    
 }
+
+

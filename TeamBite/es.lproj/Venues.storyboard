@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="byi-lK-xbn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="byi-lK-xbn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,46 +56,46 @@
                                 <rect key="frame" x="0.0" y="249.5" width="414" height="563.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="offersCell" rowHeight="122" id="UZj-uY-cY9" customClass="OffersCell" customModule="TeamBite" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="122"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="offersCell" rowHeight="127" id="2Cn-HS-gaK" customClass="OffersCell" customModule="TeamBite" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="127"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UZj-uY-cY9" id="9Eb-Ro-JVg" customClass="OffersCell" customModule="TeamBite" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="122"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Cn-HS-gaK" id="F4G-wI-X6Q">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="127"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oferta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-lM-nVe">
-                                                    <rect key="frame" x="30" y="31" width="354" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Totales de ofertas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apM-S2-zNh">
-                                                    <rect key="frame" x="40" y="75" width="137.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5n-01-2QZ">
+                                                    <rect key="frame" x="40" y="31" width="334" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ofertas disponibles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCF-0r-bHT">
-                                                    <rect key="frame" x="245" y="75" width="149" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efR-bM-4OR">
+                                                    <rect key="frame" x="40" y="61.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlA-0m-cuC">
+                                                    <rect key="frame" x="332" y="61.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="apM-S2-zNh" firstAttribute="top" secondItem="wGO-lM-nVe" secondAttribute="bottom" constant="20" id="3pv-eT-XRe"/>
-                                                <constraint firstItem="apM-S2-zNh" firstAttribute="leading" secondItem="9Eb-Ro-JVg" secondAttribute="leadingMargin" constant="20" id="Ber-7k-cMZ"/>
-                                                <constraint firstItem="ZCF-0r-bHT" firstAttribute="centerY" secondItem="apM-S2-zNh" secondAttribute="centerY" id="VoS-Ve-fzc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wGO-lM-nVe" secondAttribute="trailing" constant="10" id="ZON-io-NPo"/>
-                                                <constraint firstItem="wGO-lM-nVe" firstAttribute="top" secondItem="9Eb-Ro-JVg" secondAttribute="topMargin" constant="20" id="h0R-k6-Cbp"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZCF-0r-bHT" secondAttribute="trailing" constant="20" id="kFI-3x-FXQ"/>
-                                                <constraint firstItem="wGO-lM-nVe" firstAttribute="leading" secondItem="9Eb-Ro-JVg" secondAttribute="leadingMargin" constant="10" id="v3Y-Fg-meU"/>
+                                                <constraint firstItem="T5n-01-2QZ" firstAttribute="top" secondItem="F4G-wI-X6Q" secondAttribute="topMargin" constant="20" id="Coz-Xf-pyH"/>
+                                                <constraint firstItem="rlA-0m-cuC" firstAttribute="top" secondItem="T5n-01-2QZ" secondAttribute="bottom" constant="10" id="KXP-hM-qJ7"/>
+                                                <constraint firstItem="T5n-01-2QZ" firstAttribute="leading" secondItem="F4G-wI-X6Q" secondAttribute="leadingMargin" constant="20" id="KhS-Nd-gOo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="T5n-01-2QZ" secondAttribute="trailing" constant="20" id="N7y-mQ-UuW"/>
+                                                <constraint firstItem="efR-bM-4OR" firstAttribute="leading" secondItem="F4G-wI-X6Q" secondAttribute="leadingMargin" constant="20" id="S2J-gF-wHE"/>
+                                                <constraint firstItem="efR-bM-4OR" firstAttribute="top" secondItem="T5n-01-2QZ" secondAttribute="bottom" constant="10" id="ZVQ-9L-ibM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rlA-0m-cuC" secondAttribute="trailing" constant="20" id="fsc-uD-txS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="offerName" destination="wGO-lM-nVe" id="6Gz-TB-a4K"/>
-                                            <outlet property="totalNumMealsLeft" destination="ZCF-0r-bHT" id="aTR-3G-En8"/>
-                                            <outlet property="totalNumOfMeals" destination="apM-S2-zNh" id="q1s-Yi-Gsg"/>
+                                            <outlet property="mealsLeft" destination="rlA-0m-cuC" id="Qr4-jP-0YZ"/>
+                                            <outlet property="numOfMeals" destination="efR-bM-4OR" id="O5E-pM-yGt"/>
+                                            <outlet property="venueCell" destination="T5n-01-2QZ" id="hAZ-Ks-edR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -181,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sK0-dx-kj6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="72"/>
+            <point key="canvasLocation" x="913.04347826086962" y="71.651785714285708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XPS-Vm-0bo">
@@ -400,7 +400,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folder" catalog="system" width="64" height="46"/>
-        <image name="house" catalog="system" width="64" height="54"/>
+        <image name="folder" catalog="system" width="128" height="95"/>
+        <image name="house" catalog="system" width="128" height="110"/>
     </resources>
 </document>

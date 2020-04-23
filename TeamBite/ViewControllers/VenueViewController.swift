@@ -36,9 +36,19 @@ class VenueViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     
+    override func viewWillLayoutSubviews() {
+        cancelButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        editButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        saveButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        cancelButton.layer.cornerRadius = 5.0
+        editButton.layer.cornerRadius = 5.0
+        saveButton.layer.cornerRadius = 5.0
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       // fetchOffers()
+        // fetchOffers()
         venueData()
         // Edit State
         if editState == 0 {
@@ -52,6 +62,7 @@ class VenueViewController: UIViewController {
         offersTableView.delegate = self
         offersTableView.dataSource = self
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -182,7 +193,8 @@ class VenueViewController: UIViewController {
 
 extension VenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 120
+        
     }
 }
 
