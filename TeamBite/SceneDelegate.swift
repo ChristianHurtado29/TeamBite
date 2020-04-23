@@ -34,9 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             window?.rootViewController = venueTabController
         } else if let _ = Auth.auth().currentUser?.phoneNumber {
-            let tabBarController = TabBarController()
+        let tabBarController = TabBarController()
+        
             window?.rootViewController = tabBarController
-            
+        
         } else {
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         }

@@ -10,7 +10,6 @@ import UIKit
 import FirebaseFirestore
 
 
-
 class MainViewController: UIViewController {
 
     
@@ -32,6 +31,7 @@ class MainViewController: UIViewController {
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
         mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
+        
         navigationItem.title = "BITE"
         fetchVenues()
     }
