@@ -102,6 +102,21 @@ class DatabaseService {
     }
     
     
+    public func fetchVenue(completion: @escaping (Result< Venue, Error>) -> ()) {
+       guard let currentUser = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.venuesOwnerCollection).whereField("userId", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let venue = snapshot.documents.compactMap { Venue($0.data()) }
+                guard let firstVenue = venue.first else { return }
+                completion(.success(firstVenue))
+            }
+        }
+    }
+    
+    
     
     public func fetchAllOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
         

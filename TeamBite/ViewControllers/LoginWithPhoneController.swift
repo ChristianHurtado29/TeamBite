@@ -95,7 +95,9 @@ class LoginWithPhoneController: UIViewController {
 //                    fatalError("Could not instantiate view controller")
 //                }
 //                UIViewController.resetWindow(userTabBarController)
-                UIViewController.showTabController(storyboardName: "Wireframe", viewControllerId: "UserTabBarController", viewController: nil)
+                let tabBarController = TabBarController()
+                
+                UIViewController.resetWindow(tabBarController)
             }
         }
     }
