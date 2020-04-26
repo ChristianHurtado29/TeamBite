@@ -34,11 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             window?.rootViewController = venueTabController
         } else if let _ = Auth.auth().currentUser?.phoneNumber {
-            let storybord = UIStoryboard(name: "Wireframe", bundle: nil)
-            guard let userTabBarController = storybord.instantiateViewController(identifier: "UserTabBarController") as? UITabBarController else {
-                fatalError("Could not instantiate view controller")
-            }
-            window?.rootViewController = userTabBarController
+        let tabBarController = TabBarController()
+        
+            window?.rootViewController = tabBarController
+        
         } else {
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         }

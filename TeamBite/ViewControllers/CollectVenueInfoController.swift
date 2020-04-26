@@ -9,14 +9,14 @@
 import UIKit
 import FirebaseAuth
 
-// TODO: SetUp KEYBOARD HANDLING
-
 class CollectVenueInfoController: UIViewController {
 
     private let collectVenueInfoView = CollectVenueInfoView()
     private let userEmail: String
     private let userPassword: String
     private let coreLocation = CoreLocationManager()
+    private var yAnchorConstant: CGFloat = 0
+    private var keyboardIsVisible = false
     
     init(_ email: String, _ password: String){
         self.userEmail = email
@@ -35,6 +35,8 @@ class CollectVenueInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        collectVenueInfoView.tapGesture.addTarget(self, action: #selector(dismissKeyboard))
+        registerForKeyboardNotifications()
     }
     
     private func setUp(){
@@ -122,11 +124,11 @@ class CollectVenueInfoController: UIViewController {
                             self?.showAlert(title: "Venue Creation Error", message: "Could not create venue: \(error)")
                         }
                     case .success:
-                        break
+                        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
                     }
                 }
                 
-                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+//                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
             }
         }
     }
@@ -155,6 +157,19 @@ class CollectVenueInfoController: UIViewController {
         
         return true
     }
+    
+    @objc
+    private func dismissKeyboard(_ gesture: UITapGestureRecognizer){
+        
+        collectVenueInfoView.zipTextField.resignFirstResponder()
+        collectVenueInfoView.cityTextField.resignFirstResponder()
+        collectVenueInfoView.stateTextField.resignFirstResponder()
+        collectVenueInfoView.streetNameTextField.resignFirstResponder()
+        collectVenueInfoView.venueNameTextField.resignFirstResponder()
+        collectVenueInfoView.venuePhoneTextField.resignFirstResponder()
+        collectVenueInfoView.startTimeTextField.resignFirstResponder()
+        collectVenueInfoView.endTimeTextField.resignFirstResponder()
+    }
 
 }
 
@@ -182,5 +197,60 @@ extension CollectVenueInfoController: UITextFieldDelegate {
         }
         
         return true
+    }
+}
+
+extension CollectVenueInfoController {
+    
+    private func registerForKeyboardNotifications(){
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unregisterForKeyboardNotifications(){
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    private func keyboardWillShow(_ notification: NSNotification){
+        
+        guard let _ = notification.userInfo?["UIKeyboardFrameBeginUserInfoKey"] as? CGRect else {
+            return
+        }
+
+        shiftUIUp(80)
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification: NSNotification){
+        resetUI()
+    }
+    
+    private func shiftUIUp(_ offset: CGFloat){
+        
+        if keyboardIsVisible { return }
+        yAnchorConstant = collectVenueInfoView.yAnchor.constant
+        
+        collectVenueInfoView.yAnchor.constant -= offset
+        
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+        
+        keyboardIsVisible = true
+    }
+    
+    private func resetUI(){
+        keyboardIsVisible = false
+        
+        collectVenueInfoView.yAnchor.constant = yAnchorConstant
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
     }
 }

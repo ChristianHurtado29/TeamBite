@@ -25,6 +25,10 @@ class CreateOffersViewController: UIViewController {
     
     var allergies = [String]()
     
+    override func viewWillLayoutSubviews() {
+        createButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        createButton.layer.cornerRadius = 5.0
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +112,7 @@ class CreateOffersViewController: UIViewController {
             let finalAllergies = Array(setAllergies)
             
             
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals!, remainingMeals: numberOfMeals!, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies)
+            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies)
             
             
             DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in

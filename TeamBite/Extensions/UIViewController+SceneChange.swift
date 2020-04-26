@@ -25,6 +25,6 @@ extension UIViewController {
             fatalError("Could not reset window")
         }
         
-        window.rootViewController = UINavigationController(rootViewController: vc)
+        window.rootViewController = vc
     }
 }

@@ -10,10 +10,8 @@ import UIKit
 import FirebaseFirestore
 
 
-
 class MainViewController: UIViewController {
-    
-    private let db = DatabaseService()
+
     
     private var savedVenues = [Venue]() {
         didSet {
@@ -26,6 +24,12 @@ class MainViewController: UIViewController {
     override func loadView() {
         view = mainView
     }
+    
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,7 @@ class MainViewController: UIViewController {
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
         mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
+        
         navigationItem.title = "BITE"
         fetchVenues()
     }
@@ -40,7 +45,7 @@ class MainViewController: UIViewController {
     
 
     private func fetchVenues() {
-        db.fetchVenues() { [weak self] (result) in
+        DatabaseService.shared.fetchVenues() { [weak self] (result) in
             switch result {
             case.failure(let error):
                 DispatchQueue.main.async {
@@ -48,6 +53,7 @@ class MainViewController: UIViewController {
                 }
             case .success(let item):
                 self?.savedVenues = item
+                dump(item)
             }
         }
     }
@@ -67,8 +73,8 @@ extension MainViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainViewCell", for: indexPath) as? MainViewCell else {
             fatalError("Could not downcast to MainViewCell")
         }
-        let savedActivities = savedVenues[indexPath.row]
-      //  cell.configureCell(for: savedVenues)
+        let venue = savedVenues[indexPath.row]
+        cell.configureCell(savedVenue: venue)
         return cell
     }
 }
