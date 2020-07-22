@@ -27,20 +27,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        } catch {
 //            print(error.localizedDescription)
 //        }
-        if let _ = Auth.auth().currentUser?.email {
-            let storyboard = UIStoryboard(name: "Venues", bundle: nil)
-            guard let venueTabController = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
-                fatalError("Could not create instance of TabBarController.")
-            }
-            window?.rootViewController = venueTabController
-        } else if let _ = Auth.auth().currentUser?.phoneNumber {
-        let tabBarController = TabBarController()
-        
-            window?.rootViewController = tabBarController
-        
-        } else {
-            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-        }
+//        if let _ = Auth.auth().currentUser?.email {
+//            let storyboard = UIStoryboard(name: "Venues", bundle: nil)
+//            guard let venueTabController = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
+//                fatalError("Could not create instance of TabBarController.")
+//            }
+//            window?.rootViewController = venueTabController
+//        } else if let _ = Auth.auth().currentUser?.phoneNumber {
+//        let tabBarController = TabBarController()
+//
+//            window?.rootViewController = tabBarController
+//
+//        } else {
+//            window?.rootViewController = UINavigationController(rootViewController: TabBarController())
+        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
+        window?.rootViewController = vc
+        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+//        }
         window?.makeKeyAndVisible()
     }
     

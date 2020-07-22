@@ -11,20 +11,18 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class VenueViewController: UIViewController {
-    var editState = 0
-    
-    var venue: Venue?
-    
-    var arrayOffers = [Offer]() {
+    private let db = Firestore.firestore()
+    private var listener: ListenerRegistration?
+
+    private var editState = 0
+    private var venue: Venue?
+    private var arrayOffers = [Offer]() {
         didSet {
             DispatchQueue.main.async {
                 self.offersTableView.reloadData()
             }
         }
     }
-    
-    private let db = Firestore.firestore()
-    private var listener: ListenerRegistration?
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var venueAddressLabel: UILabel!
@@ -51,24 +49,12 @@ class VenueViewController: UIViewController {
         // fetchOffers()
         venueData()
         // Edit State
-        if editState == 0 {
-            editButton.isHidden = false
-            cancelButton.isHidden = true
-            saveButton.isHidden = true
-            editAddressTextField.isHidden = true
-            editPhoneNumberTextField.isHidden = true
-            
-        }
-        offersTableView.delegate = self
-        offersTableView.dataSource = self
+        setUp()
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -87,8 +73,22 @@ class VenueViewController: UIViewController {
         listener?.remove()
     }
     
+    private func setUp() {
+        if editState == 0 {
+            editButton.isHidden = false
+            cancelButton.isHidden = true
+            saveButton.isHidden = true
+            editAddressTextField.isHidden = true
+            editPhoneNumberTextField.isHidden = true
+            
+        }
+        offersTableView.delegate = self
+        offersTableView.dataSource = self
+        navigationItem.leftBarButtonItem?.target = self
+        navigationItem.leftBarButtonItem?.action = #selector(scanQRCodeButtonPressed(_:))
+    }
     
-    func fetchOffers(){
+    private func fetchOffers(){
         DatabaseService.shared.fetchVenueOffers() { [weak self] (result) in
             switch result {
             case .failure(let error):
@@ -105,7 +105,7 @@ class VenueViewController: UIViewController {
         }
     }
     
-    func venueData() {
+   private func venueData() {
         DatabaseService.shared.fetchVenue() { [weak self] (result) in
             switch result {
             case .failure(let error):
@@ -123,6 +123,22 @@ class VenueViewController: UIViewController {
         }
     }
     
+    private func updateDatabaseUser(address: String, phoneNumber: String) {
+        
+        DatabaseService.shared.updateVenue(address: address, phoneNumber: phoneNumber) { (result) in
+            switch result {
+            case .failure(let error):
+                print("failed to update db user: \(error.localizedDescription)")
+            case .success:
+                print("successfully updated db user")
+            }
+        }
+    }
+    
+    @IBAction func scanQRCodeButtonPressed(_ sender: UIBarButtonItem) {
+        let scanQRVC = ScanQRCodeController()
+        present(scanQRVC, animated: true, completion: nil)
+    }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
         editState = 1
@@ -148,21 +164,6 @@ class VenueViewController: UIViewController {
         venueContactLabel.isHidden = false
     }
     
-    
-    private func updateDatabaseUser(address: String, phoneNumber: String) {
-        
-        DatabaseService.shared.updateVenue(address: address, phoneNumber: phoneNumber) { (result) in
-            switch result {
-            case .failure(let error):
-                print("failed to update db user: \(error.localizedDescription)")
-            case .success:
-                print("successfully updated db user")
-            }
-        }
-    }
-    
-    
-    
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         editState = 0
         editButton.isHidden = false
@@ -178,13 +179,8 @@ class VenueViewController: UIViewController {
     @IBAction func createOfferButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard =  UIStoryboard(name: "Venues", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
-        
-        
-        
-        //        guard let vc = storyboard.instantiateViewController(Identifier: "CreateOffersViewController") as? CreateOffersViewController else {fatalError("\()")}
-        
+    
         self.present(vc, animated: true, completion: nil)
-        
     }
     
     
@@ -211,6 +207,4 @@ extension VenueViewController: UITableViewDataSource {
         cell.configureCell(for: offer)
         return cell
     }
-    
-    
 }

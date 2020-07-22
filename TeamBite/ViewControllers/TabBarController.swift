@@ -10,14 +10,14 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    public lazy var mainVC: MainViewController = {
+    private lazy var mainVC: MainViewController = {
         let vc = MainViewController()
         vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "globe"), tag: 0)
         return vc
     }()
     
     
-    public lazy var resourcesVC: ResourcesViewController = {
+    private lazy var resourcesVC: ResourcesViewController = {
         let mainSB = UIStoryboard(name: "Wireframe", bundle: nil)
         guard let resourcesVC = mainSB.instantiateViewController(identifier: "ResourcesViewController") as? ResourcesViewController else {fatalError()}
         resourcesVC.tabBarItem = UITabBarItem(title: "Resources", image: UIImage(systemName: "folder"), tag: 1)

@@ -52,6 +52,8 @@
 		C4604AAC244F7DB4008E2857 /* VenueSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */; };
 		C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */; };
 		C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */; };
+		C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */; };
+		C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */; };
 		C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */; };
 		C4789D982450BCD4008193BA /* AverageUserSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D972450BCD4008193BA /* AverageUserSignInView.swift */; };
 		C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D992450BCED008193BA /* AverageUserSignInController.swift */; };
@@ -115,6 +117,8 @@
 		C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSignUpView.swift; sourceTree = "<group>"; };
 		C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoView.swift; sourceTree = "<group>"; };
 		C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoController.swift; sourceTree = "<group>"; };
+		C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeHandler.swift; sourceTree = "<group>"; };
+		C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeController.swift; sourceTree = "<group>"; };
 		C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SceneChange.swift"; sourceTree = "<group>"; };
 		C4789D972450BCD4008193BA /* AverageUserSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageUserSignInView.swift; sourceTree = "<group>"; };
 		C4789D992450BCED008193BA /* AverageUserSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageUserSignInController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				13F4BAB6244E5AF000C0DC23 /* CoreLocationManager.swift */,
 				1353936C2451774200CB9622 /* Bite2.mp3 */,
 				1353936E245179C100CB9622 /* FoodReady.mp3 */,
+				C478941C24C8AA37000DAD81 /* Utilities */,
 				13F4BABF244E5B9E00C0DC23 /* Views */,
 				13F4BABE244E5B9200C0DC23 /* Extensions */,
 				13F4BAA5244E599600C0DC23 /* Models */,
@@ -228,6 +233,7 @@
 				C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */,
 				636E9C6424516BDB00461E43 /* ClaimButtonViewController.swift */,
 				636E9C6624516DED00461E43 /* TabBarController.swift */,
+				C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -278,6 +284,14 @@
 				968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C478941C24C8AA37000DAD81 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +442,7 @@
 				13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */,
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
 				13F39634244F6F34004BD488 /* Resources.swift in Sources */,
+				C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */,
 				C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,
@@ -439,6 +454,7 @@
 				C4789D982450BCD4008193BA /* AverageUserSignInView.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
 				9F0112662450DB08006B2DE8 /* ClaimMealsView.swift in Sources */,
+				C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */,
 				13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */,
 				C4604AAC244F7DB4008E2857 /* VenueSignUpView.swift in Sources */,
 				13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */,
