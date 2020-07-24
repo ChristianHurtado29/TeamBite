@@ -12,7 +12,18 @@ import MapKit
 class UserDetailViewController: UIViewController {
     
     var selectedVenue: Venue?
-    var selectedOffer: Offer?
+    var selectedOffers: [Offer] = [] {
+        didSet {
+            if selectedOffers.count == 0 {
+                detailView.offersTableView.separatorStyle = .none
+                detailView.offersTableView.backgroundView = EmptyView(title: "No Offers", message: "This venue currently has no offerings.")
+            } else {
+                detailView.offersTableView.separatorStyle = .singleLine
+                detailView.offersTableView.backgroundView = nil
+                detailView.offersTableView.reloadData()
+            }
+        }
+    }
     let detailView = UserDetailView()
     var locationManger = CLLocationManager()
     
@@ -26,34 +37,30 @@ class UserDetailViewController: UIViewController {
         view = detailView
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        navigationItem.title = selectedVenue?.name
+        configureMapView()
+        updateUI()
+        loadMap()
+        loadVenue()
+        getDirections()
+        getOffers()
+        configureGetDirectionsButton()
+        configureOffersTableView()
+    }
+    
+    private func configureMapView() {
         detailView.locationMap.delegate = self
         detailView.locationMap.showsUserLocation = true
         detailView.locationMap.showsPointsOfInterest = true
         detailView.locationMap.showsScale = true
         locationManger.requestAlwaysAuthorization()
         locationManger.requestWhenInUseAuthorization()
-        updateUI()
-        loadMap()
-        getDirections()
-        loadVenue()
-        detailView.getDirectionButton.addTarget(self, action: #selector(getDirectionButtonPressed), for: .touchUpInside)
-     
     }
-    
-    @objc private func getDirectionButtonPressed(_ sender: UIButton) {
-        getDirections()
-        print("get directions")
-    }
-    
-    
-    
     
     private func updateUI() {
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        navigationItem.title = selectedVenue?.name
         
         if let start = selectedVenue?.startTime, let end = selectedVenue?.endTime {
         detailView.hoursOFOperation.text = """
@@ -62,7 +69,6 @@ Start Time: \(start)
 End Time: \(end)
 """
         }
-        detailView.numberOfMeals.text = ("Total of Meals: \(selectedOffer?.totalMeals ?? 0), Meals Remaining \(selectedOffer?.remainingMeals ?? 0)")
         
         detailView.thisNeedsTobeRefactor.text = """
         Address:
@@ -91,11 +97,18 @@ End Time: \(end)
             case .success(let item):
                 self?.detailVenues = item
             }
-            
         }
     }
     
-  
+    private func configureGetDirectionsButton() {
+        detailView.getDirectionButton.addTarget(self, action: #selector(getDirectionButtonPressed), for: .touchUpInside)
+    }
+    
+    private func configureOffersTableView() {
+        detailView.offersTableView.delegate = self
+        detailView.offersTableView.dataSource = self
+        detailView.offersTableView.separatorStyle = .none
+    }
     
     private func makeAnnotation(for venue: Venue) -> MKPointAnnotation {
         selectedVenue = venue
@@ -126,21 +139,6 @@ End Time: \(end)
         }
     }
     
-    
-    //MARK: Claim Button
-    @objc private func claimButton(_ sender: UIButton) {
-        //let claimVC = ClaimButton
-        //navigationController?.pushViewController(claimVC, animated: true)
-
-        
-    }
-    
-    
-    //MARK: Get Direction Button
-    @objc private func GetDirection(_ sender: UIButton) {
-        openMapForPlace()
-    }
-    
     func openMapForPlace(){
         let lat1: NSString = (self.selectedVenue?.lat.description ?? "0.0") as NSString
         let long1: NSString = (self.selectedVenue?.long.description ?? "0.0") as NSString
@@ -160,7 +158,32 @@ End Time: \(end)
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "\(self.selectedVenue?.name ?? "")"
         mapItem.openInMaps(launchOptions: options)
-        
+    }
+    
+    private func getOffers() {
+        guard let venue = selectedVenue else { return }
+        DatabaseService.shared.fetchVenueOffers(venue.venueId) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: error.localizedDescription)
+            case .success(let offers):
+                self?.selectedOffers = offers
+            }
+        }
+    }
+    
+    //MARK: Claim Button
+    @objc private func claimButton(_ sender: UIButton) {
+
+    }
+    
+    //MARK: Get Direction Button
+    @objc private func GetDirection(_ sender: UIButton) {
+        openMapForPlace()
+    }
+    
+    @objc private func getDirectionButtonPressed(_ sender: UIButton) {
+        getDirections()
     }
 
 }
@@ -174,7 +197,7 @@ extension UserDetailViewController: MKMapViewDelegate {
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
         
         if annotationView == nil {
-            annotationView == MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
             annotationView?.tintColor = .black
             annotationView?.markerTintColor = .systemRed
@@ -184,12 +207,12 @@ extension UserDetailViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKPolygonRenderer {
-        let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-        renderer.strokeColor = UIColor.systemBlue
-        renderer.lineWidth = 3.0
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+         let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+         renderer.strokeColor = UIColor.systemBlue
+         renderer.lineWidth = 3.0
 
-        return renderer
+         return renderer
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
@@ -198,8 +221,25 @@ extension UserDetailViewController: MKMapViewDelegate {
         }
         isShowingNewAnnotation = false
     }
+}
+
+extension UserDetailViewController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedOffers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let xCell = tableView.dequeueReusableCell(withIdentifier: "offerCell", for: indexPath) as? OffersCell else {
+            fatalError("Could not dequeue UITableViewCell as an OffersCell. ")
+        }
+        xCell.configureCell(for: selectedOffers[indexPath.row])
+        return xCell
+    }
     
 }
 
+extension UserDetailViewController: UITableViewDelegate {
+    
+}
 

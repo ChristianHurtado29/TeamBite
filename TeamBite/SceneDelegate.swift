@@ -40,11 +40,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //
 //        } else {
 //            window?.rootViewController = UINavigationController(rootViewController: TabBarController())
-        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
-        window?.rootViewController = vc
-        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
-//        }
+//        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
+//        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
+        let vc = MainViewController()
+        window?.rootViewController = UINavigationController(rootViewController: vc)
+//        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+////        }
         window?.makeKeyAndVisible()
     }
     

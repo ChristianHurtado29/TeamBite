@@ -113,12 +113,27 @@ class UserDetailView: UIView {
     
     public lazy var getDirectionButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Get Direction", for: .normal)
+        button.setTitle("Get Directions", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         button.layer.cornerRadius = 5.0
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
         button.setTitleColor(.white, for: .normal)
         return button
+    }()
+    
+    public lazy var activeOffersLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.text = "Active Offers"
+        return label
+    }()
+    
+    public lazy var offersTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(OffersCell.self, forCellReuseIdentifier: "offerCell")
+        return tableView
     }()
     
     override init(frame: CGRect) {
@@ -139,17 +154,12 @@ class UserDetailView: UIView {
         setupHours()
         setupMap()
         setupGetDirection()
-        setupButton()
-        
-        
+        setUpActiveOffersLabelConstraints()
+        setUpOffersTableViewConstraints()
+//        setupButton()
 //        setupRestaurantInfo()
 //        setupHours()
 //        setupNumberOfMeals()
-//
-//
-        
-        
-        
     }
     
     private func setupCenterView() {
@@ -259,10 +269,6 @@ class UserDetailView: UIView {
         ])
     }
     
-    
-    
-    
-    
     private func setupButton() {
         addSubview(claimButton)
         claimButton.translatesAutoresizingMaskIntoConstraints = false
@@ -276,7 +282,6 @@ class UserDetailView: UIView {
         ])
     }
     
-
     private func setupGetDirection() {
         addSubview(getDirectionButton)
         getDirectionButton.translatesAutoresizingMaskIntoConstraints = false
@@ -286,8 +291,21 @@ class UserDetailView: UIView {
             getDirectionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
             //                getDirectionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             //                getDirectionButton.centerYAnchor.constraint(equalTo: centerYAnchor)
-            
         ])
+    }
+    
+    private func setUpActiveOffersLabelConstraints() {
+        addSubview(activeOffersLabel)
+        activeOffersLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([activeOffersLabel.topAnchor.constraint(equalTo: getDirectionButton.bottomAnchor, constant: 20), activeOffersLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), activeOffersLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+    }
+    
+    private func setUpOffersTableViewConstraints() {
+        addSubview(offersTableView)
+        offersTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([offersTableView.topAnchor.constraint(equalTo: activeOffersLabel.bottomAnchor, constant: 20), offersTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), offersTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), offersTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)])
     }
     
     

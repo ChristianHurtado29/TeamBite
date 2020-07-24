@@ -89,7 +89,8 @@ class VenueViewController: UIViewController {
     }
     
     private func fetchOffers(){
-        DatabaseService.shared.fetchVenueOffers() { [weak self] (result) in
+        guard let user = Auth.auth().currentUser else { return }
+        DatabaseService.shared.fetchVenueOffers(user.uid) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {

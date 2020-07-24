@@ -35,8 +35,6 @@ class DatabaseService {
         }
     }
     
-    
-    
     func updateVenue(address: String, phoneNumber: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else { return }
@@ -49,8 +47,6 @@ class DatabaseService {
             }
         }
     }
-    
-    
     
     // create user
     public func createUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
@@ -88,8 +84,6 @@ class DatabaseService {
         }
     }
     
-    
-    
     public func fetchVenues(completion: @escaping (Result<[Venue], Error>) -> ()) {
         db.collection(DatabaseService.venuesOwnerCollection).getDocuments { (snapshot, error) in
             if let error = error {
@@ -100,7 +94,6 @@ class DatabaseService {
             }
         }
     }
-    
     
     public func fetchVenue(completion: @escaping (Result< Venue, Error>) -> ()) {
        guard let currentUser = Auth.auth().currentUser else {return}
@@ -116,8 +109,6 @@ class DatabaseService {
         }
     }
     
-    
-    
     public func fetchAllOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
         
         db.collection(DatabaseService.venuesOwnerCollection).document().collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
@@ -131,14 +122,13 @@ class DatabaseService {
     }
     
     // just removed venueId from completion
-    public func fetchVenueOffers(completion: @escaping (Result<[Offer], Error>) -> ()) {
-        
-        guard let user = Auth.auth().currentUser else { return }
-        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
+    public func fetchVenueOffers(_ venueID: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
+
+        db.collection(DatabaseService.venuesOwnerCollection).document(venueID).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else if let snapshot = snapshot {
-                let offers = snapshot.documents.compactMap {Offer($0.data()) }
+                let offers = snapshot.documents.compactMap { Offer($0.data()) }
                 completion(.success(offers))
                 dump(offers)
             }
