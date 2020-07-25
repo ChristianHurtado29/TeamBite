@@ -102,7 +102,6 @@ class VenueViewController: UIViewController {
                     print(offers)
                 }
             }
-            
         }
     }
     

@@ -61,6 +61,7 @@
 		C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */; };
 		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
+		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneController.swift; sourceTree = "<group>"; };
 		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
+		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,6 +247,7 @@
 				13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */,
 				13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */,
 				13F39635244F7B26004BD488 /* ResourcesCell.swift */,
+				C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				636E9C6724516DED00461E43 /* TabBarController.swift in Sources */,
 				C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
+				C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */,
 				634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */,
 				C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,

@@ -9,9 +9,6 @@
 import UIKit
 import MapKit
 
-import UIKit
-import MapKit
-
 class UserDetailView: UIView {
     
     lazy var contentViewSize = CGSize(width: centerView.frame.width , height: centerView.frame.height + 400)
@@ -31,9 +28,7 @@ class UserDetailView: UIView {
         return view
         
     }()
-    
-    
-    
+
     public lazy var restaurantPhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "photo.fill")
