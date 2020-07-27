@@ -14,13 +14,14 @@ class UserDetailViewController: UIViewController {
     var selectedVenue: Venue?
     var selectedOffers: [Offer] = [] {
         didSet {
+            detailView.offersTableView.reloadData()
             if selectedOffers.count == 0 {
                 detailView.offersTableView.separatorStyle = .none
                 detailView.offersTableView.backgroundView = EmptyView(title: "No Offers", message: "This venue currently has no offerings.")
             } else {
+                detailView.offersTableView.separatorColor = UIColor.black
                 detailView.offersTableView.separatorStyle = .singleLine
                 detailView.offersTableView.backgroundView = nil
-                detailView.offersTableView.reloadData()
             }
         }
     }

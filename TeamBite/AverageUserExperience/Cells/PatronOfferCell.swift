@@ -42,12 +42,6 @@ class PatronOfferCell: UITableViewCell {
         return stack
     }()
     
-    override func layoutSubviews() {
-//        self.layer.cornerRadius = 10
-//        self.layer.borderColor = UIColor.black.cgColor
-//        self.layer.borderWidth = 1.0
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()

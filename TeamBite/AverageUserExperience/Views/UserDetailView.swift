@@ -130,7 +130,7 @@ class UserDetailView: UIView {
         tableView.register(PatronOfferCell.self, forCellReuseIdentifier: "offerCell")
         tableView.layer.borderWidth = 1.0
         tableView.layer.borderColor = UIColor.black.cgColor
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
         return tableView
     }()
     
