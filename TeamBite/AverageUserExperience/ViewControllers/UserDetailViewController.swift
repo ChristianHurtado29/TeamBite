@@ -107,7 +107,6 @@ End Time: \(end)
     private func configureOffersTableView() {
         detailView.offersTableView.delegate = self
         detailView.offersTableView.dataSource = self
-        detailView.offersTableView.separatorStyle = .none
     }
     
     private func makeAnnotation(for venue: Venue) -> MKPointAnnotation {
@@ -230,16 +229,25 @@ extension UserDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let xCell = tableView.dequeueReusableCell(withIdentifier: "offerCell", for: indexPath) as? OffersCell else {
+        guard let xCell = tableView.dequeueReusableCell(withIdentifier: "offerCell", for: indexPath) as? PatronOfferCell else {
             fatalError("Could not dequeue UITableViewCell as an OffersCell. ")
         }
-        xCell.configureCell(for: selectedOffers[indexPath.row])
+        
+        xCell.configureCell(selectedOffers[indexPath.row])
         return xCell
     }
     
 }
 
 extension UserDetailViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+  
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     
 }
 

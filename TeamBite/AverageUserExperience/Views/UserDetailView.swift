@@ -127,7 +127,10 @@ class UserDetailView: UIView {
     
     public lazy var offersTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(OffersCell.self, forCellReuseIdentifier: "offerCell")
+        tableView.register(PatronOfferCell.self, forCellReuseIdentifier: "offerCell")
+        tableView.layer.borderWidth = 1.0
+        tableView.layer.borderColor = UIColor.black.cgColor
+        tableView.separatorStyle = .none
         return tableView
     }()
     
