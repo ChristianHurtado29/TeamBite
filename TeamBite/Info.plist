@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Bite would like access to your camera in order to scan QR codes. </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>For a better user experience, this application would like to access your location</string>
+	<string>For a better user experience, this application would like to access your location.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>For a better user experience, this application would like to access your location</string>
+	<string>For a better user experience, this application would like to access your location.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

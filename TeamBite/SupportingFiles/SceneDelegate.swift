@@ -42,9 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            window?.rootViewController = UINavigationController(rootViewController: TabBarController())
 //        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
 //        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
-        let vc = MainViewController()
-        window?.rootViewController = UINavigationController(rootViewController: vc)
-//        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+//        let vc = MainViewController()
+//        window?.rootViewController = UINavigationController(rootViewController: vc)
+        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
 ////        }
         window?.makeKeyAndVisible()
     }

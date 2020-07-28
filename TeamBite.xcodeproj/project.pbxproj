@@ -220,7 +220,6 @@
 			children = (
 				13F4BA8C244E54DC00C0DC23 /* ViewController.swift */,
 				636E9C6424516BDB00461E43 /* ClaimButtonViewController.swift */,
-				C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -356,6 +355,7 @@
 				9F504D2E24500A0F00294978 /* MainViewController.swift */,
 				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
 				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
+				C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */,
 				636E9C6624516DED00461E43 /* TabBarController.swift */,
 			);
 			path = ViewControllers;

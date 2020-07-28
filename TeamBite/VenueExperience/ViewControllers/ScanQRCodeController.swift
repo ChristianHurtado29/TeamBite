@@ -90,7 +90,9 @@ class ScanQRCodeController: UIViewController {
     }
     
     private func found(_ str: String) {
-        showAlert(title: "Found", message: str)
+        showAlert(title: "Found", message: str) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
@@ -106,6 +108,6 @@ extension ScanQRCodeController: AVCaptureMetadataOutputObjectsDelegate {
             }
             found(stringValue)
         }
-        dismiss(animated: true, completion: nil)
+        // dismiss(animated: true, completion: nil)
     }
 }
