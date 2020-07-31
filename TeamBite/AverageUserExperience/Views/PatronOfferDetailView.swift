@@ -30,5 +30,12 @@ class PatronOfferDetailView: UIView {
         button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()
+    
+    public lazy var forfeitOfferButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Forfeit Offer", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        return button
+    }()
 
 }
