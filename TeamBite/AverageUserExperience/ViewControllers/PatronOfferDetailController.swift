@@ -10,21 +10,30 @@ import UIKit
 
 class PatronOfferDetailController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private let detailView = PatronOfferDetailView()
+    private var mealState = MealStatus.unclaimed
+    private let currentOffer: Offer
+    
+    init(_ offer: Offer) {
+        currentOffer = offer
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder: NSCoder) {
+        fatalError("required init?(coder:) has not been implemented.")
     }
-    */
+    
+    override func loadView() {
+        view = detailView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpUI()
+    }
+    
+    private func setUpUI() {
+        
+    }
 
 }

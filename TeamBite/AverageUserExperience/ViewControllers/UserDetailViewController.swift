@@ -247,7 +247,8 @@ extension UserDetailViewController: UITableViewDelegate {
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let offerVC = PatronOfferDetailController( selectedOffers[indexPath.row])
+        navigationController?.pushViewController(offerVC, animated: true)
     }
     
 }
