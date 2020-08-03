@@ -17,6 +17,8 @@ class PatronOfferDetailView: UIView {
     
     public lazy var qrCodeImageView: UIImageView = {
        let iv = UIImageView()
+        iv.layer.borderColor = UIColor.black.cgColor
+        iv.layer.borderWidth = 1.0
         return iv
     }()
     
@@ -77,7 +79,7 @@ class PatronOfferDetailView: UIView {
         qrCodeImageView.addSubview(willGenerateCodeLabel)
         willGenerateCodeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([willGenerateCodeLabel.centerXAnchor.constraint(equalTo: qrCodeImageView.centerXAnchor), willGenerateCodeLabel.leadingAnchor.constraint(equalTo: qrCodeImageView.leadingAnchor, constant: 8), willGenerateCodeLabel.trailingAnchor.constraint(equalTo: qrCodeImageView.trailingAnchor, constant: -8)])
+        NSLayoutConstraint.activate([willGenerateCodeLabel.centerXAnchor.constraint(equalTo: qrCodeImageView.centerXAnchor), willGenerateCodeLabel.leadingAnchor.constraint(equalTo: qrCodeImageView.leadingAnchor, constant: 8), willGenerateCodeLabel.trailingAnchor.constraint(equalTo: qrCodeImageView.trailingAnchor, constant: -8), willGenerateCodeLabel.centerYAnchor.constraint(equalTo: qrCodeImageView.centerYAnchor)])
     }
     
     private func setUpClaimOfferButtonConstraints() {

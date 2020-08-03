@@ -90,6 +90,7 @@ class ScanQRCodeController: UIViewController {
     }
     
     private func found(_ str: String) {
+        // Match string to offer. Make certain it is current. 
         showAlert(title: "Found", message: str) { (action) in
             self.dismiss(animated: true, completion: nil)
         }

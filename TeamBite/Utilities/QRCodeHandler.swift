@@ -10,7 +10,10 @@ import UIKit
 import CoreImage
 
 struct qrCodeHandler {
-    
+    // Protect against human error. If a patron shows up at the wrong place, be certain to make it so that the scan won't work, or show some manner of warning.
+    // Protect against scanning old QRCodes.
+    // Use the offer name as a seed, but also the date of the offer as well.
+    // Consider looking into invalidating QR Codes. 
     func generateQRCode(from str: String) -> UIImage? {
         let data = str.data(using: String.Encoding.ascii)
         
