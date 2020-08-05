@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol UserDetailViewControllerDelegate: AnyObject {
+    func stateChanged(_ userDetailViewController: UserDetailViewController, _ newState: AppState)
+}
+
 class UserDetailViewController: UIViewController {
     
     var selectedVenue: Venue?
@@ -33,6 +37,17 @@ class UserDetailViewController: UIViewController {
     
     private var db = DatabaseService()
     private var detailVenues = [Venue]()
+    private var currentState: AppState
+    public weak var delegate: UserDetailViewControllerDelegate?
+    
+    init(_ state: AppState) {
+        self.currentState = state
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("required init(coder:) was not implemented.")
+    }
     
     override func loadView() {
         view = detailView
@@ -247,9 +262,17 @@ extension UserDetailViewController: UITableViewDelegate {
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let offerVC = PatronOfferDetailController( selectedOffers[indexPath.row])
+        guard let currentVenue = selectedVenue else { return }
+        let offerVC = PatronOfferDetailController( selectedOffers[indexPath.row], currentVenue, currentState)
+        offerVC.delegate = self
         navigationController?.pushViewController(offerVC, animated: true)
     }
     
 }
 
+extension UserDetailViewController: PatronOfferDetailDelegate {
+    func stateChanged(_ patronOfferDetailController: PatronOfferDetailController, _ newState: AppState) {
+        currentState = newState
+        delegate?.stateChanged(self, newState)
+    }
+}

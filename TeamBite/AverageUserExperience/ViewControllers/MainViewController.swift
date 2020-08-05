@@ -9,10 +9,14 @@
 import UIKit
 import FirebaseFirestore
 
+enum AppState: String {
+    case offerClaimed = "claimed"
+    case offerUnclaimed = "unclaimed"
+}
+
 
 class MainViewController: UIViewController {
 
-    
     private var savedVenues = [Venue]() {
         didSet {
             mainView.collectionView.reloadData()
@@ -20,6 +24,16 @@ class MainViewController: UIViewController {
     }
     
     private let mainView = MainView()
+    private var currentState: AppState
+    
+    init(_ state: AppState) {
+        self.currentState = state
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("required init(coder: ) has not been implemented")
+    }
     
     override func loadView() {
         view = mainView
@@ -88,13 +102,19 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let rest = savedVenues[indexPath.row]
-        let detailVC = UserDetailViewController()
-        
+        let detailVC = UserDetailViewController(currentState)
+        detailVC.delegate = self
         detailVC.selectedVenue = rest
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+}
+
+extension MainViewController: UserDetailViewControllerDelegate {
+    func stateChanged(_ userDetailViewController: UserDetailViewController, _ newState: AppState) {
+        currentState = newState
     }
 }

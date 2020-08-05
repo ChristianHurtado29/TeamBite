@@ -135,13 +135,35 @@ class DatabaseService {
         }
     }
     
-//    public func updateNumberOfClaimedMeals(claimedMeal: Int, completion: @escaping (Result<Bool, Error>) -> ()) {
-//        guard let offer = 
-//    }
-    
-    
-    
-    
-    
-    
+    // Performs a transaction. Basically it updates the remaining meals for this offer, but makes certain that it actually updates.
+    public func claimOffer(_ venueId: String, _ offerId: String) {
+        let offerDocRef = db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            
+            do {
+                let sfDocument: DocumentSnapshot // Contains data from a document in firebase.
+                try sfDocument = transaction.getDocument(offerDocRef)
+                
+                guard let oldRemaining = sfDocument.data()?["remainingMeals"] as? Int else {
+                    let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey : "Unable to retrieve population from snapshot \(sfDocument)"])
+                    errorPointer?.pointee = error
+                    return nil
+                }
+
+                transaction.updateData(["remainingMeals": oldRemaining - 1], forDocument: offerDocRef)
+                
+            } catch let fetchError as NSError  {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Success")
+            }
+        }
+    }
 }
