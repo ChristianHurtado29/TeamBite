@@ -75,7 +75,7 @@ class UserDetailViewController: UIViewController {
             if let error = error {
                 self?.showAlert(title: "Date Retrieval Error", message: "Could not retrieve data: \(error.localizedDescription)")
             } else if let snapshot = snapshot {
-                self?.selectedOffers = snapshot.documents.compactMap{ Offer($0.data()) }
+                self?.selectedOffers = snapshot.documents.compactMap{ Offer($0.data()) }.filter{ $0.remainingMeals > 0 }
             }
         })
     }

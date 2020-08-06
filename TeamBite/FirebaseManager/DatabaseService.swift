@@ -10,6 +10,9 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+// Create a user collection to save state to.
+// Remember to change state from UserDefaults.
+// Add the ability to select add a picture to the cell. 
 class DatabaseService {
     
     static let offersCollection = "offers"
