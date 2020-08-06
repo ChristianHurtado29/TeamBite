@@ -95,5 +95,24 @@ class PatronOfferDetailView: UIView {
         
         NSLayoutConstraint.activate([forfeitOfferButton.topAnchor.constraint(equalTo: qrCodeImageView.bottomAnchor, constant: 20), forfeitOfferButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), forfeitOfferButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), forfeitOfferButton.heightAnchor.constraint(equalToConstant: 50)])
     }
+    
+    public func configureClaimedCurrentOfferState(_ offerName: String) {
+        forfeitOfferButton.alpha = 1.0
+        willGenerateCodeLabel.isHidden = true
+        qrCodeImageView.image = QRCodeHandler.generateQRCode(from: offerName)
+    }
+    
+    public func configureOfferClaimedState() {
+        claimOfferButton.alpha = 1.0
+        claimOfferButton.isUserInteractionEnabled = false
+        qrCodeImageView.image = nil
+        willGenerateCodeLabel.isHidden = false
+        willGenerateCodeLabel.text = "You will have to wait until tomorrow to claim a new offer."
+    }
+    
+    public func configureUnclaimedOfferState() {
+        claimOfferButton.alpha = 1.0
+        forfeitOfferButton.alpha = 0.0
+    }
 
 }

@@ -102,9 +102,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let rest = savedVenues[indexPath.row]
-        let detailVC = UserDetailViewController(currentState)
+        let detailVC = UserDetailViewController(currentState, rest)
         detailVC.delegate = self
-        detailVC.selectedVenue = rest
         navigationController?.pushViewController(detailVC, animated: true)
     }
     

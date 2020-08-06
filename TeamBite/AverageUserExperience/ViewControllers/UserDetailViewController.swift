@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseFirestore
 
 protocol UserDetailViewControllerDelegate: AnyObject {
     func stateChanged(_ userDetailViewController: UserDetailViewController, _ newState: AppState)
@@ -15,7 +16,7 @@ protocol UserDetailViewControllerDelegate: AnyObject {
 
 class UserDetailViewController: UIViewController {
     
-    var selectedVenue: Venue?
+    var selectedVenue: Venue
     var selectedOffers: [Offer] = [] {
         didSet {
             detailView.offersTableView.reloadData()
@@ -38,10 +39,12 @@ class UserDetailViewController: UIViewController {
     private var db = DatabaseService()
     private var detailVenues = [Venue]()
     private var currentState: AppState
+    private var listener: ListenerRegistration?
     public weak var delegate: UserDetailViewControllerDelegate?
     
-    init(_ state: AppState) {
+    init(_ state: AppState, _ venue: Venue) {
         self.currentState = state
+        self.selectedVenue = venue
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,11 +61,28 @@ class UserDetailViewController: UIViewController {
         configureMapView()
         updateUI()
         loadMap()
-        loadVenue()
+        //loadVenue()
         getDirections()
-        getOffers()
+        //getOffers()
         configureGetDirectionsButton()
         configureOffersTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Filter by meals with remaining more than 0.
+        listener = Firestore.firestore().collection(DatabaseService.venuesOwnerCollection).document(selectedVenue.venueId).collection(DatabaseService.offersCollection).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                self?.showAlert(title: "Date Retrieval Error", message: "Could not retrieve data: \(error.localizedDescription)")
+            } else if let snapshot = snapshot {
+                self?.selectedOffers = snapshot.documents.compactMap{ Offer($0.data()) }
+            }
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        listener?.remove()
     }
     
     private func configureMapView() {
@@ -76,29 +96,28 @@ class UserDetailViewController: UIViewController {
     
     private func updateUI() {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        navigationItem.title = selectedVenue?.name
+        navigationItem.title = selectedVenue.name
         
-        if let start = selectedVenue?.startTime, let end = selectedVenue?.endTime {
-        detailView.hoursOFOperation.text = """
-Start Time: \(start)
-            
-End Time: \(end)
-"""
-        }
+//        if let start = selectedVenue.startTime, let end = selectedVenue.endTime {
+//        detailView.hoursOFOperation.text = """
+//Start Time: \(start)
+//
+//End Time: \(end)
+//"""
+//        }
         
         detailView.thisNeedsTobeRefactor.text = """
         Address:
-        \(selectedVenue?.address ?? "No Address")
+        \(selectedVenue.address)
         """
-        detailView.refactor.text = "Phone: \(selectedVenue?.phoneNumber ?? "No Phone")"
+        detailView.refactor.text = "Phone: \(selectedVenue.phoneNumber ?? "No phone number")"
         
         // Have to add resturant picture !!
         
     }
     
     private func loadMap() {
-        guard let ven = selectedVenue else { return }
-        let annotation = makeAnnotation(for: ven)
+        let annotation = makeAnnotation(for: selectedVenue)
         detailView.locationMap.addAnnotation(annotation)
         getDirections()
     }
@@ -139,7 +158,7 @@ End Time: \(end)
     }
     
     private func getDirections() {
-        let coordinate = CLLocationCoordinate2D(latitude: selectedVenue?.lat ?? 0.0, longitude: selectedVenue?.long ?? 0.0)
+        let coordinate = CLLocationCoordinate2D(latitude: selectedVenue.lat, longitude: selectedVenue.long)
         let request = MKDirections.Request()
         request.source = MKMapItem.forCurrentLocation()
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
@@ -155,8 +174,8 @@ End Time: \(end)
     }
     
     func openMapForPlace(){
-        let lat1: NSString = (self.selectedVenue?.lat.description ?? "0.0") as NSString
-        let long1: NSString = (self.selectedVenue?.long.description ?? "0.0") as NSString
+        let lat1: NSString = (self.selectedVenue.lat.description) as NSString
+        let long1: NSString = (self.selectedVenue.long.description) as NSString
         
         let latitude: CLLocationDegrees = lat1.doubleValue
         let longitude: CLLocationDegrees = long1.doubleValue
@@ -171,13 +190,13 @@ End Time: \(end)
         
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "\(self.selectedVenue?.name ?? "")"
+        mapItem.name = selectedVenue.name
         mapItem.openInMaps(launchOptions: options)
     }
     
     private func getOffers() {
-        guard let venue = selectedVenue else { return }
-        DatabaseService.shared.fetchVenueOffers(venue.venueId) { [weak self] result in
+
+        DatabaseService.shared.fetchVenueOffers(selectedVenue.venueId) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: error.localizedDescription)
@@ -185,11 +204,6 @@ End Time: \(end)
                 self?.selectedOffers = offers
             }
         }
-    }
-    
-    //MARK: Claim Button
-    @objc private func claimButton(_ sender: UIButton) {
-
     }
     
     //MARK: Get Direction Button
@@ -262,8 +276,7 @@ extension UserDetailViewController: UITableViewDelegate {
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentVenue = selectedVenue else { return }
-        let offerVC = PatronOfferDetailController( selectedOffers[indexPath.row], currentVenue, currentState)
+        let offerVC = PatronOfferDetailController( selectedOffers[indexPath.row], selectedVenue, currentState)
         offerVC.delegate = self
         navigationController?.pushViewController(offerVC, animated: true)
     }

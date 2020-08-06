@@ -149,7 +149,7 @@ class UserDetailView: UIView {
    //     configImage()
         setupVenueAddress()
         setupPhoneNumber()
-        setupHours()
+//        setupHours()
         setupMap()
         setupGetDirection()
         setUpActiveOffersLabelConstraints()
@@ -259,7 +259,7 @@ class UserDetailView: UIView {
         addSubview(locationMap)
         locationMap.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            locationMap.topAnchor.constraint(equalTo: hoursOFOperation.bottomAnchor, constant: 15),
+            locationMap.topAnchor.constraint(equalTo: refactor.bottomAnchor, constant: 15),
             locationMap.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
             locationMap.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             locationMap.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)

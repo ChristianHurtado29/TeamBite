@@ -43,6 +43,7 @@ class PatronOfferDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        configureState()
     }
     
     private func setUpUI() {
@@ -51,21 +52,17 @@ class PatronOfferDetailController: UIViewController {
         detailView.backgroundColor = UIColor.systemBackground
         detailView.claimOfferButton.addTarget(self, action: #selector(claimOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.forfeitOfferButton.addTarget(self, action: #selector(forfeitOfferButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func configureState() {
         if currentState == AppState.offerClaimed{
             if UserDefaultsHandler.getOfferName() ?? "" == currentOffer.nameOfOffer {
-                detailView.forfeitOfferButton.alpha = 1.0
-                detailView.willGenerateCodeLabel.isHidden = true
-                detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: currentOffer.nameOfOffer)
+                detailView.configureClaimedCurrentOfferState(currentOffer.nameOfOffer)
             } else {
-                detailView.claimOfferButton.alpha = 1.0
-                detailView.claimOfferButton.isUserInteractionEnabled = false
-                detailView.qrCodeImageView.image = nil
-                detailView.willGenerateCodeLabel.isHidden = false
-                detailView.willGenerateCodeLabel.text = "You will have to wait until tomorrow to claim a new offer."
+                detailView.configureOfferClaimedState()
             }
         } else {
-            detailView.claimOfferButton.alpha = 1.0
-            detailView.forfeitOfferButton.alpha = 0.0
+            detailView.configureUnclaimedOfferState()
         }
     }
     
@@ -77,14 +74,27 @@ class PatronOfferDetailController: UIViewController {
     }
     
     private func claimedButtonUpdates() {
+        DatabaseService.shared.claimOffer(currentVenue.venueId, currentOffer.offerId) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not successfully claim offer: \(error.localizedDescription)") { [weak self] alertAction in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            case .success:
+                self?.showAlert(title: "Success", message: "Successfully claimed offer.")
+                self?.setClaimedState()
+            }
+        }
+        delegate?.stateChanged(self, AppState.offerClaimed)
+    }
+    
+    private func setClaimedState() {
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
         detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: currentOffer.nameOfOffer)
         UserDefaultsHandler.setStateToClaimed()
         UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
-        DatabaseService.shared.claimOffer(currentVenue.venueId, currentOffer.offerId)
-        delegate?.stateChanged(self, AppState.offerClaimed)
     }
     
     @objc
@@ -99,7 +109,16 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.isUserInteractionEnabled = false
         detailView.forfeitOfferButton.alpha = 0.0
         UserDefaultsHandler.resetOfferName()
-        // Return the meal back to being available.
+        DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId) {
+            [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not forfeit error: \(error.localizedDescription)")
+            case .success:
+                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You'll be able to claim another meal tomorrow.")
+            }
+        }
+        detailView.configureOfferClaimedState()
     }
 
 }
