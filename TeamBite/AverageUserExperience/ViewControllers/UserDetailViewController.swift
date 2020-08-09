@@ -70,7 +70,6 @@ class UserDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Filter by meals with remaining more than 0.
         listener = Firestore.firestore().collection(DatabaseService.venuesOwnerCollection).document(selectedVenue.venueId).collection(DatabaseService.offersCollection).addSnapshotListener({ [weak self] (snapshot, error) in
             if let error = error {
                 self?.showAlert(title: "Date Retrieval Error", message: "Could not retrieve data: \(error.localizedDescription)")

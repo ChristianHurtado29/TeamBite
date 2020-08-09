@@ -12,6 +12,7 @@ struct User: Codable {
     let userId: String
     let phoneNumber: String
     let allergies: [String]
+    let claimStatus: String
 }
 
 extension User {
@@ -19,5 +20,6 @@ extension User {
         self.userId = dictionary["userId"] as? String ?? UUID().uuidString
         self.phoneNumber = dictionary["phoneNumber"] as? String ?? "No Number"
         self.allergies = dictionary["allergies"] as? [String] ?? ["No Allergies"]
+        self.claimStatus = dictionary["claimStatus"] as? String ?? "unclaimed"
     }
 }

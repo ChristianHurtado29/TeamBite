@@ -90,14 +90,16 @@ class LoginWithPhoneController: UIViewController {
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Authentication Error", message: "Could not sign into firebase with provided credential: \(error) ")
-            case .success:
+            case .success(let authResult):
 //                let storyborder = UIStoryboard(name: "Wireframe", bundle: nil)
 //                guard let userTabBarController = storyborder.instantiateViewController(identifier: "UserTabBarController") as? UITabBarController else {
 //                    fatalError("Could not instantiate view controller")
 //                }
 //                UIViewController.resetWindow(userTabBarController)
+                if let prefs = self?.dietaryPreferences {
+                    self?.doesNewUserExist(authResult, prefs)
+                }
                 let tabBarController = TabBarController()
-                
                 UIViewController.resetWindow(tabBarController)
             }
         }
@@ -124,6 +126,35 @@ class LoginWithPhoneController: UIViewController {
         }
         
         return true
+    }
+    
+    private func createNewUser(_ authResult: AuthDataResult, _ prefs: [String]) {
+        let newUser = User(userId: authResult.user.uid, phoneNumber: authResult.user.phoneNumber ?? "None", allergies: prefs, claimStatus: "unclaimed")
+        DatabaseService.shared.createUser(newUser) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not add user information to database: \(error.localizedDescription)")
+            case .success:
+                print()
+            }
+        }
+    }
+    
+    private func doesNewUserExist(_ authResult: AuthDataResult, _ prefs: [String]) {
+        DatabaseService.shared.doesAccountExist(authResult.user.uid) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not verify the existence of user: \(error.localizedDescription)")
+            case .success(let isAUser):
+                print("IS A USER: \(isAUser)")
+                if isAUser {
+                    let tabBarController = TabBarController()
+                    UIViewController.resetWindow(tabBarController)
+                } else {
+                    self?.createNewUser(authResult, prefs)
+                }
+            }
+        }
     }
     
     @objc

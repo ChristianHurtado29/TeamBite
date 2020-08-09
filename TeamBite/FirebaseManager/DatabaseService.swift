@@ -52,15 +52,29 @@ class DatabaseService {
     }
     
     // create user
-    public func createUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
-        guard let phone = authDataResult.user.phoneNumber else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["phoneNumber":phone,
-                                                                                                  "userId": authDataResult.user.uid, ]){ (error) in
-                                                                                                    if let error = error {
-                                                                                                        completion(.failure(error))
-                                                                                                    } else {
-                                                                                                        completion(.success(true))
-                                                                                                    }
+    public func createUser(_ patron: User, completion: @escaping (Result<Bool, Error>) -> ()){
+        db.collection(DatabaseService.usersCollection).document(patron.userId).setData(["phoneNumber":patron.phoneNumber ,"userId": patron.userId, "allergies": patron.allergies, "claimStatus": patron.claimStatus]){ (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    // Checks to see if current user already exists
+    public func doesAccountExist(_ userId: String, _ completion: @escaping ((Result<Bool,Error>) -> ())) {
+        db.collection(DatabaseService.usersCollection).whereField("userId", isEqualTo: userId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snap = snapshot {
+                let users = snap.documents.map{ User($0.data())}
+                if users.count > 0 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
         }
     }
     
@@ -99,7 +113,7 @@ class DatabaseService {
     }
     
     public func fetchVenue(completion: @escaping (Result< Venue, Error>) -> ()) {
-       guard let currentUser = Auth.auth().currentUser else {return}
+        guard let currentUser = Auth.auth().currentUser else {return}
         
         db.collection(DatabaseService.venuesOwnerCollection).whereField("userId", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
             if let error = error {
@@ -126,7 +140,7 @@ class DatabaseService {
     
     // just removed venueId from completion
     public func fetchVenueOffers(_ venueID: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
-
+        
         db.collection(DatabaseService.venuesOwnerCollection).document(venueID).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
@@ -153,7 +167,7 @@ class DatabaseService {
                     errorPointer?.pointee = error
                     return nil
                 }
-
+                
                 transaction.updateData(["remainingMeals": oldRemaining - 1], forDocument: offerDocRef)
                 
             } catch let fetchError as NSError  {

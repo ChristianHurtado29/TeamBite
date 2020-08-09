@@ -66,7 +66,6 @@ class MainViewController: UIViewController {
                 }
             case .success(let item):
                 self?.savedVenues = item
-                dump(item)
             }
         }
     }
@@ -78,7 +77,7 @@ class MainViewController: UIViewController {
 //MARK: UICollection Delegate Extension
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("main vc # of venues:\(savedVenues.count)")
+        
         return savedVenues.count
     }
     

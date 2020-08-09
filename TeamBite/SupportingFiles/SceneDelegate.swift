@@ -43,7 +43,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
 //        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
         UserDefaultsHandler.resetState()
-        let vc = MainViewController(AppState(rawValue: UserDefaultsHandler.getAppState() ?? "unclaimed") ?? AppState.offerUnclaimed)
+//        let vc = MainViewController(AppState(rawValue: UserDefaultsHandler.getAppState() ?? "unclaimed") ?? AppState.offerUnclaimed)
+        let vc = LoginViewController()
         window?.rootViewController = UINavigationController(rootViewController: vc)
 //        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
 ////        }
