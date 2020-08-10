@@ -98,9 +98,10 @@ class LoginWithPhoneController: UIViewController {
 //                UIViewController.resetWindow(userTabBarController)
                 if let prefs = self?.dietaryPreferences {
                     self?.doesNewUserExist(authResult, prefs)
+                } else {
+                    let tabBarController = TabBarController()
+                    UIViewController.resetWindow(tabBarController)
                 }
-                let tabBarController = TabBarController()
-                UIViewController.resetWindow(tabBarController)
             }
         }
     }
@@ -135,7 +136,8 @@ class LoginWithPhoneController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not add user information to database: \(error.localizedDescription)")
             case .success:
-                print()
+                let tabBarController = TabBarController()
+                UIViewController.resetWindow(tabBarController)
             }
         }
     }

@@ -68,8 +68,7 @@ class DatabaseService {
             if let error = error {
                 completion(.failure(error))
             } else if let snap = snapshot {
-                let users = snap.documents.map{ User($0.data())}
-                if users.count > 0 {
+                if snap.documents.count > 0 {
                     completion(.success(true))
                 } else {
                     completion(.success(false))
