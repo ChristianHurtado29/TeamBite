@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol PatronOfferDetailDelegate: AnyObject {
     func stateChanged(_ patronOfferDetailController: PatronOfferDetailController, _ newState: AppState)
@@ -22,10 +23,13 @@ class PatronOfferDetailController: UIViewController {
     private var currentState: AppState
     private let currentOffer: Offer
     private let currentVenue: Venue
+    private let currentUserId: String
     
     public weak var delegate: PatronOfferDetailDelegate?
     
     init(_ offer: Offer, _ venue: Venue, _ state: AppState) {
+        let userId = Auth.auth().currentUser?.uid ?? ""
+        self.currentUserId = userId
         self.currentState = state
         self.currentOffer = offer
         self.currentVenue = venue
@@ -93,13 +97,21 @@ class PatronOfferDetailController: UIViewController {
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
         detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: currentOffer.nameOfOffer)
+        DatabaseService.shared.updateStatus(currentUserId, "claimed") { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Update Error", message: "Could not update claim status: \(error.localizedDescription)")
+            case .success:
+                break
+            }
+        }
         UserDefaultsHandler.setStateToClaimed()
         UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
     }
     
     @objc
     private func forfeitOfferButtonPressed(_ sender: UIButton) {
-        showOfferAlert("Forfeit Offer", "You are about to forfeit your claim to this meal. If you forfeit this meal, you will not be able to claim another until tomorrow. Are you sure that you would like to forfeit this meal?") { [weak self] (action) in
+        showOfferAlert("Forfeit Offer", "You are about to forfeit your claim to this meal. If you forfeit this meal, you will not be able to claim another until tomorrow. Are you sure that you would like to forfeit this meal?") { [weak self] action in
             self?.forfeitButtonUpdates()
         }
     }

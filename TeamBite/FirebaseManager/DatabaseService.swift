@@ -77,6 +77,17 @@ class DatabaseService {
         }
     }
     
+    // Update the status of the user.
+    public func updateStatus(_ userId: String, _ status: String, _ completion: @escaping ((Result<Bool, Error>) -> ())) {
+        db.collection(DatabaseService.usersCollection).document(userId).updateData(["claimStatus": status]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
         db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none"]) { (error) in
             if let error = error {

@@ -110,7 +110,7 @@ class MainViewCell: UICollectionViewCell {
             restaurantImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             restaurantImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             restaurantImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            restaurantImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.53)
+            restaurantImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50)
         ])
     }
     
