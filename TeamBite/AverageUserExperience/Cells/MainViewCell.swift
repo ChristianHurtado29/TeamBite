@@ -57,7 +57,7 @@ class MainViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "photo.fill")
         imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        imageView.contentMode = .scaleAspectFill
+        //imageView.contentMode = .scaleAspectFill This line was causing the image to expand past its bounds.
         return imageView
     }()
     
@@ -71,7 +71,8 @@ class MainViewCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        configView()
+        configureCellEffects()
+        //configView()
         configImage()
         configVenueName()
         configPhoneNumber()
@@ -85,8 +86,9 @@ class MainViewCell: UICollectionViewCell {
         addressLabel.text = ("\(savedVenue.address)")
         phoneNumber.text = ("\(savedVenue.phoneNumber ?? "")")
         
-        // keep in mind venue images match stock photo names
-        restaurantImage.image = UIImage(named: savedVenue.name)
+        // keep in mind venue images match stock photo names (The case is off)
+        // restaurantImage.image = UIImage(named: savedVenue.name)
+        restaurantImage.image = UIImage(systemName: "hare")
     }
     
     private func configView(){
@@ -105,12 +107,10 @@ class MainViewCell: UICollectionViewCell {
         addSubview(restaurantImage)
         restaurantImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            restaurantImage.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            restaurantImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            restaurantImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            restaurantImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4)
-           
-           
+            restaurantImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            restaurantImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            restaurantImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            restaurantImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.53)
         ])
     }
     
@@ -144,5 +144,15 @@ class MainViewCell: UICollectionViewCell {
         ])
     }
     
+    public func configureCellEffects() {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 5
+        self.layer.cornerRadius = 8
+        self.backgroundColor = UIColor.white
+        self.clipsToBounds = false
+    }
     
 }

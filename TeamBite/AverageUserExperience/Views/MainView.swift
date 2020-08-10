@@ -10,14 +10,6 @@ import UIKit
 
 class MainView: UIView {
     
-//    public lazy var logoImage: UIImageView = {
-//        let image = UIImageView()
-//        image.image = UIImage(named: "Bite")
-//        image.contentMode = .scaleAspectFill
-//        return image
-//    }()
-
-    
     public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -26,8 +18,6 @@ class MainView: UIView {
         return cv
     }()
     
-
-    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -35,6 +25,7 @@ class MainView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
     }
 
     private func commonInit() {
@@ -63,7 +54,6 @@ class MainView: UIView {
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-        
         ])
     }
     

@@ -63,7 +63,6 @@ class LoginWithPhoneController: UIViewController {
                 self?.showAlert(title: "Error", message: "Could not verify phone Number: \(error)")
                 return
             } else if let verificationID = verificationID {
-                // TODO: Create User Instance and push to firebase
                 self?.promptUserForVerificationCode(verificationID)
             }
         }
@@ -91,11 +90,6 @@ class LoginWithPhoneController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Authentication Error", message: "Could not sign into firebase with provided credential: \(error) ")
             case .success(let authResult):
-//                let storyborder = UIStoryboard(name: "Wireframe", bundle: nil)
-//                guard let userTabBarController = storyborder.instantiateViewController(identifier: "UserTabBarController") as? UITabBarController else {
-//                    fatalError("Could not instantiate view controller")
-//                }
-//                UIViewController.resetWindow(userTabBarController)
                 if let prefs = self?.dietaryPreferences {
                     self?.doesNewUserExist(authResult, prefs)
                 } else {
