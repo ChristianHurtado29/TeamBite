@@ -105,11 +105,11 @@ class UserDetailViewController: UIViewController {
 //"""
 //        }
         
-        detailView.thisNeedsTobeRefactor.text = """
+        detailView.addressLabel.text = """
         Address:
         \(selectedVenue.address)
         """
-        detailView.refactor.text = "Phone: \(selectedVenue.phoneNumber ?? "No phone number")"
+        detailView.phoneNumberLabel.text = "Phone: \(selectedVenue.phoneNumber ?? "No phone number")"
         
         // Have to add resturant picture !!
         

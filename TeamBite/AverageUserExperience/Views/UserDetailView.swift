@@ -38,7 +38,7 @@ class UserDetailView: UIView {
     }()
     
     // ADDRESS LABEL
-    public lazy var thisNeedsTobeRefactor: UILabel = {
+    public lazy var addressLabel: UILabel = {
         let layout = UILabel()
         layout.text = "FILLER ADDRESS"
         layout.numberOfLines = 2
@@ -48,7 +48,7 @@ class UserDetailView: UIView {
         return layout
     }()
     
-    public lazy var refactor: UILabel = {
+    public lazy var phoneNumberLabel: UILabel = {
         let layout = UILabel()
         layout.text = "FILLER Phone"
         layout.numberOfLines = 2
@@ -150,8 +150,8 @@ class UserDetailView: UIView {
         setupVenueAddress()
         setupPhoneNumber()
 //        setupHours()
-        setupMap()
-        setupGetDirection()
+//        setupMap()
+//        setupGetDirection()
         setUpActiveOffersLabelConstraints()
         setUpOffersTableViewConstraints()
 //        setupButton()
@@ -185,7 +185,7 @@ class UserDetailView: UIView {
         ])
         
     }
-    private func configImage() { // This is a image
+    private func configImage() { // This is an image
         centerView.addSubview(restaurantPhoto)
         restaurantPhoto.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -221,24 +221,24 @@ class UserDetailView: UIView {
     }
     
     private func setupVenueAddress() {
-        addSubview(thisNeedsTobeRefactor)
-        thisNeedsTobeRefactor.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(addressLabel)
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            thisNeedsTobeRefactor.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            thisNeedsTobeRefactor.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            thisNeedsTobeRefactor.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            addressLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
             
         ])
     }
     
     
     private func setupPhoneNumber() {
-        addSubview(refactor)
-        refactor.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(phoneNumberLabel)
+        phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            refactor.topAnchor.constraint(equalTo: thisNeedsTobeRefactor.bottomAnchor, constant:  10),
-            refactor.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            refactor.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            phoneNumberLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant:  10),
+            phoneNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            phoneNumberLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
             
         ])
     }
@@ -248,7 +248,7 @@ class UserDetailView: UIView {
         addSubview(hoursOFOperation)
         hoursOFOperation.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            hoursOFOperation.topAnchor.constraint(equalTo: refactor.bottomAnchor, constant: 10),
+            hoursOFOperation.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 10),
             hoursOFOperation.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             hoursOFOperation.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
@@ -259,7 +259,7 @@ class UserDetailView: UIView {
         addSubview(locationMap)
         locationMap.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            locationMap.topAnchor.constraint(equalTo: refactor.bottomAnchor, constant: 15),
+            locationMap.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 15),
             locationMap.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
             locationMap.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             locationMap.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
@@ -296,7 +296,7 @@ class UserDetailView: UIView {
         addSubview(activeOffersLabel)
         activeOffersLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([activeOffersLabel.topAnchor.constraint(equalTo: getDirectionButton.bottomAnchor, constant: 20), activeOffersLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), activeOffersLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+        NSLayoutConstraint.activate([activeOffersLabel.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 20), activeOffersLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), activeOffersLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
     }
     
     private func setUpOffersTableViewConstraints() {
