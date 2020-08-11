@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import FirebaseAuth
 
 protocol PatronOfferDetailDelegate: AnyObject {
@@ -24,6 +25,7 @@ class PatronOfferDetailController: UIViewController {
     private let currentOffer: Offer
     private let currentVenue: Venue
     private let currentUserId: String
+    private let coreLocationManager = CoreLocationManager()
     
     public weak var delegate: PatronOfferDetailDelegate?
     
@@ -48,14 +50,24 @@ class PatronOfferDetailController: UIViewController {
         super.viewDidLoad()
         setUpUI()
         configureState()
+        configureMapView()
     }
     
     private func setUpUI() {
         navigationItem.title = currentOffer.nameOfOffer
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         detailView.backgroundColor = UIColor.systemBackground
+        detailView.mapView.delegate = self
+        
         detailView.claimOfferButton.addTarget(self, action: #selector(claimOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.forfeitOfferButton.addTarget(self, action: #selector(forfeitOfferButtonPressed(_:)), for: .touchUpInside)
+        detailView.getDirectionsButton.addTarget(self, action: #selector(getDirectionsButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func configureMapView() {
+        let annotation = coreLocationManager.createAnnotation(CLLocationCoordinate2D(latitude: currentVenue.lat, longitude: currentVenue.long), currentVenue.name)
+        detailView.mapView.addAnnotation(annotation)
+        detailView.mapView.showAnnotations([annotation], animated: true)
     }
     
     private func configureState() {
@@ -132,5 +144,14 @@ class PatronOfferDetailController: UIViewController {
         }
         detailView.configureOfferClaimedState()
     }
+    
+    @objc
+    private func getDirectionsButtonPressed(_ sender: UIButton) {
+        
+    }
 
+}
+
+extension PatronOfferDetailController: MKMapViewDelegate {
+    
 }

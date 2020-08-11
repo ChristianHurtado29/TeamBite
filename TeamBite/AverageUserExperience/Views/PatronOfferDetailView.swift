@@ -12,6 +12,7 @@ enum MealStatus {
 }
 
 import UIKit
+import MapKit
 
 class PatronOfferDetailView: UIView {
     
@@ -51,6 +52,30 @@ class PatronOfferDetailView: UIView {
         return button
     }()
     
+    public lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.isScrollEnabled = true
+        scroll.backgroundColor = UIColor.systemBackground
+        scroll.isUserInteractionEnabled = false
+        return scroll
+    }()
+    
+    public lazy var mapView: MKMapView = {
+       let mapView = MKMapView()
+        mapView.showsUserLocation = true
+        mapView.isZoomEnabled = true
+        return mapView
+    }()
+    
+    public lazy var getDirectionsButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("Get Directions", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
+        button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -61,18 +86,33 @@ class PatronOfferDetailView: UIView {
         commonInit()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + UIScreen.main.bounds.height * 0.4)
+    }
+    
     private func commonInit() {
+        setUpScrollViewConstraints()
         setUpQRCodeImageViewConstraints()
         setUpWillGenerateCodeLabelConstraints()
         setUpClaimOfferButtonConstraints()
         setUpForfeitOfferButtonConstraints()
+        setUpMapViewConstraints()
+        setUpGetDirectionsButtonConstraints()
+    }
+    
+    private func setUpScrollViewConstraints() {
+        addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)])
     }
     
     private func setUpQRCodeImageViewConstraints() {
-        addSubview(qrCodeImageView)
+        scrollView.addSubview(qrCodeImageView)
         qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([qrCodeImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20), qrCodeImageView.centerXAnchor.constraint(equalTo: centerXAnchor), qrCodeImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4), qrCodeImageView.widthAnchor.constraint(equalTo: qrCodeImageView.heightAnchor)])
+        NSLayoutConstraint.activate([qrCodeImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20), qrCodeImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor), qrCodeImageView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.4), qrCodeImageView.widthAnchor.constraint(equalTo: qrCodeImageView.heightAnchor)])
     }
     
     private func setUpWillGenerateCodeLabelConstraints() {
@@ -83,17 +123,31 @@ class PatronOfferDetailView: UIView {
     }
     
     private func setUpClaimOfferButtonConstraints() {
-        addSubview(claimOfferButton)
+        scrollView.addSubview(claimOfferButton)
         claimOfferButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([claimOfferButton.topAnchor.constraint(equalTo: qrCodeImageView.bottomAnchor, constant: 20), claimOfferButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), claimOfferButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), claimOfferButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     private func setUpForfeitOfferButtonConstraints() {
-        addSubview(forfeitOfferButton)
+        scrollView.addSubview(forfeitOfferButton)
         forfeitOfferButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([forfeitOfferButton.topAnchor.constraint(equalTo: qrCodeImageView.bottomAnchor, constant: 20), forfeitOfferButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), forfeitOfferButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), forfeitOfferButton.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func setUpMapViewConstraints() {
+        scrollView.addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([mapView.topAnchor.constraint(equalTo: claimOfferButton.bottomAnchor, constant: 20), mapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), mapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)])
+    }
+    
+    private func setUpGetDirectionsButtonConstraints() {
+        scrollView.addSubview(getDirectionsButton)
+        getDirectionsButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([getDirectionsButton.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 20), getDirectionsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), getDirectionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), getDirectionsButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     public func configureClaimedCurrentOfferState(_ offerName: String) {

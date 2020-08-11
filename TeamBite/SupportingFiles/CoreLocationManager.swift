@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 protocol CoreLocationManagerDelegate: AnyObject {
     func locationChanged(_ coreLocationManager: CoreLocationManager, _ locations: [CLLocation])
@@ -58,6 +59,13 @@ class CoreLocationManager: NSObject{
             return
         }
         locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    public func createAnnotation(_ coordinates: CLLocationCoordinate2D, _ locationName: String) -> MKPointAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        annotation.title = locationName
+        return annotation
     }
 }
 
