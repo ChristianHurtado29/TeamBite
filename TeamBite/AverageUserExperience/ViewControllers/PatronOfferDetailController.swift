@@ -147,8 +147,11 @@ class PatronOfferDetailController: UIViewController {
     
     @objc
     private func getDirectionsButtonPressed(_ sender: UIButton) {
-        let getDirectionsVC = GetDirectionsController(currentVenue)
-        present(getDirectionsVC, animated: true)
+        let destinationPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: currentVenue.lat, longitude: currentVenue.long))
+        let destinationItem = MKMapItem(placemark: destinationPlacemark)
+        destinationItem.name = currentVenue.name
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        destinationItem.openInMaps(launchOptions: launchOptions)
     }
 
 }
