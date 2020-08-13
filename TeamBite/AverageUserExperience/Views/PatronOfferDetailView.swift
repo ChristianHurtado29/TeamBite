@@ -88,7 +88,7 @@ class PatronOfferDetailView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + UIScreen.main.bounds.height * 0.4)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + UIScreen.main.bounds.height * 0.2)
     }
     
     private func commonInit() {

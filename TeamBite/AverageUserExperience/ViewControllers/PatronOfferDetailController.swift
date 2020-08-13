@@ -104,10 +104,11 @@ class PatronOfferDetailController: UIViewController {
     }
     
     private func setClaimedState() {
+        let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.todaysDateAsAString())"
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
-        detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: currentOffer.nameOfOffer)
+        detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: qrCodeString)
         DatabaseService.shared.updateStatus(currentUserId, "claimed") { [weak self] result in
             switch result {
             case .failure(let error):
