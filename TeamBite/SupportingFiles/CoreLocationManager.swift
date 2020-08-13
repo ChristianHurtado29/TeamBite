@@ -22,10 +22,19 @@ class CoreLocationManager: NSObject{
     override init(){
         locationManager = CLLocationManager()
         super.init()
-        
+        accessLocation()
+    }
+    
+    private func accessLocation() {
+        guard CLLocationManager.locationServicesEnabled() else { return }
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.requestLocation()
+        }
     }
     
     public func convertCoordinateIntoPlacemark(_ coordinate: CLLocationCoordinate2D, completion: @escaping (Result<CLPlacemark,Error>) -> ()){

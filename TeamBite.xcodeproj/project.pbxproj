@@ -64,6 +64,8 @@
 		C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */; };
 		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
+		C48688E024E4B660004C5CEE /* GetDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48688DF24E4B660004C5CEE /* GetDirectionsView.swift */; };
+		C48688E224E4B7FC004C5CEE /* GetDirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48688E124E4B7FC004C5CEE /* GetDirectionsController.swift */; };
 		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
@@ -133,6 +135,8 @@
 		C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneController.swift; sourceTree = "<group>"; };
 		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
+		C48688DF24E4B660004C5CEE /* GetDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsView.swift; sourceTree = "<group>"; };
+		C48688E124E4B7FC004C5CEE /* GetDirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDirectionsController.swift; sourceTree = "<group>"; };
 		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -347,6 +351,7 @@
 				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
 				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
 				C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */,
+				C48688DF24E4B660004C5CEE /* GetDirectionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
 				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
 				C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */,
+				C48688E124E4B7FC004C5CEE /* GetDirectionsController.swift */,
 				636E9C6624516DED00461E43 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
@@ -585,6 +591,8 @@
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
 				636E9C6724516DED00461E43 /* TabBarController.swift in Sources */,
 				C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */,
+				C48688E224E4B7FC004C5CEE /* GetDirectionsController.swift in Sources */,
+				C48688E024E4B660004C5CEE /* GetDirectionsView.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
 				C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */,
 				634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */,

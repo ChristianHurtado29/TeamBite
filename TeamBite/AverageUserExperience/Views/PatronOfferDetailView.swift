@@ -56,7 +56,6 @@ class PatronOfferDetailView: UIView {
         let scroll = UIScrollView()
         scroll.isScrollEnabled = true
         scroll.backgroundColor = UIColor.systemBackground
-        scroll.isUserInteractionEnabled = false
         return scroll
     }()
     
@@ -64,6 +63,7 @@ class PatronOfferDetailView: UIView {
        let mapView = MKMapView()
         mapView.showsUserLocation = true
         mapView.isZoomEnabled = true
+        mapView.isUserInteractionEnabled = false
         return mapView
     }()
     

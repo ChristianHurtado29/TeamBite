@@ -58,13 +58,13 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureMapView()
+        //configureMapView()
         updateUI()
-        loadMap()
+        //loadMap()
         //loadVenue()
-        getDirections()
+        //getDirections()
         //getOffers()
-        configureGetDirectionsButton()
+       // configureGetDirectionsButton()
         configureOffersTableView()
     }
     

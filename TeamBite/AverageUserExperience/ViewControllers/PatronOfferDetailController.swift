@@ -57,7 +57,6 @@ class PatronOfferDetailController: UIViewController {
         navigationItem.title = currentOffer.nameOfOffer
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         detailView.backgroundColor = UIColor.systemBackground
-        detailView.mapView.delegate = self
         
         detailView.claimOfferButton.addTarget(self, action: #selector(claimOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.forfeitOfferButton.addTarget(self, action: #selector(forfeitOfferButtonPressed(_:)), for: .touchUpInside)
@@ -117,6 +116,7 @@ class PatronOfferDetailController: UIViewController {
                 break
             }
         }
+        delegate?.stateChanged(self, AppState.offerClaimed)
         UserDefaultsHandler.setStateToClaimed()
         UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
     }
@@ -147,11 +147,8 @@ class PatronOfferDetailController: UIViewController {
     
     @objc
     private func getDirectionsButtonPressed(_ sender: UIButton) {
-        
+        let getDirectionsVC = GetDirectionsController(currentVenue)
+        present(getDirectionsVC, animated: true)
     }
 
-}
-
-extension PatronOfferDetailController: MKMapViewDelegate {
-    
 }
