@@ -142,7 +142,6 @@ class LoginWithPhoneController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not verify the existence of user: \(error.localizedDescription)")
             case .success(let isAUser):
-                print("IS A USER: \(isAUser)")
                 if isAUser {
                     let tabBarController = TabBarController()
                     UIViewController.resetWindow(tabBarController)

@@ -27,8 +27,8 @@ class VenueSignUpView: UIView {
         return label
     }()
     
-    public lazy var emailTextField: UITextField = {
-        let textField = UITextField()
+    public lazy var emailTextField: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.placeholder = " Enter email here"
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
@@ -45,8 +45,8 @@ class VenueSignUpView: UIView {
         return label
     }()
     
-    public lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
+    public lazy var passwordTextField: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.placeholder = " Enter password here"
         textField.isSecureTextEntry = true
         textField.layer.borderColor = UIColor.black.cgColor

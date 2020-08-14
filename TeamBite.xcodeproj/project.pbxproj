@@ -55,6 +55,7 @@
 		C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */; };
 		C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */; };
 		C4700C9024DA34570040E1B2 /* UserDefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */; };
+		C4767F6E24E7070400AD8A8B /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */; };
 		C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */; };
 		C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */; };
 		C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */; };
@@ -125,6 +126,7 @@
 		C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoView.swift; sourceTree = "<group>"; };
 		C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoController.swift; sourceTree = "<group>"; };
 		C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHandler.swift; sourceTree = "<group>"; };
+		C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeHandler.swift; sourceTree = "<group>"; };
 		C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeController.swift; sourceTree = "<group>"; };
 		C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SceneChange.swift"; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */,
 				C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */,
 				C4C255D024E5F7CE00FFF08D /* DateHandler.swift */,
+				C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				636E9C6524516BDB00461E43 /* ClaimButtonViewController.swift in Sources */,
 				13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */,
 				13F4BA8B244E54DC00C0DC23 /* SceneDelegate.swift in Sources */,
+				C4767F6E24E7070400AD8A8B /* PaddedTextField.swift in Sources */,
 				C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */,
 				13F4BAB9244E5B0D00C0DC23 /* HeaderView.swift in Sources */,
 			);

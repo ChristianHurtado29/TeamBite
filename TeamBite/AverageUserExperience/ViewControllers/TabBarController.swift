@@ -11,7 +11,7 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private lazy var mainVC: MainViewController = {
-        let vc = MainViewController(AppState(rawValue: UserDefaultsHandler.getAppState() ?? "unclaimed") ?? AppState.offerUnclaimed)
+        let vc = MainViewController(AppState.offerClaimed)
         vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "globe"), tag: 0)
         return vc
     }()

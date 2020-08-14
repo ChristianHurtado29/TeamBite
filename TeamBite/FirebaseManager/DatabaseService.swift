@@ -88,6 +88,17 @@ class DatabaseService {
         }
     }
     
+    public func fetchUserStatus(_ userId: String, _ completion: @escaping (Result<String,Error>) -> ()) {
+        db.collection(DatabaseService.usersCollection).document(userId).getDocument { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snap = snapshot, let data = snap.data() {
+                let currentUser = User(data)
+                completion(.success(currentUser.claimStatus))
+            }
+        }
+    }
+    
     public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
         db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none"]) { (error) in
             if let error = error {

@@ -19,8 +19,8 @@ class LoginWithPhoneView: UIView {
         return label
     }()
     
-    public lazy var phoneNumberTextField: UITextField = {
-       let textField = UITextField()
+    public lazy var phoneNumberTextField: PaddedTextField = {
+       let textField = PaddedTextField()
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
