@@ -22,34 +22,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-//        do {
-//            try Auth.auth().signOut()
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//        if let _ = Auth.auth().currentUser?.email {
-//            let storyboard = UIStoryboard(name: "Venues", bundle: nil)
-//            guard let venueTabController = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
-//                fatalError("Could not create instance of TabBarController.")
-//            }
-//            window?.rootViewController = venueTabController
-//        } else if let _ = Auth.auth().currentUser?.phoneNumber {
-//        let tabBarController = TabBarController()
-//
-//            window?.rootViewController = tabBarController
-//
-//        } else {
-//            window?.rootViewController = UINavigationController(rootViewController: TabBarController())
-//        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
-//        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
-        UserDefaultsHandler.resetState()
-        let vc = MainViewController(AppState(rawValue: UserDefaultsHandler.getAppState() ?? "unclaimed") ?? AppState.offerUnclaimed)
-        window?.rootViewController = UINavigationController(rootViewController: vc)
-//        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
-////        }
-        window?.makeKeyAndVisible()
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+        if let _ = Auth.auth().currentUser?.email {
+            let storyboard = UIStoryboard(name: "Venues", bundle: nil)
+            guard let venueTabController = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {
+                fatalError("Could not create instance of TabBarController.")
+            }
+            window?.rootViewController = venueTabController
+        } else if let _ = Auth.auth().currentUser?.phoneNumber {
+            let tabBarController = TabBarController()
+            
+            window?.rootViewController = tabBarController
+            
+            
+        } else {
+            UserDefaultsHandler.resetState()
+            let vc = LoginViewController()
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+            //        UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
+            ////        }
+            window?.makeKeyAndVisible()
+        }
     }
-    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

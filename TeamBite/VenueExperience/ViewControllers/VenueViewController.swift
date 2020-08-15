@@ -13,7 +13,7 @@ import FirebaseFirestore
 class VenueViewController: UIViewController {
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-
+    
     private var editState = 0
     private var venue: Venue?
     private var arrayOffers = [Offer]() {
@@ -24,32 +24,35 @@ class VenueViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var venueImage: UIImageView!
     @IBOutlet weak var venueAddressLabel: UILabel!
     @IBOutlet weak var venueContactLabel: UILabel!
     @IBOutlet weak var offersTableView: UITableView!
-    @IBOutlet weak var editAddressTextField: UITextField!
-    @IBOutlet weak var editPhoneNumberTextField: UITextField!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     
+    private lazy var imagePickerController: UIImagePickerController = {
+        let ip = UIImagePickerController()
+        ip.delegate = self
+        return ip
+    }()
+    
+    private var selectedImage: UIImage? {
+        didSet {
+            venueImage.image = selectedImage
+        }
+    }
+    
+    private let storageService = StorageService()
     
     override func viewWillLayoutSubviews() {
-        cancelButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        editButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        saveButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        cancelButton.layer.cornerRadius = 5.0
-        editButton.layer.cornerRadius = 5.0
-        saveButton.layer.cornerRadius = 5.0
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // fetchOffers()
+        fetchOffers()
         venueData()
-        // Edit State
         setUp()
+        offersTableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,14 +77,7 @@ class VenueViewController: UIViewController {
     }
     
     private func setUp() {
-        if editState == 0 {
-            editButton.isHidden = false
-            cancelButton.isHidden = true
-            saveButton.isHidden = true
-            editAddressTextField.isHidden = true
-            editPhoneNumberTextField.isHidden = true
-            
-        }
+        venueImage.layer.cornerRadius = 30
         offersTableView.delegate = self
         offersTableView.dataSource = self
         navigationItem.leftBarButtonItem?.target = self
@@ -105,7 +101,7 @@ class VenueViewController: UIViewController {
         }
     }
     
-   private func venueData() {
+    private func venueData() {
         DatabaseService.shared.fetchVenue() { [weak self] (result) in
             switch result {
             case .failure(let error):
@@ -135,62 +131,56 @@ class VenueViewController: UIViewController {
         }
     }
     
+    private func deleteOffer(offer: Offer){
+        DatabaseService.shared.deleteOffer(offer: offer) { (result) in
+            switch result {
+            case .failure(let error):
+                print("failed to delete offer: \(error.localizedDescription)")
+            case .success(true):
+                self.showAlert(title: "Offer deleted", message: nil)
+            case .success(false):
+                print("why is this an option?")
+            }
+        }
+    }
+    
+    @IBAction func addImageButton(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { alertAction in
+          self.imagePickerController.sourceType = .camera
+          self.present(self.imagePickerController, animated: true)
+        }
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { alertAction in
+          self.imagePickerController.sourceType = .photoLibrary
+          self.present(self.imagePickerController, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+          alertController.addAction(cameraAction)
+        }
+        alertController.addAction(photoLibraryAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
+    
     @IBAction func scanQRCodeButtonPressed(_ sender: UIBarButtonItem) {
         let scanQRVC = ScanQRCodeController()
         present(scanQRVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        editState = 1
-        saveButton.isHidden = false
-        cancelButton.isHidden = false
-        editPhoneNumberTextField.isHidden = false
-        editAddressTextField.isHidden = false
-        venueAddressLabel.alpha = 0.0
-        venueContactLabel.alpha = 0.0
-        editButton.isHidden = true
-    }
-    
-    
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        editState = 0
-        guard let address = editAddressTextField.text,
-            !address.isEmpty else { return }
-        
-        guard let phone = editPhoneNumberTextField.text, !phone.isEmpty else { return }
-        
-        self.updateDatabaseUser(address: address, phoneNumber: phone)
-        venueAddressLabel.isHidden = false
-        venueContactLabel.isHidden = false
-    }
-    
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        editState = 0
-        editButton.isHidden = false
-        cancelButton.isHidden = true
-        saveButton.isHidden = true
-        editAddressTextField.isHidden = true
-        editPhoneNumberTextField.isHidden = true
-        venueAddressLabel.alpha = 1.0
-        venueContactLabel.alpha = 1.0
     }
     
     
     @IBAction func createOfferButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard =  UIStoryboard(name: "Venues", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
-    
         self.present(vc, animated: true, completion: nil)
     }
-    
-    
 }
 
 
 extension VenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
-        
     }
 }
 
@@ -204,7 +194,46 @@ extension VenueViewController: UITableViewDataSource {
             fatalError( "could not downcast to OfferCell")
         }
         let offer =  arrayOffers[indexPath.row]
+        cell.delegate = self
         cell.configureCell(for: offer)
         return cell
     }
 }
+
+extension VenueViewController: OffersCellSelDelegate{
+    func cellSelected(_ cell: OffersCell) {
+        showAct(for: cell)
+        print("selected!!!!")
+    }
+    
+    
+    private func showAct(for cell: OffersCell) {
+        guard let indexPath = offersTableView.indexPath(for: cell) else {
+            return
+        }
+        let alertAct = UIAlertController(title: "Action Sheet", message: "What would you like to do?", preferredStyle: .actionSheet)
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
+            self?.deleteOffer(offer: self!.arrayOffers[indexPath.row])
+            self?.venueData()
+            self?.offersTableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] (action) in
+            self?.dismiss(animated: true)
+        }
+        alertAct.addAction(delete)
+        alertAct.addAction(cancel)
+        present(alertAct, animated: true)
+    }
+}
+
+extension VenueViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        selectedImage = image
+        dismiss(animated: true)
+    }
+}
+

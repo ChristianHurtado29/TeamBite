@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1334596924E76FD3001D0A2A /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334596824E76FD3001D0A2A /* StorageService.swift */; };
 		1353936D2451774200CB9622 /* Bite2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936C2451774200CB9622 /* Bite2.mp3 */; };
 		1353936F245179C200CB9622 /* FoodReady.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936E245179C100CB9622 /* FoodReady.mp3 */; };
 		136E9DDD2451DEE100F96FB2 /* Venues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 136E9DDF2451DEE100F96FB2 /* Venues.storyboard */; };
@@ -69,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1334596824E76FD3001D0A2A /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		1353936C2451774200CB9622 /* Bite2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bite2.mp3; sourceTree = "<group>"; };
 		1353936E245179C100CB9622 /* FoodReady.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FoodReady.mp3; sourceTree = "<group>"; };
 		136E9DDB2451DECA00F96FB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */,
+				1334596824E76FD3001D0A2A /* StorageService.swift */,
 				C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */,
 			);
 			path = Extensions;
@@ -613,6 +616,7 @@
 				C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
 				C44D34F324CF629800C2BF3E /* PatronOfferDetailView.swift in Sources */,
+				1334596924E76FD3001D0A2A /* StorageService.swift in Sources */,
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,
 				C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */,
 				C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */,
@@ -789,7 +793,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5YYJ8TDUCW;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = TeamBite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -808,7 +812,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5YYJ8TDUCW;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = TeamBite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

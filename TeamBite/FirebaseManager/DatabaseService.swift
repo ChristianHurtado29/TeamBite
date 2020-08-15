@@ -84,6 +84,17 @@ class DatabaseService {
         }
     }
     
+    public func deleteOffer(offer: Offer, completion: @escaping(Result <Bool, Error>) -> ()){
+        guard let venueOwner = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.venuesOwnerCollection).document(venueOwner.uid).collection(DatabaseService.offersCollection).document(offer.offerId).delete() {(error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     public func fetchVenues(completion: @escaping (Result<[Venue], Error>) -> ()) {
         db.collection(DatabaseService.venuesOwnerCollection).getDocuments { (snapshot, error) in
             if let error = error {

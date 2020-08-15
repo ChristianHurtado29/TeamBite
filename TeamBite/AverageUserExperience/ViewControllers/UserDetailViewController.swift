@@ -236,13 +236,13 @@ extension UserDetailViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-         let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-         renderer.strokeColor = UIColor.systemBlue
-         renderer.lineWidth = 3.0
-
-         return renderer
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//         let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+//         renderer.strokeColor = UIColor.systemBlue
+//         renderer.lineWidth = 3.0
+//
+//         return renderer
+//    }
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
         if isShowingNewAnnotation {
