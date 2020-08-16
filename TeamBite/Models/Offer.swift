@@ -18,6 +18,7 @@ struct Offer {
     let endTime: Date // date picker?
     let allergyType: [String]?
     let status: String
+    let expectedIds: [String]
 }
 
     extension Offer {
@@ -31,6 +32,7 @@ struct Offer {
             self.endTime = dictionary["endTime"] as? Date ?? Date()
             self.allergyType = dictionary["allergyType"] as? [String] ?? ["none"]
             self.status = dictionary["status"] as? String ?? "unclaimed"
+            self.expectedIds = dictionary["expectedIds"] as? [String] ?? []
         }
     }
     

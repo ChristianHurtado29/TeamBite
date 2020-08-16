@@ -89,7 +89,7 @@ class PatronOfferDetailController: UIViewController {
     }
     
     private func claimedButtonUpdates() {
-        DatabaseService.shared.claimOffer(currentVenue.venueId, currentOffer.offerId) { [weak self] result in
+        DatabaseService.shared.claimOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not successfully claim offer: \(error.localizedDescription)") { [weak self] alertAction in
@@ -104,7 +104,7 @@ class PatronOfferDetailController: UIViewController {
     }
     
     private func setClaimedState() {
-        let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.todaysDateAsAString())"
+        let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.todaysDateAsAString()) \(currentOffer.offerId) \(currentUserId)"
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
@@ -118,8 +118,8 @@ class PatronOfferDetailController: UIViewController {
             }
         }
         delegate?.stateChanged(self, AppState.offerClaimed)
-        UserDefaultsHandler.setStateToClaimed()
-        UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
+//        UserDefaultsHandler.setStateToClaimed()
+//        UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
     }
     
     @objc
@@ -133,8 +133,8 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.alpha = 1.0
         detailView.claimOfferButton.isUserInteractionEnabled = false
         detailView.forfeitOfferButton.alpha = 0.0
-        UserDefaultsHandler.resetOfferName()
-        DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId) {
+//        UserDefaultsHandler.resetOfferName()
+        DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) {
             [weak self] result in
             switch result {
             case .failure(let error):

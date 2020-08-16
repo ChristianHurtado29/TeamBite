@@ -30,4 +30,15 @@ struct QRCodeHandler {
         return nil
     }
     
+    static func parseQRCode(_ str: String) -> (message: String, offerId: String, userId: String){
+        guard !str.isEmpty else { return ("","","") }
+        
+        var strArr = str.components(separatedBy: " ")
+        let userId = strArr.removeLast()
+        let offerId = strArr.removeLast()
+        let outputStr = strArr.joined(separator: " ")
+        
+        return (outputStr, offerId, userId)
+    }
+    
 }
