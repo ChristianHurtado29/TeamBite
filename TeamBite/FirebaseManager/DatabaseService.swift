@@ -257,7 +257,9 @@ class DatabaseService {
                     return nil
                 }
                 
-                expIds.append(userId)
+                if !expIds.contains(userId) {
+                    expIds.append(userId)
+                }
                 
                 transaction.updateData(["remainingMeals": oldRemaining - 1, "expectedIds": expIds], forDocument: offerDocRef)
                 

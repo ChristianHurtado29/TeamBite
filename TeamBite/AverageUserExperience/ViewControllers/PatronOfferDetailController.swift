@@ -100,7 +100,7 @@ class PatronOfferDetailController: UIViewController {
                 self?.setClaimedState()
             }
         }
-        delegate?.stateChanged(self, AppState.offerClaimed)
+//        delegate?.stateChanged(self, AppState.offerClaimed)
     }
     
     private func setClaimedState() {
