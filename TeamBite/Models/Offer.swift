@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Offer {
     let offerId: String
@@ -18,6 +19,7 @@ struct Offer {
     let endTime: Date // date picker?
     let allergyType: [String]?
     let status: String
+    let offerImage: UIImage?
 }
 
     extension Offer {
@@ -31,6 +33,7 @@ struct Offer {
             self.endTime = dictionary["endTime"] as? Date ?? Date()
             self.allergyType = dictionary["allergyType"] as? [String] ?? ["none"]
             self.status = dictionary["status"] as? String ?? "unclaimed"
+            self.offerImage = dictionary["offerImage"] as? UIImage ?? UIImage(named: "mic.fill")
         }
     }
     

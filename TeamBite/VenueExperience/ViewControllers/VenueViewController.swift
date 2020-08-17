@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import Kingfisher
 
 class VenueViewController: UIViewController {
     private let db = Firestore.firestore()
@@ -38,6 +39,31 @@ class VenueViewController: UIViewController {
     private var selectedImage: UIImage? {
         didSet {
             venueImage.image = selectedImage
+            
+            guard let user = Auth.auth().currentUser else { return }
+            let resizedImage = UIImage.resizeImage(originalImage: self.selectedImage!, rect: self.venueImage.bounds)
+            self.storageService.uploadPhoto(userId: user.uid, image: resizedImage) { [weak self] (result) in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error uploading photo", message: "\(error.localizedDescription)")
+                    }
+                case .success(let url):
+                    let request = Auth.auth().currentUser?.createProfileChangeRequest()
+                    request?.photoURL = url
+                    request?.commitChanges(completion: { [unowned self] (error) in
+                        if let error = error {
+                            DispatchQueue.main.async {
+                                self?.showAlert(title: "Error updating profile", message: "Error changing profile: \(error.localizedDescription).")
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self?.showAlert(title: "Profile Update", message: "Profile successfully updated 🥳.")
+                            }
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -77,6 +103,8 @@ class VenueViewController: UIViewController {
     }
     
     private func setUp() {
+        guard let user = Auth.auth().currentUser else { return }
+        venueImage.kf.setImage(with: user.photoURL)
         venueImage.layer.cornerRadius = 30
         offersTableView.delegate = self
         offersTableView.dataSource = self

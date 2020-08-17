@@ -15,6 +15,7 @@ class CreateOffersViewController: UIViewController {
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var offerImage: UIImageView!
     
     //Allergies switch
     @IBOutlet weak var nutFreeSwitch: UISwitch!
@@ -112,7 +113,7 @@ class CreateOffersViewController: UIViewController {
             let finalAllergies = Array(setAllergies)
             
             
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies, status: "unclaimed")
+            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies, status: "unclaimed", offerImage: UIImage(named: "mic.fill"))
             
             
             DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1334596924E76FD3001D0A2A /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334596824E76FD3001D0A2A /* StorageService.swift */; };
+		1334596B24E77249001D0A2A /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1334596A24E77249001D0A2A /* UIImage + Extension.swift */; };
 		1353936D2451774200CB9622 /* Bite2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936C2451774200CB9622 /* Bite2.mp3 */; };
 		1353936F245179C200CB9622 /* FoodReady.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1353936E245179C100CB9622 /* FoodReady.mp3 */; };
 		136E9DDD2451DEE100F96FB2 /* Venues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 136E9DDF2451DEE100F96FB2 /* Venues.storyboard */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		1334596824E76FD3001D0A2A /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		1334596A24E77249001D0A2A /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		1353936C2451774200CB9622 /* Bite2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bite2.mp3; sourceTree = "<group>"; };
 		1353936E245179C100CB9622 /* FoodReady.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FoodReady.mp3; sourceTree = "<group>"; };
 		136E9DDB2451DECA00F96FB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */,
 				1334596824E76FD3001D0A2A /* StorageService.swift */,
+				1334596A24E77249001D0A2A /* UIImage + Extension.swift */,
 				C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */,
 			);
 			path = Extensions;
@@ -590,6 +593,7 @@
 				C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
 				C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */,
+				1334596B24E77249001D0A2A /* UIImage + Extension.swift in Sources */,
 				634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */,
 				C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,

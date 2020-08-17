@@ -35,6 +35,7 @@ class OffersCell: UITableViewCell {
         venueCell.text = offer.nameOfOffer
         numOfMeals.text = "Total Meals: \(offer.totalMeals.description)"
         mealsLeft.text = "Meals Left: \(offer.remainingMeals.description)"
+        mealImage.image = offer.offerImage
     }
     
     @objc
