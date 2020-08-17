@@ -57,6 +57,20 @@ class MainViewController: UIViewController {
         fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DatabaseService.shared.checkForClaimReset("sdknaZ8oYlPI4w4XEQGOwUgIsXw2") { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not access claim time. Error: \(error.localizedDescription)")
+            case .success(let boo):
+                if boo {
+                    self?.fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
+                }
+            }
+        }
+    }
+    
     private func fetchVenues() {
         DatabaseService.shared.fetchVenues() { [weak self] (result) in
             switch result {

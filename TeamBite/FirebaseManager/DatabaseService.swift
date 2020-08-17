@@ -99,6 +99,52 @@ class DatabaseService {
         }
     }
     
+    public func checkForClaimReset(_ userId: String, _ completion: @escaping (Result<Bool, Error>) -> ()){
+        let docRef = db.collection(DatabaseService.usersCollection).document(userId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            
+            do {
+                let documentSnap: DocumentSnapshot
+                
+                documentSnap = try transaction.getDocument(docRef)
+                
+                guard let timeForClaim = documentSnap.data()?["timeOfNextClaim"] as? Timestamp else {
+                    let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not retrieve time of next claim from snapshot."])
+                    errorPointer?.pointee = error
+                    return nil
+                }
+                
+                let dateOfClaim = timeForClaim.dateValue()
+                if dateOfClaim < Date() {
+                    transaction.updateData(["timeOfNextClaim": Timestamp(date: DateHandler.calculateNextClaimDate()), "claimStatus": "unclaimed"], forDocument: docRef)
+                }
+                
+            } catch let error as NSError{
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func updateTimeOfNextClaim(_ userId: String, _ newTime: Date, _ completion: @escaping (Result<Bool,Error>) -> ()) {
+        db.collection(DatabaseService.usersCollection).document(userId).updateData(["timeOfNextClaim": Timestamp(date: newTime)]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
         db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "expectedIds": offer.expectedIds]) { (error) in
             if let error = error {
@@ -168,38 +214,6 @@ class DatabaseService {
             } else if let snapshot = snapshot {
                 let offers = snapshot.documents.compactMap { Offer($0.data()) }
                 completion(.success(offers))
-            }
-        }
-    }
-    
-    // Searchs for and removes the userId from an offers array.
-    // NOTE: Might not need this
-    public func isValidOffer(_ userId: String, _ venueId: String, _ offerId: String, _ completion: @escaping (Result<Bool,Error>) -> ()) {
-        db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId).getDocument { [weak self] (snapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else if let snaps = snapshot, var ids = snaps.data()?["expectedIds"] as? [String], let idIndex = ids.firstIndex(of: userId) {
-                ids.remove(at: idIndex)
-                self?.updateOffer(venueId, offerId, ids) { result in
-                    switch result {
-                    case .failure(let error):
-                        completion(.failure(error))
-                    case .success:
-                        completion(.success(true))
-                    }
-                }
-            }
-        }
-    }
-    
-    // Updates an offer
-    // NOTE: May not need this.
-    public func updateOffer(_ venueId: String, _ offerId: String, _ newIds: [String], _ completion: @escaping (Result<Bool, Error>) -> ()){
-        db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId).updateData(["expectedIds": newIds]) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
             }
         }
     }

@@ -30,7 +30,7 @@ class PatronOfferDetailController: UIViewController {
     public weak var delegate: PatronOfferDetailDelegate?
     
     init(_ offer: Offer, _ venue: Venue, _ state: AppState) {
-        let userId = Auth.auth().currentUser?.uid ?? ""
+        let userId = Auth.auth().currentUser?.uid ?? "sdknaZ8oYlPI4w4XEQGOwUgIsXw2"
         self.currentUserId = userId
         self.currentState = state
         self.currentOffer = offer
@@ -103,8 +103,20 @@ class PatronOfferDetailController: UIViewController {
 //        delegate?.stateChanged(self, AppState.offerClaimed)
     }
     
+    private func setTimeToNextClaim(){
+        let date = DateHandler.calculateNextClaimDate()
+        DatabaseService.shared.updateTimeOfNextClaim(currentUserId, date) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not update time of next offer. Error: \(error.localizedDescription).")
+            case .success:
+                self?.showAlert(title: "Success", message: "You can claim another meal at \(DateHandler.convertDateToString(date)).")
+            }
+        }
+    }
+    
     private func setClaimedState() {
-        let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.todaysDateAsAString()) \(currentOffer.offerId) \(currentUserId)"
+        let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.convertDateToString(Date())) \(currentOffer.offerId) \(currentUserId)"
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
@@ -118,6 +130,8 @@ class PatronOfferDetailController: UIViewController {
             }
         }
         delegate?.stateChanged(self, AppState.offerClaimed)
+        // TODO: Set a timer here.
+        setTimeToNextClaim()
 //        UserDefaultsHandler.setStateToClaimed()
 //        UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
     }

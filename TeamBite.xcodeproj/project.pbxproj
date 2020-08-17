@@ -67,6 +67,7 @@
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
 		C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C255D024E5F7CE00FFF08D /* DateHandler.swift */; };
 		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
+		C4FBA3A724E9EFE600ABBCD6 /* StateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FBA3A624E9EFE600ABBCD6 /* StateHandler.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +139,7 @@
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
 		C4C255D024E5F7CE00FFF08D /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
+		C4FBA3A624E9EFE600ABBCD6 /* StateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateHandler.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -460,6 +462,7 @@
 				C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */,
 				C4C255D024E5F7CE00FFF08D /* DateHandler.swift */,
 				C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */,
+				C4FBA3A624E9EFE600ABBCD6 /* StateHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */,
 				C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */,
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
+				C4FBA3A724E9EFE600ABBCD6 /* StateHandler.swift in Sources */,
 				636E9C6724516DED00461E43 /* TabBarController.swift in Sources */,
 				C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,

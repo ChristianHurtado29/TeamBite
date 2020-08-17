@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-struct User: Codable {
+struct User {
     let userId: String
     let phoneNumber: String
     let allergies: [String]
     let claimStatus: String
+    let timeOfNextClaim: Timestamp
 }
 
 extension User {
@@ -21,5 +23,6 @@ extension User {
         self.phoneNumber = dictionary["phoneNumber"] as? String ?? "No Number"
         self.allergies = dictionary["allergies"] as? [String] ?? ["No Allergies"]
         self.claimStatus = dictionary["claimStatus"] as? String ?? "unclaimed"
+        self.timeOfNextClaim = dictionary["timeOfNextClaim"] as? Timestamp ?? Timestamp(date: Date())
     }
 }
