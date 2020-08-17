@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import FirebaseFirestore
 
 class CreateOffersViewController: UIViewController {
     @IBOutlet weak var offerNameTextField: UITextField!
@@ -112,7 +113,7 @@ class CreateOffersViewController: UIViewController {
             let finalAllergies = Array(setAllergies)
             
             
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies, status: "unclaimed", expectedIds: [])
+            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", expectedIds: [])
             
             
             DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in

@@ -42,7 +42,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            window?.rootViewController = UINavigationController(rootViewController: TabBarController())
 //        let storyboard = UIStoryboard(name: "Venues", bundle: nil)
 //        let vc = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? VenueViewController ?? MainViewController()
-        UserDefaultsHandler.resetState()
         let vc = MainViewController(AppState.offerClaimed)
 //        let vc = LoginViewController()
         window?.rootViewController = UINavigationController(rootViewController: vc)

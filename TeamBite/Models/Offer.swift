@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct Offer {
     let offerId: String
@@ -14,8 +15,8 @@ struct Offer {
     let totalMeals: Int
     let remainingMeals: Int
     let createdDate: Date
-    let startTime: Date  // date picker?
-    let endTime: Date // date picker?
+    let startTime: Timestamp  // date picker?
+    let endTime: Timestamp // date picker?
     let allergyType: [String]?
     let status: String
     let expectedIds: [String]
@@ -28,8 +29,8 @@ struct Offer {
             self.totalMeals = dictionary["totalMeals"] as? Int ?? 0
             self.remainingMeals = dictionary["remainingMeals"] as? Int ?? 0
             self.createdDate = dictionary["createdDate"] as? Date ?? Date()
-            self.startTime = dictionary["startTime"] as? Date ?? Date()
-            self.endTime = dictionary["endTime"] as? Date ?? Date()
+            self.startTime = dictionary["startTime"] as? Timestamp ?? Timestamp(date: Date())
+            self.endTime = dictionary["endTime"] as? Timestamp ?? Timestamp(date: Date())
             self.allergyType = dictionary["allergyType"] as? [String] ?? ["none"]
             self.status = dictionary["status"] as? String ?? "unclaimed"
             self.expectedIds = dictionary["expectedIds"] as? [String] ?? []

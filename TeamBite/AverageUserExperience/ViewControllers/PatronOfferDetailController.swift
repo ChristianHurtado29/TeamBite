@@ -130,10 +130,7 @@ class PatronOfferDetailController: UIViewController {
             }
         }
         delegate?.stateChanged(self, AppState.offerClaimed)
-        // TODO: Set a timer here.
         setTimeToNextClaim()
-//        UserDefaultsHandler.setStateToClaimed()
-//        UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
     }
     
     @objc
@@ -147,7 +144,7 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.alpha = 1.0
         detailView.claimOfferButton.isUserInteractionEnabled = false
         detailView.forfeitOfferButton.alpha = 0.0
-//        UserDefaultsHandler.resetOfferName()
+        UserDefaultsHandler.resetOfferName()
         DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) {
             [weak self] result in
             switch result {
