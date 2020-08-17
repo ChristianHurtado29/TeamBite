@@ -18,6 +18,12 @@ class MainView: UIView {
         return cv
     }()
     
+    public lazy var viewClaimedOffer: UIBarButtonItem = {
+        let barButton = UIBarButtonItem()
+        barButton.title = "View Claimed Offer"
+        return barButton
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()

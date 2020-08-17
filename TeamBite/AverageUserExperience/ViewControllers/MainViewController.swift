@@ -47,12 +47,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        mainView.collectionView.dataSource = self
-        mainView.collectionView.delegate = self
-        mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
-        
-        navigationItem.title = "BITE"
+        configureUI()
         fetchVenues()
         fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
     }
@@ -63,12 +58,21 @@ class MainViewController: UIViewController {
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not access claim time. Error: \(error.localizedDescription)")
-            case .success(let boo):
-                if boo {
+            case .success(let succeeded):
+                if succeeded {
                     self?.fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
                 }
             }
         }
+    }
+    
+    private func configureUI() {
+        view.backgroundColor = .white
+        mainView.collectionView.dataSource = self
+        mainView.collectionView.delegate = self
+        mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
+        
+        navigationItem.title = "BITE"
     }
     
     private func fetchVenues() {
@@ -95,6 +99,9 @@ class MainViewController: UIViewController {
                 
                 if let state = AppState(rawValue: status) {
                     self?.currentState = state
+                    if state == AppState.offerUnclaimed {
+                        UserDefaultsHandler.resetOfferName()
+                    }
                 }
             }
         }

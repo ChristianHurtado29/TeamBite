@@ -150,10 +150,11 @@ class PatronOfferDetailView: UIView {
         NSLayoutConstraint.activate([getDirectionsButton.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 20), getDirectionsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), getDirectionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), getDirectionsButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
-    public func configureClaimedCurrentOfferState(_ offerName: String) {
+    public func configureClaimedCurrentOfferState(_ offerName: String, _ offerId: String, _ userId: String) {
+        let qrCodeString = "\(offerName) \(DateHandler.convertDateToString(Date())) \(offerId) \(userId)"
         forfeitOfferButton.alpha = 1.0
         willGenerateCodeLabel.isHidden = true
-        qrCodeImageView.image = QRCodeHandler.generateQRCode(from: offerName)
+        qrCodeImageView.image = QRCodeHandler.generateQRCode(from: qrCodeString)
     }
     
     public func configureOfferClaimedState() {

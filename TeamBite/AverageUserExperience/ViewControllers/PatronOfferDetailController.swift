@@ -71,8 +71,8 @@ class PatronOfferDetailController: UIViewController {
     
     private func configureState() {
         if currentState == AppState.offerClaimed{
-            if UserDefaultsHandler.getOfferName() ?? "" == currentOffer.nameOfOffer {
-                detailView.configureClaimedCurrentOfferState(currentOffer.nameOfOffer)
+            if let offerName = UserDefaultsHandler.getOfferName(), offerName == currentOffer.nameOfOffer {
+                detailView.configureClaimedCurrentOfferState(offerName, currentOffer.offerId, currentUserId)
             } else {
                 detailView.configureOfferClaimedState()
             }
@@ -100,7 +100,6 @@ class PatronOfferDetailController: UIViewController {
                 self?.setClaimedState()
             }
         }
-//        delegate?.stateChanged(self, AppState.offerClaimed)
     }
     
     private func setTimeToNextClaim(){
@@ -130,6 +129,7 @@ class PatronOfferDetailController: UIViewController {
             }
         }
         delegate?.stateChanged(self, AppState.offerClaimed)
+        UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
         setTimeToNextClaim()
     }
     
