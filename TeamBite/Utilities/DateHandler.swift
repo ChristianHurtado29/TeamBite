@@ -10,11 +10,16 @@ import Foundation
 
 struct DateHandler {
 
-    static func convertDateToString(_ date: Date) -> String {
+    static func convertDateToString(_ date: Date, _ showTime: Bool = false) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d,yyyy"
+        if showTime {
+            dateFormatter.dateFormat = "MMMM d,yyyy HH:mm"
+        } else {
+            dateFormatter.dateFormat = "MMMM d,yyyy"
+        }
         return dateFormatter.string(from: date)
     }
+    
     
     static func calculateNextClaimDate() -> Date {
         let tomorrow = Date(timeIntervalSinceNow: 86000)

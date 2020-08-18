@@ -96,7 +96,7 @@ class PatronOfferDetailController: UIViewController {
                     self?.navigationController?.popViewController(animated: true)
                 }
             case .success:
-                self?.showAlert(title: "Success", message: "Successfully claimed offer.")
+                self?.showAlert(title: "Success", message: "You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true)).")
                 self?.setClaimedState()
             }
         }
@@ -109,7 +109,7 @@ class PatronOfferDetailController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not update time of next offer. Error: \(error.localizedDescription).")
             case .success:
-                self?.showAlert(title: "Success", message: "You can claim another meal at \(DateHandler.convertDateToString(date)).")
+                self?.showAlert(title: "Success", message: "You can claim another meal at \(DateHandler.convertDateToString(date, true)).")
             }
         }
     }
@@ -151,7 +151,7 @@ class PatronOfferDetailController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not forfeit error: \(error.localizedDescription)")
             case .success:
-                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You'll be able to claim another meal tomorrow.")
+                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true))")
             }
         }
         detailView.configureOfferClaimedState()
