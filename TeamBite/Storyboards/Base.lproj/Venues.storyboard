@@ -273,6 +273,9 @@
                                     <constraint firstAttribute="height" constant="36" id="Mt0-Hn-N0S"/>
                                 </constraints>
                                 <state key="normal" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="updatePhotoPressed:" destination="zhx-9A-osz" eventType="touchUpInside" id="TuW-73-UAi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -338,6 +341,7 @@
                         <outlet property="glutenFreeSwitch" destination="iue-su-uj3" id="TGD-PS-h2n"/>
                         <outlet property="numberOfMealsTextField" destination="jIQ-d8-HhY" id="gfm-qr-Lq0"/>
                         <outlet property="nutFreeSwitch" destination="6jR-Tb-JXs" id="v5Y-Ur-gOx"/>
+                        <outlet property="offerImage" destination="bwb-xB-2qd" id="id7-At-HM8"/>
                         <outlet property="offerNameTextField" destination="J4A-o5-xNM" id="GWS-RB-8pw"/>
                         <outlet property="startTimeTextField" destination="hWe-wp-7Jq" id="AIi-cN-0jr"/>
                         <outlet property="vegetarianSwitch" destination="ptj-kR-JZp" id="MsD-mr-rXC"/>

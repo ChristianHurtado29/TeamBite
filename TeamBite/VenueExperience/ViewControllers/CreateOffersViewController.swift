@@ -14,8 +14,6 @@ class CreateOffersViewController: UIViewController {
     @IBOutlet weak var numberOfMealsTextField: UITextField!
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endTimeTextField: UITextField!
-    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
-    @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var offerImage: UIImageView!
     
@@ -23,6 +21,22 @@ class CreateOffersViewController: UIViewController {
     @IBOutlet weak var nutFreeSwitch: UISwitch!
     @IBOutlet weak var glutenFreeSwitch: UISwitch!
     @IBOutlet weak var vegetarianSwitch: UISwitch!
+    
+    private lazy var imagePickerController: UIImagePickerController = {
+        let ip = UIImagePickerController()
+        ip.delegate = self
+        return ip
+    }()
+    
+    let startTimeDatePicker = UIDatePicker()
+    let endTimeDatePicker = UIDatePicker()
+    
+    
+    private var selectedImage: UIImage? {
+        didSet{
+            offerImage.image = selectedImage
+        }
+    }
     
     let currentDateTime = Date()
     let startPicker = UIDatePicker()
@@ -40,6 +54,16 @@ class CreateOffersViewController: UIViewController {
         initialSwitchSettings()
         numberOfMealsTextField.keyboardType = .numberPad
         createButton.isEnabled = true
+        configureTextPickers()
+    }
+    
+    private func initialSwitchSettings() {
+        nutFreeSwitch.isOn = false
+        glutenFreeSwitch.isOn = false
+        vegetarianSwitch.isOn = false
+    }
+    
+    private func configureTextPickers(){
         startTimeTextField.inputView = startPicker
         endTimeTextField.inputView = endPicker
         startPicker.addTarget(self, action: #selector(CreateOffersViewController.startPickValueChange), for: UIControl.Event.valueChanged)
@@ -62,11 +86,24 @@ class CreateOffersViewController: UIViewController {
         endTimeTextField.text = formatter.string(from: sender.date)
     }
     
-    private func initialSwitchSettings() {
-        nutFreeSwitch.isOn = false
-        glutenFreeSwitch.isOn = false
-        vegetarianSwitch.isOn = false
-    }
+    @IBAction func updatePhotoPressed(_ sender: UIButton) {
+             let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
+             let cameraAction = UIAlertAction(title: "Camera", style: .default) { alertAction in
+               self.imagePickerController.sourceType = .camera
+               self.present(self.imagePickerController, animated: true)
+             }
+             let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { alertAction in
+               self.imagePickerController.sourceType = .photoLibrary
+               self.present(self.imagePickerController, animated: true)
+             }
+             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+             if UIImagePickerController.isSourceTypeAvailable(.camera) {
+               alertController.addAction(cameraAction)
+             }
+             alertController.addAction(photoLibraryAction)
+             alertController.addAction(cancelAction)
+             present(alertController, animated: true)
+           }
     
     @IBAction func nutFreeSwitchPressed(_ sender: UISwitch) {
         
@@ -179,8 +216,17 @@ class CreateOffersViewController: UIViewController {
 extension CreateOffersViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
         return true
     }
 }
 
+extension CreateOffersViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        selectedImage = image
+        dismiss(animated: true)
+    }
+}
