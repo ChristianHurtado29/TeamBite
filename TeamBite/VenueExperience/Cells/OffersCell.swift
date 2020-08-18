@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol OffersCellSelDelegate: AnyObject{
     func cellSelected(_ cell: OffersCell)
@@ -35,7 +36,8 @@ class OffersCell: UITableViewCell {
         venueCell.text = offer.nameOfOffer
         numOfMeals.text = "Total Meals: \(offer.totalMeals.description)"
         mealsLeft.text = "Meals Left: \(offer.remainingMeals.description)"
-        mealImage.image = offer.offerImage
+        mealImage.kf.setImage(with: URL(string: offer.offerImage!))
+        mealImage.layer.cornerRadius = 30
     }
     
     @objc
