@@ -38,7 +38,6 @@ struct Offer {
             self.status = dictionary["status"] as? String ?? "unclaimed"
             self.offerImage = dictionary["offerImage"] as? String ?? "no image URL"
             self.expectedIds = dictionary["expectedIds"] as? [String] ?? []
-
         }
     }
     
