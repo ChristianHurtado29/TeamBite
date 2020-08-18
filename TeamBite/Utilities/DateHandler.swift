@@ -13,9 +13,9 @@ struct DateHandler {
     static func convertDateToString(_ date: Date, _ showTime: Bool = false) -> String {
         let dateFormatter = DateFormatter()
         if showTime {
-            dateFormatter.dateFormat = "MMMM d,yyyy HH:mm"
+            dateFormatter.dateFormat = "MMMM d, yyyy h:mm a"
         } else {
-            dateFormatter.dateFormat = "MMMM d,yyyy"
+            dateFormatter.dateFormat = "MMMM d, yyyy"
         }
         return dateFormatter.string(from: date)
     }

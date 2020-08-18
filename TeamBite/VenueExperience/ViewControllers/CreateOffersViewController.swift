@@ -202,9 +202,9 @@ class CreateOffersViewController: UIViewController {
                     }
                 case .success:
                     sender?.isEnabled = true
-                    
                 }
             }
+            
             DatabaseService.shared.createAllOffers(offer: newOffer) { [weak self, weak sender] (result) in
                 print("create button pressed")
                 switch result {
