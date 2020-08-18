@@ -144,7 +144,8 @@ class DatabaseService {
     }
     
     public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
-        db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "expectedIds": offer.expectedIds]) { (error) in
+
+        db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "offerImage": offer.offerImage ?? "no url"] ) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -157,7 +158,19 @@ class DatabaseService {
     // Create offers
     public func addToOffers(offer: Offer, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let venueOwner = Auth.auth().currentUser else { return }
-        db.collection(DatabaseService.venuesOwnerCollection).document(venueOwner.uid).collection(DatabaseService.offersCollection).document(offer.offerId).setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "expectedIds": offer.expectedIds]) { (error) in
+
+        db.collection(DatabaseService.venuesOwnerCollection).document(venueOwner.uid).collection(DatabaseService.offersCollection).document(offer.offerId).setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "offerImage": offer.offerImage ?? "no url", "status": offer.status]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func deleteOffer(offer: Offer, completion: @escaping(Result <Bool, Error>) -> ()){
+        guard let venueOwner = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.venuesOwnerCollection).document(venueOwner.uid).collection(DatabaseService.offersCollection).document(offer.offerId).delete() {(error) in
             if let error = error {
                 completion(.failure(error))
             } else {

@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit
 import FirebaseFirestore
+
 
 struct Offer {
     let offerId: String
@@ -19,6 +21,7 @@ struct Offer {
     let endTime: Timestamp // date picker?
     let allergyType: [String]?
     let status: String
+    let offerImage: String?
     let expectedIds: [String]
 }
 
@@ -33,7 +36,9 @@ struct Offer {
             self.endTime = dictionary["endTime"] as? Timestamp ?? Timestamp(date: Date())
             self.allergyType = dictionary["allergyType"] as? [String] ?? ["none"]
             self.status = dictionary["status"] as? String ?? "unclaimed"
+            self.offerImage = dictionary["offerImage"] as? String ?? "no image URL"
             self.expectedIds = dictionary["expectedIds"] as? [String] ?? []
+
         }
     }
     
