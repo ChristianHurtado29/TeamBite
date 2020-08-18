@@ -12,6 +12,8 @@ import AVKit
 class CreateOffersViewController: UIViewController {
     @IBOutlet weak var offerNameTextField: UITextField!
     @IBOutlet weak var numberOfMealsTextField: UITextField!
+    @IBOutlet weak var startTimeTextField: UITextField!
+    @IBOutlet weak var endTimeTextField: UITextField!
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var createButton: UIButton!
@@ -23,7 +25,9 @@ class CreateOffersViewController: UIViewController {
     @IBOutlet weak var vegetarianSwitch: UISwitch!
     
     let currentDateTime = Date()
-    
+    let startPicker = UIDatePicker()
+
+    let endPicker = UIDatePicker()
     var allergies = [String]()
     
     override func viewWillLayoutSubviews() {
@@ -36,8 +40,27 @@ class CreateOffersViewController: UIViewController {
         initialSwitchSettings()
         numberOfMealsTextField.keyboardType = .numberPad
         createButton.isEnabled = true
+        startTimeTextField.inputView = startPicker
+        endTimeTextField.inputView = endPicker
+        startPicker.addTarget(self, action: #selector(CreateOffersViewController.startPickValueChange), for: UIControl.Event.valueChanged)
+        endPicker.addTarget(self, action: #selector(CreateOffersViewController.endPickValueChange), for: UIControl.Event.valueChanged)
     }
     
+    @objc
+    private func startPickValueChange(sender: UIDatePicker){
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = DateFormatter.Style.short
+        startTimeTextField.text = formatter.string(from: sender.date)
+    }
+    
+    @objc
+    private func endPickValueChange(sender: UIDatePicker){
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = DateFormatter.Style.short
+        endTimeTextField.text = formatter.string(from: sender.date)
+    }
     
     private func initialSwitchSettings() {
         nutFreeSwitch.isOn = false
@@ -139,12 +162,8 @@ class CreateOffersViewController: UIViewController {
                     }
                 case .success:
                     sender?.isEnabled = true
-                    
-                    
                 }
-                
             }
-            
             playSound(file: "FoodReady", ext: "mp3")
         }
         sleep(1)
@@ -155,10 +174,7 @@ class CreateOffersViewController: UIViewController {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
-    
-    
 }
-
 
 extension CreateOffersViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -167,3 +183,4 @@ extension CreateOffersViewController: UITextFieldDelegate{
         return true
     }
 }
+
