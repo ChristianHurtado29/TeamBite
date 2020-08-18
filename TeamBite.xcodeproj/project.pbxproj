@@ -46,12 +46,18 @@
 		9F37802E244F873C007C174E /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37802D244F873C007C174E /* MainViewCell.swift */; };
 		9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2C244FEA2800294978 /* UserDetailView.swift */; };
 		9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2E24500A0F00294978 /* MainViewController.swift */; };
+		C44D34F324CF629800C2BF3E /* PatronOfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */; };
+		C44D34F524CF62AD00C2BF3E /* PatronOfferDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */; };
 		C4604AA6244F613E008E2857 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA5244F613E008E2857 /* LoginView.swift */; };
 		C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA7244F6165008E2857 /* LoginViewController.swift */; };
 		C4604AAA244F7D9B008E2857 /* VenueSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */; };
 		C4604AAC244F7DB4008E2857 /* VenueSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */; };
 		C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */; };
 		C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */; };
+		C4700C9024DA34570040E1B2 /* UserDefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */; };
+		C4767F6E24E7070400AD8A8B /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */; };
+		C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */; };
+		C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */; };
 		C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */; };
 		C4789D982450BCD4008193BA /* AverageUserSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D972450BCD4008193BA /* AverageUserSignInView.swift */; };
 		C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D992450BCED008193BA /* AverageUserSignInController.swift */; };
@@ -59,6 +65,8 @@
 		C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */; };
 		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
+		C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C255D024E5F7CE00FFF08D /* DateHandler.swift */; };
+		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,12 +117,18 @@
 		9F504D2C244FEA2800294978 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		9F504D2E24500A0F00294978 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferDetailView.swift; sourceTree = "<group>"; };
+		C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferDetailController.swift; sourceTree = "<group>"; };
 		C4604AA5244F613E008E2857 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C4604AA7244F6165008E2857 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSignUpController.swift; sourceTree = "<group>"; };
 		C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSignUpView.swift; sourceTree = "<group>"; };
 		C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoView.swift; sourceTree = "<group>"; };
 		C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoController.swift; sourceTree = "<group>"; };
+		C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHandler.swift; sourceTree = "<group>"; };
+		C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
+		C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeHandler.swift; sourceTree = "<group>"; };
+		C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeController.swift; sourceTree = "<group>"; };
 		C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SceneChange.swift"; sourceTree = "<group>"; };
 		C4789D972450BCD4008193BA /* AverageUserSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageUserSignInView.swift; sourceTree = "<group>"; };
 		C4789D992450BCED008193BA /* AverageUserSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageUserSignInController.swift; sourceTree = "<group>"; };
@@ -122,6 +136,8 @@
 		C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneController.swift; sourceTree = "<group>"; };
 		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
+		C4C255D024E5F7CE00FFF08D /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
+		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,23 +182,19 @@
 		13F4BA87244E54DC00C0DC23 /* TeamBite */ = {
 			isa = PBXGroup;
 			children = (
-				13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */,
-				13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */,
-				13F4BAB6244E5AF000C0DC23 /* CoreLocationManager.swift */,
 				1353936C2451774200CB9622 /* Bite2.mp3 */,
 				1353936E245179C100CB9622 /* FoodReady.mp3 */,
-				13F4BABF244E5B9E00C0DC23 /* Views */,
+				C44D34FB24CF63DC00C2BF3E /* VenueExperience */,
+				C44D34FA24CF63CC00C2BF3E /* AverageUserExperience */,
+				C44D34F624CF62C700C2BF3E /* LoginFlow */,
+				C478941C24C8AA37000DAD81 /* Utilities */,
+				C44D34F924CF633400C2BF3E /* SupportingFiles */,
 				13F4BABE244E5B9200C0DC23 /* Extensions */,
 				13F4BAA5244E599600C0DC23 /* Models */,
-				13F4BAB5244E5AD500C0DC23 /* Cells */,
 				13F4BAAA244E5A3400C0DC23 /* ViewControllers */,
 				13F4BAA2244E596900C0DC23 /* FirebaseManager */,
-				13F4BA9C244E582500C0DC23 /* Login.storyboard */,
-				13F4BA8E244E54DC00C0DC23 /* Main.storyboard */,
-				136E9DDF2451DEE100F96FB2 /* Venues.storyboard */,
-				634E16BC244F3B77002C954A /* Wireframe.storyboard */,
+				C44D350B24CF66F000C2BF3E /* Storyboards */,
 				13F4BA91244E54E000C0DC23 /* Assets.xcassets */,
-				13F4BA93244E54E000C0DC23 /* LaunchScreen.storyboard */,
 				139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */,
 				13F4BA96244E54E000C0DC23 /* Info.plist */,
 			);
@@ -213,34 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				13F4BA8C244E54DC00C0DC23 /* ViewController.swift */,
-				13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */,
-				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
-				9F504D2E24500A0F00294978 /* MainViewController.swift */,
-				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
-				C4604AA7244F6165008E2857 /* LoginViewController.swift */,
-				C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */,
-				C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */,
-				634E16C0244F643D002C954A /* VenueViewController.swift */,
-				634E16C2244F68F3002C954A /* PastOffersViewController.swift */,
-				634E16C6244FBC80002C954A /* CreateOffersViewController.swift */,
-				C4789D992450BCED008193BA /* AverageUserSignInController.swift */,
-				C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */,
-				C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */,
 				636E9C6424516BDB00461E43 /* ClaimButtonViewController.swift */,
-				636E9C6624516DED00461E43 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		13F4BAB5244E5AD500C0DC23 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */,
-				13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */,
-				13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */,
-				13F39635244F7B26004BD488 /* ResourcesCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		13F4BABE244E5B9200C0DC23 /* Extensions */ = {
@@ -252,25 +239,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		13F4BABF244E5B9E00C0DC23 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */,
-				13F4BABA244E5B2500C0DC23 /* EmptyView.swift */,
-				9F37802B244F7941007C174E /* MainView.swift */,
-				9F37802D244F873C007C174E /* MainViewCell.swift */,
-				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
-				C4604AA5244F613E008E2857 /* LoginView.swift */,
-				C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */,
-				C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */,
-				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
-				C4789D972450BCD4008193BA /* AverageUserSignInView.swift */,
-				C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */,
-				C4789D9B2450E742008193BA /* LoginWithPhoneView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		15687901BB74BB85DA73B07A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +246,222 @@
 				968999C13E4D20935AD54CD3 /* Pods-TeamBite.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C44D34F624CF62C700C2BF3E /* LoginFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C44D350524CF663700C2BF3E /* VenueFlow */,
+				C44D350424CF662E00C2BF3E /* AverageUserFlow */,
+				C44D350A24CF66BD00C2BF3E /* GeneralFlow */,
+			);
+			path = LoginFlow;
+			sourceTree = "<group>";
+		};
+		C44D34F724CF62FC00C2BF3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4604AA5244F613E008E2857 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C44D34F824CF630900C2BF3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C4604AA7244F6165008E2857 /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C44D34F924CF633400C2BF3E /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				13F4BAB6244E5AF000C0DC23 /* CoreLocationManager.swift */,
+				13F4BA8A244E54DC00C0DC23 /* SceneDelegate.swift */,
+				13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */,
+				13F4BAB8244E5B0D00C0DC23 /* HeaderView.swift */,
+				13F4BABA244E5B2500C0DC23 /* EmptyView.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		C44D34FA24CF63CC00C2BF3E /* AverageUserExperience */ = {
+			isa = PBXGroup;
+			children = (
+				C44D350024CF65AA00C2BF3E /* Cells */,
+				C44D350124CF65BB00C2BF3E /* Views */,
+				C44D350224CF65C100C2BF3E /* ViewControllers */,
+			);
+			path = AverageUserExperience;
+			sourceTree = "<group>";
+		};
+		C44D34FB24CF63DC00C2BF3E /* VenueExperience */ = {
+			isa = PBXGroup;
+			children = (
+				C44D34FE24CF641D00C2BF3E /* Cells */,
+				C44D34FC24CF63FD00C2BF3E /* Views */,
+				C44D34FD24CF640300C2BF3E /* ViewControllers */,
+			);
+			path = VenueExperience;
+			sourceTree = "<group>";
+		};
+		C44D34FC24CF63FD00C2BF3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C44D34FD24CF640300C2BF3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				634E16C0244F643D002C954A /* VenueViewController.swift */,
+				13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */,
+				634E16C6244FBC80002C954A /* CreateOffersViewController.swift */,
+				634E16C2244F68F3002C954A /* PastOffersViewController.swift */,
+				C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C44D34FE24CF641D00C2BF3E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */,
+				13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C44D350024CF65AA00C2BF3E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9F37802D244F873C007C174E /* MainViewCell.swift */,
+				13F39635244F7B26004BD488 /* ResourcesCell.swift */,
+				C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C44D350124CF65BB00C2BF3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F37802B244F7941007C174E /* MainView.swift */,
+				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
+				C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */,
+				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C44D350224CF65C100C2BF3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F504D2E24500A0F00294978 /* MainViewController.swift */,
+				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
+				C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */,
+				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
+				636E9C6624516DED00461E43 /* TabBarController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C44D350324CF662000C2BF3E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C44D350424CF662E00C2BF3E /* AverageUserFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C44D350924CF666700C2BF3E /* Views */,
+				C44D350824CF665E00C2BF3E /* ViewControllers */,
+			);
+			path = AverageUserFlow;
+			sourceTree = "<group>";
+		};
+		C44D350524CF663700C2BF3E /* VenueFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C44D350624CF664100C2BF3E /* Views */,
+				C44D350724CF664B00C2BF3E /* ViewControllers */,
+			);
+			path = VenueFlow;
+			sourceTree = "<group>";
+		};
+		C44D350624CF664100C2BF3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4604AAB244F7DB4008E2857 /* VenueSignUpView.swift */,
+				C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C44D350724CF664B00C2BF3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */,
+				C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C44D350824CF665E00C2BF3E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */,
+				C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */,
+				C4789D992450BCED008193BA /* AverageUserSignInController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C44D350924CF666700C2BF3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4789D9B2450E742008193BA /* LoginWithPhoneView.swift */,
+				C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */,
+				C4789D972450BCD4008193BA /* AverageUserSignInView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C44D350A24CF66BD00C2BF3E /* GeneralFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C44D350324CF662000C2BF3E /* Cells */,
+				C44D34F724CF62FC00C2BF3E /* Views */,
+				C44D34F824CF630900C2BF3E /* ViewControllers */,
+			);
+			path = GeneralFlow;
+			sourceTree = "<group>";
+		};
+		C44D350B24CF66F000C2BF3E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				13F4BA9C244E582500C0DC23 /* Login.storyboard */,
+				13F4BA8E244E54DC00C0DC23 /* Main.storyboard */,
+				136E9DDF2451DEE100F96FB2 /* Venues.storyboard */,
+				634E16BC244F3B77002C954A /* Wireframe.storyboard */,
+				13F4BA93244E54E000C0DC23 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C478941C24C8AA37000DAD81 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */,
+				C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */,
+				C4C255D024E5F7CE00FFF08D /* DateHandler.swift */,
+				C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,18 +586,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */,
 				9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */,
 				C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */,
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
 				636E9C6724516DED00461E43 /* TabBarController.swift in Sources */,
 				C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */,
 				634E16C3244F68F3002C954A /* PastOffersViewController.swift in Sources */,
+				C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */,
 				634E16C7244FBC80002C954A /* CreateOffersViewController.swift in Sources */,
 				C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */,
 				13F4BABB244E5B2500C0DC23 /* EmptyView.swift in Sources */,
 				13F4BAA1244E596400C0DC23 /* DatabaseService.swift in Sources */,
 				13F4BAB7244E5AF000C0DC23 /* CoreLocationManager.swift in Sources */,
 				9F37802E244F873C007C174E /* MainViewCell.swift in Sources */,
+				C44D34F524CF62AD00C2BF3E /* PatronOfferDetailController.swift in Sources */,
 				9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */,
 				13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */,
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
@@ -422,14 +609,17 @@
 				C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */,
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offer.swift in Sources */,
+				C4700C9024DA34570040E1B2 /* UserDefaultsHandler.swift in Sources */,
 				634E16C1244F643D002C954A /* VenueViewController.swift in Sources */,
 				634E16C9244FC4A5002C954A /* User.swift in Sources */,
 				C4789D9C2450E742008193BA /* LoginWithPhoneView.swift in Sources */,
 				13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */,
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
 				13F39634244F6F34004BD488 /* Resources.swift in Sources */,
+				C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */,
 				C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */,
 				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
+				C44D34F324CF629800C2BF3E /* PatronOfferDetailView.swift in Sources */,
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,
 				C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */,
 				C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */,
@@ -439,12 +629,14 @@
 				C4789D982450BCD4008193BA /* AverageUserSignInView.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
 				9F0112662450DB08006B2DE8 /* ClaimMealsView.swift in Sources */,
+				C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */,
 				13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */,
 				C4604AAC244F7DB4008E2857 /* VenueSignUpView.swift in Sources */,
 				13F4BABD244E5B5200C0DC23 /* UIViewController + Alerts.swift in Sources */,
 				636E9C6524516BDB00461E43 /* ClaimButtonViewController.swift in Sources */,
 				13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */,
 				13F4BA8B244E54DC00C0DC23 /* SceneDelegate.swift in Sources */,
+				C4767F6E24E7070400AD8A8B /* PaddedTextField.swift in Sources */,
 				C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */,
 				13F4BAB9244E5B0D00C0DC23 /* HeaderView.swift in Sources */,
 			);
