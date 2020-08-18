@@ -189,9 +189,7 @@ class CreateOffersViewController: UIViewController {
             let setAllergies = Set(allergies)
             let finalAllergies = Array(setAllergies)
             let urlImage = imgURL
-            
-            
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: startTime, endTime: endTime, allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage)
+            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage, expectedIds: [])
             
             
             DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in

@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
+      
         do {
             try Auth.auth().signOut()
         } catch {
@@ -47,6 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             ////        }
             window?.makeKeyAndVisible()
         }
+
     }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

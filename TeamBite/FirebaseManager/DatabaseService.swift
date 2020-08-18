@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+
 class DatabaseService {
     
     static let offersCollection = "offers"
@@ -49,19 +50,101 @@ class DatabaseService {
     }
     
     // create user
-    public func createUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
-        guard let phone = authDataResult.user.phoneNumber else {return}
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["phoneNumber":phone,
-                                                                                                  "userId": authDataResult.user.uid, ]){ (error) in
-                                                                                                    if let error = error {
-                                                                                                        completion(.failure(error))
-                                                                                                    } else {
-                                                                                                        completion(.success(true))
-                                                                                                    }
+    public func createUser(_ patron: User, completion: @escaping (Result<Bool, Error>) -> ()){
+        db.collection(DatabaseService.usersCollection).document(patron.userId).setData(["phoneNumber":patron.phoneNumber ,"userId": patron.userId, "allergies": patron.allergies, "claimStatus": patron.claimStatus]){ (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    // Checks to see if current user already exists
+    public func doesAccountExist(_ userId: String, _ completion: @escaping ((Result<Bool,Error>) -> ())) {
+        db.collection(DatabaseService.usersCollection).whereField("userId", isEqualTo: userId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snap = snapshot {
+                if snap.documents.count > 0 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
+        }
+    }
+    
+    // Update the status of the user.
+    public func updateStatus(_ userId: String, _ status: String, _ completion: @escaping ((Result<Bool, Error>) -> ())) {
+        db.collection(DatabaseService.usersCollection).document(userId).updateData(["claimStatus": status]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func fetchUserStatus(_ userId: String, _ completion: @escaping (Result<String,Error>) -> ()) {
+        db.collection(DatabaseService.usersCollection).document(userId).getDocument { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snap = snapshot, let data = snap.data() {
+                let currentUser = User(data)
+                completion(.success(currentUser.claimStatus))
+            }
+        }
+    }
+    
+    public func checkForClaimReset(_ userId: String, _ completion: @escaping (Result<Bool, Error>) -> ()){
+        let docRef = db.collection(DatabaseService.usersCollection).document(userId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            
+            do {
+                let documentSnap: DocumentSnapshot
+                
+                documentSnap = try transaction.getDocument(docRef)
+                
+                guard let timeForClaim = documentSnap.data()?["timeOfNextClaim"] as? Timestamp else {
+                    let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not retrieve time of next claim from snapshot."])
+                    errorPointer?.pointee = error
+                    return nil
+                }
+                
+                let dateOfClaim = timeForClaim.dateValue()
+                if dateOfClaim < Date() {
+                    transaction.updateData(["timeOfNextClaim": Timestamp(date: DateHandler.calculateNextClaimDate()), "claimStatus": "unclaimed"], forDocument: docRef)
+                }
+                
+            } catch let error as NSError{
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func updateTimeOfNextClaim(_ userId: String, _ newTime: Date, _ completion: @escaping (Result<Bool,Error>) -> ()) {
+        db.collection(DatabaseService.usersCollection).document(userId).updateData(["timeOfNextClaim": Timestamp(date: newTime)]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
     }
     
     public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
+
         db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "offerImage": offer.offerImage ?? "no url"] ) { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -75,6 +158,7 @@ class DatabaseService {
     // Create offers
     public func addToOffers(offer: Offer, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let venueOwner = Auth.auth().currentUser else { return }
+
         db.collection(DatabaseService.venuesOwnerCollection).document(venueOwner.uid).collection(DatabaseService.offersCollection).document(offer.offerId).setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "offerImage": offer.offerImage ?? "no url", "status": offer.status]) { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -107,7 +191,7 @@ class DatabaseService {
     }
     
     public func fetchVenue(completion: @escaping (Result< Venue, Error>) -> ()) {
-       guard let currentUser = Auth.auth().currentUser else {return}
+        guard let currentUser = Auth.auth().currentUser else {return}
         
         db.collection(DatabaseService.venuesOwnerCollection).whereField("userId", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
             if let error = error {
@@ -134,20 +218,56 @@ class DatabaseService {
     
     // just removed venueId from completion
     public func fetchVenueOffers(_ venueID: String, completion: @escaping (Result<[Offer], Error>) -> ()) {
-
+        
         db.collection(DatabaseService.venuesOwnerCollection).document(venueID).collection(DatabaseService.offersCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else if let snapshot = snapshot {
                 let offers = snapshot.documents.compactMap { Offer($0.data()) }
                 completion(.success(offers))
-                dump(offers)
+            }
+        }
+    }
+    
+    // Update Transation. Combines isValidOffer and updateOffer
+    public func updateOfferTransaction(_ userId: String, _ venueId: String, _ offerId: String, _ completion: @escaping (Result<Bool,Error>) -> ()) {
+        
+        let dbReference = db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            
+            do {
+                let sfDocument: DocumentSnapshot
+                
+                try sfDocument = transaction.getDocument(dbReference)
+                
+                guard var oldIds = sfDocument.data()?["expectedIds"] as? [String], let foundIndex = oldIds.firstIndex(of: userId) else {
+                    let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to retrieve expected Ids."])
+                    errorPointer?.pointee = error
+                    return nil
+                }
+                
+                oldIds.remove(at: foundIndex)
+                
+                transaction.updateData(["expectedIds": oldIds], forDocument: dbReference)
+                
+            } catch let error as NSError {
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
             }
         }
     }
     
     // Performs a transaction. Basically it updates the remaining meals for this offer, but makes certain that it actually updates.
-    public func claimOffer(_ venueId: String, _ offerId: String, _ completion: @escaping (Result<Bool,Error>) -> ()) {
+    public func claimOffer(_ venueId: String, _ offerId: String, _ userId: String, _ completion: @escaping (Result<Bool,Error>) -> ()) {
         let offerDocRef = db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId)
         
         db.runTransaction({ (transaction, errorPointer) -> Any? in
@@ -156,13 +276,17 @@ class DatabaseService {
                 let sfDocument: DocumentSnapshot // Contains data from a document in firebase.
                 try sfDocument = transaction.getDocument(offerDocRef)
                 
-                guard let oldRemaining = sfDocument.data()?["remainingMeals"] as? Int, oldRemaining > 0 else {
+                guard let oldRemaining = sfDocument.data()?["remainingMeals"] as? Int, var expIds = sfDocument.data()?["expectedIds"] as? [String], oldRemaining > 0 else {
                     let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey : "Either we were unable to retrieve remaining meals from snapshot \(sfDocument.description), or there are no more offers of this meal available. Please try another offer."])
                     errorPointer?.pointee = error
                     return nil
                 }
-
-                transaction.updateData(["remainingMeals": oldRemaining - 1], forDocument: offerDocRef)
+                
+                if !expIds.contains(userId) {
+                    expIds.append(userId)
+                }
+                
+                transaction.updateData(["remainingMeals": oldRemaining - 1, "expectedIds": expIds], forDocument: offerDocRef)
                 
             } catch let fetchError as NSError  {
                 errorPointer?.pointee = fetchError
@@ -179,7 +303,7 @@ class DatabaseService {
         }
     }
     
-    public func forfeitOffer(_ venueId: String, _ offerId: String, _ completion: @escaping (Result<Bool,Error>) -> ()) {
+    public func forfeitOffer(_ venueId: String, _ offerId: String, _ userId: String, _ completion: @escaping (Result<Bool,Error>) -> ()) {
         let offerRef = db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId)
         
         db.runTransaction({ (transaction, errorPointer) -> Any? in
@@ -188,7 +312,7 @@ class DatabaseService {
             do {
                 try sfDocument = transaction.getDocument(offerRef)
                 
-                guard let oldRemaining = sfDocument.data()?["remainingMeals"] as? Int else {
+                guard let oldRemaining = sfDocument.data()?["remainingMeals"] as? Int, var expIds = sfDocument.data()? ["expectedIds"] as? [String] else {
                     let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to retrieve remaining meals from \(sfDocument)"])
                     
                     errorPointer?.pointee = error
@@ -196,7 +320,10 @@ class DatabaseService {
                     return nil
                 }
                 
-                transaction.updateData(["remainingMeals": oldRemaining + 1], forDocument: offerRef)
+                if let userIdIndex = expIds.firstIndex(of: userId){
+                    expIds.remove(at: userIdIndex)
+                }
+                transaction.updateData(["remainingMeals": oldRemaining + 1, "expectedIds": expIds], forDocument: offerRef)
                 
             } catch let fetchError as NSError{
                 errorPointer?.pointee = fetchError

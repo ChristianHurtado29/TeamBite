@@ -30,8 +30,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var venueNameTextField: UITextField = {
-        let textField = UITextField()
+    public lazy var venueNameTextField: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.placeholder = " Enter restaurant name here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -48,8 +48,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var venuePhoneTextField: UITextField = {
-       let textField = UITextField()
+    public lazy var venuePhoneTextField: PaddedTextField = {
+       let textField = PaddedTextField()
         textField.placeholder = " Enter phone number here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -66,8 +66,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var streetNameTextField: UITextField = {
-       let textField = UITextField()
+    public lazy var streetNameTextField: PaddedTextField = {
+       let textField = PaddedTextField()
         textField.placeholder = " Enter street address here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -84,8 +84,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var cityTextField: UITextField = {
-       let textField = UITextField()
+    public lazy var cityTextField: PaddedTextField = {
+       let textField = PaddedTextField()
         textField.placeholder = " Enter city here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -102,8 +102,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var stateTextField: UITextField = {
-       let textField = UITextField()
+    public lazy var stateTextField: PaddedTextField = {
+       let textField = PaddedTextField()
         textField.placeholder = " NY"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -120,8 +120,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var zipTextField: UITextField = {
-        let textField = UITextField()
+    public lazy var zipTextField: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.placeholder = " Enter Zip Code"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -145,8 +145,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var startTimeTextField: UITextField = {
-        let textField = UITextField()
+    public lazy var startTimeTextField: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.placeholder = " e.g. 12:00"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -163,8 +163,8 @@ class CollectVenueInfoView: UIView {
         return label
     }()
     
-    public lazy var endTimeTextField: UITextField = {
-        let textField = UITextField()
+    public lazy var endTimeTextField: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.placeholder = " e.g. 1:00"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor

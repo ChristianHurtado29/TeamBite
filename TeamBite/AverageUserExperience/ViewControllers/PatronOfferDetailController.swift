@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import FirebaseAuth
 
 protocol PatronOfferDetailDelegate: AnyObject {
     func stateChanged(_ patronOfferDetailController: PatronOfferDetailController, _ newState: AppState)
@@ -22,10 +24,14 @@ class PatronOfferDetailController: UIViewController {
     private var currentState: AppState
     private let currentOffer: Offer
     private let currentVenue: Venue
+    private let currentUserId: String
+    private let coreLocationManager = CoreLocationManager()
     
     public weak var delegate: PatronOfferDetailDelegate?
     
     init(_ offer: Offer, _ venue: Venue, _ state: AppState) {
+        let userId = Auth.auth().currentUser?.uid ?? "sdknaZ8oYlPI4w4XEQGOwUgIsXw2"
+        self.currentUserId = userId
         self.currentState = state
         self.currentOffer = offer
         self.currentVenue = venue
@@ -44,20 +50,29 @@ class PatronOfferDetailController: UIViewController {
         super.viewDidLoad()
         setUpUI()
         configureState()
+        configureMapView()
     }
     
     private func setUpUI() {
         navigationItem.title = currentOffer.nameOfOffer
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         detailView.backgroundColor = UIColor.systemBackground
+        
         detailView.claimOfferButton.addTarget(self, action: #selector(claimOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.forfeitOfferButton.addTarget(self, action: #selector(forfeitOfferButtonPressed(_:)), for: .touchUpInside)
+        detailView.getDirectionsButton.addTarget(self, action: #selector(getDirectionsButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func configureMapView() {
+        let annotation = coreLocationManager.createAnnotation(CLLocationCoordinate2D(latitude: currentVenue.lat, longitude: currentVenue.long), currentVenue.name)
+        detailView.mapView.addAnnotation(annotation)
+        detailView.mapView.showAnnotations([annotation], animated: true)
     }
     
     private func configureState() {
         if currentState == AppState.offerClaimed{
-            if UserDefaultsHandler.getOfferName() ?? "" == currentOffer.nameOfOffer {
-                detailView.configureClaimedCurrentOfferState(currentOffer.nameOfOffer)
+            if let offerName = UserDefaultsHandler.getOfferName(), offerName == currentOffer.nameOfOffer {
+                detailView.configureClaimedCurrentOfferState(offerName, currentOffer.offerId, currentUserId)
             } else {
                 detailView.configureOfferClaimedState()
             }
@@ -74,32 +89,53 @@ class PatronOfferDetailController: UIViewController {
     }
     
     private func claimedButtonUpdates() {
-        DatabaseService.shared.claimOffer(currentVenue.venueId, currentOffer.offerId) { [weak self] result in
+        DatabaseService.shared.claimOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not successfully claim offer: \(error.localizedDescription)") { [weak self] alertAction in
                     self?.navigationController?.popViewController(animated: true)
                 }
             case .success:
-                self?.showAlert(title: "Success", message: "Successfully claimed offer.")
+                self?.showAlert(title: "Success", message: "You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true)).")
                 self?.setClaimedState()
             }
         }
-        delegate?.stateChanged(self, AppState.offerClaimed)
+    }
+    
+    private func setTimeToNextClaim(){
+        let date = DateHandler.calculateNextClaimDate()
+        DatabaseService.shared.updateTimeOfNextClaim(currentUserId, date) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not update time of next offer. Error: \(error.localizedDescription).")
+            case .success:
+                self?.showAlert(title: "Success", message: "You can claim another meal at \(DateHandler.convertDateToString(date, true)).")
+            }
+        }
     }
     
     private func setClaimedState() {
+        let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.convertDateToString(Date())) \(currentOffer.offerId) \(currentUserId)"
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
-        detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: currentOffer.nameOfOffer)
-        UserDefaultsHandler.setStateToClaimed()
+        detailView.qrCodeImageView.image = QRCodeHandler.generateQRCode(from: qrCodeString)
+        DatabaseService.shared.updateStatus(currentUserId, "claimed") { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Update Error", message: "Could not update claim status: \(error.localizedDescription)")
+            case .success:
+                break
+            }
+        }
+        delegate?.stateChanged(self, AppState.offerClaimed)
         UserDefaultsHandler.saveOfferName(currentOffer.nameOfOffer)
+        setTimeToNextClaim()
     }
     
     @objc
     private func forfeitOfferButtonPressed(_ sender: UIButton) {
-        showOfferAlert("Forfeit Offer", "You are about to forfeit your claim to this meal. If you forfeit this meal, you will not be able to claim another until tomorrow. Are you sure that you would like to forfeit this meal?") { [weak self] (action) in
+        showOfferAlert("Forfeit Offer", "You are about to forfeit your claim to this meal. If you forfeit this meal, you will not be able to claim another until tomorrow. Are you sure that you would like to forfeit this meal?") { [weak self] action in
             self?.forfeitButtonUpdates()
         }
     }
@@ -109,16 +145,25 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.isUserInteractionEnabled = false
         detailView.forfeitOfferButton.alpha = 0.0
         UserDefaultsHandler.resetOfferName()
-        DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId) {
+        DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) {
             [weak self] result in
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not forfeit error: \(error.localizedDescription)")
             case .success:
-                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You'll be able to claim another meal tomorrow.")
+                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true))")
             }
         }
         detailView.configureOfferClaimedState()
+    }
+    
+    @objc
+    private func getDirectionsButtonPressed(_ sender: UIButton) {
+        let destinationPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: currentVenue.lat, longitude: currentVenue.long))
+        let destinationItem = MKMapItem(placemark: destinationPlacemark)
+        destinationItem.name = currentVenue.name
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        destinationItem.openInMaps(launchOptions: launchOptions)
     }
 
 }

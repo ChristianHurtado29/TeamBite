@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAuth
 
 class ScanQRCodeController: UIViewController {
     
@@ -90,9 +91,19 @@ class ScanQRCodeController: UIViewController {
     }
     
     private func found(_ str: String) {
-        // Match string to offer. Make certain it is current. 
-        showAlert(title: "Found", message: str) { (action) in
-            self.dismiss(animated: true, completion: nil)
+        guard let venueId = Auth.auth().currentUser?.uid else { return }
+        // Match string to offer. Make certain it is current.
+        let strTuple = QRCodeHandler.parseQRCode(str)
+        
+        DatabaseService.shared.updateOfferTransaction(strTuple.userId, venueId, strTuple.offerId) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Invalid QRCode", message: "Error: \(error.localizedDescription)")
+            case .success:
+                self?.showAlert(title: "Found", message: strTuple.message) { (action) in
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            }
         }
     }
 }

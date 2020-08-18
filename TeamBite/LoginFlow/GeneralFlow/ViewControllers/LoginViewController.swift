@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     private let loginView = LoginView()
-    private let options = ["I am hungry", "I am a venue owner"]
+    private let options = ["I am a patron", "I am a venue owner"]
     
     override func loadView(){
         view = loginView
@@ -57,7 +57,7 @@ extension LoginViewController: UITableViewDataSource {
 extension LoginViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 134
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -58,24 +58,18 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureMapView()
         updateUI()
-        loadMap()
-        //loadVenue()
-        getDirections()
-        //getOffers()
-        configureGetDirectionsButton()
         configureOffersTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Filter by meals with remaining more than 0.
         listener = Firestore.firestore().collection(DatabaseService.venuesOwnerCollection).document(selectedVenue.venueId).collection(DatabaseService.offersCollection).addSnapshotListener({ [weak self] (snapshot, error) in
             if let error = error {
                 self?.showAlert(title: "Date Retrieval Error", message: "Could not retrieve data: \(error.localizedDescription)")
             } else if let snapshot = snapshot {
-                self?.selectedOffers = snapshot.documents.compactMap{ Offer($0.data()) }
+                let offerName = UserDefaultsHandler.getOfferName() ?? ""
+                self?.selectedOffers = snapshot.documents.compactMap{ Offer($0.data()) }.filter{ ($0.remainingMeals > 0 || offerName == $0.nameOfOffer) && ($0.startTime.dateValue() < Date() && $0.endTime.dateValue() > Date()) }
             }
         })
     }
@@ -106,11 +100,11 @@ class UserDetailViewController: UIViewController {
 //"""
 //        }
         
-        detailView.thisNeedsTobeRefactor.text = """
+        detailView.addressLabel.text = """
         Address:
         \(selectedVenue.address)
         """
-        detailView.refactor.text = "Phone: \(selectedVenue.phoneNumber ?? "No phone number")"
+        detailView.phoneNumberLabel.text = "Phone: \(selectedVenue.phoneNumber ?? "No phone number")"
         
         // Have to add resturant picture !!
         

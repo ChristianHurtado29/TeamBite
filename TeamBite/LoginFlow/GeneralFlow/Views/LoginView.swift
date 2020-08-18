@@ -12,6 +12,7 @@ class LoginView: UIView {
     
     public lazy var loginTableView: UITableView = {
        let tableView = UITableView()
+        tableView.isScrollEnabled = false
         return tableView
     }()
     
@@ -19,7 +20,7 @@ class LoginView: UIView {
        let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.text = "Are you a venue owner, or are you hungry?"
+        label.text = "Are you a venue owner, or are you a patron?"
         label.font = UIFont(name: "Arial", size: 20)
         label.numberOfLines = 2
         return label

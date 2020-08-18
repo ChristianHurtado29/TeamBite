@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 enum AppState: String {
     case offerClaimed = "claimed"
@@ -46,17 +47,34 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+        fetchVenues()
+        fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DatabaseService.shared.checkForClaimReset("sdknaZ8oYlPI4w4XEQGOwUgIsXw2") { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not access claim time. Error: \(error.localizedDescription)")
+            case .success(let succeeded):
+                if succeeded {
+                    self?.fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
+                }
+            }
+        }
+    }
+    
+    private func configureUI() {
         view.backgroundColor = .white
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
         mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
         
         navigationItem.title = "BITE"
-        fetchVenues()
     }
     
-    
-
     private func fetchVenues() {
         DatabaseService.shared.fetchVenues() { [weak self] (result) in
             switch result {
@@ -66,19 +84,33 @@ class MainViewController: UIViewController {
                 }
             case .success(let item):
                 self?.savedVenues = item
-                dump(item)
             }
         }
     }
     
-
-
+    private func fetchAppState(_ uid: String) {
+//        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        DatabaseService.shared.fetchUserStatus(uid) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Error fetching user status: \(error.localizedDescription)")
+            case .success(let status):
+                
+                if let state = AppState(rawValue: status) {
+                    self?.currentState = state
+                    if state == AppState.offerUnclaimed {
+                        UserDefaultsHandler.resetOfferName()
+                    }
+                }
+            }
+        }
+    }
 }
 
 //MARK: UICollection Delegate Extension
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("main vc # of venues:\(savedVenues.count)")
         return savedVenues.count
     }
     

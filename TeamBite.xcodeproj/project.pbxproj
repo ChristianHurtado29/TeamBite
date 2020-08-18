@@ -57,6 +57,7 @@
 		C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */; };
 		C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */; };
 		C4700C9024DA34570040E1B2 /* UserDefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */; };
+		C4767F6E24E7070400AD8A8B /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */; };
 		C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */; };
 		C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */; };
 		C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */; };
@@ -66,6 +67,7 @@
 		C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */; };
 		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
+		C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C255D024E5F7CE00FFF08D /* DateHandler.swift */; };
 		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +130,7 @@
 		C4604AAD244FDECE008E2857 /* CollectVenueInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoView.swift; sourceTree = "<group>"; };
 		C4604AAF244FDF0C008E2857 /* CollectVenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVenueInfoController.swift; sourceTree = "<group>"; };
 		C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHandler.swift; sourceTree = "<group>"; };
+		C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeHandler.swift; sourceTree = "<group>"; };
 		C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeController.swift; sourceTree = "<group>"; };
 		C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SceneChange.swift"; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 		C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneController.swift; sourceTree = "<group>"; };
 		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
+		C4C255D024E5F7CE00FFF08D /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,9 +190,9 @@
 				1353936E245179C100CB9622 /* FoodReady.mp3 */,
 				C44D34FB24CF63DC00C2BF3E /* VenueExperience */,
 				C44D34FA24CF63CC00C2BF3E /* AverageUserExperience */,
+				C44D34F624CF62C700C2BF3E /* LoginFlow */,
 				C478941C24C8AA37000DAD81 /* Utilities */,
 				C44D34F924CF633400C2BF3E /* SupportingFiles */,
-				C44D34F624CF62C700C2BF3E /* LoginFlow */,
 				13F4BABE244E5B9200C0DC23 /* Extensions */,
 				13F4BAA5244E599600C0DC23 /* Models */,
 				13F4BAAA244E5A3400C0DC23 /* ViewControllers */,
@@ -351,8 +355,8 @@
 			children = (
 				9F37802B244F7941007C174E /* MainView.swift */,
 				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
-				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
 				C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */,
+				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,8 +366,8 @@
 			children = (
 				9F504D2E24500A0F00294978 /* MainViewController.swift */,
 				9F01126324501360006B2DE8 /* UserDetailViewController.swift */,
-				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
 				C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */,
+				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
 				636E9C6624516DED00461E43 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
@@ -460,6 +464,8 @@
 			children = (
 				C478941D24C8AA56000DAD81 /* QRCodeHandler.swift */,
 				C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */,
+				C4C255D024E5F7CE00FFF08D /* DateHandler.swift */,
+				C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */,
 				9F504D2D244FEA2800294978 /* UserDetailView.swift in Sources */,
 				C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */,
 				13F4BA8D244E54DC00C0DC23 /* ViewController.swift in Sources */,
@@ -637,6 +644,7 @@
 				636E9C6524516BDB00461E43 /* ClaimButtonViewController.swift in Sources */,
 				13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */,
 				13F4BA8B244E54DC00C0DC23 /* SceneDelegate.swift in Sources */,
+				C4767F6E24E7070400AD8A8B /* PaddedTextField.swift in Sources */,
 				C4604AAE244FDECE008E2857 /* CollectVenueInfoView.swift in Sources */,
 				13F4BAB9244E5B0D00C0DC23 /* HeaderView.swift in Sources */,
 			);

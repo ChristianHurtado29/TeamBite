@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 protocol CoreLocationManagerDelegate: AnyObject {
     func locationChanged(_ coreLocationManager: CoreLocationManager, _ locations: [CLLocation])
@@ -21,10 +22,19 @@ class CoreLocationManager: NSObject{
     override init(){
         locationManager = CLLocationManager()
         super.init()
-        
+        accessLocation()
+    }
+    
+    private func accessLocation() {
+        guard CLLocationManager.locationServicesEnabled() else { return }
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.requestLocation()
+        }
     }
     
     public func convertCoordinateIntoPlacemark(_ coordinate: CLLocationCoordinate2D, completion: @escaping (Result<CLPlacemark,Error>) -> ()){
@@ -58,6 +68,13 @@ class CoreLocationManager: NSObject{
             return
         }
         locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    public func createAnnotation(_ coordinates: CLLocationCoordinate2D, _ locationName: String) -> MKPointAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        annotation.title = locationName
+        return annotation
     }
 }
 

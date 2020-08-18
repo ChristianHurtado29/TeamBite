@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class LoginWithPhoneController: UIViewController {
     
@@ -63,7 +64,6 @@ class LoginWithPhoneController: UIViewController {
                 self?.showAlert(title: "Error", message: "Could not verify phone Number: \(error)")
                 return
             } else if let verificationID = verificationID {
-                // TODO: Create User Instance and push to firebase
                 self?.promptUserForVerificationCode(verificationID)
             }
         }
@@ -90,15 +90,13 @@ class LoginWithPhoneController: UIViewController {
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Authentication Error", message: "Could not sign into firebase with provided credential: \(error) ")
-            case .success:
-//                let storyborder = UIStoryboard(name: "Wireframe", bundle: nil)
-//                guard let userTabBarController = storyborder.instantiateViewController(identifier: "UserTabBarController") as? UITabBarController else {
-//                    fatalError("Could not instantiate view controller")
-//                }
-//                UIViewController.resetWindow(userTabBarController)
-                let tabBarController = TabBarController()
-                
-                UIViewController.resetWindow(tabBarController)
+            case .success(let authResult):
+                if let prefs = self?.dietaryPreferences {
+                    self?.doesNewUserExist(authResult, prefs)
+                } else {
+                    let tabBarController = TabBarController()
+                    UIViewController.resetWindow(tabBarController)
+                }
             }
         }
     }
@@ -124,6 +122,35 @@ class LoginWithPhoneController: UIViewController {
         }
         
         return true
+    }
+    
+    private func createNewUser(_ authResult: AuthDataResult, _ prefs: [String]) {
+        let newUser = User(userId: authResult.user.uid, phoneNumber: authResult.user.phoneNumber ?? "None", allergies: prefs, claimStatus: "unclaimed", timeOfNextClaim: Timestamp(date: DateHandler.calculateNextClaimDate()))
+        DatabaseService.shared.createUser(newUser) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not add user information to database: \(error.localizedDescription)")
+            case .success:
+                let tabBarController = TabBarController()
+                UIViewController.resetWindow(tabBarController)
+            }
+        }
+    }
+    
+    private func doesNewUserExist(_ authResult: AuthDataResult, _ prefs: [String]) {
+        DatabaseService.shared.doesAccountExist(authResult.user.uid) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "Could not verify the existence of user: \(error.localizedDescription)")
+            case .success(let isAUser):
+                if isAUser {
+                    let tabBarController = TabBarController()
+                    UIViewController.resetWindow(tabBarController)
+                } else {
+                    self?.createNewUser(authResult, prefs)
+                }
+            }
+        }
     }
     
     @objc
