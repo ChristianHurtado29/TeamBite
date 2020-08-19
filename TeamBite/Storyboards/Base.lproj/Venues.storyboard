@@ -141,7 +141,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="4YB-lp-251"/>
                     <connections>
                         <outlet property="offersTableView" destination="lTw-dD-DpN" id="ddx-Dc-LXt"/>
-                        <outlet property="venueAddressLabel" destination="VPj-12-2T7" id="tp3-iB-XQ9"/>
+                        <outlet property="venueAddressLabel" destination="VPj-12-2T7" id="ma6-yP-ZGY"/>
                         <outlet property="venueContactLabel" destination="01g-Qt-yAm" id="Q47-aJ-0m2"/>
                         <outlet property="venueImage" destination="Fnn-TM-BfG" id="Fwm-7l-iXY"/>
                     </connections>

@@ -15,7 +15,7 @@ class LoginWithPhoneView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Phone Number"
+        label.text = NSLocalizedString("phonenumber", comment: "")
         return label
     }()
     
@@ -30,7 +30,7 @@ class LoginWithPhoneView: UIView {
     
     public lazy var submitButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Submit", for: .normal)
+        button.setTitle(NSLocalizedString("submit", comment: ""), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()

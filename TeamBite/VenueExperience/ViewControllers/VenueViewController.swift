@@ -70,7 +70,7 @@ class VenueViewController: UIViewController {
     private let storageService = StorageService()
     
     override func viewWillLayoutSubviews() {
-        
+
     }
     
     override func viewDidLoad() {

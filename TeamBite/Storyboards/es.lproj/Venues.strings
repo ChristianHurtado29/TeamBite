@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "Información de contacto\nInformación de contacto del lugar\nInformación de contacto del lugar"; ObjectID = "01g-Qt-yAm"; */
+"01g-Qt-yAm.text" = "Información de contacto";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "4YB-lp-251"; */
+"4YB-lp-251.title" = "Home";
+
+/* Class = "UIBarButtonItem"; title = "Crear oferta"; ObjectID = "HVx-Ws-hnw"; */
+"HVx-Ws-hnw.title" = "Crear oferta";
+
+/* Class = "UILabel"; text = "cantidad restantes"; ObjectID = "HnK-Pw-59z"; */
+"HnK-Pw-59z.text" = "cantidad restantes";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "J4A-o5-xNM"; */
+"J4A-o5-xNM.placeholder" = "Name";
+
+/* Class = "UILabel"; text = "Sin nueces"; ObjectID = "Ncn-5I-c9l"; */
+"Ncn-5I-c9l.text" = "Sin nueces";
+
+/* Class = "UILabel"; text = "Vegetariano"; ObjectID = "RxR-aO-oOS"; */
+"RxR-aO-oOS.text" = "Vegetariano";
+
+/* Class = "UILabel"; text = "número de comidas\n"; ObjectID = "Sg0-B6-96B"; */
+"Sg0-B6-96B.text" = "número de comidas\n";
+
+/* Class = "UILabel"; text = "Nombre:"; ObjectID = "UT9-fa-EOU"; */
+"UT9-fa-EOU.text" = "Nombre:";
+
+/* Class = "UILabel"; text = "Finaliza:"; ObjectID = "UuX-Sa-jYv"; */
+"UuX-Sa-jYv.text" = "Finaliza:";
+
+/* Class = "UILabel"; text = "dirección del lugar\n"; ObjectID = "VPj-12-2T7"; */
+"VPj-12-2T7.text" = "dirección del lugar\n";
+
+/* Class = "UILabel"; text = "Titulo de la oferta"; ObjectID = "XNW-M0-g87"; */
+"XNW-M0-g87.text" = "Titulo de la oferta";
+
+/* Class = "UIBarButtonItem"; title = "Escanear código"; ObjectID = "Ype-GE-XKT"; */
+"Ype-GE-XKT.title" = "Escanear código";
+
+/* Class = "UINavigationItem"; title = "Crear oferta"; ObjectID = "cdR-I7-Y6V"; */
+"cdR-I7-Y6V.title" = "Crear oferta";
+
+/* Class = "UILabel"; text = "Alergias:"; ObjectID = "dh3-9A-edt"; */
+"dh3-9A-edt.text" = "Alergias:";
+
+/* Class = "UILabel"; text = "Cantidad de ofertas:"; ObjectID = "e0d-T9-RAa"; */
+"e0d-T9-RAa.text" = "Cantidad de ofertas:";
+
+/* Class = "UINavigationItem"; title = "Venue Name"; ObjectID = "fu5-zA-VRi"; */
+"fu5-zA-VRi.title" = "Nombre del restaurante";
+
+/* Class = "UITextField"; placeholder = "Number"; ObjectID = "hWe-wp-7Jq"; */
+"hWe-wp-7Jq.placeholder" = "Numero";
+
+/* Class = "UITextField"; placeholder = "Number"; ObjectID = "jIQ-d8-HhY"; */
+"jIQ-d8-HhY.placeholder" = "Numero";
+
+/* Class = "UIButton"; normalTitle = "     Create     "; ObjectID = "mNf-p5-0Se"; */
+"mNf-p5-0Se.normalTitle" = "     Crear     ";
+
+/* Class = "UILabel"; text = "Inicia:"; ObjectID = "n1a-mq-2Bf"; */
+"n1a-mq-2Bf.text" = "Inicia:";
+
+/* Class = "UILabel"; text = "Sin gluten"; ObjectID = "s6Q-IH-Q1o"; */
+"s6Q-IH-Q1o.text" = "Sin gluten";

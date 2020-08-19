@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  TeamBite
+
+  Created by Christian Hurtado on 8/18/20.
+  Copyright © 2020 Christian Hurtado. All rights reserved.
+*/
+
+// login flow
+"select" = "Select one of the choices below";
+"areyou" = "Are you a vendor or a patron?";
+"patron" = "I am a patron";
+"vendor" = "I am a vendor";
+"email" = "email";
+"password" = "password";
+"signin" = "Sign in";
+"createaccount" = "Create account";
+"phonenumber" = "Phone Number";
+"submit" = "Submit";
+"notification" = "Notification";
+
+// patron
+"explore" = "explore";
+"resources" = "resources";
+"address" = "address";
+"phone" = "phone";
+"activeoffers" = "active offers";
+

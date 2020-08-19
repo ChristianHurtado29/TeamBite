@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  TeamBite
+
+  Created by Christian Hurtado on 8/18/20.
+  Copyright © 2020 Christian Hurtado. All rights reserved.
+*/
+
+// login
+"select" = "Seleccione uno";
+"areyou" = "¿Eres un vendedor o cliente?";
+"patron" = "Yo soy un cliente";
+"vendor" = "Yo soy un vendedor";
+"email" = "email";
+"password" = "contraseña";
+"signin" = "Entrar";
+"createaccount" = "Crear una cuenta";
+"phonenumber" = "número de teléfono";
+"submit" = "Ingresar";
+"notification" = "Alerta";
+
+// patron
+"explore" = "explorar";
+"resources" = "recursos";
+"address" = "la dirección";
+"phone" = "teléfono";
+"activeoffers" = "ofertas activas";

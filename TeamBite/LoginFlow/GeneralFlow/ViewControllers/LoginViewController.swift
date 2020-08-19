@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     private let loginView = LoginView()
-    private let options = ["I am a patron", "I am a venue owner"]
+    private let options = [NSLocalizedString("patron", comment: ""), NSLocalizedString("vendor", comment: "")]
     
     override func loadView(){
         view = loginView
@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         loginView.loginTableView.delegate = self
         loginView.loginTableView.register(LoginCustomCell.self, forCellReuseIdentifier: "loginCell")
         loginView.loginTableView.separatorStyle = .none
-        navigationItem.title = "Select one of the below Choices"
+        navigationItem.title = NSLocalizedString("select", comment: "")
     }
 
 }
