@@ -31,10 +31,10 @@ class VenueInfoController: UIViewController {
         venuePhoto.image = UIImage(systemName: "bag.fill")
         venueName.text = venue.name
         venuePhone.text = venue.phoneNumber
-        venueHours.text = """
-        pickup begins at: \(venue.startTime!)
-        pickup ends at: \(venue.endTime!)
-        """
+//        venueHours.text = """
+//        pickup begins at: \(venue.startTime!)
+//        pickup ends at: \(venue.endTime!)
+//        """
     }
     
     

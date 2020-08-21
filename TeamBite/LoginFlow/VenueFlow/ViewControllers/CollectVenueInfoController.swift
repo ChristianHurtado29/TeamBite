@@ -17,6 +17,12 @@ class CollectVenueInfoController: UIViewController {
     private let coreLocation = CoreLocationManager()
     private var yAnchorConstant: CGFloat = 0
     private var keyboardIsVisible = false
+    private let pickupInstructions = ["Call store", "Walk-in", ]
+    
+    public lazy var instructionPicker: UIPickerView = {
+        let picker = UIPickerView()
+        return picker
+    }()
     
     init(_ email: String, _ password: String){
         self.userEmail = email
@@ -37,6 +43,7 @@ class CollectVenueInfoController: UIViewController {
         setUp()
         collectVenueInfoView.tapGesture.addTarget(self, action: #selector(dismissKeyboard))
         registerForKeyboardNotifications()
+        collectVenueInfoView.instructionTextfield.inputView = instructionPicker
     }
     
     private func setUp(){
@@ -50,6 +57,8 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.startTimeTextField.delegate = self
         collectVenueInfoView.endTimeTextField.delegate = self
         collectVenueInfoView.submitButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
+        instructionPicker.dataSource = self
+        instructionPicker.delegate = self
         navigationItem.title = "Venue Information"
     }
     
@@ -103,7 +112,7 @@ class CollectVenueInfoController: UIViewController {
                     self?.showAlert(title: "Placename Error", message: "Could not convert a placename into coordinate: \(error.localizedDescription)")
                 }
             case.success(let coordinate):
-                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, startTime: startTime, endTime: endTime)
+                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: "no instructions")
                 self?.createNewVenue(newVenue)
             }
         }
@@ -253,4 +262,19 @@ extension CollectVenueInfoController {
             self.view.layoutIfNeeded()
         }
     }
+}
+
+extension CollectVenueInfoController: UIPickerViewDataSource, UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickupInstructions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickupInstructions[row]
+    }
+    
 }
