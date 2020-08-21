@@ -75,6 +75,7 @@ class CreateOffersViewController: UIViewController {
         formatter.timeStyle = DateFormatter.Style.short
         startTimeTextField.text = formatter.string(from: currentDateTime)
         endTimeTextField.text = formatter.string(from: currentDateTime + 1820)
+        offerImage.image = UIImage(named: "photo.fill")
     }
     
     private func initialSwitchSettings() {
@@ -153,11 +154,7 @@ class CreateOffersViewController: UIViewController {
     
     
     @IBAction func createOfferButtonPressed(_ sender: UIButton) {
-        print("create button clicked")
-        if offerNameTextField.text?.isEmpty == true {
-            showAlert(title: "name is empty", message: "")
-        } else {
-            
+        if fieldCheck(){
             if nutFreeSwitch.isOn == true {
                 if !allergies.contains("Nut-Free"){
                     allergies.append("Nut-Free")
@@ -179,10 +176,6 @@ class CreateOffersViewController: UIViewController {
                     allergies.append("Vegetarian")
                 }
                 print("allergies: \(allergies)")
-            }
-            
-            if startPicker.date < currentDateTime || endPicker.date < startPicker.date {
-                showAlert(title: "", message: "Please provide a valid start time")
             }
             
             let offerName = offerNameTextField.text ?? "Meals"
@@ -218,12 +211,32 @@ class CreateOffersViewController: UIViewController {
                     }
                 case .success:
                     sender?.isEnabled = true
+                    self!.playSound(file: "FoodReady", ext: "mp3")
                 }
             }
-            playSound(file: "FoodReady", ext: "mp3")
         }
         sleep(1)
         dismiss(animated: true)
+    }
+    
+    private func fieldCheck() -> Bool{
+        if offerNameTextField.text?.isEmpty == true {
+            showAlert(title: "name is empty", message: "")
+            return false
+        }
+        if numberOfMealsTextField.text!.isEmpty{
+            showAlert(title: "error", message: "Please enter number of meals")
+            return false
+        }
+        if startPicker.date < currentDateTime || endPicker.date < startPicker.date || endPicker.date < startPicker.date + 2710{
+            showAlert(title: "", message: "Please provide a valid start time with at least 45 minute pick up window.")
+            return false
+        }
+        if offerImage.image == UIImage(named: "photo.fill"){
+            showAlert(title: "add photo", message: "Please add photo of offer")
+            return false
+        }
+        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
