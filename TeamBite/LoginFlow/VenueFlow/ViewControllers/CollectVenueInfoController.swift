@@ -17,7 +17,7 @@ class CollectVenueInfoController: UIViewController {
     private let coreLocation = CoreLocationManager()
     private var yAnchorConstant: CGFloat = 0
     private var keyboardIsVisible = false
-    private let pickupInstructions = ["Call store", "Walk-in", ]
+    private let pickupInstructions = ["Call store", "Walk-in"]
     
     public lazy var instructionPicker: UIPickerView = {
         let picker = UIPickerView()
@@ -56,11 +56,14 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.venuePhoneTextField.delegate = self
         collectVenueInfoView.startTimeTextField.delegate = self
         collectVenueInfoView.endTimeTextField.delegate = self
+        collectVenueInfoView.instructionTextfield.delegate = self
         collectVenueInfoView.submitButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
         instructionPicker.dataSource = self
         instructionPicker.delegate = self
+
         navigationItem.title = "Venue Information"
     }
+    
     
     @objc
     private func submitButtonPressed(_ sender: UIButton){
@@ -78,30 +81,31 @@ class CollectVenueInfoController: UIViewController {
         }
         
         var phoneNumber: String? = nil
-        var startTime: String? = nil
-        var endTime: String? =  nil
+//        var startTime: String? = nil
+//        var endTime: String? =  nil
+        let pickup = collectVenueInfoView.instructionTextfield.text
         
         if let userPhone = collectVenueInfoView.venuePhoneTextField.text, !userPhone.isEmpty {
             phoneNumber = userPhone
         }
         
-        if let begin = collectVenueInfoView.startTimeTextField.text, !begin.isEmpty {
-            switch collectVenueInfoView.startTimeSegmentedControl.selectedSegmentIndex {
-            case 0:
-                startTime = begin + " A.M."
-            default:
-                startTime = begin + " P.M."
-            }
-        }
-        
-        if let end = collectVenueInfoView.startTimeTextField.text, !end.isEmpty {
-            switch collectVenueInfoView.endTimeSegmentedControl.selectedSegmentIndex {
-            case 0:
-                endTime = end + " A.M."
-            default:
-                endTime = end + " P.M."
-            }
-        }
+//        if let begin = collectVenueInfoView.startTimeTextField.text, !begin.isEmpty {
+//            switch collectVenueInfoView.startTimeSegmentedControl.selectedSegmentIndex {
+//            case 0:
+//                startTime = begin + " A.M."
+//            default:
+//                startTime = begin + " P.M."
+//            }
+//        }
+//
+//        if let end = collectVenueInfoView.startTimeTextField.text, !end.isEmpty {
+//            switch collectVenueInfoView.endTimeSegmentedControl.selectedSegmentIndex {
+//            case 0:
+//                endTime = end + " A.M."
+//            default:
+//                endTime = end + " P.M."
+//            }
+//        }
         
         let combinedAddress = combineAddress(streetName, city, state, zip)
         
@@ -112,7 +116,7 @@ class CollectVenueInfoController: UIViewController {
                     self?.showAlert(title: "Placename Error", message: "Could not convert a placename into coordinate: \(error.localizedDescription)")
                 }
             case.success(let coordinate):
-                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: "no instructions")
+                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: pickup)
                 self?.createNewVenue(newVenue)
             }
         }
@@ -275,6 +279,10 @@ extension CollectVenueInfoController: UIPickerViewDataSource, UIPickerViewDelega
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickupInstructions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        collectVenueInfoView.instructionTextfield.text = pickupInstructions[row]
     }
     
 }
