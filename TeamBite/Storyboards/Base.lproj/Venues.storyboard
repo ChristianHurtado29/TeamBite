@@ -100,8 +100,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-TM-BfG">
-                                <rect key="frame" x="86" y="96" width="242" height="144"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-TM-BfG">
+                                <rect key="frame" x="86" y="97.5" width="242" height="141.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8KG-Wu-iVW">
                                 <rect key="frame" x="289" y="206" width="39" height="34"/>
@@ -264,14 +264,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.grid.4x3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bwb-xB-2qd">
-                                <rect key="frame" x="87" y="104.5" width="240" height="162"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bwb-xB-2qd">
+                                <rect key="frame" x="87" y="103" width="240" height="164.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEE-mL-cqn">
-                                <rect key="frame" x="279" y="233" width="48" height="36"/>
+                                <rect key="frame" x="279" y="221" width="48" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="Mt0-Hn-N0S"/>
+                                    <constraint firstAttribute="width" constant="48" id="L21-Rc-oJg"/>
+                                    <constraint firstAttribute="height" constant="48" id="Mt0-Hn-N0S"/>
                                 </constraints>
+                                <color key="tintColor" red="0.97697975729999997" green="0.76651102110000002" blue="1" alpha="0.89484161399999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="plus" catalog="system"/>
                                 <connections>
                                     <action selector="updatePhotoPressed:" destination="zhx-9A-osz" eventType="touchUpInside" id="TuW-73-UAi"/>
@@ -298,6 +301,7 @@
                             <constraint firstItem="y7v-bz-wXR" firstAttribute="trailing" secondItem="iue-su-uj3" secondAttribute="trailing" constant="50" id="Jbd-QM-dBT"/>
                             <constraint firstItem="hWe-wp-7Jq" firstAttribute="centerY" secondItem="n1a-mq-2Bf" secondAttribute="centerY" id="KOu-zC-oOn"/>
                             <constraint firstItem="s6Q-IH-Q1o" firstAttribute="top" secondItem="Ncn-5I-c9l" secondAttribute="bottom" constant="20" id="LiI-lB-Un7"/>
+                            <constraint firstItem="SEE-mL-cqn" firstAttribute="bottom" secondItem="bwb-xB-2qd" secondAttribute="bottom" id="MSr-j8-7lM"/>
                             <constraint firstItem="ptj-kR-JZp" firstAttribute="centerY" secondItem="RxR-aO-oOS" secondAttribute="centerY" id="McK-Mn-KYb"/>
                             <constraint firstItem="jIQ-d8-HhY" firstAttribute="leading" secondItem="e0d-T9-RAa" secondAttribute="trailing" constant="22" id="Me6-6x-D9s"/>
                             <constraint firstItem="J4A-o5-xNM" firstAttribute="leading" secondItem="UT9-fa-EOU" secondAttribute="trailing" constant="20" id="N5l-ue-OJu"/>
@@ -306,14 +310,12 @@
                             <constraint firstItem="RxR-aO-oOS" firstAttribute="top" secondItem="s6Q-IH-Q1o" secondAttribute="bottom" constant="20" id="Qh3-Ou-rIm"/>
                             <constraint firstItem="6jR-Tb-JXs" firstAttribute="leading" secondItem="Ncn-5I-c9l" secondAttribute="trailing" constant="20" id="REb-jd-3k4"/>
                             <constraint firstItem="iue-su-uj3" firstAttribute="leading" secondItem="s6Q-IH-Q1o" secondAttribute="trailing" constant="20" id="SsR-xQ-dZR"/>
-                            <constraint firstItem="SEE-mL-cqn" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" constant="279" id="UMr-ME-y5B"/>
                             <constraint firstItem="ptj-kR-JZp" firstAttribute="leading" secondItem="RxR-aO-oOS" secondAttribute="trailing" constant="20" id="USu-nO-pyn"/>
                             <constraint firstItem="ybs-zf-S2V" firstAttribute="trailing" secondItem="UuX-Sa-jYv" secondAttribute="trailing" id="VY9-MX-ntD"/>
                             <constraint firstItem="s6Q-IH-Q1o" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" constant="20" id="XwU-QB-9zc"/>
                             <constraint firstItem="UuX-Sa-jYv" firstAttribute="top" secondItem="hWe-wp-7Jq" secondAttribute="bottom" constant="20" id="aW1-bZ-kRR"/>
                             <constraint firstItem="SEE-mL-cqn" firstAttribute="trailing" secondItem="bwb-xB-2qd" secondAttribute="trailing" id="axA-5Q-OZ1"/>
                             <constraint firstItem="y7v-bz-wXR" firstAttribute="trailing" secondItem="bwb-xB-2qd" secondAttribute="trailing" constant="87" id="bVx-fV-7Ng"/>
-                            <constraint firstItem="SEE-mL-cqn" firstAttribute="bottom" secondItem="bwb-xB-2qd" secondAttribute="bottom" id="d4z-fq-BGG"/>
                             <constraint firstItem="y7v-bz-wXR" firstAttribute="trailing" secondItem="dh3-9A-edt" secondAttribute="trailing" constant="20" id="g6W-HG-WZc"/>
                             <constraint firstItem="ybs-zf-S2V" firstAttribute="leading" secondItem="hWe-wp-7Jq" secondAttribute="leading" id="gJ3-K4-e8m"/>
                             <constraint firstItem="bwb-xB-2qd" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" constant="87" id="gNw-Sn-MUc"/>
@@ -354,8 +356,9 @@
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="110"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.grid.3x2" catalog="system" width="128" height="80"/>
-        <image name="square.grid.4x3.fill" catalog="system" width="128" height="87"/>
     </resources>
 </document>

@@ -25,6 +25,11 @@ class CreateOffersViewController: UIViewController {
     @IBOutlet weak var glutenFreeSwitch: UISwitch!
     @IBOutlet weak var vegetarianSwitch: UISwitch!
     
+    private let currentDateTime = Date()
+    private let startPicker = UIDatePicker()
+    private let endPicker = UIDatePicker()
+    private var allergies = [String]()
+    
     private let storageService = StorageService()
     private let dbService = DatabaseService()
     
@@ -48,17 +53,10 @@ class CreateOffersViewController: UIViewController {
                     }
                 case .success(let url):
                     self!.imgURL = url.absoluteString
-                    print(url.absoluteString)
                 }
             }
         }
     }
-    
-    let currentDateTime = Date()
-    let startPicker = UIDatePicker()
-
-    let endPicker = UIDatePicker()
-    var allergies = [String]()
     
     override func viewWillLayoutSubviews() {
         createButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
@@ -72,6 +70,11 @@ class CreateOffersViewController: UIViewController {
         createButton.isEnabled = true
         configureTextPickers()
         offerImage.layer.cornerRadius = 30
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = DateFormatter.Style.short
+        startTimeTextField.text = formatter.string(from: currentDateTime)
+        endTimeTextField.text = formatter.string(from: currentDateTime + 1820)
     }
     
     private func initialSwitchSettings() {
