@@ -75,7 +75,7 @@ class PatronOfferCell: UITableViewCell {
     public func configureCell(_ offer: Offer) {
         offerTitleLabel.text = "Offer name: \(offer.nameOfOffer)"
         amountAvailableLabel.text = "Number remaining: \(offer.remainingMeals.description)"
-        if let image = offer.offerImage {
+        if let image = offer.offerImage, !image.isEmpty {
             offerImage.kf.setImage(with: URL(string: image))
         }else {
             offerImage.image = UIImage(systemName: "tortoise.fill")
