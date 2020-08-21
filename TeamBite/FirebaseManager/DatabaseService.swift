@@ -51,7 +51,7 @@ class DatabaseService {
     
     // create user
     public func createUser(_ patron: User, completion: @escaping (Result<Bool, Error>) -> ()){
-        db.collection(DatabaseService.usersCollection).document(patron.userId).setData(["phoneNumber":patron.phoneNumber ,"userId": patron.userId, "allergies": patron.allergies, "claimStatus": patron.claimStatus]){ (error) in
+        db.collection(DatabaseService.usersCollection).document(patron.userId).setData(["phoneNumber":patron.phoneNumber ,"userId": patron.userId, "allergies": patron.allergies, "claimStatus": patron.claimStatus, "timeOfNextClaim": patron.timeOfNextClaim, "qrCodeScanned": patron.qrCodeScanned]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -115,7 +115,7 @@ class DatabaseService {
                 
                 let dateOfClaim = timeForClaim.dateValue()
                 if dateOfClaim < Date() {
-                    transaction.updateData(["timeOfNextClaim": Timestamp(date: DateHandler.calculateNextClaimDate()), "claimStatus": "unclaimed"], forDocument: docRef)
+                    transaction.updateData(["timeOfNextClaim": Timestamp(date: DateHandler.calculateNextClaimDate()), "claimStatus": "unclaimed", "qrCodeScanned": false], forDocument: docRef)
                 }
                 
             } catch let error as NSError{
@@ -234,14 +234,18 @@ class DatabaseService {
         
         let dbReference = db.collection(DatabaseService.venuesOwnerCollection).document(venueId).collection(DatabaseService.offersCollection).document(offerId)
         
+        let dbUserRef =  db.collection(DatabaseService.usersCollection).document(userId)
+        
         db.runTransaction({ (transaction, errorPointer) -> Any? in
             
             do {
                 let sfDocument: DocumentSnapshot
+                let userDoc: DocumentSnapshot
                 
                 try sfDocument = transaction.getDocument(dbReference)
+                try userDoc = transaction.getDocument(dbUserRef)
                 
-                guard var oldIds = sfDocument.data()?["expectedIds"] as? [String], let foundIndex = oldIds.firstIndex(of: userId) else {
+                guard var oldIds = sfDocument.data()?["expectedIds"] as? [String], let foundIndex = oldIds.firstIndex(of: userId), let scanStatus = userDoc.data()?["qrCodeScanned"] as? Bool else {
                     let error = NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to retrieve expected Ids."])
                     errorPointer?.pointee = error
                     return nil
@@ -250,6 +254,9 @@ class DatabaseService {
                 oldIds.remove(at: foundIndex)
                 
                 transaction.updateData(["expectedIds": oldIds], forDocument: dbReference)
+                if !scanStatus {
+                    transaction.updateData(["qrCodeScanned": true], forDocument: dbUserRef)
+                }
                 
             } catch let error as NSError {
                 errorPointer?.pointee = error

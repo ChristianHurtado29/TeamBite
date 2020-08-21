@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PatronOfferCell: UITableViewCell {
 
     private lazy var offerImage: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "tortoise.fill")
-        imageView.layer.cornerRadius = 10
-        imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.layer.borderWidth = 1.0
+        imageView.layer.cornerRadius = 30
         return imageView
     }()
     
@@ -61,7 +60,7 @@ class PatronOfferCell: UITableViewCell {
         addSubview(offerImage)
         offerImage.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([offerImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8), offerImage.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8), offerImage.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8), offerImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)])
+        NSLayoutConstraint.activate([offerImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8), offerImage.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -8), offerImage.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8), offerImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)])
     }
     
     private func setUpLabelStackConstraints() {
@@ -70,11 +69,16 @@ class PatronOfferCell: UITableViewCell {
         labelStack.addArrangedSubview(amountAvailableLabel)
         labelStack.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([labelStack.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8), labelStack.leadingAnchor.constraint(equalTo: offerImage.trailingAnchor, constant: 8), labelStack.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -8), labelStack.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8)])
+        NSLayoutConstraint.activate([labelStack.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8), labelStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), labelStack.trailingAnchor.constraint(equalTo: offerImage.leadingAnchor, constant: -8), labelStack.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8)])
     }
     
     public func configureCell(_ offer: Offer) {
         offerTitleLabel.text = "Offer name: \(offer.nameOfOffer)"
         amountAvailableLabel.text = "Number remaining: \(offer.remainingMeals.description)"
+        if let image = offer.offerImage {
+            offerImage.kf.setImage(with: URL(string: image))
+        }else {
+            offerImage.image = UIImage(systemName: "tortoise.fill")
+        }
     }
 }

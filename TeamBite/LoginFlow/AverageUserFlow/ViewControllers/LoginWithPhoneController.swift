@@ -125,7 +125,7 @@ class LoginWithPhoneController: UIViewController {
     }
     
     private func createNewUser(_ authResult: AuthDataResult, _ prefs: [String]) {
-        let newUser = User(userId: authResult.user.uid, phoneNumber: authResult.user.phoneNumber ?? "None", allergies: prefs, claimStatus: "unclaimed", timeOfNextClaim: Timestamp(date: DateHandler.calculateNextClaimDate()))
+        let newUser = User(userId: authResult.user.uid, phoneNumber: authResult.user.phoneNumber ?? "None", allergies: prefs, claimStatus: "unclaimed", timeOfNextClaim: Timestamp(date: DateHandler.calculateNextClaimDate()), qrCodeScanned: false)
         DatabaseService.shared.createUser(newUser) { [weak self] (result) in
             switch result {
             case .failure(let error):

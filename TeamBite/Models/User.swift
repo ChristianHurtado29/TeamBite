@@ -15,6 +15,7 @@ struct User {
     let allergies: [String]
     let claimStatus: String
     let timeOfNextClaim: Timestamp
+    let qrCodeScanned: Bool
 }
 
 extension User {
@@ -24,5 +25,6 @@ extension User {
         self.allergies = dictionary["allergies"] as? [String] ?? ["No Allergies"]
         self.claimStatus = dictionary["claimStatus"] as? String ?? "unclaimed"
         self.timeOfNextClaim = dictionary["timeOfNextClaim"] as? Timestamp ?? Timestamp(date: Date())
+        self.qrCodeScanned = dictionary["qrCodeScanned"] as? Bool ?? false
     }
 }
