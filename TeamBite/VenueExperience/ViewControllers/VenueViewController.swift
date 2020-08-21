@@ -41,7 +41,7 @@ class VenueViewController: UIViewController {
         didSet {
             venueImage.image = selectedImage
             
-            guard let user = Auth.auth().currentUser else { return }
+            guard let user = Auth.auth().currentUser else { return } 
             let resizedImage = UIImage.resizeImage(originalImage: self.selectedImage!, rect: self.venueImage.bounds)
             self.storageService.uploadPhoto(userId: user.uid, image: resizedImage) { [weak self] (result) in
                 switch result {

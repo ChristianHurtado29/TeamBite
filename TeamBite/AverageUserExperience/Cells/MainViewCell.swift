@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import FirebaseAuth
 
 class MainViewCell: UICollectionViewCell {
     
