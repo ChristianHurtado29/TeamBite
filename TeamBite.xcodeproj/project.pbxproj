@@ -27,7 +27,6 @@
 		13F4BAA4244E599000C0DC23 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA3244E599000C0DC23 /* Offer.swift */; };
 		13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAA6244E5A0300C0DC23 /* Venue.swift */; };
 		13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */; };
-		13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */; };
 		13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */; };
 		13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */; };
 		13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */; };
@@ -92,7 +91,6 @@
 		13F4BAA3244E599000C0DC23 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		13F4BAA6244E5A0300C0DC23 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
-		13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueInfoController.swift; sourceTree = "<group>"; };
 		13F4BAAF244E5AB200C0DC23 /* LoginCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCustomCell.swift; sourceTree = "<group>"; };
 		13F4BAB1244E5AC100C0DC23 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		13F4BAB3244E5ACF00C0DC23 /* VenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				634E16C0244F643D002C954A /* VenueViewController.swift */,
-				13F4BAAD244E5A8900C0DC23 /* VenueInfoController.swift */,
 				634E16C6244FBC80002C954A /* CreateOffersViewController.swift */,
 				C478941F24C8E254000DAD81 /* ScanQRCodeController.swift */,
 			);
@@ -593,7 +590,6 @@
 				13F39634244F6F34004BD488 /* Resources.swift in Sources */,
 				C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */,
 				C4789D9A2450BCED008193BA /* AverageUserSignInController.swift in Sources */,
-				13F4BAAE244E5A8900C0DC23 /* VenueInfoController.swift in Sources */,
 				C44D34F324CF629800C2BF3E /* PatronOfferDetailView.swift in Sources */,
 				1334596924E76FD3001D0A2A /* StorageService.swift in Sources */,
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,

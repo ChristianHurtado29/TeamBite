@@ -17,7 +17,7 @@ class CollectVenueInfoController: UIViewController {
     private let coreLocation = CoreLocationManager()
     private var yAnchorConstant: CGFloat = 0
     private var keyboardIsVisible = false
-    private let pickupInstructions = ["Call store", "Walk-in"]
+    private let pickupInstructions = ["Call store", "Walk-in", "Side entrance"]
     
     public lazy var instructionPicker: UIPickerView = {
         let picker = UIPickerView()
@@ -60,7 +60,6 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.submitButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
         instructionPicker.dataSource = self
         instructionPicker.delegate = self
-
         navigationItem.title = "Venue Information"
     }
     
@@ -81,31 +80,11 @@ class CollectVenueInfoController: UIViewController {
         }
         
         var phoneNumber: String? = nil
-//        var startTime: String? = nil
-//        var endTime: String? =  nil
         let pickup = collectVenueInfoView.instructionTextfield.text
         
         if let userPhone = collectVenueInfoView.venuePhoneTextField.text, !userPhone.isEmpty {
             phoneNumber = userPhone
         }
-        
-//        if let begin = collectVenueInfoView.startTimeTextField.text, !begin.isEmpty {
-//            switch collectVenueInfoView.startTimeSegmentedControl.selectedSegmentIndex {
-//            case 0:
-//                startTime = begin + " A.M."
-//            default:
-//                startTime = begin + " P.M."
-//            }
-//        }
-//
-//        if let end = collectVenueInfoView.startTimeTextField.text, !end.isEmpty {
-//            switch collectVenueInfoView.endTimeSegmentedControl.selectedSegmentIndex {
-//            case 0:
-//                endTime = end + " A.M."
-//            default:
-//                endTime = end + " P.M."
-//            }
-//        }
         
         let combinedAddress = combineAddress(streetName, city, state, zip)
         
@@ -116,7 +95,7 @@ class CollectVenueInfoController: UIViewController {
                     self?.showAlert(title: "Placename Error", message: "Could not convert a placename into coordinate: \(error.localizedDescription)")
                 }
             case.success(let coordinate):
-                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: pickup)
+                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: pickup, venueImage: "")
                 self?.createNewVenue(newVenue)
             }
         }
@@ -182,6 +161,7 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.venuePhoneTextField.resignFirstResponder()
         collectVenueInfoView.startTimeTextField.resignFirstResponder()
         collectVenueInfoView.endTimeTextField.resignFirstResponder()
+        collectVenueInfoView.instructionTextfield.resignFirstResponder()
     }
 
 }

@@ -29,6 +29,7 @@ class VenueViewController: UIViewController {
     @IBOutlet weak var venueAddressLabel: UILabel!
     @IBOutlet weak var venueContactLabel: UILabel!
     @IBOutlet weak var offersTableView: UITableView!
+    @IBOutlet weak var fakeNavBar: UINavigationBar!
     
     private lazy var imagePickerController: UIImagePickerController = {
         let ip = UIImagePickerController()
@@ -69,9 +70,6 @@ class VenueViewController: UIViewController {
     
     private let storageService = StorageService()
     
-    override func viewWillLayoutSubviews() {
-
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +103,10 @@ class VenueViewController: UIViewController {
     private func setUp() {
         guard let user = Auth.auth().currentUser else { return }
         venueImage.kf.setImage(with: user.photoURL)
+//        var userPhoto = user.photoURL?.absoluteString
+        if venueImage.image == UIImage(named: ""){
+            venueImage.image = UIImage(systemName: "person")
+        }
         venueImage.layer.cornerRadius = 30
         offersTableView.delegate = self
         offersTableView.dataSource = self
@@ -139,9 +141,9 @@ class VenueViewController: UIViewController {
             case .success(let venue):
                 DispatchQueue.main.async {
                     self?.venue = venue
-                    self?.navigationItem.title = venue.name
                     self?.venueAddressLabel.text = venue.address
                     self?.venueContactLabel.text = venue.phoneNumber
+                    self?.navigationItem.title = venue.name
                 }
             }
         }

@@ -18,7 +18,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArT-Mo-Kfu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Venue Name" id="fu5-zA-VRi">
+                                    <navigationItem title="Home" id="fu5-zA-VRi">
                                         <barButtonItem key="leftBarButtonItem" title="Scan QR Code" id="Ype-GE-XKT">
                                             <connections>
                                                 <action selector="scanQRCodeButtonPressed:" destination="Aof-g9-xqt" id="x0Q-QO-Cds"/>
@@ -140,6 +140,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9EI-Rq-5Xu"/>
                     <connections>
+                        <outlet property="fakeNavBar" destination="ArT-Mo-Kfu" id="VQg-j2-eBv"/>
                         <outlet property="offersTableView" destination="lTw-dD-DpN" id="ddx-Dc-LXt"/>
                         <outlet property="venueAddressLabel" destination="VPj-12-2T7" id="ma6-yP-ZGY"/>
                         <outlet property="venueContactLabel" destination="01g-Qt-yAm" id="Q47-aJ-0m2"/>

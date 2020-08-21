@@ -143,16 +143,6 @@ class DatabaseService {
         }
     }
     
-    public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
-
-        db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "offerImage": offer.offerImage ?? "no url"] ) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
-            }
-        }
-    }
     
     
     // Create offers

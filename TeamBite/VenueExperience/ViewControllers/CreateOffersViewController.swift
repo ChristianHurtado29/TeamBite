@@ -65,17 +65,21 @@ class CreateOffersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
         initialSwitchSettings()
+        configureTextPickers()
+    }
+    
+    private func setUp(){
         numberOfMealsTextField.keyboardType = .numberPad
         createButton.isEnabled = true
-        configureTextPickers()
         offerImage.layer.cornerRadius = 30
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
         formatter.timeStyle = DateFormatter.Style.short
         startTimeTextField.text = formatter.string(from: currentDateTime)
         endTimeTextField.text = formatter.string(from: currentDateTime + 1820)
-        offerImage.image = UIImage(named: "photo.fill")
+        offerImage.image = UIImage(systemName: "photo.fill")
     }
     
     private func initialSwitchSettings() {
@@ -160,7 +164,6 @@ class CreateOffersViewController: UIViewController {
                     allergies.append("Nut-Free")
                 }
             }
-            print("allergies: \(allergies)")
             if nutFreeSwitch.isOn == false {
                 if allergies.contains("Nut-Free"){
                 }
@@ -169,13 +172,11 @@ class CreateOffersViewController: UIViewController {
                 if !allergies.contains("Gluten Free"){
                     allergies.append("Gluten Free")
                 }
-                print("allergies: \(allergies)")
             }
             if vegetarianSwitch.isOn == true {
                 if !allergies.contains("Vegetarian"){
                     allergies.append("Vegetarian")
                 }
-                print("allergies: \(allergies)")
             }
             
             let offerName = offerNameTextField.text ?? "Meals"
@@ -188,51 +189,35 @@ class CreateOffersViewController: UIViewController {
             let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage, expectedIds: [])
             
             
-            DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in
-                print("create button pressed")
+            DatabaseService.shared.addToOffers(offer: newOffer) { [unowned self, weak sender] (result) in
                 switch result {
                 case.failure(let error):
                     DispatchQueue.main.async {
-                        self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
+                        self.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
                         sender?.isEnabled = true
                     }
                 case .success:
                     sender?.isEnabled = true
-                }
-            }
-            
-            DatabaseService.shared.createAllOffers(offer: newOffer) { [weak self, weak sender] (result) in
-                print("create button pressed")
-                switch result {
-                case.failure(let error):
-                    DispatchQueue.main.async {
-                        self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
-                        sender?.isEnabled = true
-                    }
-                case .success:
-                    sender?.isEnabled = true
-                    self!.playSound(file: "FoodReady", ext: "mp3")
+                    self.playSound(file: "FoodReady", ext: "mp3")
+                    sleep(1)
+                    self.dismiss(animated: true)
                 }
             }
         }
-        sleep(1)
-        dismiss(animated: true)
     }
     
     private func fieldCheck() -> Bool{
+        
         if offerNameTextField.text?.isEmpty == true {
             showAlert(title: "name is empty", message: "")
             return false
-        }
-        if numberOfMealsTextField.text!.isEmpty{
+        } else if numberOfMealsTextField.text!.isEmpty{
             showAlert(title: "error", message: "Please enter number of meals")
             return false
-        }
-        if startPicker.date < currentDateTime || endPicker.date < startPicker.date || endPicker.date < startPicker.date + 2710{
+        } else if startPicker.date < currentDateTime || endPicker.date < startPicker.date || endPicker.date < startPicker.date + 2710{
             showAlert(title: "", message: "Please provide a valid start time with at least 45 minute pick up window.")
             return false
-        }
-        if offerImage.image == UIImage(named: "photo.fill"){
+        } else if offerImage.image == UIImage(systemName: "photo.fill"){
             showAlert(title: "add photo", message: "Please add photo of offer")
             return false
         }
