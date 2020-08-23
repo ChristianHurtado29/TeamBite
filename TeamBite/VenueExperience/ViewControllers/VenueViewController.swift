@@ -203,6 +203,7 @@ class VenueViewController: UIViewController {
     @IBAction func createOfferButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard =  UIStoryboard(name: "Venues", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
 }

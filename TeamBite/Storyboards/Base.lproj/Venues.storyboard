@@ -162,7 +162,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRm-ab-vms">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Create Offer" id="cdR-I7-Y6V"/>
+                                    <navigationItem title="Create Offer" id="cdR-I7-Y6V">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="kpS-eO-HCd">
+                                            <connections>
+                                                <action selector="dismissView:" destination="zhx-9A-osz" id="E9K-Nk-gtO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UT9-fa-EOU">
@@ -203,50 +209,50 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allergies:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dh3-9A-edt">
-                                <rect key="frame" x="20" y="514" width="374" height="24"/>
+                                <rect key="frame" x="20" y="489" width="374" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jR-Tb-JXs" userLabel="Nut Free Switch">
-                                <rect key="frame" x="315" y="554.5" width="51" height="31"/>
+                                <rect key="frame" x="315" y="529.5" width="51" height="31"/>
                                 <color key="tintColor" red="0.85966867209999998" green="0.31854200360000001" blue="0.52549743650000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="nutFreeSwitchPressed:" destination="zhx-9A-osz" eventType="valueChanged" id="e26-j3-8FK"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iue-su-uj3" userLabel="Gluten Free Switch">
-                                <rect key="frame" x="315" y="598.5" width="51" height="31"/>
+                                <rect key="frame" x="315" y="573.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="glutenFreeSwitchPressed:" destination="zhx-9A-osz" eventType="valueChanged" id="4Ua-zz-FZh"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptj-kR-JZp" userLabel="Vegetarian Switch">
-                                <rect key="frame" x="315" y="642.5" width="51" height="31"/>
+                                <rect key="frame" x="315" y="617.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="vegetarainSwitchPressed:" destination="zhx-9A-osz" eventType="valueChanged" id="MLg-Mm-eCO"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nut-Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-5I-c9l">
-                                <rect key="frame" x="20" y="558" width="275" height="24"/>
+                                <rect key="frame" x="20" y="533" width="275" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gluten-Free" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6Q-IH-Q1o">
-                                <rect key="frame" x="20" y="602" width="275" height="24"/>
+                                <rect key="frame" x="20" y="577" width="275" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vegetarian " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxR-aO-oOS">
-                                <rect key="frame" x="20" y="646" width="275" height="24"/>
+                                <rect key="frame" x="20" y="621" width="275" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNf-p5-0Se">
-                                <rect key="frame" x="164" y="713.5" width="86" height="30"/>
+                                <rect key="frame" x="164" y="688.5" width="86" height="30"/>
                                 <color key="backgroundColor" red="0.86734300914060913" green="0.239589770783183" blue="0.4993681495666798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="     Create     ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -296,6 +302,7 @@
                             <constraint firstItem="y7v-bz-wXR" firstAttribute="trailing" secondItem="6jR-Tb-JXs" secondAttribute="trailing" constant="50" id="Daf-SF-heM"/>
                             <constraint firstItem="6jR-Tb-JXs" firstAttribute="centerY" secondItem="Ncn-5I-c9l" secondAttribute="centerY" id="ETa-Hr-LbN"/>
                             <constraint firstItem="dh3-9A-edt" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" constant="20" id="FOj-tg-WiX"/>
+                            <constraint firstItem="UT9-fa-EOU" firstAttribute="top" secondItem="bwb-xB-2qd" secondAttribute="bottom" constant="19" id="Gx2-UX-E7O"/>
                             <constraint firstItem="mNf-p5-0Se" firstAttribute="centerX" secondItem="Jeo-sn-q5n" secondAttribute="centerX" id="IGi-ta-t7l"/>
                             <constraint firstItem="Ncn-5I-c9l" firstAttribute="top" secondItem="dh3-9A-edt" secondAttribute="bottom" constant="20" id="IYx-0T-QV6"/>
                             <constraint firstItem="dh3-9A-edt" firstAttribute="height" secondItem="UuX-Sa-jYv" secondAttribute="height" id="JTy-wd-ogo"/>
@@ -331,10 +338,9 @@
                             <constraint firstItem="Ncn-5I-c9l" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" constant="20" id="s5t-V5-0M6"/>
                             <constraint firstItem="y7v-bz-wXR" firstAttribute="trailing" secondItem="jIQ-d8-HhY" secondAttribute="trailing" constant="20" id="tKy-Uc-7gf"/>
                             <constraint firstItem="RxR-aO-oOS" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" constant="20" id="tSy-QW-0KK"/>
-                            <constraint firstItem="dh3-9A-edt" firstAttribute="top" secondItem="ybs-zf-S2V" secondAttribute="bottom" constant="50" id="taf-nn-hjc"/>
+                            <constraint firstItem="dh3-9A-edt" firstAttribute="top" secondItem="ybs-zf-S2V" secondAttribute="bottom" constant="25" id="taf-nn-hjc"/>
                             <constraint firstItem="bwb-xB-2qd" firstAttribute="top" secondItem="CRm-ab-vms" secondAttribute="bottom" constant="14" id="vqq-8I-7x8"/>
                             <constraint firstItem="CRm-ab-vms" firstAttribute="leading" secondItem="y7v-bz-wXR" secondAttribute="leading" id="x6B-fP-moK"/>
-                            <constraint firstItem="UT9-fa-EOU" firstAttribute="top" secondItem="CRm-ab-vms" secondAttribute="bottom" constant="200" id="yIH-Tf-r9w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y7v-bz-wXR"/>
                     </view>
@@ -352,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y27-em-b5g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568.1159420289855" y="71.651785714285708"/>
+            <point key="canvasLocation" x="2566.666666666667" y="71.651785714285708"/>
         </scene>
     </scenes>
     <resources>

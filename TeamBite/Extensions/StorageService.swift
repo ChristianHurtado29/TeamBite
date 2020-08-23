@@ -39,9 +39,9 @@ class StorageService {
         
 //        if let userId = userId { //coming from ProfileVC
 //            photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
-//        } else if let itemId = itemId { //coming from CreateItemVC
+       if let itemId = itemId { //coming from CreateItemVC
             photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
-//        }
+        }
         
         // configure metadata for the object being uploaded
         let metadata = StorageMetadata()
@@ -51,7 +51,7 @@ class StorageService {
         (metadata, error) in
             if let error = error {
                 completion(.failure(error))
-            } else if let metadata = metadata {
+            } else if let _ = metadata {
                 photoReference.downloadURL { (url, error) in
                     if let error = error {
                         completion(.failure(error))

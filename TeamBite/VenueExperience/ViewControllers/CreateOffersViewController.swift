@@ -41,11 +41,13 @@ class CreateOffersViewController: UIViewController {
     
     var imgURL = ""
     
+    var offerId: String = UUID().uuidString
+    
     private var selectedImage: UIImage? {
         didSet{
             offerImage.image = selectedImage
             let resizedImage = UIImage.resizeImage(originalImage: self.selectedImage!, rect: self.offerImage.bounds)
-            storageService.uploadPhoto(image: resizedImage) { [weak self](result) in
+            storageService.uploadPhoto(itemId:offerId ,image: resizedImage) { [weak self](result) in
                 switch result{
                 case .failure(let error):
                     DispatchQueue.main.async {
@@ -130,6 +132,10 @@ class CreateOffersViewController: UIViewController {
              present(alertController, animated: true)
            }
     
+    @IBAction func dismissView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func nutFreeSwitchPressed(_ sender: UISwitch) {
         
     }
@@ -155,6 +161,18 @@ class CreateOffersViewController: UIViewController {
                 fatalError()
     }
     }
+    
+//    let resizedImage = UIImage.resizeImage(originalImage: self.selectedImage!, rect: self.offerImage.bounds)
+//    storageService.uploadPhoto(image: resizedImage) { [weak self](result) in
+//        switch result{
+//        case .failure(let error):
+//            DispatchQueue.main.async {
+//                self?.showAlert(title: "error uploading photo", message: "error: \(error.localizedDescription)")
+//            }
+//        case .success(let url):
+//            self!.imgURL = url.absoluteString
+//        }
+//    }
     
     
     @IBAction func createOfferButtonPressed(_ sender: UIButton) {
@@ -186,7 +204,7 @@ class CreateOffersViewController: UIViewController {
             let setAllergies = Set(allergies)
             let finalAllergies = Array(setAllergies)
             let urlImage = imgURL
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage, expectedIds: [])
+            let newOffer = Offer(offerId: offerId , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage, expectedIds: [])
             
             
             DatabaseService.shared.addToOffers(offer: newOffer) { [unowned self, weak sender] (result) in
