@@ -37,9 +37,9 @@ class StorageService {
         //establish which storage bucket where the photo will be saved to
         var photoReference: StorageReference! // nil
         
-//        if let userId = userId { //coming from ProfileVC
-//            photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
-       if let itemId = itemId { //coming from CreateItemVC
+        if let userId = userId { //coming from ProfileVC
+            photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
+        } else if let itemId = itemId { //coming from CreateItemVC
             photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
         }
         
