@@ -59,6 +59,7 @@ class VenueViewController: UIViewController {
                             }
                         } else {
                             DispatchQueue.main.async {
+                                self?.updateImageUrl()
                                 self?.showAlert(title: "Profile Update", message: "Profile successfully updated 🥳.")
                             }
                         }
@@ -112,6 +113,11 @@ class VenueViewController: UIViewController {
         offersTableView.dataSource = self
         navigationItem.leftBarButtonItem?.target = self
         navigationItem.leftBarButtonItem?.action = #selector(scanQRCodeButtonPressed(_:))
+    }
+    
+    private func updateImageUrl(){
+        DatabaseService.shared.updatePhotoURL { (result) in
+        }
     }
     
     private func fetchOffers(){

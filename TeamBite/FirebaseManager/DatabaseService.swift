@@ -38,7 +38,7 @@ class DatabaseService {
     
     public func updatePhotoURL(completion: @escaping (Result<Bool, Error>) ->()) {
         guard let user = Auth.auth().currentUser else { return }
-        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).setData(["venueImage": user.photoURL ?? "no photo"]) { (error) in
+        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).updateData(["venueImage": user.photoURL?.absoluteString ?? "no photo"]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
