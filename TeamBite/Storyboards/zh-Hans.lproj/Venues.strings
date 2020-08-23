@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "Venue Contact Information"; ObjectID = "01g-Qt-yAm"; */
+"01g-Qt-yAm.text" = "Venue Contact Information";
+
+/* Class = "UIBarButtonItem"; title = "Create Offer"; ObjectID = "HVx-Ws-hnw"; */
+"HVx-Ws-hnw.title" = "Create Offer";
+
+/* Class = "UILabel"; text = "Meals Left"; ObjectID = "HnK-Pw-59z"; */
+"HnK-Pw-59z.text" = "Meals Left";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "J4A-o5-xNM"; */
+"J4A-o5-xNM.placeholder" = "Name";
+
+/* Class = "UILabel"; text = "Nut-Free"; ObjectID = "Ncn-5I-c9l"; */
+"Ncn-5I-c9l.text" = "Nut-Free";
+
+/* Class = "UILabel"; text = "Vegetarian "; ObjectID = "RxR-aO-oOS"; */
+"RxR-aO-oOS.text" = "Vegetarian ";
+
+/* Class = "UILabel"; text = "Num of Meals"; ObjectID = "Sg0-B6-96B"; */
+"Sg0-B6-96B.text" = "Num of Meals";
+
+/* Class = "UILabel"; text = "Name:"; ObjectID = "UT9-fa-EOU"; */
+"UT9-fa-EOU.text" = "Name:";
+
+/* Class = "UILabel"; text = "End Time:"; ObjectID = "UuX-Sa-jYv"; */
+"UuX-Sa-jYv.text" = "End Time:";
+
+/* Class = "UILabel"; text = "Venue Address"; ObjectID = "VPj-12-2T7"; */
+"VPj-12-2T7.text" = "Venue Address";
+
+/* Class = "UILabel"; text = "Offer Title"; ObjectID = "XNW-M0-g87"; */
+"XNW-M0-g87.text" = "Offer Title";
+
+/* Class = "UIBarButtonItem"; title = "Scan QR Code"; ObjectID = "Ype-GE-XKT"; */
+"Ype-GE-XKT.title" = "Scan QR Code";
+
+/* Class = "UINavigationItem"; title = "Create Offer"; ObjectID = "cdR-I7-Y6V"; */
+"cdR-I7-Y6V.title" = "Create Offer";
+
+/* Class = "UILabel"; text = "Allergies:"; ObjectID = "dh3-9A-edt"; */
+"dh3-9A-edt.text" = "Allergies:";
+
+/* Class = "UILabel"; text = "Number of Meals:"; ObjectID = "e0d-T9-RAa"; */
+"e0d-T9-RAa.text" = "Number of Meals:";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "fu5-zA-VRi"; */
+"fu5-zA-VRi.title" = "Home";
+
+/* Class = "UITextField"; placeholder = "Enter"; ObjectID = "hWe-wp-7Jq"; */
+"hWe-wp-7Jq.placeholder" = "Enter";
+
+/* Class = "UITextField"; placeholder = "Number"; ObjectID = "jIQ-d8-HhY"; */
+"jIQ-d8-HhY.placeholder" = "Number";
+
+/* Class = "UIButton"; normalTitle = "     Create     "; ObjectID = "mNf-p5-0Se"; */
+"mNf-p5-0Se.normalTitle" = "     Create     ";
+
+/* Class = "UILabel"; text = "Start Time:"; ObjectID = "n1a-mq-2Bf"; */
+"n1a-mq-2Bf.text" = "Start Time:";
+
+/* Class = "UILabel"; text = "Gluten-Free"; ObjectID = "s6Q-IH-Q1o"; */
+"s6Q-IH-Q1o.text" = "Gluten-Free";
+
+/* Class = "UITextField"; placeholder = "Enter"; ObjectID = "ybs-zf-S2V"; */
+"ybs-zf-S2V.placeholder" = "Enter";

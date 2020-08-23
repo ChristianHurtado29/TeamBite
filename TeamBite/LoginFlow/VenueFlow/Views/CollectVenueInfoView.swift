@@ -13,14 +13,14 @@ class CollectVenueInfoView: UIView {
     public var yAnchor = NSLayoutConstraint()
     
     public lazy var directionsLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 2
         label.textColor = UIColor.black
         label.text = "Please fill in the information below. Required fields are marked with an asterisk."
         label.textAlignment = .center
         return label
     }()
-
+    
     public lazy var venueNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -40,7 +40,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var venuePhoneLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 1
         label.textColor = UIColor.black
         label.textAlignment = .left
@@ -49,7 +49,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var venuePhoneTextField: PaddedTextField = {
-       let textField = PaddedTextField()
+        let textField = PaddedTextField()
         textField.placeholder = " Enter phone number here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -67,7 +67,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var streetNameTextField: PaddedTextField = {
-       let textField = PaddedTextField()
+        let textField = PaddedTextField()
         textField.placeholder = " Enter street address here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -76,7 +76,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var cityLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 1
         label.textColor = UIColor.black
         label.textAlignment = .left
@@ -85,7 +85,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var cityTextField: PaddedTextField = {
-       let textField = PaddedTextField()
+        let textField = PaddedTextField()
         textField.placeholder = " Enter city here"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -103,7 +103,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var stateTextField: PaddedTextField = {
-       let textField = PaddedTextField()
+        let textField = PaddedTextField()
         textField.placeholder = " NY"
         textField.layer.cornerRadius = 10
         textField.layer.borderColor = UIColor.black.cgColor
@@ -129,6 +129,24 @@ class CollectVenueInfoView: UIView {
         return textField
     }()
     
+    public lazy var addInstructLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Please select instructions for pick up"
+        return label
+    }()
+    
+    public lazy var instructionTextfield: PaddedTextField = {
+        let textField = PaddedTextField()
+        textField.placeholder = "Select"
+        textField.layer.cornerRadius = 10
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 1.0
+        return textField
+    }()
+    
     public lazy var submitButton: UIButton = {
         let button = UIButton()
         button.setTitle("Submit", for: .normal)
@@ -137,7 +155,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var startTimeLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 1
         label.textColor = UIColor.black
         label.textAlignment = .left
@@ -155,7 +173,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var endTimeLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 1
         label.textColor = UIColor.black
         label.textAlignment = .left
@@ -187,7 +205,7 @@ class CollectVenueInfoView: UIView {
     }()
     
     public lazy var tapGesture: UITapGestureRecognizer = {
-       let tap = UITapGestureRecognizer()
+        let tap = UITapGestureRecognizer()
         return tap
     }()
     
@@ -215,12 +233,14 @@ class CollectVenueInfoView: UIView {
         setUpStateTextFieldConstraints()
         setUpZipLabelConstraints()
         setUpZipTextFieldConstraints()
-        setUpStartTimeLabelConstraints()
-        setUpStartTimeTextFieldConstraints()
-        setUpStartTimeSegmentedControlConstraints()
-        setUpEndTimeLabelConstraints()
-        setUpEndTimeTextFieldConstraints()
-        setUpEndTimeSegmentedControl()
+        setupInstructionsLabelConstraints()
+        setupInstructionsTextField()
+        //        setUpStartTimeLabelConstraints()
+        //        setUpStartTimeTextFieldConstraints()
+        //        setUpStartTimeSegmentedControlConstraints()
+        //        setUpEndTimeLabelConstraints()
+        //        setUpEndTimeTextFieldConstraints()
+        //        setUpEndTimeSegmentedControl()
         setUpSubmitButtonConstraints()
         addGestureRecognizer(tapGesture)
     }
@@ -331,51 +351,33 @@ class CollectVenueInfoView: UIView {
         zipLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
     
-    private func setUpStartTimeLabelConstraints(){
-        addSubview(startTimeLabel)
-        startTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setupInstructionsLabelConstraints(){
+        addSubview(addInstructLabel)
+        addInstructLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([startTimeLabel.topAnchor.constraint(equalTo: zipTextField.bottomAnchor, constant: 20), startTimeLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), startTimeLabel.heightAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([
+            addInstructLabel.topAnchor.constraint(equalTo: zipTextField.bottomAnchor, constant: 20),
+            addInstructLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            addInstructLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)
+        ])
     }
     
-    private func setUpStartTimeTextFieldConstraints(){
-        addSubview(startTimeTextField)
-        startTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([startTimeTextField.topAnchor.constraint(equalTo: zipTextField.bottomAnchor, constant: 20), startTimeTextField.leadingAnchor.constraint(equalTo: startTimeLabel.trailingAnchor, constant: 8), startTimeTextField.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.23), startTimeTextField.heightAnchor.constraint(equalToConstant: 40)])
+    private func setupInstructionsTextField(){
+        addSubview(instructionTextfield)
+        instructionTextfield.translatesAutoresizingMaskIntoConstraints = false
         
-        startTimeLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    }
-    
-    private func setUpStartTimeSegmentedControlConstraints(){
-        addSubview(startTimeSegmentedControl)
-        startTimeSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([startTimeSegmentedControl.topAnchor.constraint(equalTo: zipTextField.bottomAnchor, constant: 20), startTimeSegmentedControl.leadingAnchor.constraint(equalTo: startTimeTextField.trailingAnchor, constant: 8)])
-    }
-    
-    private func setUpEndTimeLabelConstraints(){
-        addSubview(endTimeLabel)
-        endTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([endTimeLabel.topAnchor.constraint(equalTo: startTimeLabel.bottomAnchor, constant: 20), endTimeLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), endTimeLabel.heightAnchor.constraint(equalToConstant: 40)])
-    }
-    
-    private func setUpEndTimeTextFieldConstraints(){
-        addSubview(endTimeTextField)
-        endTimeTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([endTimeTextField.leadingAnchor.constraint(equalTo: endTimeLabel.trailingAnchor, constant: 15), endTimeTextField.topAnchor.constraint(equalTo: startTimeLabel.bottomAnchor, constant: 20), endTimeTextField.heightAnchor.constraint(equalToConstant: 40), endTimeTextField.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.23)])
-        endTimeLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    }
-    
-    private func setUpEndTimeSegmentedControl() {
-        addSubview(endTimeSegmentedControl)
-        endTimeSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([endTimeSegmentedControl.topAnchor.constraint(equalTo: startTimeLabel.bottomAnchor, constant: 20), endTimeSegmentedControl.leadingAnchor.constraint(equalTo: endTimeTextField.trailingAnchor, constant: 8)])
+        NSLayoutConstraint.activate([
+            instructionTextfield.topAnchor.constraint(equalTo: addInstructLabel.bottomAnchor, constant: 20),
+            instructionTextfield.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            instructionTextfield.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            instructionTextfield.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     private func setUpSubmitButtonConstraints(){
         addSubview(submitButton)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([submitButton.topAnchor.constraint(equalTo: endTimeTextField.bottomAnchor, constant: 30), submitButton.centerXAnchor.constraint(equalTo: centerXAnchor), submitButton.heightAnchor.constraint(equalToConstant: 44)])
+        NSLayoutConstraint.activate([submitButton.topAnchor.constraint(equalTo: instructionTextfield.bottomAnchor, constant: 30), submitButton.centerXAnchor.constraint(equalTo: centerXAnchor), submitButton.heightAnchor.constraint(equalToConstant: 44)])
     }
 }

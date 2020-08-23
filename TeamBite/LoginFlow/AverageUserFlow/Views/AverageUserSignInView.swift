@@ -18,14 +18,14 @@ class AverageUserSignInView: UIView {
     
     public lazy var signInButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Sign In", for: .normal)
+        button.setTitle(NSLocalizedString("signin", comment: ""), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()
     
     public lazy var createAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Create Account", for: .normal)
+        button.setTitle(NSLocalizedString("createaccount", comment: ""), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()

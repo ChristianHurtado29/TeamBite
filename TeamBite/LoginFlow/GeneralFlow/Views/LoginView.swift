@@ -20,7 +20,7 @@ class LoginView: UIView {
        let label = UILabel()
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.text = "Are you a venue owner, or are you a patron?"
+        label.text = NSLocalizedString("areyou", comment: "")
         label.font = UIFont(name: "Arial", size: 20)
         label.numberOfLines = 2
         return label

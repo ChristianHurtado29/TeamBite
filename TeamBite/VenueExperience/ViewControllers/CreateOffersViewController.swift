@@ -25,6 +25,11 @@ class CreateOffersViewController: UIViewController {
     @IBOutlet weak var glutenFreeSwitch: UISwitch!
     @IBOutlet weak var vegetarianSwitch: UISwitch!
     
+    private let currentDateTime = Date()
+    private let startPicker = UIDatePicker()
+    private let endPicker = UIDatePicker()
+    private var allergies = [String]()
+    
     private let storageService = StorageService()
     private let dbService = DatabaseService()
     
@@ -36,11 +41,13 @@ class CreateOffersViewController: UIViewController {
     
     var imgURL = ""
     
+    var offerId: String = UUID().uuidString
+    
     private var selectedImage: UIImage? {
         didSet{
             offerImage.image = selectedImage
             let resizedImage = UIImage.resizeImage(originalImage: self.selectedImage!, rect: self.offerImage.bounds)
-            storageService.uploadPhoto(image: resizedImage) { [weak self](result) in
+            storageService.uploadPhoto(itemId:offerId ,image: resizedImage) { [weak self](result) in
                 switch result{
                 case .failure(let error):
                     DispatchQueue.main.async {
@@ -48,17 +55,10 @@ class CreateOffersViewController: UIViewController {
                     }
                 case .success(let url):
                     self!.imgURL = url.absoluteString
-                    print(url.absoluteString)
                 }
             }
         }
     }
-    
-    let currentDateTime = Date()
-    let startPicker = UIDatePicker()
-
-    let endPicker = UIDatePicker()
-    var allergies = [String]()
     
     override func viewWillLayoutSubviews() {
         createButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
@@ -67,11 +67,21 @@ class CreateOffersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
         initialSwitchSettings()
+        configureTextPickers()
+    }
+    
+    private func setUp(){
         numberOfMealsTextField.keyboardType = .numberPad
         createButton.isEnabled = true
-        configureTextPickers()
         offerImage.layer.cornerRadius = 30
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = DateFormatter.Style.short
+        startTimeTextField.text = formatter.string(from: currentDateTime)
+        endTimeTextField.text = formatter.string(from: currentDateTime + 1820)
+        offerImage.image = UIImage(systemName: "photo.fill")
     }
     
     private func initialSwitchSettings() {
@@ -122,6 +132,10 @@ class CreateOffersViewController: UIViewController {
              present(alertController, animated: true)
            }
     
+    @IBAction func dismissView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func nutFreeSwitchPressed(_ sender: UISwitch) {
         
     }
@@ -148,19 +162,26 @@ class CreateOffersViewController: UIViewController {
     }
     }
     
+//    let resizedImage = UIImage.resizeImage(originalImage: self.selectedImage!, rect: self.offerImage.bounds)
+//    storageService.uploadPhoto(image: resizedImage) { [weak self](result) in
+//        switch result{
+//        case .failure(let error):
+//            DispatchQueue.main.async {
+//                self?.showAlert(title: "error uploading photo", message: "error: \(error.localizedDescription)")
+//            }
+//        case .success(let url):
+//            self!.imgURL = url.absoluteString
+//        }
+//    }
+    
     
     @IBAction func createOfferButtonPressed(_ sender: UIButton) {
-        print("create button clicked")
-        if offerNameTextField.text?.isEmpty == true {
-            showAlert(title: "name is empty", message: "")
-        } else {
-            
+        if fieldCheck(){
             if nutFreeSwitch.isOn == true {
                 if !allergies.contains("Nut-Free"){
                     allergies.append("Nut-Free")
                 }
             }
-            print("allergies: \(allergies)")
             if nutFreeSwitch.isOn == false {
                 if allergies.contains("Nut-Free"){
                 }
@@ -169,17 +190,11 @@ class CreateOffersViewController: UIViewController {
                 if !allergies.contains("Gluten Free"){
                     allergies.append("Gluten Free")
                 }
-                print("allergies: \(allergies)")
             }
             if vegetarianSwitch.isOn == true {
                 if !allergies.contains("Vegetarian"){
                     allergies.append("Vegetarian")
                 }
-                print("allergies: \(allergies)")
-            }
-            
-            if startPicker.date < currentDateTime || endPicker.date < startPicker.date {
-                showAlert(title: "", message: "Please provide a valid start time")
             }
             
             let offerName = offerNameTextField.text ?? "Meals"
@@ -189,38 +204,42 @@ class CreateOffersViewController: UIViewController {
             let setAllergies = Set(allergies)
             let finalAllergies = Array(setAllergies)
             let urlImage = imgURL
-            let newOffer = Offer(offerId: UUID().uuidString , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage, expectedIds: [])
+            let newOffer = Offer(offerId: offerId , nameOfOffer: offerName, totalMeals: numberOfMeals ?? 0, remainingMeals: numberOfMeals ?? 0, createdDate: Date(), startTime: Timestamp(date: startTime), endTime: Timestamp(date: endTime), allergyType: finalAllergies, status: "unclaimed", offerImage: urlImage, expectedIds: [])
             
             
-            DatabaseService.shared.addToOffers(offer: newOffer) { [weak self, weak sender] (result) in
-                print("create button pressed")
+            DatabaseService.shared.addToOffers(offer: newOffer) { [unowned self, weak sender] (result) in
                 switch result {
                 case.failure(let error):
                     DispatchQueue.main.async {
-                        self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
+                        self.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
                         sender?.isEnabled = true
                     }
                 case .success:
                     sender?.isEnabled = true
+                    self.playSound(file: "FoodReady", ext: "mp3")
+                    sleep(1)
+                    self.dismiss(animated: true)
                 }
             }
-            
-            DatabaseService.shared.createAllOffers(offer: newOffer) { [weak self, weak sender] (result) in
-                print("create button pressed")
-                switch result {
-                case.failure(let error):
-                    DispatchQueue.main.async {
-                        self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
-                        sender?.isEnabled = true
-                    }
-                case .success:
-                    sender?.isEnabled = true
-                }
-            }
-            playSound(file: "FoodReady", ext: "mp3")
         }
-        sleep(1)
-        dismiss(animated: true)
+    }
+    
+    private func fieldCheck() -> Bool{
+        
+        if offerNameTextField.text?.isEmpty == true {
+            showAlert(title: "name is empty", message: "")
+            return false
+        } else if numberOfMealsTextField.text!.isEmpty{
+            showAlert(title: "error", message: "Please enter number of meals")
+            return false
+        } else if startPicker.date < currentDateTime || endPicker.date < startPicker.date || endPicker.date < startPicker.date + 2710{
+            showAlert(title: "", message: "Please provide a valid start time with at least 45 minute pick up window.")
+            return false
+        } else if offerImage.image == UIImage(systemName: "photo.fill"){
+            showAlert(title: "add photo", message: "Please add photo of offer")
+            return false
+        }
+        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

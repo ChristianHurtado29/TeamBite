@@ -15,8 +15,8 @@ struct Venue: Codable {
     let lat: Double
     let phoneNumber: String?
     let address: String
-    let startTime: String?
-    let endTime: String?
+    let pickupInstructions: String?
+    let venueImage: String
 }
 
 extension Venue {
@@ -27,7 +27,7 @@ extension Venue {
         self.lat = dictionary["lat"] as? Double ?? 0.00
         self.phoneNumber = dictionary["phoneNumber"] as? String ?? "No Number"
         self.address = dictionary["address"] as? String ?? "No Address"
-        self.startTime = dictionary["startTime"] as? String ?? ""
-        self.endTime = dictionary["endTime"] as? String ?? ""
+        self.pickupInstructions = dictionary["pickupInstructions"] as? String ?? "no instructions"
+        self.venueImage = dictionary["venueImage"] as? String ?? "no image"
     }
 }

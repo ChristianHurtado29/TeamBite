@@ -27,7 +27,7 @@ class DatabaseService {
     // creates venueOwner
     public func createVenue(venue: Venue, authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let email = authDataResult.user.email else {return}
-        db.collection(DatabaseService.venuesOwnerCollection).document(authDataResult.user.uid).setData(["name": venue.name, "email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address,"startTime": venue.startTime ?? "" , "endTime": venue.endTime ?? "", "lat": venue.lat, "long": venue.long]){ (error) in
+        db.collection(DatabaseService.venuesOwnerCollection).document(authDataResult.user.uid).setData(["name": venue.name, "email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address, "venueImage": venue.venueImage, "pickupInstructions":venue.pickupInstructions ?? "no instructions","lat": venue.lat, "long": venue.long]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -36,7 +36,18 @@ class DatabaseService {
         }
     }
     
-    func updateVenue(address: String, phoneNumber: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func updatePhotoURL(completion: @escaping (Result<Bool, Error>) ->()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).setData(["venueImage": user.photoURL ?? "no photo"]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func updateVenue(address: String, phoneNumber: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else { return }
         
@@ -143,16 +154,6 @@ class DatabaseService {
         }
     }
     
-    public func createAllOffers(offer: Offer, completion: @escaping(Result<Bool, Error>) -> ()){
-
-        db.collection(DatabaseService.allOffersCollection).document().setData(["offerId": offer.offerId,"nameOfOffer": offer.nameOfOffer, "totalMeals": offer.totalMeals, "remainingMeals": offer.remainingMeals, "startTime": offer.startTime, "endTime": offer.endTime, "allergyType": offer.allergyType ?? "none", "offerImage": offer.offerImage ?? "no url"] ) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
-            }
-        }
-    }
     
     
     // Create offers

@@ -23,7 +23,7 @@ class VenueSignUpView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.textColor = UIColor.black
-        label.text = "Email:"
+        label.text = NSLocalizedString("email", comment: "")
         return label
     }()
     
@@ -41,7 +41,7 @@ class VenueSignUpView: UIView {
         label.numberOfLines = 1
         label.textColor = UIColor.black
         label.textAlignment = .left
-        label.text = "Password:"
+        label.text = NSLocalizedString("password", comment: "")
         return label
     }()
     
@@ -57,14 +57,14 @@ class VenueSignUpView: UIView {
     
     public lazy var signInWithEmailButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Sign in", for: .normal)
+        button.setTitle(NSLocalizedString("signin", comment: ""), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()
     
     public lazy var createNewAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Create New Account", for: .normal)
+        button.setTitle(NSLocalizedString("createaccount", comment: ""), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()
