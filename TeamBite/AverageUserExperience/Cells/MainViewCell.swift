@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import FirebaseAuth
 
 class MainViewCell: UICollectionViewCell {
     
@@ -88,7 +90,7 @@ class MainViewCell: UICollectionViewCell {
         
         // keep in mind venue images match stock photo names (The case is off)
         // restaurantImage.image = UIImage(named: savedVenue.name)
-        restaurantImage.image = UIImage(systemName: "hare")
+        restaurantImage.kf.setImage(with: URL(string: savedVenue.venueImage))
     }
     
     private func configView(){

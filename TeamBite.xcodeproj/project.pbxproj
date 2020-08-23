@@ -200,6 +200,7 @@
 			children = (
 				13F4BA9E244E595B00C0DC23 /* AuthenticationSessions.swift */,
 				13F4BAA0244E596400C0DC23 /* DatabaseService.swift */,
+				1334596824E76FD3001D0A2A /* StorageService.swift */,
 			);
 			path = FirebaseManager;
 			sourceTree = "<group>";
@@ -219,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				13F4BABC244E5B5200C0DC23 /* UIViewController + Alerts.swift */,
-				1334596824E76FD3001D0A2A /* StorageService.swift */,
 				1334596A24E77249001D0A2A /* UIImage + Extension.swift */,
 				C4789D952450BA31008193BA /* UIViewController+SceneChange.swift */,
 			);

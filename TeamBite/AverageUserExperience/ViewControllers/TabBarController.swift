@@ -17,16 +17,16 @@ class TabBarController: UITabBarController {
     }()
     
     
-    private lazy var resourcesVC: ResourcesViewController = {
-        let mainSB = UIStoryboard(name: "Wireframe", bundle: nil)
-        guard let resourcesVC = mainSB.instantiateViewController(identifier: "ResourcesViewController") as? ResourcesViewController else {fatalError()}
-        resourcesVC.tabBarItem = UITabBarItem(title: "Resources", image: UIImage(systemName: "folder"), tag: 1)
-        return resourcesVC
-    }()
+//    private lazy var resourcesVC: ResourcesViewController = {
+//        let mainSB = UIStoryboard(name: "Wireframe", bundle: nil)
+//        guard let resourcesVC = mainSB.instantiateViewController(identifier: "ResourcesViewController") as? ResourcesViewController else {fatalError()}
+//        resourcesVC.tabBarItem = UITabBarItem(title: "Resources", image: UIImage(systemName: "folder"), tag: 1)
+//        return resourcesVC
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [UINavigationController(rootViewController: mainVC), UINavigationController(rootViewController: resourcesVC)]
+        viewControllers = [UINavigationController(rootViewController: mainVC)]
     }
     
     

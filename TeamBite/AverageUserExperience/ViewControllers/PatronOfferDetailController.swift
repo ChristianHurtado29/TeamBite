@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import FirebaseAuth
+import FirebaseFirestore
 
 protocol PatronOfferDetailDelegate: AnyObject {
     func stateChanged(_ patronOfferDetailController: PatronOfferDetailController, _ newState: AppState)
@@ -19,13 +20,24 @@ protocol PatronOfferDetailDelegate: AnyObject {
 
 class PatronOfferDetailController: UIViewController {
 
-    private let detailView = PatronOfferDetailView()
     private var mealState = MealStatus.unclaimed
     private var currentState: AppState
+    private var listener: ListenerRegistration?
     private let currentOffer: Offer
     private let currentVenue: Venue
     private let currentUserId: String
     private let coreLocationManager = CoreLocationManager()
+    private let detailView = PatronOfferDetailView()
+    
+    private var scanStatus = false {
+        didSet {
+            if scanStatus {
+                configureState()
+            } else {
+                detailView.configureOfferClaimedState()
+            }
+        }
+    }
     
     public weak var delegate: PatronOfferDetailDelegate?
     
@@ -51,6 +63,22 @@ class PatronOfferDetailController: UIViewController {
         setUpUI()
         configureState()
         configureMapView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        listener = Firestore.firestore().collection(DatabaseService.usersCollection).document(currentUserId).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                self?.showAlert(title: "Error", message: "Could not retrieve qrCode scanned status. Error: \(error.localizedDescription)")
+            } else if let snapshot = snapshot, let status = snapshot.data()?["qrCodeScanned"] as? Bool {
+                self?.scanStatus =  status
+            }
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        listener?.remove()
     }
     
     private func setUpUI() {
