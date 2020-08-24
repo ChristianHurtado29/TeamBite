@@ -32,8 +32,6 @@ class PatronOfferDetailController: UIViewController {
     private var scanStatus = false {
         didSet {
             if scanStatus {
-                configureState()
-            } else {
                 detailView.configureOfferClaimedState()
             }
         }
