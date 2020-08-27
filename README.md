@@ -2,7 +2,7 @@
 
 Every day hundreds of thousands of tons of food are wasted in the United States. Yet at the same time, millions of people in the United States struggle with hunger. Bite is an application that attempts to solve both of these issues by connecting restaurant owners with excess food to people most in need.
 
-The app has two components, Vendor and Patron. 
+The app has two components: vendor and patron. 
 
 As a vendor, the first thing you’ll do is create a new account by inputting an email and password. Afterward, you’ll be prompted to input some general information about your restaurant, which includes pick up instructions that will be presented to the patron when they claim a meal. Once your account is set up, you’ll create ‘offers’ for user consumption. An ‘offer’ is composed of a quantity, an image, a name, allergies, and a window denoted by a start and end time. When the start time of an offer’s window is reached, the offer will become active. Active offers will appear on the patron’s side of the application, where they can claim them. When the end time of the window is reached, the offer will no longer be presented to patrons. 
 
