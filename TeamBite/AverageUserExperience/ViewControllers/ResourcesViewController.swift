@@ -48,9 +48,8 @@ extension ResourcesViewController: UITableViewDataSource{
         cell.configureCell(for: selResource)
         return cell
     }
-    
-    
 }
+
 extension ResourcesViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
