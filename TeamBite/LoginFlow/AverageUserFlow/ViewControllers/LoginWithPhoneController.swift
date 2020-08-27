@@ -30,6 +30,7 @@ class LoginWithPhoneController: UIViewController {
     
     override func loadView(){
         view = loginWithPhoneView
+        
     }
     
     override func viewDidLoad() {

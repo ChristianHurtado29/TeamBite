@@ -16,6 +16,10 @@ import MapKit
 
 class PatronOfferDetailView: UIView {
     
+    public var topMapConstraint = NSLayoutConstraint()
+    private var topMapConstant: CGFloat = 0.0
+    private var shiftAmount: CGFloat = 90.0
+    
     public lazy var qrCodeImageView: UIImageView = {
        let iv = UIImageView()
         iv.layer.borderColor = UIColor.black.cgColor
@@ -50,6 +54,23 @@ class PatronOfferDetailView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
         button.alpha = 0.0
         return button
+    }()
+    
+    public lazy var pickUpDirectionsLabel: UILabel = {
+       let label = UILabel()
+        label.textAlignment = .center
+        label.text = "Pick Up Directions"
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.alpha = 1.0
+        return label
+    }()
+    
+    public lazy var pickUpDetailsLabel: UILabel = {
+       let label = UILabel()
+        label.textAlignment = .center
+        label.text = ""
+        label.alpha = 1.0
+        return label
     }()
     
     public lazy var scrollView: UIScrollView = {
@@ -88,7 +109,7 @@ class PatronOfferDetailView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + UIScreen.main.bounds.height * 0.2)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + UIScreen.main.bounds.height * 0.3)
     }
     
     private func commonInit() {
@@ -97,8 +118,11 @@ class PatronOfferDetailView: UIView {
         setUpWillGenerateCodeLabelConstraints()
         setUpClaimOfferButtonConstraints()
         setUpForfeitOfferButtonConstraints()
+        setUpPickUpDirectionsLabelConstraints()
+        setUpPickUpDetailsLabelConstraints()
         setUpMapViewConstraints()
         setUpGetDirectionsButtonConstraints()
+        setUpConstraintVariables()
     }
     
     private func setUpScrollViewConstraints() {
@@ -136,11 +160,28 @@ class PatronOfferDetailView: UIView {
         NSLayoutConstraint.activate([forfeitOfferButton.topAnchor.constraint(equalTo: qrCodeImageView.bottomAnchor, constant: 20), forfeitOfferButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), forfeitOfferButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), forfeitOfferButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
+    private func setUpPickUpDirectionsLabelConstraints() {
+        scrollView.addSubview(pickUpDirectionsLabel)
+        pickUpDirectionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([pickUpDirectionsLabel.topAnchor.constraint(equalTo: claimOfferButton.bottomAnchor, constant: 20), pickUpDirectionsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), pickUpDirectionsLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+    }
+    
+    private func setUpPickUpDetailsLabelConstraints() {
+        scrollView.addSubview(pickUpDetailsLabel)
+        pickUpDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([pickUpDetailsLabel.topAnchor.constraint(equalTo: pickUpDirectionsLabel.bottomAnchor, constant: 20), pickUpDetailsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), pickUpDetailsLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+    }
+    
     private func setUpMapViewConstraints() {
         scrollView.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([mapView.topAnchor.constraint(equalTo: claimOfferButton.bottomAnchor, constant: 20), mapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), mapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)])
+        NSLayoutConstraint.activate([mapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), mapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)])
+        
+        topMapConstraint = mapView.topAnchor.constraint(equalTo: claimOfferButton.bottomAnchor, constant: 20)
+        topMapConstraint.isActive = true
     }
     
     private func setUpGetDirectionsButtonConstraints() {
@@ -148,6 +189,10 @@ class PatronOfferDetailView: UIView {
         getDirectionsButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([getDirectionsButton.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 20), getDirectionsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), getDirectionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), getDirectionsButton.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func setUpConstraintVariables() {
+        topMapConstant = topMapConstraint.constant
     }
     
     public func configureClaimedCurrentOfferState(_ offerName: String, _ offerId: String, _ userId: String) {
@@ -165,9 +210,30 @@ class PatronOfferDetailView: UIView {
         willGenerateCodeLabel.text = "You will have to wait until tomorrow to claim a new offer."
     }
     
+    public func showPickUpDirections() {
+        
+        self.topMapConstraint.constant += self.shiftAmount
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.pickUpDirectionsLabel.alpha = 1.0
+            self.pickUpDirectionsLabel.alpha = 1.0
+            self.layoutIfNeeded()
+        })
+    }
+    
     public func configureUnclaimedOfferState() {
         claimOfferButton.alpha = 1.0
         forfeitOfferButton.alpha = 0.0
     }
-
+    
+    public func hidePickUpInstructions() {
+        
+        self.topMapConstraint.constant -= self.shiftAmount
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.pickUpDirectionsLabel.alpha = 0.0
+            self.pickUpDirectionsLabel.alpha = 0.0
+            self.layoutIfNeeded()
+        })
+    }
 }
