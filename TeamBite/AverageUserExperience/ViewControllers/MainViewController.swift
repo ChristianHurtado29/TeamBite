@@ -26,9 +26,11 @@ class MainViewController: UIViewController {
     
     private let mainView = MainView()
     private var currentState: AppState
+    private let userId: String
     
     init(_ state: AppState) {
         self.currentState = state
+        userId = Auth.auth().currentUser?.uid ?? "sdknaZ8oYlPI4w4XEQGOwUgIsXw2"
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,18 +51,18 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         fetchVenues()
-        fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
+        fetchAppState(userId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DatabaseService.shared.checkForClaimReset("sdknaZ8oYlPI4w4XEQGOwUgIsXw2") { [weak self] (result) in
+        DatabaseService.shared.checkForClaimReset(userId) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not access claim time. Error: \(error.localizedDescription)")
             case .success(let succeeded):
                 if succeeded {
-                    self?.fetchAppState("sdknaZ8oYlPI4w4XEQGOwUgIsXw2")
+                    self?.fetchAppState(self?.userId ?? "")
                 }
             }
         }
@@ -89,8 +91,6 @@ class MainViewController: UIViewController {
     }
     
     private func fetchAppState(_ uid: String) {
-//        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
         DatabaseService.shared.fetchUserStatus(uid) { [weak self] result in
             switch result {
             case .failure(let error):

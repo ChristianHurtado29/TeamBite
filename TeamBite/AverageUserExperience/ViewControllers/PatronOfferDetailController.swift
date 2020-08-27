@@ -33,6 +33,7 @@ class PatronOfferDetailController: UIViewController {
         didSet {
             if scanStatus {
                 detailView.configureOfferClaimedState()
+                detailView.hidePickUpInstructions()
             }
         }
     }
@@ -87,6 +88,7 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.addTarget(self, action: #selector(claimOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.forfeitOfferButton.addTarget(self, action: #selector(forfeitOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.getDirectionsButton.addTarget(self, action: #selector(getDirectionsButtonPressed(_:)), for: .touchUpInside)
+        detailView.pickUpDetailsLabel.text = currentVenue.pickupInstructions
     }
     
     private func configureMapView() {
@@ -122,7 +124,9 @@ class PatronOfferDetailController: UIViewController {
                     self?.navigationController?.popViewController(animated: true)
                 }
             case .success:
-                self?.showAlert(title: "Success", message: "You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true)).")
+                self?.showAlert(title: "Success", message: "You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true)).") { action in
+                    self?.detailView.showPickUpDirections()
+                }
                 self?.setClaimedState()
             }
         }
@@ -142,6 +146,7 @@ class PatronOfferDetailController: UIViewController {
     
     private func setClaimedState() {
         let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.convertDateToString(Date())) \(currentOffer.offerId) \(currentUserId)"
+//        detailView.showPickUpDirections()
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
@@ -170,6 +175,7 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.alpha = 1.0
         detailView.claimOfferButton.isUserInteractionEnabled = false
         detailView.forfeitOfferButton.alpha = 0.0
+//        detailView.hidePickUpInstructions()
         UserDefaultsHandler.resetOfferName()
         DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) {
             [weak self] result in
@@ -177,7 +183,9 @@ class PatronOfferDetailController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "Could not forfeit error: \(error.localizedDescription)")
             case .success:
-                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true))")
+                self?.showAlert(title: "Success", message: "Meal successfully forfeited. You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true))") { action in
+                    self?.detailView.hidePickUpInstructions()
+                }
             }
         }
         detailView.configureOfferClaimedState()
