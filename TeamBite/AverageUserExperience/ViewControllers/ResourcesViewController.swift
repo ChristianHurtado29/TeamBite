@@ -28,6 +28,7 @@ class ResourcesViewController: UIViewController {
         resourcesView.tableView.dataSource = self
         resourcesView.tableView.delegate = self
         loadResources()
+        navigationItem.title = "Resources"
     }
     
     func loadResources(){

@@ -25,18 +25,21 @@ class ResourcesCell: UITableViewCell {
     
     private lazy var contactLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         return label
     }()
     
     private lazy var phoneLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
     
     private lazy var linkLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
