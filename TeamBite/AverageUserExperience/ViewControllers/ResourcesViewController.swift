@@ -9,20 +9,26 @@
 import UIKit
 
 class ResourcesViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+    
+    let resourcesView = ResourcesView()
     
     var resources = [Resources](){
         didSet{
-            tableView.reloadData()
+            resourcesView.tableView.reloadData()
         }
+    }
+    
+    override func loadView() {
+        view = resourcesView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        view.backgroundColor = .systemBackground
+        resourcesView.tableView.dataSource = self
+        resourcesView.tableView.delegate = self
         loadResources()
+        navigationItem.title = "Resources"
     }
     
     func loadResources(){

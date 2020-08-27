@@ -15,6 +15,7 @@
 		137D888B24ECD3DF006594C1 /* VenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E16C0244F643D002C954A /* VenueViewController.swift */; };
 		137D888E24ECDAD1006594C1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 137D889024ECDAD1006594C1 /* Localizable.strings */; };
 		139F1DDC244E60E900C1CF4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 139F1DDB244E60E900C1CF4F /* GoogleService-Info.plist */; };
+		13EE3C3D24F58FE400B5FF63 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EE3C3C24F58FE400B5FF63 /* ResourcesView.swift */; };
 		13F39634244F6F34004BD488 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39633244F6F34004BD488 /* Resources.swift */; };
 		13F39636244F7B26004BD488 /* ResourcesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F39635244F7B26004BD488 /* ResourcesCell.swift */; };
 		13F4BA89244E54DC00C0DC23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4BA88244E54DC00C0DC23 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		13A9F27C24ECB83600849C95 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Venues.strings; sourceTree = "<group>"; };
 		13DE007F24F1A24C00A48E28 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Venues.strings"; sourceTree = "<group>"; };
 		13DE008024F1A24C00A48E28 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		13EE3C3C24F58FE400B5FF63 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
 		13F39633244F6F34004BD488 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		13F39635244F7B26004BD488 /* ResourcesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesCell.swift; sourceTree = "<group>"; };
 		13F4BA85244E54DC00C0DC23 /* TeamBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -328,6 +330,7 @@
 				9F37802B244F7941007C174E /* MainView.swift */,
 				9F504D2C244FEA2800294978 /* UserDetailView.swift */,
 				C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */,
+				13EE3C3C24F58FE400B5FF63 /* ResourcesView.swift */,
 				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
 			);
 			path = Views;
@@ -586,6 +589,7 @@
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offer.swift in Sources */,
 				C4700C9024DA34570040E1B2 /* UserDefaultsHandler.swift in Sources */,
+				13EE3C3D24F58FE400B5FF63 /* ResourcesView.swift in Sources */,
 				634E16C9244FC4A5002C954A /* User.swift in Sources */,
 				C4789D9C2450E742008193BA /* LoginWithPhoneView.swift in Sources */,
 				13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */,
