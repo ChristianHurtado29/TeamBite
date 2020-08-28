@@ -206,6 +206,7 @@ class PatronOfferDetailView: UIView {
     public func configureOfferClaimedState() {
         claimOfferButton.alpha = 1.0
         claimOfferButton.isUserInteractionEnabled = false
+        forfeitOfferButton.alpha = 0.0
         qrCodeImageView.image = nil
         willGenerateCodeLabel.isHidden = false
         willGenerateCodeLabel.text = "You will have to wait until tomorrow to claim a new offer."
