@@ -200,7 +200,7 @@ class PatronOfferDetailView: UIView {
         forfeitOfferButton.alpha = 1.0
         willGenerateCodeLabel.isHidden = true
         qrCodeImageView.image = QRCodeHandler.generateQRCode(from: qrCodeString)
-        showPickUpDirections()
+        showPickUpDirections(with: 0.0)
     }
     
     public func configureOfferClaimedState() {
@@ -211,11 +211,11 @@ class PatronOfferDetailView: UIView {
         willGenerateCodeLabel.text = "You will have to wait until tomorrow to claim a new offer."
     }
     
-    public func showPickUpDirections() {
+    public func showPickUpDirections(with duration: Double) {
         
         self.topMapConstraint.constant += self.shiftAmount
         
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
             self.pickUpDirectionsLabel.alpha = 1.0
             self.pickUpDirectionsLabel.alpha = 1.0
             self.layoutIfNeeded()
