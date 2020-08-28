@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>361380259051-u29f4qdsd5f57apotqb3fi0tt86ugpeh.apps.googleusercontent.com</string>
+	<string>361380259051-lr4jisn0atvje6q70qtsqic3c05ulu8l.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.361380259051-u29f4qdsd5f57apotqb3fi0tt86ugpeh</string>
+	<string>com.googleusercontent.apps.361380259051-lr4jisn0atvje6q70qtsqic3c05ulu8l</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>361380259051-mi6feg9rekhuqp3gpt9hbridqvcamaq0.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCZGoEtbP-r5q7APw7UD6j-1yTK_dlmeOg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.christianhurtado.TeamBite</string>
+	<string>org.christianhurtado.teambite</string>
 	<key>PROJECT_ID</key>
 	<string>teambite-ecb8c</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:361380259051:ios:c38cdf040f732d101b8aae</string>
+	<string>1:361380259051:ios:29ea24e73427a3981b8aae</string>
 	<key>DATABASE_URL</key>
 	<string>https://teambite-ecb8c.firebaseio.com</string>
 </dict>
