@@ -125,7 +125,7 @@ class PatronOfferDetailController: UIViewController {
                 }
             case .success:
                 self?.showAlert(title: "Success", message: "You will be able to claim another meal on \(DateHandler.convertDateToString(DateHandler.calculateNextClaimDate(), true)).") { action in
-                    self?.detailView.showPickUpDirections()
+                    self?.detailView.showPickUpDirections(with: 1.0)
                 }
                 self?.setClaimedState()
             }

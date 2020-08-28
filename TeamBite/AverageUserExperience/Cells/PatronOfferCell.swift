@@ -21,7 +21,7 @@ class PatronOfferCell: UITableViewCell {
     private lazy var offerTitleLabel: UILabel = {
        let label = UILabel()
         label.textColor = UIColor.black
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.textAlignment = .left
         return label
     }()
