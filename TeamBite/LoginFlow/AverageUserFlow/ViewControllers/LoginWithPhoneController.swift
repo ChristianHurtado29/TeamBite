@@ -95,8 +95,9 @@ class LoginWithPhoneController: UIViewController {
                 if let prefs = self?.dietaryPreferences {
                     self?.doesNewUserExist(authResult, prefs)
                 } else {
-                    let tabBarController = TabBarController()
-                    UIViewController.resetWindow(tabBarController)
+                    self?.doesNewUserExist(authResult)
+//                    let tabBarController = TabBarController()
+//                    UIViewController.resetWindow(tabBarController)
                 }
             }
         }
@@ -138,7 +139,7 @@ class LoginWithPhoneController: UIViewController {
         }
     }
     
-    private func doesNewUserExist(_ authResult: AuthDataResult, _ prefs: [String]) {
+    private func doesNewUserExist(_ authResult: AuthDataResult, _ prefs: [String] = []) {
         DatabaseService.shared.doesAccountExist(authResult.user.uid) { [weak self] (result) in
             switch result {
             case .failure(let error):
