@@ -23,5 +23,13 @@ Firebase, AVKit, CoreLocation, MapKit
 - This application requires iOS 13.0 or higher. 
 - This application makes use of cocoa pods. 
 
-# GIFs of the Application
+# Preview
+### Vendor
+Vendor Sign Up | Vendor Main | Create Offer | Scan QR Code | 
+------------ | ----------- | ------------ | ------------ |
+![gif](Assets/VenueSignUp.gif) | ![gif](Assets/VenueMain.gif) | ![gif](Assets/CreateOffer.gif) | ![gif](Assets/ScanQRCode.gif) | 
 
+### Patron
+Patron Sign Up | Patron Experience |
+------------ | ----------- |
+![gif](Assets/PatronSignUp.gif) | ![gif](Assets/PatronExperience.gif)
