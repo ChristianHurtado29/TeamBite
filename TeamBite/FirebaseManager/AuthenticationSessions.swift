@@ -47,4 +47,17 @@ class FirebaseAuthManager{
             }
         }
     }
+    
+    public func signOut(_ controller: UIViewController) {
+        do {
+            try Auth.auth().signOut()
+            if let window = SceneHelper.window {
+                window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            }
+        } catch {
+            DispatchQueue.main.async {
+                controller.showAlert(title: "Error", message: "Could not sign out of account: \(error.localizedDescription)")
+            }
+        }
+    }
 }

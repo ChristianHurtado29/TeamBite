@@ -73,8 +73,11 @@ class MainViewController: UIViewController {
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
         mainView.collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
+        mainView.signOutButton.target = self
+        mainView.signOutButton.action = #selector(signOutButtonPressed(_:))
         
         navigationItem.title = "BITE"
+        navigationItem.rightBarButtonItem = mainView.signOutButton
     }
     
     private func fetchVenues() {
@@ -105,6 +108,11 @@ class MainViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc
+    private func signOutButtonPressed(_ sender: UIBarButtonItem) {
+        FirebaseAuthManager.shared.signOut(self)
     }
 }
 

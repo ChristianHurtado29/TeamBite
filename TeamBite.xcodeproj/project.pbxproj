@@ -46,6 +46,7 @@
 		9F504D2F24500A0F00294978 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F504D2E24500A0F00294978 /* MainViewController.swift */; };
 		C44D34F324CF629800C2BF3E /* PatronOfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */; };
 		C44D34F524CF62AD00C2BF3E /* PatronOfferDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */; };
+		C456263E2516C5BC00B9379B /* SceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C456263D2516C5BC00B9379B /* SceneHelper.swift */; };
 		C4604AA6244F613E008E2857 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA5244F613E008E2857 /* LoginView.swift */; };
 		C4604AA8244F6165008E2857 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA7244F6165008E2857 /* LoginViewController.swift */; };
 		C4604AAA244F7D9B008E2857 /* VenueSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */; };
@@ -116,6 +117,7 @@
 		C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferDetailView.swift; sourceTree = "<group>"; };
 		C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferDetailController.swift; sourceTree = "<group>"; };
+		C456263D2516C5BC00B9379B /* SceneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneHelper.swift; sourceTree = "<group>"; };
 		C4604AA5244F613E008E2857 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C4604AA7244F6165008E2857 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4604AA9244F7D9B008E2857 /* VenueSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSignUpController.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				C4700C8F24DA34570040E1B2 /* UserDefaultsHandler.swift */,
 				C4C255D024E5F7CE00FFF08D /* DateHandler.swift */,
 				C4767F6D24E7070400AD8A8B /* PaddedTextField.swift */,
+				C456263D2516C5BC00B9379B /* SceneHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				1334596924E76FD3001D0A2A /* StorageService.swift in Sources */,
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,
 				C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */,
+				C456263E2516C5BC00B9379B /* SceneHelper.swift in Sources */,
 				C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */,
 				13F4BAAC244E5A6200C0DC23 /* ResourcesViewController.swift in Sources */,
 				9F01126424501360006B2DE8 /* UserDetailViewController.swift in Sources */,

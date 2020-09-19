@@ -24,6 +24,12 @@ class MainView: UIView {
         return barButton
     }()
     
+    public lazy var signOutButton: UIBarButtonItem = {
+       let barButton = UIBarButtonItem()
+        barButton.title = "Sign Out"
+        return barButton
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
