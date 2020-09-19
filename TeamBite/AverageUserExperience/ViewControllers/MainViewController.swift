@@ -85,7 +85,7 @@ class MainViewController: UIViewController {
                     self?.showAlert(title: "Unable to load Venues", message: error.localizedDescription)
                 }
             case .success(let item):
-                self?.savedVenues = item
+                self?.savedVenues = item.filter { $0.vetted }
             }
         }
     }

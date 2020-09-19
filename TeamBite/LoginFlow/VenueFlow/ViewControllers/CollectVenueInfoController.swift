@@ -95,7 +95,7 @@ class CollectVenueInfoController: UIViewController {
                     self?.showAlert(title: "Placename Error", message: "Could not convert a placename into coordinate: \(error.localizedDescription)")
                 }
             case.success(let coordinate):
-                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: pickup, venueImage: "")
+                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: pickup, venueImage: "", vetted: false)
                 self?.createNewVenue(newVenue)
             }
         }

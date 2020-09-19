@@ -10,12 +10,7 @@ import UIKit
 import CoreImage
 
 struct QRCodeHandler {
-    // Protect against human error. If a patron shows up at the wrong place, be certain to make it so that the scan won't work, or show some manner of warning.
-    // Protect against scanning old QRCodes.
-    // Use the offer name as a seed, but also the date of the offer as well.
-    // Consider looking into invalidating QR Codes.
     
-    //NOTE: The function on line 20 would make it so that nil was returned when you attempt to convert a string variable into data if allowLossyConversion was set to false. Not certain why this is, only that it happens. 
     static func generateQRCode(from str: String) -> UIImage? {
         let data = str.data(using: String.Encoding.ascii, allowLossyConversion: true)
         

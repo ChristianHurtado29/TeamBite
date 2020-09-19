@@ -87,9 +87,7 @@ class MainViewCell: UICollectionViewCell {
         venueName.text = ("\(savedVenue.name)")
         addressLabel.text = ("\(savedVenue.address)")
         phoneNumber.text = ("\(savedVenue.phoneNumber ?? "")")
-        
-        // keep in mind venue images match stock photo names (The case is off)
-        // restaurantImage.image = UIImage(named: savedVenue.name)
+    
         restaurantImage.kf.setImage(with: URL(string: savedVenue.venueImage))
     }
     

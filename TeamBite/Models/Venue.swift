@@ -17,6 +17,7 @@ struct Venue: Codable {
     let address: String
     let pickupInstructions: String?
     let venueImage: String
+    let vetted: Bool // Has the venue been vetted by Bite Staff
 }
 
 extension Venue {
@@ -29,5 +30,6 @@ extension Venue {
         self.address = dictionary["address"] as? String ?? "No Address"
         self.pickupInstructions = dictionary["pickupInstructions"] as? String ?? "no instructions"
         self.venueImage = dictionary["venueImage"] as? String ?? "no image"
+        self.vetted = dictionary["vetted"] as? Bool ?? false
     }
 }
