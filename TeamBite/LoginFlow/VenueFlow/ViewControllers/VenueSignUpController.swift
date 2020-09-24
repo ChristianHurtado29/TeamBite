@@ -19,6 +19,8 @@ class VenueSignUpController: UIViewController {
     private var yAnchorConstant: CGFloat = 0
     private var keyboardIsVisible = false
     
+    let spinningCircle = CAShapeLayer()
+    
     override func loadView(){
         view = signUpView
     }
@@ -86,6 +88,13 @@ class VenueSignUpController: UIViewController {
             let collectionVC = CollectVenueInfoController(email, password)
             self.navigationController?.pushViewController(collectionVC, animated: true)
         }
+    }
+    
+    func configureCircle() {
+        
+        let circularPath = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100))
+        spinningCircle.path = circularPath.cgPath
+        spinningCircle.fillColor = UIColor.clear.cgColor
     }
 
     

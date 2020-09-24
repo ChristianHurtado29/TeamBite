@@ -44,6 +44,15 @@ class ResourcesCell: UITableViewCell {
         return label
     }()
     
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
+        label.text = "this organization helps descriptive text descriptive text descriptive textdescriptive text descriptive text descriptive text descriptive text descriptive text descriptive text descriptive text descriptive text descriptive text descriptive text."
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -59,6 +68,7 @@ class ResourcesCell: UITableViewCell {
         setUpContact()
         setUpPhone()
         setUpLink()
+        setUpDescription()
     }
     
     private func setUpName(){
@@ -101,11 +111,22 @@ class ResourcesCell: UITableViewCell {
         ])
     }
     
+    private func setUpDescription(){
+        addSubview(descriptionLabel)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalTo: linkLabel.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: linkLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: linkLabel.trailingAnchor)
+        ])
+    }
+    
     func configureCell(for resource: Resources){
         nameLabel.text = resource.name
         contactLabel.text = resource.contactPerson
         phoneLabel.text = resource.phone
         linkLabel.text = resource.link
+        descriptionLabel.text = descriptionLabel.text
     }
 
 }
