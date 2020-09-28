@@ -14,6 +14,7 @@ import Kingfisher
 class VenueViewController: UIViewController {
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
+    private var venueListener: ListenerRegistration?
     
     private var editState = 0
     private var venue: Venue?
@@ -94,11 +95,21 @@ class VenueViewController: UIViewController {
                 self?.arrayOffers = ss
             }
         })
+        venueListener = db.collection(DatabaseService.venuesOwnerCollection).document(Auth.auth().currentUser?.uid ?? "").addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error{
+                self?.showAlert(title: "", message: "Could not properly load venue information \(error.localizedDescription).")
+            } else if let snapshot = snapshot {
+                let ss = Venue(snapshot.data() ?? [:])
+                self?.venue = ss
+                self?.venueData()
+            }
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         listener?.remove()
+        venueListener?.remove()
     }
     
     private func setUp() {
@@ -155,9 +166,9 @@ class VenueViewController: UIViewController {
         }
     }
     
-    private func updateDatabaseUser(address: String, phoneNumber: String) {
-        
-        DatabaseService.shared.updateVenue(address: address, phoneNumber: phoneNumber) { (result) in
+    private func updateDatabaseUser() {
+        guard let venue = venue else { return }
+        DatabaseService.shared.updateVenue(venue: venue) { (result) in
             switch result {
             case .failure(let error):
                 print("failed to update db user: \(error.localizedDescription)")
@@ -211,6 +222,13 @@ class VenueViewController: UIViewController {
         guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func editButton(_ sender: UIButton) {
+        guard let venue = venue else { return }
+        let infoViewController = CollectVenueInfoController(nil, nil, venue)
+        present(infoViewController, animated: true)
     }
 }
 

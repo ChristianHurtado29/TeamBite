@@ -114,6 +114,9 @@
                                 <rect key="frame" x="20" y="238" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.97697975729999997" green="0.76651102110000002" blue="1" alpha="0.89484161399999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editButton:" destination="Aof-g9-xqt" eventType="touchUpInside" id="cKa-nN-5xh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts4-WS-h0S">
                                 <rect key="frame" x="20" y="272.5" width="374" height="21"/>

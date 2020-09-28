@@ -12,21 +12,25 @@ import FirebaseAuth
 class CollectVenueInfoController: UIViewController {
 
     private let collectVenueInfoView = CollectVenueInfoView()
-    private let userEmail: String
-    private let userPassword: String
+    private let userEmail: String?
+    private let userPassword: String?
     private let coreLocation = CoreLocationManager()
     private var yAnchorConstant: CGFloat = 0
     private var keyboardIsVisible = false
     private let pickupInstructions = ["Call store", "Walk-in", "Side entrance"]
+    private var venue: Venue?
+    private var venueExists = Bool()
     
     public lazy var instructionPicker: UIPickerView = {
         let picker = UIPickerView()
         return picker
     }()
     
-    init(_ email: String, _ password: String){
+    init(_ email: String? = nil, _ password: String? = nil, _ venue: Venue? = nil){
         self.userEmail = email
         self.userPassword = password
+        self.venue = venue
+        self.venueExists = email == nil && password == nil
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,6 +48,31 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.tapGesture.addTarget(self, action: #selector(dismissKeyboard))
         registerForKeyboardNotifications()
         collectVenueInfoView.instructionTextfield.inputView = instructionPicker
+        determineFlow()
+    }
+    
+    private func determineFlow(){
+        if venueExists {
+            reverseFlow()
+        } else {
+            forwardFlow()
+        }
+    }
+    
+    private func forwardFlow(){
+        
+    }
+    
+    private func reverseFlow(){
+        if let venue = venue{
+            collectVenueInfoView.zipTextField.text = venue.zip
+            collectVenueInfoView.cityTextField.text = venue.city
+            collectVenueInfoView.stateTextField.text = venue.state
+            collectVenueInfoView.streetNameTextField.text = venue.street
+            collectVenueInfoView.venueNameTextField.text = venue.name
+            collectVenueInfoView.venuePhoneTextField.text = venue.phoneNumber
+            collectVenueInfoView.instructionTextfield.text = venue.pickupInstructions
+        }
     }
     
     private func setUp(){
@@ -95,14 +124,40 @@ class CollectVenueInfoController: UIViewController {
                     self?.showAlert(title: "Placename Error", message: "Could not convert a placename into coordinate: \(error.localizedDescription)")
                 }
             case.success(let coordinate):
-                let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, pickupInstructions: pickup, venueImage: "")
+                if !(self?.venueExists ?? true){
+                    let newVenue = Venue(name: venueName, venueId: "", long: coordinate.longitude, lat: coordinate.latitude, phoneNumber: phoneNumber, address: combinedAddress, city: city, state: state, street: streetName, zip: zip, pickupInstructions: pickup, venueImage: "")
                 self?.createNewVenue(newVenue)
+                } else {
+                    guard var venue = self?.venue else { return }
+                    venue.city = city
+                    venue.street = streetName
+                    venue.name = venueName
+                    venue.phoneNumber = phoneNumber
+                    venue.state = state
+                    venue.zip = zip
+                    venue.address = combinedAddress
+                    venue.pickupInstructions = pickup
+                    venue.lat = coordinate.latitude
+                    venue.long = coordinate.longitude
+                    self?.updateVenue(venue)
+                }
+            }
+        }
+    }
+    
+    private func updateVenue(_ venue: Venue){
+        DatabaseService.shared.updateVenue(venue: venue) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print (error)
+            case .success:
+                self?.dismiss(animated: true)
             }
         }
     }
     
     private func createNewVenue(_ venue: Venue){
-        FirebaseAuthManager.shared.createNewAccountWithEmail(userEmail, userPassword) { [weak self] result in
+        FirebaseAuthManager.shared.createNewAccountWithEmail(userEmail ?? "no email", userPassword ?? "no password") { [weak self] result in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async{
@@ -119,14 +174,17 @@ class CollectVenueInfoController: UIViewController {
                         UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
                     }
                 }
-                
-//                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
             }
         }
     }
     
     private func combineAddress(_ streetName: String, _ city: String, _ state: String, _ zip: String) -> String {
         return streetName + " " + city + " " + state + " " + zip
+    }
+    
+    private func dismantleAddress(_ string: String) -> [String] {
+        var arrString = string.components(separatedBy: " ")
+        return arrString
     }
     
     private func areYouANumber(_ string: String) -> Bool{

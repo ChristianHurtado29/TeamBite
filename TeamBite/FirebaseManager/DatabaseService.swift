@@ -27,7 +27,7 @@ class DatabaseService {
     // creates venueOwner
     public func createVenue(venue: Venue, authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()){
         guard let email = authDataResult.user.email else {return}
-        db.collection(DatabaseService.venuesOwnerCollection).document(authDataResult.user.uid).setData(["name": venue.name, "email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address, "venueImage": venue.venueImage, "pickupInstructions":venue.pickupInstructions ?? "no instructions","lat": venue.lat, "long": venue.long]){ (error) in
+        db.collection(DatabaseService.venuesOwnerCollection).document(authDataResult.user.uid).setData(["name": venue.name, "email": email, "userId": authDataResult.user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address, "city": venue.city, "state": venue.state, "zip": venue.zip, "street": venue.street,"venueImage": venue.venueImage, "pickupInstructions":venue.pickupInstructions ?? "no instructions","lat": venue.lat, "long": venue.long]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -47,11 +47,11 @@ class DatabaseService {
         }
     }
     
-    public func updateVenue(address: String, phoneNumber: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func updateVenue(venue: Venue, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).updateData(["address": address, "phoneNumber": phoneNumber]) { (error) in
+        db.collection(DatabaseService.venuesOwnerCollection).document(user.uid).updateData(["name": venue.name, "email": user.email ?? "no email", "userId": user.uid, "phoneNumber": venue.phoneNumber ?? "", "address": venue.address, "city": venue.city, "state": venue.state, "zip": venue.zip, "street": venue.street,"venueImage": venue.venueImage, "pickupInstructions":venue.pickupInstructions ?? "no instructions","lat": venue.lat, "long": venue.long]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
