@@ -65,6 +65,7 @@
 		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
 		C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C255D024E5F7CE00FFF08D /* DateHandler.swift */; };
+		C4C26DA12526A03200A01263 /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C26DA02526A03200A01263 /* PageController.swift */; };
 		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,7 @@
 		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
 		C4C255D024E5F7CE00FFF08D /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
+		C4C26DA02526A03200A01263 /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 			children = (
 				1353936C2451774200CB9622 /* Bite2.mp3 */,
 				1353936E245179C100CB9622 /* FoodReady.mp3 */,
+				C4C26D9F2526A00C00A01263 /* Shared Experience */,
 				C44D34FB24CF63DC00C2BF3E /* VenueExperience */,
 				C44D34FA24CF63CC00C2BF3E /* AverageUserExperience */,
 				C44D34F624CF62C700C2BF3E /* LoginFlow */,
@@ -446,6 +449,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		C4C26D9F2526A00C00A01263 /* Shared Experience */ = {
+			isa = PBXGroup;
+			children = (
+				C4C26DA02526A03200A01263 /* PageController.swift */,
+			);
+			path = "Shared Experience";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -611,6 +622,7 @@
 				9F37802C244F7941007C174E /* MainView.swift in Sources */,
 				C4789D982450BCD4008193BA /* AverageUserSignInView.swift in Sources */,
 				13F4BAB4244E5ACF00C0DC23 /* VenueCell.swift in Sources */,
+				C4C26DA12526A03200A01263 /* PageController.swift in Sources */,
 				9F0112662450DB08006B2DE8 /* ClaimMealsView.swift in Sources */,
 				C478942024C8E254000DAD81 /* ScanQRCodeController.swift in Sources */,
 				13F4BAB0244E5AB200C0DC23 /* LoginCustomCell.swift in Sources */,
