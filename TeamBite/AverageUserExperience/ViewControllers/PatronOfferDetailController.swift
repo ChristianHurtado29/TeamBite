@@ -15,9 +15,6 @@ protocol PatronOfferDetailDelegate: AnyObject {
     func stateChanged(_ patronOfferDetailController: PatronOfferDetailController, _ newState: AppState)
 }
 
-// Disable claim offer from other offers.
-// Move the mapView to this page. 
-
 class PatronOfferDetailController: UIViewController {
 
     private var mealState = MealStatus.unclaimed
@@ -89,6 +86,7 @@ class PatronOfferDetailController: UIViewController {
         detailView.forfeitOfferButton.addTarget(self, action: #selector(forfeitOfferButtonPressed(_:)), for: .touchUpInside)
         detailView.getDirectionsButton.addTarget(self, action: #selector(getDirectionsButtonPressed(_:)), for: .touchUpInside)
         detailView.pickUpDetailsLabel.text = currentVenue.pickupInstructions
+        detailView.alterScrollViewHeight()
     }
     
     private func configureMapView() {
@@ -146,7 +144,6 @@ class PatronOfferDetailController: UIViewController {
     
     private func setClaimedState() {
         let qrCodeString = "\(currentOffer.nameOfOffer) \(DateHandler.convertDateToString(Date())) \(currentOffer.offerId) \(currentUserId)"
-//        detailView.showPickUpDirections()
         detailView.claimOfferButton.alpha = 0.0
         detailView.forfeitOfferButton.alpha = 1.0
         detailView.willGenerateCodeLabel.isHidden = true
@@ -175,7 +172,6 @@ class PatronOfferDetailController: UIViewController {
         detailView.claimOfferButton.alpha = 1.0
         detailView.claimOfferButton.isUserInteractionEnabled = false
         detailView.forfeitOfferButton.alpha = 0.0
-//        detailView.hidePickUpInstructions()
         UserDefaultsHandler.resetOfferName()
         DatabaseService.shared.forfeitOffer(currentVenue.venueId, currentOffer.offerId, currentUserId) {
             [weak self] result in
@@ -199,5 +195,4 @@ class PatronOfferDetailController: UIViewController {
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         destinationItem.openInMaps(launchOptions: launchOptions)
     }
-
 }

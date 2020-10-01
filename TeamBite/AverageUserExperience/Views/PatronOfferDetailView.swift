@@ -77,6 +77,7 @@ class PatronOfferDetailView: UIView {
         let scroll = UIScrollView()
         scroll.isScrollEnabled = true
         scroll.backgroundColor = UIColor.systemBackground
+        scroll.bounces = false
         return scroll
     }()
     
@@ -109,7 +110,6 @@ class PatronOfferDetailView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + UIScreen.main.bounds.height * 0.3)
     }
     
     private func commonInit() {
@@ -193,6 +193,12 @@ class PatronOfferDetailView: UIView {
     
     private func setUpConstraintVariables() {
         topMapConstant = topMapConstraint.constant
+    }
+    
+    public func alterScrollViewHeight() {
+        setNeedsLayout()
+        layoutIfNeeded()
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + mapView.frame.height * 0.1 + getDirectionsButton.frame.height)
     }
     
     public func configureClaimedCurrentOfferState(_ offerName: String, _ offerId: String, _ userId: String) {
