@@ -80,10 +80,6 @@ class UserDetailViewController: UIViewController {
     }
     
     private func configureMapView() {
-        detailView.locationMap.delegate = self
-        detailView.locationMap.showsUserLocation = true
-        detailView.locationMap.showsPointsOfInterest = true
-        detailView.locationMap.showsScale = true
         locationManger.requestAlwaysAuthorization()
         locationManger.requestWhenInUseAuthorization()
     }
@@ -110,12 +106,6 @@ class UserDetailViewController: UIViewController {
         
     }
     
-    private func loadMap() {
-        let annotation = makeAnnotation(for: selectedVenue)
-        detailView.locationMap.addAnnotation(annotation)
-        getDirections()
-    }
-    
     private func loadVenue(){
         db.fetchVenues() { [weak self] (result) in
             switch result {
@@ -127,10 +117,6 @@ class UserDetailViewController: UIViewController {
                 self?.detailVenues = item
             }
         }
-    }
-    
-    private func configureGetDirectionsButton() {
-        detailView.getDirectionButton.addTarget(self, action: #selector(getDirectionButtonPressed), for: .touchUpInside)
     }
     
     private func configureOffersTableView() {
@@ -151,43 +137,6 @@ class UserDetailViewController: UIViewController {
         return annotation
     }
     
-    private func getDirections() {
-        let coordinate = CLLocationCoordinate2D(latitude: selectedVenue.lat, longitude: selectedVenue.long)
-        let request = MKDirections.Request()
-        request.source = MKMapItem.forCurrentLocation()
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
-        request.transportType = .any
-        let directions = MKDirections(request: request)
-        directions.calculate { (response, error) in
-            guard let unwrappedResponse = response else { return }
-            for route in unwrappedResponse.routes {
-                self.detailView.locationMap.addOverlay(route.polyline)
-                self.detailView.locationMap.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-            }
-        }
-    }
-    
-    func openMapForPlace(){
-        let lat1: NSString = (self.selectedVenue.lat.description) as NSString
-        let long1: NSString = (self.selectedVenue.long.description) as NSString
-        
-        let latitude: CLLocationDegrees = lat1.doubleValue
-        let longitude: CLLocationDegrees = long1.doubleValue
-        
-        let regionDistance: CLLocationDistance = 3000
-        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinateSpan: regionSpan.span)
-        ]
-        
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = selectedVenue.name
-        mapItem.openInMaps(launchOptions: options)
-    }
-    
     private func getOffers() {
 
         DatabaseService.shared.fetchVenueOffers(selectedVenue.venueId) { [weak self] result in
@@ -199,51 +148,7 @@ class UserDetailViewController: UIViewController {
             }
         }
     }
-    
-    //MARK: Get Direction Button
-    @objc private func GetDirection(_ sender: UIButton) {
-        openMapForPlace()
-    }
-    
-    @objc private func getDirectionButtonPressed(_ sender: UIButton) {
-        getDirections()
-    }
 
-}
-
-//MARK: Extension for Mapkit
-extension UserDetailViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        let identifier = "annotationView"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
-        
-        if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-            annotationView?.tintColor = .black
-            annotationView?.markerTintColor = .systemRed
-        } else {
-            annotationView?.annotation = annotation
-        }
-        return annotationView
-    }
-    
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//         let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-//         renderer.strokeColor = UIColor.systemBlue
-//         renderer.lineWidth = 3.0
-//
-//         return renderer
-//    }
-    
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        if isShowingNewAnnotation {
-            detailView.locationMap.showAnnotations([annotation], animated: false)
-        }
-        isShowingNewAnnotation = false
-    }
 }
 
 extension UserDetailViewController: UITableViewDataSource {
