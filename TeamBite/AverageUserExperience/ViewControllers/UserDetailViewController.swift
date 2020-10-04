@@ -31,10 +31,6 @@ class UserDetailViewController: UIViewController {
         }
     }
     let detailView = UserDetailView()
-    var locationManger = CLLocationManager()
-    
-    private var annotation = MKPointAnnotation()
-    private var isShowingNewAnnotation = false
     
     private var db = DatabaseService()
     private var detailVenues = [Venue]()
@@ -78,35 +74,22 @@ class UserDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         listener?.remove()
     }
-    
-    private func configureMapView() {
-        locationManger.requestAlwaysAuthorization()
-        locationManger.requestWhenInUseAuthorization()
-    }
-    
+        
     private func updateUI() {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         navigationItem.title = selectedVenue.name
-        
-//        if let start = selectedVenue.startTime, let end = selectedVenue.endTime {
-//        detailView.hoursOFOperation.text = """
-//Start Time: \(start)
-//
-//End Time: \(end)
-//"""
-//        }
+        navigationItem.rightBarButtonItem = detailView.flagRestaurantButton
+        detailView.flagRestaurantButton.target = self
+        detailView.flagRestaurantButton.action = #selector(flagRestaurantButtonPressed(_:))
         
         detailView.addressLabel.text = """
         Address:
         \(selectedVenue.address)
         """
         detailView.phoneNumberLabel.text = "Phone: \(selectedVenue.phoneNumber ?? "No phone number")"
-        
-        // Have to add resturant picture !!
-        
     }
     
-    private func loadVenue(){
+    private func loadVenue() {
         db.fetchVenues() { [weak self] (result) in
             switch result {
             case .failure(let error):
@@ -124,21 +107,7 @@ class UserDetailViewController: UIViewController {
         detailView.offersTableView.dataSource = self
     }
     
-    private func makeAnnotation(for venue: Venue) -> MKPointAnnotation {
-        selectedVenue = venue
-        let annotation = MKPointAnnotation()
-        
-        let coordinate = CLLocationCoordinate2D(latitude: venue.lat, longitude: venue.long)
-        annotation.title = venue.name
-        annotation.coordinate = coordinate
-        
-        isShowingNewAnnotation = true
-        self.annotation = annotation
-        return annotation
-    }
-    
     private func getOffers() {
-
         DatabaseService.shared.fetchVenueOffers(selectedVenue.venueId) { [weak self] result in
             switch result {
             case .failure(let error):
@@ -146,6 +115,14 @@ class UserDetailViewController: UIViewController {
             case .success(let offers):
                 self?.selectedOffers = offers
             }
+        }
+    }
+    
+    @objc
+    private func flagRestaurantButtonPressed(_ sender: UIBarButtonItem) {
+        showOfferAlert("Flag Vendor", "Report this vendor for inappropriate activity?") {
+            [unowned self] action in
+            self.navigationController?.pushViewController(FlagVendorViewController(self.selectedVenue), animated: true)
         }
     }
 

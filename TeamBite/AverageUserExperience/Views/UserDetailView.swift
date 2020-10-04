@@ -58,6 +58,12 @@ class UserDetailView: UIView {
         return tableView
     }()
     
+    public lazy var flagRestaurantButton: UIBarButtonItem = {
+       let barButtonItem = UIBarButtonItem()
+        barButtonItem.image = UIImage(systemName: "flag.fill")
+        return barButtonItem
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -85,7 +91,6 @@ class UserDetailView: UIView {
         ])
     }
     
-    
     private func setupPhoneNumber() {
         addSubview(phoneNumberLabel)
         phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -110,6 +115,5 @@ class UserDetailView: UIView {
         
         NSLayoutConstraint.activate([offersTableView.topAnchor.constraint(equalTo: activeOffersLabel.bottomAnchor, constant: 20), offersTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), offersTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), offersTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)])
     }
-    
     
 }

@@ -64,6 +64,8 @@
 		C4789D9E2450E758008193BA /* LoginWithPhoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */; };
 		C4789DA02450EB94008193BA /* UserFoodPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */; };
 		C4789DA22450EBB4008193BA /* UserFoodPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */; };
+		C4906F8B252A588100025806 /* FlagVendorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4906F8A252A588100025806 /* FlagVendorView.swift */; };
+		C4906F8E252A589B00025806 /* FlagVendorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4906F8D252A589B00025806 /* FlagVendorViewController.swift */; };
 		C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C255D024E5F7CE00FFF08D /* DateHandler.swift */; };
 		C4C26DA12526A03200A01263 /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C26DA02526A03200A01263 /* PageController.swift */; };
 		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
@@ -136,6 +138,8 @@
 		C4789D9D2450E758008193BA /* LoginWithPhoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneController.swift; sourceTree = "<group>"; };
 		C4789D9F2450EB94008193BA /* UserFoodPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesView.swift; sourceTree = "<group>"; };
 		C4789DA12450EBB4008193BA /* UserFoodPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoodPreferencesController.swift; sourceTree = "<group>"; };
+		C4906F8A252A588100025806 /* FlagVendorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagVendorView.swift; sourceTree = "<group>"; };
+		C4906F8D252A589B00025806 /* FlagVendorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagVendorViewController.swift; sourceTree = "<group>"; };
 		C4C255D024E5F7CE00FFF08D /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		C4C26DA02526A03200A01263 /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				C44D34F224CF629800C2BF3E /* PatronOfferDetailView.swift */,
 				13EE3C3C24F58FE400B5FF63 /* ResourcesView.swift */,
 				9F0112652450DB07006B2DE8 /* ClaimMealsView.swift */,
+				C4906F8A252A588100025806 /* FlagVendorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				C44D34F424CF62AD00C2BF3E /* PatronOfferDetailController.swift */,
 				13F4BAAB244E5A6200C0DC23 /* ResourcesViewController.swift */,
 				636E9C6624516DED00461E43 /* TabBarController.swift */,
+				C4906F8D252A589B00025806 /* FlagVendorViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -603,10 +609,12 @@
 				13F4BAA7244E5A0300C0DC23 /* Venue.swift in Sources */,
 				13F4BAA4244E599000C0DC23 /* Offer.swift in Sources */,
 				C4700C9024DA34570040E1B2 /* UserDefaultsHandler.swift in Sources */,
+				C4906F8E252A589B00025806 /* FlagVendorViewController.swift in Sources */,
 				13EE3C3D24F58FE400B5FF63 /* ResourcesView.swift in Sources */,
 				634E16C9244FC4A5002C954A /* User.swift in Sources */,
 				C4789D9C2450E742008193BA /* LoginWithPhoneView.swift in Sources */,
 				13F4BAB2244E5AC100C0DC23 /* OffersCell.swift in Sources */,
+				C4906F8B252A588100025806 /* FlagVendorView.swift in Sources */,
 				13F4BA9F244E595B00C0DC23 /* AuthenticationSessions.swift in Sources */,
 				13F39634244F6F34004BD488 /* Resources.swift in Sources */,
 				C478941E24C8AA56000DAD81 /* QRCodeHandler.swift in Sources */,
