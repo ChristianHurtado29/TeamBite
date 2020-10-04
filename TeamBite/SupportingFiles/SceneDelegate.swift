@@ -23,11 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
       
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error.localizedDescription)
-        }
         if let _ = Auth.auth().currentUser?.email {
             let storyboard = UIStoryboard(name: "Venues", bundle: nil)
             guard let venueTabController = storyboard.instantiateViewController(identifier: "VenueStoryboard") as? UITabBarController else {

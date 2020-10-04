@@ -22,11 +22,13 @@
                                 <items>
                                     <navigationItem title="Home" id="fu5-zA-VRi">
                                         <barButtonItem key="leftBarButtonItem" title="Scan QR Code" id="Ype-GE-XKT">
+                                            <color key="tintColor" red="0.99869769809999998" green="0.2264313698" blue="0.73728537559999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <connections>
-                                                <action selector="scanQRCodeButtonPressed:" destination="Aof-g9-xqt" id="x0Q-QO-Cds"/>
+                                                <action selector="ellipsesButtonPressed:" destination="Aof-g9-xqt" id="x0Q-QO-Cds"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Create Offer" id="HVx-Ws-hnw">
+                                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="HVx-Ws-hnw">
+                                            <color key="tintColor" red="0.96093053488756475" green="0.21804941927272001" blue="0.70940899571260996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <connections>
                                                 <action selector="createOfferButtonPressed:" destination="Aof-g9-xqt" id="K2B-Jy-JNi"/>
                                             </connections>
@@ -110,14 +112,6 @@
                                     <constraint firstAttribute="height" constant="142.5" id="mMe-r3-02j"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfh-hQ-43b">
-                                <rect key="frame" x="20" y="238" width="30" height="30"/>
-                                <color key="backgroundColor" red="0.97697975729999997" green="0.76651102110000002" blue="1" alpha="0.89484161399999995" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Edit"/>
-                                <connections>
-                                    <action selector="editButton:" destination="Aof-g9-xqt" eventType="touchUpInside" id="cKa-nN-5xh"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts4-WS-h0S">
                                 <rect key="frame" x="20" y="272.5" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -133,6 +127,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8KG-Wu-iVW">
                                 <rect key="frame" x="289" y="199.5" width="39" height="39"/>
                                 <color key="backgroundColor" red="0.97697975727806308" green="0.76651102111339575" blue="1" alpha="0.8948416140223695" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.99869769809999998" green="0.2264313698" blue="0.73728537559999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="plus" catalog="system"/>
                                 <connections>
                                     <action selector="addImageButton:" destination="Aof-g9-xqt" eventType="touchUpInside" id="XgL-Xh-0dV"/>
@@ -143,8 +138,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="top" secondItem="01g-Qt-yAm" secondAttribute="bottom" constant="50" id="0sF-S8-MLj"/>
-                            <constraint firstItem="nfh-hQ-43b" firstAttribute="top" secondItem="Fnn-TM-BfG" secondAttribute="bottom" constant="-0.5" id="2Dd-j7-u5Q"/>
-                            <constraint firstItem="ts4-WS-h0S" firstAttribute="firstBaseline" secondItem="nfh-hQ-43b" secondAttribute="baseline" constant="30" id="5CS-qf-F3u"/>
                             <constraint firstItem="Fnn-TM-BfG" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="86" id="6Vn-Fy-9QY"/>
                             <constraint firstItem="8KG-Wu-iVW" firstAttribute="width" secondItem="Fnn-TM-BfG" secondAttribute="width" multiplier="0.161157" id="76I-T1-mBk"/>
                             <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="VPj-12-2T7" secondAttribute="trailing" constant="20" id="7VY-iI-7GB"/>
@@ -158,11 +151,10 @@
                             <constraint firstItem="8KG-Wu-iVW" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="289" id="M9k-vK-C19"/>
                             <constraint firstItem="VPj-12-2T7" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="NKx-8V-bLk"/>
                             <constraint firstItem="Fnn-TM-BfG" firstAttribute="top" secondItem="ArT-Mo-Kfu" secondAttribute="bottom" constant="8" id="NoS-BH-kTX"/>
-                            <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nfh-hQ-43b" secondAttribute="trailing" symbolic="YES" id="OPD-bY-0qR"/>
                             <constraint firstItem="8KG-Wu-iVW" firstAttribute="height" secondItem="Fnn-TM-BfG" secondAttribute="height" multiplier="0.273684" id="Ry4-rH-R9B"/>
                             <constraint firstItem="DyY-ly-D6o" firstAttribute="trailing" secondItem="01g-Qt-yAm" secondAttribute="trailing" constant="20" id="UsC-ne-SNW"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" id="Xeu-sb-s0p"/>
-                            <constraint firstItem="nfh-hQ-43b" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="bYF-6V-wfy"/>
+                            <constraint firstItem="ts4-WS-h0S" firstAttribute="top" secondItem="Fnn-TM-BfG" secondAttribute="bottom" constant="34" id="Yk6-3P-N5x"/>
                             <constraint firstItem="01g-Qt-yAm" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" constant="20" id="bwD-vk-GCj"/>
                             <constraint firstItem="lTw-dD-DpN" firstAttribute="trailing" secondItem="DyY-ly-D6o" secondAttribute="trailing" id="dKM-Qk-GdF"/>
                             <constraint firstItem="ArT-Mo-Kfu" firstAttribute="leading" secondItem="DyY-ly-D6o" secondAttribute="leading" id="eIT-Eb-Gm4"/>
@@ -397,6 +389,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>

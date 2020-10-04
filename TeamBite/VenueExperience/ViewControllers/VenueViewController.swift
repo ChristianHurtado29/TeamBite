@@ -218,6 +218,42 @@ class VenueViewController: UIViewController {
     
     
     @IBAction func createOfferButtonPressed(_ sender: UIBarButtonItem) {
+        var alertAction = UIAlertController(title: "Action", message: "do you want to...", preferredStyle: .actionSheet)
+        
+        let editInfoAction = UIAlertAction(title: "Edit Info", style: .default) { (action) in
+            guard let venue = self.venue else { return }
+            let infoViewController = CollectVenueInfoController(nil, nil, venue)
+            self.present(infoViewController, animated: true)
+        }
+        
+        let createOfferAction = UIAlertAction(title: "Create Offer", style: .default) { (action) in
+            let storyboard =  UIStoryboard(name: "Venues", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
+            do {
+                try Auth.auth().signOut()
+                UIViewController.resetWindow(UINavigationController(rootViewController: LoginViewController()))
+            } catch {
+                self.showAlert(title: "Sign Out Error", message: "There was an error \(error.localizedDescription)")
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            self.dismiss(animated: true)
+        }
+        
+        alertAction.addAction(editInfoAction)
+        alertAction.addAction(createOfferAction)
+        alertAction.addAction(signOutAction)
+        alertAction.addAction(cancelAction)
+        present(alertAction, animated: true)
+    }
+    
+    func createOffer(){
         let storyboard =  UIStoryboard(name: "Venues", bundle: nil)
         guard let vc = storyboard.instantiateViewController(identifier: "CreateOffersViewController") as? CreateOffersViewController else { fatalError()}
         vc.modalPresentationStyle = .fullScreen
