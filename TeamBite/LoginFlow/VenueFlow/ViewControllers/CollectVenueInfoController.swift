@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class CollectVenueInfoController: UIViewController {
-
+    
     private let collectVenueInfoView = CollectVenueInfoView()
     private let userEmail: String
     private let userPassword: String
@@ -46,6 +46,11 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.instructionTextfield.inputView = instructionPicker
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterForKeyboardNotifications()
+    }
+    
     private func setUp(){
         collectVenueInfoView.backgroundColor = UIColor.systemBackground
         collectVenueInfoView.zipTextField.delegate = self
@@ -67,16 +72,16 @@ class CollectVenueInfoController: UIViewController {
     @objc
     private func submitButtonPressed(_ sender: UIButton){
         guard let zip = collectVenueInfoView.zipTextField.text, !zip.isEmpty,
-            let city = collectVenueInfoView.cityTextField.text,
-            !city.isEmpty,
-            let state = collectVenueInfoView.stateTextField.text,
-            !state.isEmpty,
-            let streetName = collectVenueInfoView.streetNameTextField.text,
-            !streetName.isEmpty,
-            let venueName = collectVenueInfoView.venueNameTextField.text,
-            !venueName.isEmpty else {
-                showAlert(title: "Missing Fields", message: "One or more required fields are missing. Please complete all required fields.")
-                return
+              let city = collectVenueInfoView.cityTextField.text,
+              !city.isEmpty,
+              let state = collectVenueInfoView.stateTextField.text,
+              !state.isEmpty,
+              let streetName = collectVenueInfoView.streetNameTextField.text,
+              !streetName.isEmpty,
+              let venueName = collectVenueInfoView.venueNameTextField.text,
+              !venueName.isEmpty else {
+            showAlert(title: "Missing Fields", message: "One or more required fields are missing. Please complete all required fields.")
+            return
         }
         
         var phoneNumber: String? = nil
@@ -119,8 +124,6 @@ class CollectVenueInfoController: UIViewController {
                         UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
                     }
                 }
-                
-//                UIViewController.showTabController(storyboardName: "Venues", viewControllerId: "VenueStoryboard", viewController: nil)
             }
         }
     }
@@ -129,13 +132,14 @@ class CollectVenueInfoController: UIViewController {
         return streetName + " " + city + " " + state + " " + zip
     }
     
-    private func areYouANumber(_ string: String) -> Bool{
+    private func areYouANumber(_ string: String) -> Bool {
         
         for char in string{
             if !char.isNumber {
                 return false
             }
         }
+        
         return true
     }
     
@@ -151,7 +155,7 @@ class CollectVenueInfoController: UIViewController {
     }
     
     @objc
-    private func dismissKeyboard(_ gesture: UITapGestureRecognizer){
+    private func dismissKeyboard(_ gesture: UITapGestureRecognizer) {
         
         collectVenueInfoView.zipTextField.resignFirstResponder()
         collectVenueInfoView.cityTextField.resignFirstResponder()
@@ -163,7 +167,7 @@ class CollectVenueInfoController: UIViewController {
         collectVenueInfoView.endTimeTextField.resignFirstResponder()
         collectVenueInfoView.instructionTextfield.resignFirstResponder()
     }
-
+    
 }
 
 extension CollectVenueInfoController: UITextFieldDelegate {
@@ -202,7 +206,7 @@ extension CollectVenueInfoController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func unregisterForKeyboardNotifications(){
+    private func unregisterForKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -215,7 +219,7 @@ extension CollectVenueInfoController {
         guard let _ = notification.userInfo?["UIKeyboardFrameBeginUserInfoKey"] as? CGRect else {
             return
         }
-
+        
         shiftUIUp(80)
     }
     

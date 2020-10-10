@@ -31,8 +31,18 @@ class FlagVendorView: UIView {
         return label
     }()
     
+    public lazy var expandOnReasonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please explain your reason for flagging below"
+        label.textAlignment = .left
+        label.textColor = UIColor.black
+        label.alpha = 0.0
+        return label
+    }()
+    
     public lazy var reasonForFlagTextField: PaddedTextField = {
         let textField = PaddedTextField()
+        textField.placeholder = "Select reason for flagging"
         textField.layer.borderWidth = 0.7
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 10.0
@@ -41,7 +51,6 @@ class FlagVendorView: UIView {
     
     public lazy var reasonForFlagTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "Please explain your reason for reporting this venue."
         textView.alpha = 0.0
         textView.layer.borderWidth = 0.7
         textView.layer.borderColor = UIColor.black.cgColor
@@ -56,6 +65,11 @@ class FlagVendorView: UIView {
         button.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.semibold)
         return button
+    }()
+    
+    public lazy var tapGesture: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer()
+        return tap
     }()
     
     override init(frame: CGRect) {
@@ -73,8 +87,10 @@ class FlagVendorView: UIView {
         configureVenueNameTextFieldConstraints()
         configureReasonForFlagLabelConstraints()
         configureReasonForFlagTextFieldConstraints()
+        configureExpandOnReasonLabelConstraints()
         configureReasonForFlagTextViewConstraints()
         configureSubmitButtonConstraints()
+        addGestureRecognizer(tapGesture)
         backgroundColor = UIColor.systemBackground
     }
     
@@ -106,17 +122,24 @@ class FlagVendorView: UIView {
         NSLayoutConstraint.activate([reasonForFlagTextField.topAnchor.constraint(equalTo: reasonForFlagLabel.bottomAnchor, constant: 8), reasonForFlagTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), reasonForFlagTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), reasonForFlagTextField.heightAnchor.constraint(equalToConstant: 50.0)])
     }
     
+    private func configureExpandOnReasonLabelConstraints() {
+        addSubview(expandOnReasonLabel)
+        expandOnReasonLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([expandOnReasonLabel.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 20), expandOnReasonLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), expandOnReasonLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+    }
+    
     private func configureReasonForFlagTextViewConstraints() {
         addSubview(reasonForFlagTextView)
         reasonForFlagTextView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([reasonForFlagTextView.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 16), reasonForFlagTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), reasonForFlagTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), reasonForFlagTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)])
+        NSLayoutConstraint.activate([reasonForFlagTextView.topAnchor.constraint(equalTo: expandOnReasonLabel.bottomAnchor, constant: 8), reasonForFlagTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), reasonForFlagTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), reasonForFlagTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)])
     }
     
     private func configureSubmitButtonConstraints() {
         addSubview(submitButton)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([submitButton.topAnchor.constraint(equalTo: reasonForFlagTextView.bottomAnchor, constant: 16), submitButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), submitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), submitButton.heightAnchor.constraint(equalToConstant: 50.0)])
+        NSLayoutConstraint.activate([submitButton.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 32), submitButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), submitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), submitButton.heightAnchor.constraint(equalToConstant: 50.0)])
     }
 }
