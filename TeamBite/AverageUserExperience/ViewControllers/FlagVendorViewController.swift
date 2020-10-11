@@ -12,7 +12,8 @@ class FlagVendorViewController: UIViewController {
 
     private let flagView = FlagVendorView()
     private var currentVenue: Venue
-    private let reasonsForFlagging: [String] = ["Was not able to receive meal", "Meal was cold", "other"]
+    private let reasonsForFlagging: [String] = ["Was not able to receive meal", "Meal was cold", "Other"]
+    private var keyboardIsHidden = true
     
     private var pickerView = UIPickerView()
     
@@ -33,6 +34,12 @@ class FlagVendorViewController: UIViewController {
         super.viewDidLoad()
         configurePickerView()
         configureUI()
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterForKeyboardNotifications()
     }
     
     private func configurePickerView() {
@@ -51,6 +58,7 @@ class FlagVendorViewController: UIViewController {
     @objc
     private func screenTapped() {
         flagView.reasonForFlagTextField.resignFirstResponder()
+        flagView.reasonForFlagTextView.resignFirstResponder()
     }
     
     @objc
@@ -76,11 +84,20 @@ extension FlagVendorViewController {
     
     @objc
     public func keyboardWillShow() {
+
+        if keyboardIsHidden && flagView.reasonForFlagTextView.isFirstResponder {
+            flagView.shiftUp(UIScreen.main.bounds.height * 0.15)
+            keyboardIsHidden = false
+        }
         
     }
     
     @objc
     public func keyboardWillDismiss() {
+        if !keyboardIsHidden {
+            flagView.shiftBack()
+            keyboardIsHidden = true
+        }
         
     }
     
@@ -104,13 +121,9 @@ extension FlagVendorViewController: UIPickerViewDelegate, UIPickerViewDataSource
         flagView.reasonForFlagTextField.text = reasonsForFlagging[row]
         
         if row == reasonsForFlagging.count - 1{
-            flagView.reasonForFlagTextView.alpha = 1.0
-            flagView.expandOnReasonLabel.alpha = 1.0
-            flagView.submitButton.alpha = 0.0
+            flagView.showTextView(1.0)
         } else {
-            flagView.reasonForFlagTextView.alpha = 0.0
-            flagView.expandOnReasonLabel.alpha = 0.0
-            flagView.submitButton.alpha = 1.0
+            flagView.hideTextView(1.0)
         }
     }
     

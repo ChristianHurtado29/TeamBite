@@ -9,6 +9,10 @@
 import UIKit
 
 class FlagVendorView: UIView {
+    
+    private var submitButtonTopConstraint = NSLayoutConstraint()
+    private var topConstraint = NSLayoutConstraint()
+    private var originalConstraintConstant: CGFloat = 0.0
 
     public lazy var venueNameLabel: UILabel = {
        let label = UILabel()
@@ -98,7 +102,10 @@ class FlagVendorView: UIView {
         addSubview(venueNameLabel)
         venueNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([venueNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10), venueNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 13), venueNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+        NSLayoutConstraint.activate([venueNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 13), venueNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+        topConstraint = venueNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10)
+        topConstraint.isActive = true
+        originalConstraintConstant = topConstraint.constant
     }
     
     private func configureVenueNameTextFieldConstraints() {
@@ -133,13 +140,60 @@ class FlagVendorView: UIView {
         addSubview(reasonForFlagTextView)
         reasonForFlagTextView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([reasonForFlagTextView.topAnchor.constraint(equalTo: expandOnReasonLabel.bottomAnchor, constant: 8), reasonForFlagTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), reasonForFlagTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), reasonForFlagTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)])
+        NSLayoutConstraint.activate([reasonForFlagTextView.topAnchor.constraint(equalTo: expandOnReasonLabel.bottomAnchor, constant: 8), reasonForFlagTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), reasonForFlagTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), reasonForFlagTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15)])
     }
     
     private func configureSubmitButtonConstraints() {
         addSubview(submitButton)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([submitButton.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 32), submitButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), submitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), submitButton.heightAnchor.constraint(equalToConstant: 50.0)])
+        NSLayoutConstraint.activate([submitButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), submitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), submitButton.heightAnchor.constraint(equalToConstant: 50.0)])
+        hideTextView(0.0)
     }
+    
+    public func showTextView(_ interval: Double) {
+        submitButtonTopConstraint.isActive = false
+        submitButtonTopConstraint = submitButton.topAnchor.constraint(equalTo: reasonForFlagTextView.bottomAnchor, constant: 32)
+        submitButtonTopConstraint.isActive = true
+        
+        UIView.animate(withDuration: interval, delay: 0.0, options: []) {
+            self.layoutIfNeeded()
+        } completion: { done in
+            UIView.animate(withDuration: 1.0) {
+                self.reasonForFlagTextView.alpha = 1.0
+                self.expandOnReasonLabel.alpha = 1.0
+                self.submitButton.alpha = 1.0
+            }
+        }
+    }
+    
+    public func hideTextView(_ interval: Double) {
+        submitButtonTopConstraint.isActive = false
+        submitButtonTopConstraint = submitButton.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 32)
+        submitButtonTopConstraint.isActive = true
+        
+        UIView.animate(withDuration: interval, delay: 0.0, options: []) {
+            self.reasonForFlagTextView.alpha = 0.0
+            self.expandOnReasonLabel.alpha = 0.0
+            self.submitButton.alpha = 1.0
+            self.layoutIfNeeded()
+        } completion: { done in }
+    }
+    
+    public func shiftUp(_ amount: CGFloat) {
+        topConstraint.constant -= amount
+        
+        UIView.animate(withDuration: 1.0) {
+            self.layoutIfNeeded()
+        }
+    }
+    
+    public func shiftBack() {
+        topConstraint.constant = originalConstraintConstant
+        
+        UIView.animate(withDuration: 1.0) {
+            self.layoutIfNeeded()
+        }
+    }
+    
 }
