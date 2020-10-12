@@ -63,7 +63,17 @@ class FlagVendorViewController: UIViewController {
     
     @objc
     private func submitButtonPressed(_ sender: UIButton) {
-        print("Submitted")
+        guard let reasonText = flagView.reasonForFlagTextField.text, !reasonText.isEmpty else {
+            showAlert(title: "Invalid Flag", message: "Please select a reason for flagging this restaurant.")
+            return
+        }
+        
+        if reasonText == reasonsForFlagging[reasonsForFlagging.count - 1] && flagView.reasonForFlagTextView.text.isEmpty {
+            showAlert(title: "Invalid Flag", message: "Please write an explanation into the textbox below.")
+            return
+        }
+        
+        
     }
 
 }
@@ -84,12 +94,10 @@ extension FlagVendorViewController {
     
     @objc
     public func keyboardWillShow() {
-
         if keyboardIsHidden && flagView.reasonForFlagTextView.isFirstResponder {
             flagView.shiftUp(UIScreen.main.bounds.height * 0.15)
             keyboardIsHidden = false
         }
-        
     }
     
     @objc
@@ -98,7 +106,6 @@ extension FlagVendorViewController {
             flagView.shiftBack()
             keyboardIsHidden = true
         }
-        
     }
     
 }

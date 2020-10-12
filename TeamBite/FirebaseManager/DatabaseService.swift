@@ -17,6 +17,7 @@ class DatabaseService {
     static let venuesOwnerCollection = "venues"
     static let usersCollection = "users"
     static let allOffersCollection = "allOffers"
+    static let flagCollection = "flags"
     
     // reference to firebase firestore database
     private let db = Firestore.firestore()
@@ -346,5 +347,9 @@ class DatabaseService {
                 completion(.success(true))
             }
         }
+    }
+    
+    public func createNewFlag(_ flag: Flag, _ completion: @escaping () -> ()) {
+        
     }
 }

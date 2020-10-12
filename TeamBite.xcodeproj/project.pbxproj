@@ -69,6 +69,7 @@
 		C4C255D124E5F7CE00FFF08D /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C255D024E5F7CE00FFF08D /* DateHandler.swift */; };
 		C4C26DA12526A03200A01263 /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C26DA02526A03200A01263 /* PageController.swift */; };
 		C4C4CB1B24CBB67300861B64 /* PatronOfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */; };
+		C4D61ABF2533D22300892BB6 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D61ABE2533D22300892BB6 /* Flag.swift */; };
 		DF5396A277EEB116C295FFF6 /* Pods_TeamBite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C265DBCF3AE7964A409DBF0B /* Pods_TeamBite.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,7 @@
 		C4C255D024E5F7CE00FFF08D /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		C4C26DA02526A03200A01263 /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		C4C4CB1A24CBB67300861B64 /* PatronOfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronOfferCell.swift; sourceTree = "<group>"; };
+		C4D61ABE2533D22300892BB6 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		D640137B3F19C392620FF0D3 /* Pods-TeamBite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBite.debug.xcconfig"; path = "Target Support Files/Pods-TeamBite/Pods-TeamBite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 				13F4BAA6244E5A0300C0DC23 /* Venue.swift */,
 				634E16C8244FC4A5002C954A /* User.swift */,
 				13F39633244F6F34004BD488 /* Resources.swift */,
+				C4D61ABE2533D22300892BB6 /* Flag.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				C44D34F324CF629800C2BF3E /* PatronOfferDetailView.swift in Sources */,
 				1334596924E76FD3001D0A2A /* StorageService.swift in Sources */,
 				C4604AA6244F613E008E2857 /* LoginView.swift in Sources */,
+				C4D61ABF2533D22300892BB6 /* Flag.swift in Sources */,
 				C4604AB0244FDF0C008E2857 /* CollectVenueInfoController.swift in Sources */,
 				C456263E2516C5BC00B9379B /* SceneHelper.swift in Sources */,
 				C4789D962450BA31008193BA /* UIViewController+SceneChange.swift in Sources */,
