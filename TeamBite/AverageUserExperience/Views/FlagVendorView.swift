@@ -71,6 +71,24 @@ class FlagVendorView: UIView {
         return button
     }()
     
+    public lazy var timeOfFlagLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.text = "Time/Date of Flag"
+        label.textAlignment = .left
+        return label
+    }()
+    
+    public lazy var timeOfFlagTextField: PaddedTextField = {
+        let textField = PaddedTextField()
+        textField.textColor = UIColor.black
+        textField.placeholder = "Tap to add time/date"
+        textField.layer.cornerRadius = 10
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.black.cgColor
+        return textField
+    }()
+    
     public lazy var tapGesture: UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer()
         return tap
@@ -91,6 +109,8 @@ class FlagVendorView: UIView {
         configureVenueNameTextFieldConstraints()
         configureReasonForFlagLabelConstraints()
         configureReasonForFlagTextFieldConstraints()
+        configureTimeOfFlagLabelConstraints()
+        configureTimeOfFlagTextFieldConstraints()
         configureExpandOnReasonLabelConstraints()
         configureReasonForFlagTextViewConstraints()
         configureSubmitButtonConstraints()
@@ -129,11 +149,25 @@ class FlagVendorView: UIView {
         NSLayoutConstraint.activate([reasonForFlagTextField.topAnchor.constraint(equalTo: reasonForFlagLabel.bottomAnchor, constant: 8), reasonForFlagTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), reasonForFlagTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), reasonForFlagTextField.heightAnchor.constraint(equalToConstant: 50.0)])
     }
     
+    private func configureTimeOfFlagLabelConstraints() {
+        addSubview(timeOfFlagLabel)
+        timeOfFlagLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([timeOfFlagLabel.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 20), timeOfFlagLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), timeOfFlagLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+    }
+    
+    private func configureTimeOfFlagTextFieldConstraints() {
+        addSubview(timeOfFlagTextField)
+        timeOfFlagTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([timeOfFlagTextField.topAnchor.constraint(equalTo: timeOfFlagLabel.bottomAnchor, constant: 20), timeOfFlagTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), timeOfFlagTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), timeOfFlagTextField.heightAnchor.constraint(equalToConstant: 50.0)])
+    }
+    
     private func configureExpandOnReasonLabelConstraints() {
         addSubview(expandOnReasonLabel)
         expandOnReasonLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([expandOnReasonLabel.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 20), expandOnReasonLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), expandOnReasonLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
+        NSLayoutConstraint.activate([expandOnReasonLabel.topAnchor.constraint(equalTo: timeOfFlagTextField.bottomAnchor, constant: 20), expandOnReasonLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), expandOnReasonLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8)])
     }
     
     private func configureReasonForFlagTextViewConstraints() {
@@ -169,7 +203,7 @@ class FlagVendorView: UIView {
     
     public func hideTextView(_ interval: Double) {
         submitButtonTopConstraint.isActive = false
-        submitButtonTopConstraint = submitButton.topAnchor.constraint(equalTo: reasonForFlagTextField.bottomAnchor, constant: 32)
+        submitButtonTopConstraint = submitButton.topAnchor.constraint(equalTo: timeOfFlagTextField.bottomAnchor, constant: 32)
         submitButtonTopConstraint.isActive = true
         
         UIView.animate(withDuration: interval, delay: 0.0, options: []) {

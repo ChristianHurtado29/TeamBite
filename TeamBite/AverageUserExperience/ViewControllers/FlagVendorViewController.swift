@@ -16,6 +16,7 @@ class FlagVendorViewController: UIViewController {
     private var keyboardIsHidden = true
     
     private var pickerView = UIPickerView()
+    private var datePicker = UIDatePicker()
     
     override func loadView() {
         view = flagView
@@ -52,6 +53,7 @@ class FlagVendorViewController: UIViewController {
         flagView.submitButton.addTarget(self, action: #selector(submitButtonPressed(_:)), for: .touchUpInside)
         flagView.venueNameTextField.text = currentVenue.name
         flagView.reasonForFlagTextField.inputView = pickerView
+        flagView.timeOfFlagTextField.inputView = datePicker
         flagView.tapGesture.addTarget(self, action: #selector(screenTapped))
     }
     
@@ -59,6 +61,7 @@ class FlagVendorViewController: UIViewController {
     private func screenTapped() {
         flagView.reasonForFlagTextField.resignFirstResponder()
         flagView.reasonForFlagTextView.resignFirstResponder()
+        flagView.timeOfFlagTextField.resignFirstResponder()
     }
     
     @objc
@@ -72,8 +75,6 @@ class FlagVendorViewController: UIViewController {
             showAlert(title: "Invalid Flag", message: "Please write an explanation into the textbox below.")
             return
         }
-        
-        
     }
 
 }
@@ -95,8 +96,10 @@ extension FlagVendorViewController {
     @objc
     public func keyboardWillShow() {
         if keyboardIsHidden && flagView.reasonForFlagTextView.isFirstResponder {
-            flagView.shiftUp(UIScreen.main.bounds.height * 0.15)
+            flagView.shiftUp(UIScreen.main.bounds.height * 0.25)
             keyboardIsHidden = false
+        } else if !keyboardIsHidden && !flagView.reasonForFlagTextView.isFirstResponder {
+            keyboardWillDismiss()
         }
     }
     
