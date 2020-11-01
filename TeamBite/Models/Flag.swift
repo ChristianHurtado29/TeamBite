@@ -14,6 +14,9 @@ struct Flag {
     var reason: String
     var explanation: String
     var flagUserId: String
+    // Consider making this a TimeInterval (Whatever the firebase equivalent of date is).
+    var timeOfIncident: String
+    var dateOfIncident: String
     
     init(_ dict: [String: Any]) {
         self.venueName = dict["venueName"] as? String ?? ""
@@ -21,6 +24,8 @@ struct Flag {
         self.reason = dict["reason"] as? String ?? ""
         self.explanation = dict["explanation"] as? String ?? ""
         self.flagUserId = dict["flagUserId"] as? String ?? ""
+        self.timeOfIncident = dict["timeOfIncident"] as? String ?? ""
+        self.dateOfIncident = dict["dateOfIncident"] as? String ?? ""
     }
 }
 

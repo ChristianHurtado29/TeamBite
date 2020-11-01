@@ -16,7 +16,7 @@ class FlagVendorViewController: UIViewController {
     private var keyboardIsHidden = true
     
     private var pickerView = UIPickerView()
-    private var datePicker = UIDatePicker()
+    private var datePicker = UIDatePicker() // Set up a way to add date and time without using a date picker because they are ugly.
     
     override func loadView() {
         view = flagView
@@ -66,15 +66,20 @@ class FlagVendorViewController: UIViewController {
     
     @objc
     private func submitButtonPressed(_ sender: UIButton) {
+        // Check that a valid reason for flagging exists.
         guard let reasonText = flagView.reasonForFlagTextField.text, !reasonText.isEmpty else {
             showAlert(title: "Invalid Flag", message: "Please select a reason for flagging this restaurant.")
             return
         }
         
+        // Check that if other is selected as a reason, there is an explanation associated with that reason.
         if reasonText == reasonsForFlagging[reasonsForFlagging.count - 1] && flagView.reasonForFlagTextView.text.isEmpty {
             showAlert(title: "Invalid Flag", message: "Please write an explanation into the textbox below.")
             return
         }
+        
+        // Check that a valid date and time are given.
+
     }
 
 }
